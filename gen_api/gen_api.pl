@@ -13,7 +13,7 @@ use File::Basename qw(dirname basename);
 
 Readonly my $PWD => dirname(abs_path($0));
 Readonly my $SCRIPTNAME => basename($0);
-Readonly my $DEBUG = $ENV{GEN_API_DEBUG} || 0;
+Readonly my $DEBUG => $ENV{GEN_API_DEBUG};
 
 Readonly my $API => 'API.txt';
 Readonly::Hash my %API_CLASS_MAP => {
@@ -137,8 +137,8 @@ sub parse_api
     my $regex = qr{^command:\s*(?<command>\w+)\s*\n}ms;
     my @raw_api_split = split($regex, $txt);
 
-    # shift first empty entry
-    shift(@raw_api_split) if ! $raw_api_split[0];
+    # shift first (empty or invalid) entry
+    shift(@raw_api_split);
 
     my %raw_api = @raw_api_split;
 
@@ -181,12 +181,33 @@ sub parse_api_klass
     my ($data) = @_;
     my $res;
 
-    if ($data =~ m/^(?<class>\w+)\(\s*['"](?<name>[\w-]+)(?<multi>[?*+])?['"]/) {
+    if ($data =~ m/^(?<class>\w+)\(\s*['"](?<name>[\w-]+)(?<multi>[?*+])?['"](?<remainder>.*)?\s*\)\s*$/) {
         my $class = $API_CLASS_MAP{$+{class}};
         if ($class) {
             $res->{class} = $class;
             $res->{name} = $+{name};
             $res->{multi} = $+{multi};
+
+            # Not for output
+            my @remainder = split(/,\s*(\w+)=/, $+{remainder} || '');
+
+            # shift first (empty or invalid) entry
+            my $first = shift(@remainder);
+            # TODO: non-empty first is from output related fields
+
+
+            my %remainder  = @remainder;
+            while (my ($k, $v) = each(%remainder)) {
+                if($v eq 'False') {
+                    $v = 0;
+                } elsif ($v eq 'True') {
+                    $v = 1;
+                } else {
+                    # strip any quotes and unicode
+                    $v =~ s/^\s*u?(['"])(.*)\1\s*/$2/;
+                }
+                $res->{remainder}->{$k} = $v;
+            }
         } else {
             die("Unknown API class $1 for data $data");
         }
@@ -207,7 +228,10 @@ sub add_command
 {
     my ($command, $details) = @_;
 
+    # This is ordered
     my @opt_keys = map {$_->{name}} @{$details->{option}};
+    my @opt_types = map {$_->{class}} @{$details->{option}};
+
     my @args = map {$_->{name}} @{$details->{arg}};
 
     my $arg_pod = "No arguments.\n";
@@ -223,10 +247,18 @@ sub add_command
 
     my $method_arg_txt = join(', ', @method_args);
 
-    # do not pass $self
-    shift(@method_args);
+    # Pass the args and opts as references
     my @rpc_args = ("'$command'");
-    push(@rpc_args, @method_args);
+    # Add arrayref with args
+    push(@rpc_args, "[".join(', ', map {'$'.$_} @args)."]");
+    # Add arrayref with args types
+    push(@rpc_args, "[".join(', ', map {"'$_->{class}'"} @{$details->{arg}})."]");
+    # Add options hasref
+    push(@rpc_args, @opt_keys ? '\%opts' : '{}');
+    # Add generated opt_type_map
+    push(@rpc_args, @opt_keys ? '\%opt_type_map' : '{}');
+
+
     my $rpc_arg_txt = join(', ', @rpc_args);
 
     my $opts_check_txt = '';
@@ -244,6 +276,10 @@ sub add_command
             return;
         };
     };
+    my \@opt_types = qw(@opt_types);
+    my \%opt_type_map;
+    # Hash slice to create the map
+    \@opt_type_map{\@opt_keys} = \@opt_types;
 EOF_OPTS_CHECK
     }
 
@@ -271,7 +307,7 @@ sub $command_name
 
 $opts_check_txt
 
-    return \$self->rpc($rpc_arg_txt);
+    return \$self->rpc_api($rpc_arg_txt);
 }
 
 EOF_METHOD

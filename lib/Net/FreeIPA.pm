@@ -5,7 +5,8 @@ package Net::FreeIPA;
 use strict;
 use warnings;
 
-use parent qw(Net::FreeIPA::Base Net::FreeIPA::RPC Net::FreeIPA::API);
+use parent qw(Net::FreeIPA::Base Net::FreeIPA::RPC Net::FreeIPA::API
+              Net::FreeIPA::Convert);
 
 =head1 NAME
 

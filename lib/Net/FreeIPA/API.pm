@@ -84,9 +84,13 @@ sub api_aci_add
             return;
         };
     };
+    my @opt_types = qw(string boolean string string string string string string boolean boolean string string boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('aci_add', $aciname, %opts);
+    return $self->rpc_api('aci_add', [$aciname], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -131,9 +135,13 @@ sub api_aci_del
             return;
         };
     };
+    my @opt_types = qw(string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('aci_del', $aciname, %opts);
+    return $self->rpc_api('aci_del', [$aciname], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -206,9 +214,13 @@ sub api_aci_find
             return;
         };
     };
+    my @opt_types = qw(string string boolean string string string string string string boolean boolean boolean string string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('aci_find', $criteria, %opts);
+    return $self->rpc_api('aci_find', [$criteria], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -277,9 +289,13 @@ sub api_aci_mod
             return;
         };
     };
+    my @opt_types = qw(string boolean string string string string string string boolean boolean string string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('aci_mod', $aciname, %opts);
+    return $self->rpc_api('aci_mod', [$aciname], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -350,9 +366,13 @@ sub api_aci_rename
             return;
         };
     };
+    my @opt_types = qw(string boolean string string string string string string string boolean boolean string string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('aci_rename', $aciname, %opts);
+    return $self->rpc_api('aci_rename', [$aciname], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -403,9 +423,13 @@ sub api_aci_show
             return;
         };
     };
+    my @opt_types = qw(string boolean string boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('aci_show', $aciname, %opts);
+    return $self->rpc_api('aci_show', [$aciname], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -442,9 +466,13 @@ sub api_adtrust_is_enabled
             return;
         };
     };
+    my @opt_types = qw(string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('adtrust_is_enabled', %opts);
+    return $self->rpc_api('adtrust_is_enabled', [], [], \%opts, \%opt_type_map);
 }
 
 
@@ -499,9 +527,13 @@ sub api_automember_add
             return;
         };
     };
+    my @opt_types = qw(string boolean string boolean string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('automember_add', $cn, %opts);
+    return $self->rpc_api('automember_add', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -558,9 +590,13 @@ sub api_automember_add_condition
             return;
         };
     };
+    my @opt_types = qw(boolean string string string string boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('automember_add_condition', $cn, %opts);
+    return $self->rpc_api('automember_add_condition', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -605,9 +641,13 @@ sub api_automember_default_group_remove
             return;
         };
     };
+    my @opt_types = qw(boolean string boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('automember_default_group_remove', %opts);
+    return $self->rpc_api('automember_default_group_remove', [], [], \%opts, \%opt_type_map);
 }
 
 
@@ -654,9 +694,13 @@ sub api_automember_default_group_set
             return;
         };
     };
+    my @opt_types = qw(boolean string string boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('automember_default_group_set', %opts);
+    return $self->rpc_api('automember_default_group_set', [], [], \%opts, \%opt_type_map);
 }
 
 
@@ -699,9 +743,13 @@ sub api_automember_default_group_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('automember_default_group_show', %opts);
+    return $self->rpc_api('automember_default_group_show', [], [], \%opts, \%opt_type_map);
 }
 
 
@@ -746,9 +794,13 @@ sub api_automember_del
             return;
         };
     };
+    my @opt_types = qw(string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('automember_del', $cn, %opts);
+    return $self->rpc_api('automember_del', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -799,9 +851,13 @@ sub api_automember_find
             return;
         };
     };
+    my @opt_types = qw(boolean string boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('automember_find', $criteria, %opts);
+    return $self->rpc_api('automember_find', [$criteria], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -860,9 +916,13 @@ sub api_automember_mod
             return;
         };
     };
+    my @opt_types = qw(string boolean string string boolean boolean string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('automember_mod', $cn, %opts);
+    return $self->rpc_api('automember_mod', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -911,9 +971,13 @@ sub api_automember_rebuild
             return;
         };
     };
+    my @opt_types = qw(boolean string boolean boolean string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('automember_rebuild', %opts);
+    return $self->rpc_api('automember_rebuild', [], [], \%opts, \%opt_type_map);
 }
 
 
@@ -970,9 +1034,13 @@ sub api_automember_remove_condition
             return;
         };
     };
+    my @opt_types = qw(boolean string string string string boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('automember_remove_condition', $cn, %opts);
+    return $self->rpc_api('automember_remove_condition', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -1021,9 +1089,13 @@ sub api_automember_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('automember_show', $cn, %opts);
+    return $self->rpc_api('automember_show', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -1080,9 +1152,13 @@ sub api_automountkey_add
             return;
         };
     };
+    my @opt_types = qw(string boolean string string boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('automountkey_add', $automountlocationcn, $automountmapautomountmapname, %opts);
+    return $self->rpc_api('automountkey_add', [$automountlocationcn, $automountmapautomountmapname], ['string', 'string'], \%opts, \%opt_type_map);
 }
 
 
@@ -1133,9 +1209,13 @@ sub api_automountkey_del
             return;
         };
     };
+    my @opt_types = qw(string string boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('automountkey_del', $automountlocationcn, $automountmapautomountmapname, %opts);
+    return $self->rpc_api('automountkey_del', [$automountlocationcn, $automountmapautomountmapname], ['string', 'string'], \%opts, \%opt_type_map);
 }
 
 
@@ -1194,9 +1274,13 @@ sub api_automountkey_find
             return;
         };
     };
+    my @opt_types = qw(boolean string string boolean int int string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('automountkey_find', $automountlocationcn, $automountmapautomountmapname, $criteria, %opts);
+    return $self->rpc_api('automountkey_find', [$automountlocationcn, $automountmapautomountmapname, $criteria], ['string', 'string', 'string'], \%opts, \%opt_type_map);
 }
 
 
@@ -1261,9 +1345,13 @@ sub api_automountkey_mod
             return;
         };
     };
+    my @opt_types = qw(string boolean string string string string boolean string boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('automountkey_mod', $automountlocationcn, $automountmapautomountmapname, %opts);
+    return $self->rpc_api('automountkey_mod', [$automountlocationcn, $automountmapautomountmapname], ['string', 'string'], \%opts, \%opt_type_map);
 }
 
 
@@ -1318,9 +1406,13 @@ sub api_automountkey_show
             return;
         };
     };
+    my @opt_types = qw(boolean string string boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('automountkey_show', $automountlocationcn, $automountmapautomountmapname, %opts);
+    return $self->rpc_api('automountkey_show', [$automountlocationcn, $automountmapautomountmapname], ['string', 'string'], \%opts, \%opt_type_map);
 }
 
 
@@ -1371,9 +1463,13 @@ sub api_automountlocation_add
             return;
         };
     };
+    my @opt_types = qw(string boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('automountlocation_add', $cn, %opts);
+    return $self->rpc_api('automountlocation_add', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -1418,9 +1514,13 @@ sub api_automountlocation_del
             return;
         };
     };
+    my @opt_types = qw(boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('automountlocation_del', $cn, %opts);
+    return $self->rpc_api('automountlocation_del', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -1475,9 +1575,13 @@ sub api_automountlocation_find
             return;
         };
     };
+    my @opt_types = qw(boolean string boolean boolean int int string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('automountlocation_find', $criteria, %opts);
+    return $self->rpc_api('automountlocation_find', [$criteria], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -1524,9 +1628,13 @@ sub api_automountlocation_import
             return;
         };
     };
+    my @opt_types = qw(boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('automountlocation_import', $cn, $masterfile, %opts);
+    return $self->rpc_api('automountlocation_import', [$cn, $masterfile], ['string', 'string'], \%opts, \%opt_type_map);
 }
 
 
@@ -1575,9 +1683,13 @@ sub api_automountlocation_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('automountlocation_show', $cn, %opts);
+    return $self->rpc_api('automountlocation_show', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -1620,9 +1732,13 @@ sub api_automountlocation_tofiles
             return;
         };
     };
+    my @opt_types = qw(string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('automountlocation_tofiles', $cn, %opts);
+    return $self->rpc_api('automountlocation_tofiles', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -1677,9 +1793,13 @@ sub api_automountmap_add
             return;
         };
     };
+    my @opt_types = qw(string boolean string boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('automountmap_add', $automountlocationcn, $automountmapname, %opts);
+    return $self->rpc_api('automountmap_add', [$automountlocationcn, $automountmapname], ['string', 'string'], \%opts, \%opt_type_map);
 }
 
 
@@ -1738,9 +1858,13 @@ sub api_automountmap_add_indirect
             return;
         };
     };
+    my @opt_types = qw(string boolean string string string boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('automountmap_add_indirect', $automountlocationcn, $automountmapname, %opts);
+    return $self->rpc_api('automountmap_add_indirect', [$automountlocationcn, $automountmapname], ['string', 'string'], \%opts, \%opt_type_map);
 }
 
 
@@ -1787,9 +1911,13 @@ sub api_automountmap_del
             return;
         };
     };
+    my @opt_types = qw(boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('automountmap_del', $automountlocationcn, $automountmapname, %opts);
+    return $self->rpc_api('automountmap_del', [$automountlocationcn, $automountmapname], ['string', 'string'], \%opts, \%opt_type_map);
 }
 
 
@@ -1848,9 +1976,13 @@ sub api_automountmap_find
             return;
         };
     };
+    my @opt_types = qw(boolean string string boolean boolean int int string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('automountmap_find', $automountlocationcn, $criteria, %opts);
+    return $self->rpc_api('automountmap_find', [$automountlocationcn, $criteria], ['string', 'string'], \%opts, \%opt_type_map);
 }
 
 
@@ -1909,9 +2041,13 @@ sub api_automountmap_mod
             return;
         };
     };
+    my @opt_types = qw(string boolean string string boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('automountmap_mod', $automountlocationcn, $automountmapname, %opts);
+    return $self->rpc_api('automountmap_mod', [$automountlocationcn, $automountmapname], ['string', 'string'], \%opts, \%opt_type_map);
 }
 
 
@@ -1962,9 +2098,13 @@ sub api_automountmap_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('automountmap_show', $automountlocationcn, $automountmapname, %opts);
+    return $self->rpc_api('automountmap_show', [$automountlocationcn, $automountmapname], ['string', 'string'], \%opts, \%opt_type_map);
 }
 
 
@@ -2007,9 +2147,13 @@ sub api_batch
             return;
         };
     };
+    my @opt_types = qw(string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('batch', $methods, %opts);
+    return $self->rpc_api('batch', [$methods], ['arrayref'], \%opts, \%opt_type_map);
 }
 
 
@@ -2046,9 +2190,13 @@ sub api_ca_is_enabled
             return;
         };
     };
+    my @opt_types = qw(string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('ca_is_enabled', %opts);
+    return $self->rpc_api('ca_is_enabled', [], [], \%opts, \%opt_type_map);
 }
 
 
@@ -2113,9 +2261,13 @@ sub api_caacl_add
             return;
         };
     };
+    my @opt_types = qw(string boolean string string string boolean boolean boolean string string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('caacl_add', $cn, %opts);
+    return $self->rpc_api('caacl_add', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -2168,9 +2320,13 @@ sub api_caacl_add_host
             return;
         };
     };
+    my @opt_types = qw(boolean string string boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('caacl_add_host', $cn, %opts);
+    return $self->rpc_api('caacl_add_host', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -2221,9 +2377,13 @@ sub api_caacl_add_profile
             return;
         };
     };
+    my @opt_types = qw(boolean string boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('caacl_add_profile', $cn, %opts);
+    return $self->rpc_api('caacl_add_profile', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -2274,9 +2434,13 @@ sub api_caacl_add_service
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('caacl_add_service', $cn, %opts);
+    return $self->rpc_api('caacl_add_service', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -2329,9 +2493,13 @@ sub api_caacl_add_user
             return;
         };
     };
+    my @opt_types = qw(boolean string boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('caacl_add_user', $cn, %opts);
+    return $self->rpc_api('caacl_add_user', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -2376,9 +2544,13 @@ sub api_caacl_del
             return;
         };
     };
+    my @opt_types = qw(boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('caacl_del', $cn, %opts);
+    return $self->rpc_api('caacl_del', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -2421,9 +2593,13 @@ sub api_caacl_disable
             return;
         };
     };
+    my @opt_types = qw(string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('caacl_disable', $cn, %opts);
+    return $self->rpc_api('caacl_disable', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -2466,9 +2642,13 @@ sub api_caacl_enable
             return;
         };
     };
+    my @opt_types = qw(string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('caacl_enable', $cn, %opts);
+    return $self->rpc_api('caacl_enable', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -2537,9 +2717,13 @@ sub api_caacl_find
             return;
         };
     };
+    my @opt_types = qw(boolean string string string string boolean boolean boolean boolean string int int string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('caacl_find', $criteria, %opts);
+    return $self->rpc_api('caacl_find', [$criteria], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -2608,9 +2792,13 @@ sub api_caacl_mod
             return;
         };
     };
+    my @opt_types = qw(string boolean string string string string boolean boolean boolean boolean string string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('caacl_mod', $cn, %opts);
+    return $self->rpc_api('caacl_mod', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -2663,9 +2851,13 @@ sub api_caacl_remove_host
             return;
         };
     };
+    my @opt_types = qw(boolean string string boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('caacl_remove_host', $cn, %opts);
+    return $self->rpc_api('caacl_remove_host', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -2716,9 +2908,13 @@ sub api_caacl_remove_profile
             return;
         };
     };
+    my @opt_types = qw(boolean string boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('caacl_remove_profile', $cn, %opts);
+    return $self->rpc_api('caacl_remove_profile', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -2769,9 +2965,13 @@ sub api_caacl_remove_service
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('caacl_remove_service', $cn, %opts);
+    return $self->rpc_api('caacl_remove_service', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -2824,9 +3024,13 @@ sub api_caacl_remove_user
             return;
         };
     };
+    my @opt_types = qw(boolean string boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('caacl_remove_user', $cn, %opts);
+    return $self->rpc_api('caacl_remove_user', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -2877,9 +3081,13 @@ sub api_caacl_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('caacl_show', $cn, %opts);
+    return $self->rpc_api('caacl_show', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -2948,9 +3156,13 @@ sub api_cert_find
             return;
         };
     };
+    my @opt_types = qw(boolean boolean string string int int boolean int string string int string string string string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('cert_find', %opts);
+    return $self->rpc_api('cert_find', [], [], \%opts, \%opt_type_map);
 }
 
 
@@ -2993,9 +3205,13 @@ sub api_cert_remove_hold
             return;
         };
     };
+    my @opt_types = qw(string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('cert_remove_hold', $serial_number, %opts);
+    return $self->rpc_api('cert_remove_hold', [$serial_number], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -3046,9 +3262,13 @@ sub api_cert_request
             return;
         };
     };
+    my @opt_types = qw(boolean string string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('cert_request', $csr, %opts);
+    return $self->rpc_api('cert_request', [$csr], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -3093,9 +3313,13 @@ sub api_cert_revoke
             return;
         };
     };
+    my @opt_types = qw(int string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('cert_revoke', $serial_number, %opts);
+    return $self->rpc_api('cert_revoke', [$serial_number], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -3140,9 +3364,13 @@ sub api_cert_show
             return;
         };
     };
+    my @opt_types = qw(string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('cert_show', $serial_number, %opts);
+    return $self->rpc_api('cert_show', [$serial_number], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -3185,9 +3413,13 @@ sub api_cert_status
             return;
         };
     };
+    my @opt_types = qw(string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('cert_status', $request_id, %opts);
+    return $self->rpc_api('cert_status', [$request_id], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -3232,9 +3464,13 @@ sub api_certprofile_del
             return;
         };
     };
+    my @opt_types = qw(boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('certprofile_del', $cn, %opts);
+    return $self->rpc_api('certprofile_del', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -3293,9 +3529,13 @@ sub api_certprofile_find
             return;
         };
     };
+    my @opt_types = qw(boolean string string boolean boolean boolean int int string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('certprofile_find', $criteria, %opts);
+    return $self->rpc_api('certprofile_find', [$criteria], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -3348,9 +3588,13 @@ sub api_certprofile_import
             return;
         };
     };
+    my @opt_types = qw(boolean string string boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('certprofile_import', $cn, %opts);
+    return $self->rpc_api('certprofile_import', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -3411,9 +3655,13 @@ sub api_certprofile_mod
             return;
         };
     };
+    my @opt_types = qw(string boolean string string string boolean boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('certprofile_mod', $cn, %opts);
+    return $self->rpc_api('certprofile_mod', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -3464,9 +3712,13 @@ sub api_certprofile_show
             return;
         };
     };
+    my @opt_types = qw(boolean string boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('certprofile_show', $cn, %opts);
+    return $self->rpc_api('certprofile_show', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -3503,9 +3755,13 @@ sub api_compat_is_enabled
             return;
         };
     };
+    my @opt_types = qw(string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('compat_is_enabled', %opts);
+    return $self->rpc_api('compat_is_enabled', [], [], \%opts, \%opt_type_map);
 }
 
 
@@ -3590,9 +3846,13 @@ sub api_config_mod
             return;
         };
     };
+    my @opt_types = qw(string boolean string string string string string string string string string int boolean int int int string string string string string boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('config_mod', %opts);
+    return $self->rpc_api('config_mod', [], [], \%opts, \%opt_type_map);
 }
 
 
@@ -3635,9 +3895,13 @@ sub api_config_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('config_show', %opts);
+    return $self->rpc_api('config_show', [], [], \%opts, \%opt_type_map);
 }
 
 
@@ -3692,9 +3956,13 @@ sub api_cosentry_add
             return;
         };
     };
+    my @opt_types = qw(string boolean int string boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('cosentry_add', $cn, %opts);
+    return $self->rpc_api('cosentry_add', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -3739,9 +4007,13 @@ sub api_cosentry_del
             return;
         };
     };
+    my @opt_types = qw(boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('cosentry_del', $cn, %opts);
+    return $self->rpc_api('cosentry_del', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -3800,9 +4072,13 @@ sub api_cosentry_find
             return;
         };
     };
+    my @opt_types = qw(boolean string int string boolean boolean int int string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('cosentry_find', $criteria, %opts);
+    return $self->rpc_api('cosentry_find', [$criteria], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -3861,9 +4137,13 @@ sub api_cosentry_mod
             return;
         };
     };
+    my @opt_types = qw(string boolean int string string boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('cosentry_mod', $cn, %opts);
+    return $self->rpc_api('cosentry_mod', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -3912,9 +4192,13 @@ sub api_cosentry_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('cosentry_show', $cn, %opts);
+    return $self->rpc_api('cosentry_show', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -3969,9 +4253,13 @@ sub api_delegation_add
             return;
         };
     };
+    my @opt_types = qw(boolean string string string string boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('delegation_add', $aciname, %opts);
+    return $self->rpc_api('delegation_add', [$aciname], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -4014,9 +4302,13 @@ sub api_delegation_del
             return;
         };
     };
+    my @opt_types = qw(string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('delegation_del', $aciname, %opts);
+    return $self->rpc_api('delegation_del', [$aciname], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -4075,9 +4367,13 @@ sub api_delegation_find
             return;
         };
     };
+    my @opt_types = qw(string boolean string string string string boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('delegation_find', $criteria, %opts);
+    return $self->rpc_api('delegation_find', [$criteria], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -4132,9 +4428,13 @@ sub api_delegation_mod
             return;
         };
     };
+    my @opt_types = qw(boolean string string string string boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('delegation_mod', $aciname, %opts);
+    return $self->rpc_api('delegation_mod', [$aciname], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -4181,9 +4481,13 @@ sub api_delegation_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('delegation_show', $aciname, %opts);
+    return $self->rpc_api('delegation_show', [$aciname], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -4220,9 +4524,13 @@ sub api_dns_is_enabled
             return;
         };
     };
+    my @opt_types = qw(string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('dns_is_enabled', %opts);
+    return $self->rpc_api('dns_is_enabled', [], [], \%opts, \%opt_type_map);
 }
 
 
@@ -4265,9 +4573,13 @@ sub api_dns_resolve
             return;
         };
     };
+    my @opt_types = qw(string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('dns_resolve', $hostname, %opts);
+    return $self->rpc_api('dns_resolve', [$hostname], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -4324,9 +4636,13 @@ sub api_dnsconfig_mod
             return;
         };
     };
+    my @opt_types = qw(string boolean string boolean string string string boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('dnsconfig_mod', %opts);
+    return $self->rpc_api('dnsconfig_mod', [], [], \%opts, \%opt_type_map);
 }
 
 
@@ -4369,9 +4685,13 @@ sub api_dnsconfig_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('dnsconfig_show', %opts);
+    return $self->rpc_api('dnsconfig_show', [], [], \%opts, \%opt_type_map);
 }
 
 
@@ -4430,9 +4750,13 @@ sub api_dnsforwardzone_add
             return;
         };
     };
+    my @opt_types = qw(string boolean string string string boolean string boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('dnsforwardzone_add', $idnsname, %opts);
+    return $self->rpc_api('dnsforwardzone_add', [$idnsname], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -4475,9 +4799,13 @@ sub api_dnsforwardzone_add_permission
             return;
         };
     };
+    my @opt_types = qw(string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('dnsforwardzone_add_permission', $idnsname, %opts);
+    return $self->rpc_api('dnsforwardzone_add_permission', [$idnsname], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -4522,9 +4850,13 @@ sub api_dnsforwardzone_del
             return;
         };
     };
+    my @opt_types = qw(boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('dnsforwardzone_del', $idnsname, %opts);
+    return $self->rpc_api('dnsforwardzone_del', [$idnsname], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -4567,9 +4899,13 @@ sub api_dnsforwardzone_disable
             return;
         };
     };
+    my @opt_types = qw(string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('dnsforwardzone_disable', $idnsname, %opts);
+    return $self->rpc_api('dnsforwardzone_disable', [$idnsname], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -4612,9 +4948,13 @@ sub api_dnsforwardzone_enable
             return;
         };
     };
+    my @opt_types = qw(string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('dnsforwardzone_enable', $idnsname, %opts);
+    return $self->rpc_api('dnsforwardzone_enable', [$idnsname], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -4677,9 +5017,13 @@ sub api_dnsforwardzone_find
             return;
         };
     };
+    my @opt_types = qw(boolean string string string boolean string boolean boolean int int string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('dnsforwardzone_find', $criteria, %opts);
+    return $self->rpc_api('dnsforwardzone_find', [$criteria], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -4740,9 +5084,13 @@ sub api_dnsforwardzone_mod
             return;
         };
     };
+    my @opt_types = qw(string boolean string string string string boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('dnsforwardzone_mod', $idnsname, %opts);
+    return $self->rpc_api('dnsforwardzone_mod', [$idnsname], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -4785,9 +5133,13 @@ sub api_dnsforwardzone_remove_permission
             return;
         };
     };
+    my @opt_types = qw(string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('dnsforwardzone_remove_permission', $idnsname, %opts);
+    return $self->rpc_api('dnsforwardzone_remove_permission', [$idnsname], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -4836,9 +5188,13 @@ sub api_dnsforwardzone_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('dnsforwardzone_show', $idnsname, %opts);
+    return $self->rpc_api('dnsforwardzone_show', [$idnsname], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -5071,9 +5427,13 @@ sub api_dnsrecord_add
             return;
         };
     };
+    my @opt_types = qw(string string boolean string boolean string string string string int string boolean string string int string int int string string string string int string int int string string string string int int string int int string boolean string string string string int string float float int string int float int string int float float float string string int string string int int string string string string string string string string string boolean string string string string string int int string int string int string int string boolean string int int int string string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('dnsrecord_add', $dnszoneidnsname, $idnsname, %opts);
+    return $self->rpc_api('dnsrecord_add', [$dnszoneidnsname, $idnsname], ['string', 'string'], \%opts, \%opt_type_map);
 }
 
 
@@ -5184,9 +5544,13 @@ sub api_dnsrecord_del
             return;
         };
     };
+    my @opt_types = qw(string string string string string string string boolean string string string string int string string string string string string string string string string string string string string string string string boolean string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('dnsrecord_del', $dnszoneidnsname, $idnsname, %opts);
+    return $self->rpc_api('dnsrecord_del', [$dnszoneidnsname, $idnsname], ['string', 'string'], \%opts, \%opt_type_map);
 }
 
 
@@ -5233,9 +5597,13 @@ sub api_dnsrecord_delentry
             return;
         };
     };
+    my @opt_types = qw(boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('dnsrecord_delentry', $dnszoneidnsname, $idnsname, %opts);
+    return $self->rpc_api('dnsrecord_delentry', [$dnszoneidnsname, $idnsname], ['string', 'string'], \%opts, \%opt_type_map);
 }
 
 
@@ -5356,9 +5724,13 @@ sub api_dnsrecord_find
             return;
         };
     };
+    my @opt_types = qw(string string string boolean string string string string string string string string int string string string string string string string string string string string boolean string boolean string string string int string string string boolean int string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('dnsrecord_find', $dnszoneidnsname, $criteria, %opts);
+    return $self->rpc_api('dnsrecord_find', [$dnszoneidnsname, $criteria], ['string', 'string'], \%opts, \%opt_type_map);
 }
 
 
@@ -5591,9 +5963,13 @@ sub api_dnsrecord_mod
             return;
         };
     };
+    my @opt_types = qw(string string string string string string string int string boolean string string int string int int string string string string string int string int int string string string string int int string int int string string string string string int string float float int string int float int string int float float float string string int string string int int string string string string string string string string string boolean string boolean string string string string string int int string int string int string int string boolean string int int int string string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('dnsrecord_mod', $dnszoneidnsname, $idnsname, %opts);
+    return $self->rpc_api('dnsrecord_mod', [$dnszoneidnsname, $idnsname], ['string', 'string'], \%opts, \%opt_type_map);
 }
 
 
@@ -5646,9 +6022,13 @@ sub api_dnsrecord_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('dnsrecord_show', $dnszoneidnsname, $idnsname, %opts);
+    return $self->rpc_api('dnsrecord_show', [$dnszoneidnsname, $idnsname], ['string', 'string'], \%opts, \%opt_type_map);
 }
 
 
@@ -5745,9 +6125,13 @@ sub api_dnszone_add
             return;
         };
     };
+    my @opt_types = qw(string boolean string int boolean boolean string boolean string string string boolean int int string int int string int string string string string boolean string boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('dnszone_add', $idnsname, %opts);
+    return $self->rpc_api('dnszone_add', [$idnsname], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -5790,9 +6174,13 @@ sub api_dnszone_add_permission
             return;
         };
     };
+    my @opt_types = qw(string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('dnszone_add_permission', $idnsname, %opts);
+    return $self->rpc_api('dnszone_add_permission', [$idnsname], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -5837,9 +6225,13 @@ sub api_dnszone_del
             return;
         };
     };
+    my @opt_types = qw(boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('dnszone_del', $idnsname, %opts);
+    return $self->rpc_api('dnszone_del', [$idnsname], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -5882,9 +6274,13 @@ sub api_dnszone_disable
             return;
         };
     };
+    my @opt_types = qw(string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('dnszone_disable', $idnsname, %opts);
+    return $self->rpc_api('dnszone_disable', [$idnsname], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -5927,9 +6323,13 @@ sub api_dnszone_enable
             return;
         };
     };
+    my @opt_types = qw(string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('dnszone_enable', $idnsname, %opts);
+    return $self->rpc_api('dnszone_enable', [$idnsname], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -6026,9 +6426,13 @@ sub api_dnszone_find
             return;
         };
     };
+    my @opt_types = qw(boolean string int boolean boolean string boolean string string string string boolean int int string int int string int string boolean string string boolean boolean int int string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('dnszone_find', $criteria, %opts);
+    return $self->rpc_api('dnszone_find', [$criteria], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -6123,9 +6527,13 @@ sub api_dnszone_mod
             return;
         };
     };
+    my @opt_types = qw(string boolean string string int boolean boolean string boolean string string string boolean int int string int int string int string string string boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('dnszone_mod', $idnsname, %opts);
+    return $self->rpc_api('dnszone_mod', [$idnsname], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -6168,9 +6576,13 @@ sub api_dnszone_remove_permission
             return;
         };
     };
+    my @opt_types = qw(string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('dnszone_remove_permission', $idnsname, %opts);
+    return $self->rpc_api('dnszone_remove_permission', [$idnsname], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -6219,9 +6631,13 @@ sub api_dnszone_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('dnszone_show', $idnsname, %opts);
+    return $self->rpc_api('dnszone_show', [$idnsname], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -6258,9 +6674,13 @@ sub api_domainlevel_get
             return;
         };
     };
+    my @opt_types = qw(string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('domainlevel_get', %opts);
+    return $self->rpc_api('domainlevel_get', [], [], \%opts, \%opt_type_map);
 }
 
 
@@ -6303,9 +6723,13 @@ sub api_domainlevel_set
             return;
         };
     };
+    my @opt_types = qw(string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('domainlevel_set', $ipadomainlevel, %opts);
+    return $self->rpc_api('domainlevel_set', [$ipadomainlevel], ['int'], \%opts, \%opt_type_map);
 }
 
 
@@ -6352,9 +6776,13 @@ sub api_env
             return;
         };
     };
+    my @opt_types = qw(boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('env', $variables, %opts);
+    return $self->rpc_api('env', [$variables], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -6415,9 +6843,13 @@ sub api_group_add
             return;
         };
     };
+    my @opt_types = qw(string boolean string boolean int boolean boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('group_add', $cn, %opts);
+    return $self->rpc_api('group_add', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -6472,9 +6904,13 @@ sub api_group_add_member
             return;
         };
     };
+    my @opt_types = qw(boolean string string boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('group_add_member', $cn, %opts);
+    return $self->rpc_api('group_add_member', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -6519,9 +6955,13 @@ sub api_group_del
             return;
         };
     };
+    my @opt_types = qw(boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('group_del', $cn, %opts);
+    return $self->rpc_api('group_del', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -6564,9 +7004,13 @@ sub api_group_detach
             return;
         };
     };
+    my @opt_types = qw(string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('group_detach', $cn, %opts);
+    return $self->rpc_api('group_detach', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -6663,9 +7107,13 @@ sub api_group_find
             return;
         };
     };
+    my @opt_types = qw(boolean string string boolean int string string string string string string string boolean string boolean string string string string string boolean boolean boolean boolean int int string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('group_find', $criteria, %opts);
+    return $self->rpc_api('group_find', [$criteria], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -6732,9 +7180,13 @@ sub api_group_mod
             return;
         };
     };
+    my @opt_types = qw(string boolean string string boolean int boolean boolean boolean string boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('group_mod', $cn, %opts);
+    return $self->rpc_api('group_mod', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -6789,9 +7241,13 @@ sub api_group_remove_member
             return;
         };
     };
+    my @opt_types = qw(boolean string string boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('group_remove_member', $cn, %opts);
+    return $self->rpc_api('group_remove_member', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -6842,9 +7298,13 @@ sub api_group_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('group_show', $cn, %opts);
+    return $self->rpc_api('group_show', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -6917,9 +7377,13 @@ sub api_hbacrule_add
             return;
         };
     };
+    my @opt_types = qw(string string boolean string string string boolean boolean boolean string string string string string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('hbacrule_add', $cn, %opts);
+    return $self->rpc_api('hbacrule_add', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -6972,9 +7436,13 @@ sub api_hbacrule_add_host
             return;
         };
     };
+    my @opt_types = qw(boolean string string boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('hbacrule_add_host', $cn, %opts);
+    return $self->rpc_api('hbacrule_add_host', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -7027,9 +7495,13 @@ sub api_hbacrule_add_service
             return;
         };
     };
+    my @opt_types = qw(boolean string string boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('hbacrule_add_service', $cn, %opts);
+    return $self->rpc_api('hbacrule_add_service', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -7082,9 +7554,13 @@ sub api_hbacrule_add_sourcehost
             return;
         };
     };
+    my @opt_types = qw(boolean string string boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('hbacrule_add_sourcehost', $cn, %opts);
+    return $self->rpc_api('hbacrule_add_sourcehost', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -7137,9 +7613,13 @@ sub api_hbacrule_add_user
             return;
         };
     };
+    my @opt_types = qw(boolean string boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('hbacrule_add_user', $cn, %opts);
+    return $self->rpc_api('hbacrule_add_user', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -7184,9 +7664,13 @@ sub api_hbacrule_del
             return;
         };
     };
+    my @opt_types = qw(boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('hbacrule_del', $cn, %opts);
+    return $self->rpc_api('hbacrule_del', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -7229,9 +7713,13 @@ sub api_hbacrule_disable
             return;
         };
     };
+    my @opt_types = qw(string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('hbacrule_disable', $cn, %opts);
+    return $self->rpc_api('hbacrule_disable', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -7274,9 +7762,13 @@ sub api_hbacrule_enable
             return;
         };
     };
+    my @opt_types = qw(string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('hbacrule_enable', $cn, %opts);
+    return $self->rpc_api('hbacrule_enable', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -7353,9 +7845,13 @@ sub api_hbacrule_find
             return;
         };
     };
+    my @opt_types = qw(string boolean string string string string boolean boolean boolean boolean string int string string string int string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('hbacrule_find', $criteria, %opts);
+    return $self->rpc_api('hbacrule_find', [$criteria], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -7432,9 +7928,13 @@ sub api_hbacrule_mod
             return;
         };
     };
+    my @opt_types = qw(string string boolean string string string string boolean boolean boolean boolean string string string string string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('hbacrule_mod', $cn, %opts);
+    return $self->rpc_api('hbacrule_mod', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -7487,9 +7987,13 @@ sub api_hbacrule_remove_host
             return;
         };
     };
+    my @opt_types = qw(boolean string string boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('hbacrule_remove_host', $cn, %opts);
+    return $self->rpc_api('hbacrule_remove_host', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -7542,9 +8046,13 @@ sub api_hbacrule_remove_service
             return;
         };
     };
+    my @opt_types = qw(boolean string string boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('hbacrule_remove_service', $cn, %opts);
+    return $self->rpc_api('hbacrule_remove_service', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -7597,9 +8105,13 @@ sub api_hbacrule_remove_sourcehost
             return;
         };
     };
+    my @opt_types = qw(boolean string string boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('hbacrule_remove_sourcehost', $cn, %opts);
+    return $self->rpc_api('hbacrule_remove_sourcehost', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -7652,9 +8164,13 @@ sub api_hbacrule_remove_user
             return;
         };
     };
+    my @opt_types = qw(boolean string boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('hbacrule_remove_user', $cn, %opts);
+    return $self->rpc_api('hbacrule_remove_user', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -7705,9 +8221,13 @@ sub api_hbacrule_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('hbacrule_show', $cn, %opts);
+    return $self->rpc_api('hbacrule_show', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -7762,9 +8282,13 @@ sub api_hbacsvc_add
             return;
         };
     };
+    my @opt_types = qw(string boolean string boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('hbacsvc_add', $cn, %opts);
+    return $self->rpc_api('hbacsvc_add', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -7809,9 +8333,13 @@ sub api_hbacsvc_del
             return;
         };
     };
+    my @opt_types = qw(boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('hbacsvc_del', $cn, %opts);
+    return $self->rpc_api('hbacsvc_del', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -7870,9 +8398,13 @@ sub api_hbacsvc_find
             return;
         };
     };
+    my @opt_types = qw(boolean string string boolean boolean boolean int int string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('hbacsvc_find', $criteria, %opts);
+    return $self->rpc_api('hbacsvc_find', [$criteria], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -7931,9 +8463,13 @@ sub api_hbacsvc_mod
             return;
         };
     };
+    my @opt_types = qw(string boolean string string boolean boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('hbacsvc_mod', $cn, %opts);
+    return $self->rpc_api('hbacsvc_mod', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -7984,9 +8520,13 @@ sub api_hbacsvc_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('hbacsvc_show', $cn, %opts);
+    return $self->rpc_api('hbacsvc_show', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -8041,9 +8581,13 @@ sub api_hbacsvcgroup_add
             return;
         };
     };
+    my @opt_types = qw(string boolean string boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('hbacsvcgroup_add', $cn, %opts);
+    return $self->rpc_api('hbacsvcgroup_add', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -8094,9 +8638,13 @@ sub api_hbacsvcgroup_add_member
             return;
         };
     };
+    my @opt_types = qw(boolean string boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('hbacsvcgroup_add_member', $cn, %opts);
+    return $self->rpc_api('hbacsvcgroup_add_member', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -8141,9 +8689,13 @@ sub api_hbacsvcgroup_del
             return;
         };
     };
+    my @opt_types = qw(boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('hbacsvcgroup_del', $cn, %opts);
+    return $self->rpc_api('hbacsvcgroup_del', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -8202,9 +8754,13 @@ sub api_hbacsvcgroup_find
             return;
         };
     };
+    my @opt_types = qw(boolean string string boolean boolean boolean int int string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('hbacsvcgroup_find', $criteria, %opts);
+    return $self->rpc_api('hbacsvcgroup_find', [$criteria], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -8263,9 +8819,13 @@ sub api_hbacsvcgroup_mod
             return;
         };
     };
+    my @opt_types = qw(string boolean string string boolean boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('hbacsvcgroup_mod', $cn, %opts);
+    return $self->rpc_api('hbacsvcgroup_mod', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -8316,9 +8876,13 @@ sub api_hbacsvcgroup_remove_member
             return;
         };
     };
+    my @opt_types = qw(boolean string boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('hbacsvcgroup_remove_member', $cn, %opts);
+    return $self->rpc_api('hbacsvcgroup_remove_member', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -8369,9 +8933,13 @@ sub api_hbacsvcgroup_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('hbacsvcgroup_show', $cn, %opts);
+    return $self->rpc_api('hbacsvcgroup_show', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -8426,9 +8994,13 @@ sub api_hbactest
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean string string int string string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('hbactest', %opts);
+    return $self->rpc_api('hbactest', [], [], \%opts, \%opt_type_map);
 }
 
 
@@ -8515,9 +9087,13 @@ sub api_host_add
             return;
         };
     };
+    my @opt_types = qw(string boolean string boolean string string boolean boolean string string string boolean boolean string string string boolean boolean string bytes string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('host_add', $fqdn, %opts);
+    return $self->rpc_api('host_add', [$fqdn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -8568,9 +9144,13 @@ sub api_host_add_cert
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean bytes string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('host_add_cert', $fqdn, %opts);
+    return $self->rpc_api('host_add_cert', [$fqdn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -8621,9 +9201,13 @@ sub api_host_add_managedby
             return;
         };
     };
+    my @opt_types = qw(boolean string boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('host_add_managedby', $fqdn, %opts);
+    return $self->rpc_api('host_add_managedby', [$fqdn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -8680,9 +9264,13 @@ sub api_host_allow_create_keytab
             return;
         };
     };
+    my @opt_types = qw(boolean string string string boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('host_allow_create_keytab', $fqdn, %opts);
+    return $self->rpc_api('host_allow_create_keytab', [$fqdn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -8739,9 +9327,13 @@ sub api_host_allow_retrieve_keytab
             return;
         };
     };
+    my @opt_types = qw(boolean string string string boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('host_allow_retrieve_keytab', $fqdn, %opts);
+    return $self->rpc_api('host_allow_retrieve_keytab', [$fqdn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -8788,9 +9380,13 @@ sub api_host_del
             return;
         };
     };
+    my @opt_types = qw(boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('host_del', $fqdn, %opts);
+    return $self->rpc_api('host_del', [$fqdn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -8833,9 +9429,13 @@ sub api_host_disable
             return;
         };
     };
+    my @opt_types = qw(string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('host_disable', $fqdn, %opts);
+    return $self->rpc_api('host_disable', [$fqdn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -8892,9 +9492,13 @@ sub api_host_disallow_create_keytab
             return;
         };
     };
+    my @opt_types = qw(boolean string string string boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('host_disallow_create_keytab', $fqdn, %opts);
+    return $self->rpc_api('host_disallow_create_keytab', [$fqdn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -8951,9 +9555,13 @@ sub api_host_disallow_retrieve_keytab
             return;
         };
     };
+    my @opt_types = qw(boolean string string string boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('host_disallow_retrieve_keytab', $fqdn, %opts);
+    return $self->rpc_api('host_disallow_retrieve_keytab', [$fqdn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -9062,9 +9670,13 @@ sub api_host_find
             return;
         };
     };
+    my @opt_types = qw(boolean string string string string string string string string string string string string string boolean string string string string string string string string string string string boolean boolean int int bytes string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('host_find', $criteria, %opts);
+    return $self->rpc_api('host_find', [$criteria], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -9153,9 +9765,13 @@ sub api_host_mod
             return;
         };
     };
+    my @opt_types = qw(string boolean string string string boolean boolean string string string string boolean string string string boolean boolean boolean string boolean bytes string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('host_mod', $fqdn, %opts);
+    return $self->rpc_api('host_mod', [$fqdn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -9206,9 +9822,13 @@ sub api_host_remove_cert
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean bytes string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('host_remove_cert', $fqdn, %opts);
+    return $self->rpc_api('host_remove_cert', [$fqdn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -9259,9 +9879,13 @@ sub api_host_remove_managedby
             return;
         };
     };
+    my @opt_types = qw(boolean string boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('host_remove_managedby', $fqdn, %opts);
+    return $self->rpc_api('host_remove_managedby', [$fqdn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -9314,9 +9938,13 @@ sub api_host_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean string boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('host_show', $fqdn, %opts);
+    return $self->rpc_api('host_show', [$fqdn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -9371,9 +9999,13 @@ sub api_hostgroup_add
             return;
         };
     };
+    my @opt_types = qw(string boolean string boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('hostgroup_add', $cn, %opts);
+    return $self->rpc_api('hostgroup_add', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -9426,9 +10058,13 @@ sub api_hostgroup_add_member
             return;
         };
     };
+    my @opt_types = qw(boolean string string boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('hostgroup_add_member', $cn, %opts);
+    return $self->rpc_api('hostgroup_add_member', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -9473,9 +10109,13 @@ sub api_hostgroup_del
             return;
         };
     };
+    my @opt_types = qw(boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('hostgroup_del', $cn, %opts);
+    return $self->rpc_api('hostgroup_del', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -9558,9 +10198,13 @@ sub api_hostgroup_find
             return;
         };
     };
+    my @opt_types = qw(boolean string string string string string string string string string string boolean string string string string boolean boolean int int string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('hostgroup_find', $criteria, %opts);
+    return $self->rpc_api('hostgroup_find', [$criteria], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -9619,9 +10263,13 @@ sub api_hostgroup_mod
             return;
         };
     };
+    my @opt_types = qw(string boolean string string boolean boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('hostgroup_mod', $cn, %opts);
+    return $self->rpc_api('hostgroup_mod', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -9674,9 +10322,13 @@ sub api_hostgroup_remove_member
             return;
         };
     };
+    my @opt_types = qw(boolean string string boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('hostgroup_remove_member', $cn, %opts);
+    return $self->rpc_api('hostgroup_remove_member', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -9727,9 +10379,13 @@ sub api_hostgroup_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('hostgroup_show', $cn, %opts);
+    return $self->rpc_api('hostgroup_show', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -9766,9 +10422,13 @@ sub api_i18n_messages
             return;
         };
     };
+    my @opt_types = qw(string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('i18n_messages', %opts);
+    return $self->rpc_api('i18n_messages', [], [], \%opts, \%opt_type_map);
 }
 
 
@@ -9829,9 +10489,13 @@ sub api_idoverridegroup_add
             return;
         };
     };
+    my @opt_types = qw(string boolean string string boolean int boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('idoverridegroup_add', $idviewcn, $ipaanchoruuid, %opts);
+    return $self->rpc_api('idoverridegroup_add', [$idviewcn, $ipaanchoruuid], ['string', 'string'], \%opts, \%opt_type_map);
 }
 
 
@@ -9880,9 +10544,13 @@ sub api_idoverridegroup_del
             return;
         };
     };
+    my @opt_types = qw(boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('idoverridegroup_del', $idviewcn, $ipaanchoruuid, %opts);
+    return $self->rpc_api('idoverridegroup_del', [$idviewcn, $ipaanchoruuid], ['string', 'string'], \%opts, \%opt_type_map);
 }
 
 
@@ -9947,9 +10615,13 @@ sub api_idoverridegroup_find
             return;
         };
     };
+    my @opt_types = qw(boolean string string boolean int string boolean boolean int int string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('idoverridegroup_find', $idviewcn, $criteria, %opts);
+    return $self->rpc_api('idoverridegroup_find', [$idviewcn, $criteria], ['string', 'string'], \%opts, \%opt_type_map);
 }
 
 
@@ -10016,9 +10688,13 @@ sub api_idoverridegroup_mod
             return;
         };
     };
+    my @opt_types = qw(string boolean string string string boolean int boolean string boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('idoverridegroup_mod', $idviewcn, $ipaanchoruuid, %opts);
+    return $self->rpc_api('idoverridegroup_mod', [$idviewcn, $ipaanchoruuid], ['string', 'string'], \%opts, \%opt_type_map);
 }
 
 
@@ -10071,9 +10747,13 @@ sub api_idoverridegroup_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('idoverridegroup_show', $idviewcn, $ipaanchoruuid, %opts);
+    return $self->rpc_api('idoverridegroup_show', [$idviewcn, $ipaanchoruuid], ['string', 'string'], \%opts, \%opt_type_map);
 }
 
 
@@ -10146,9 +10826,13 @@ sub api_idoverrideuser_add
             return;
         };
     };
+    my @opt_types = qw(string boolean string boolean string int string string string string boolean string string int string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('idoverrideuser_add', $idviewcn, $ipaanchoruuid, %opts);
+    return $self->rpc_api('idoverrideuser_add', [$idviewcn, $ipaanchoruuid], ['string', 'string'], \%opts, \%opt_type_map);
 }
 
 
@@ -10197,9 +10881,13 @@ sub api_idoverrideuser_del
             return;
         };
     };
+    my @opt_types = qw(boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('idoverrideuser_del', $idviewcn, $ipaanchoruuid, %opts);
+    return $self->rpc_api('idoverrideuser_del', [$idviewcn, $ipaanchoruuid], ['string', 'string'], \%opts, \%opt_type_map);
 }
 
 
@@ -10274,9 +10962,13 @@ sub api_idoverrideuser_find
             return;
         };
     };
+    my @opt_types = qw(boolean string boolean string int string string string string boolean boolean int int string int string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('idoverrideuser_find', $idviewcn, $criteria, %opts);
+    return $self->rpc_api('idoverrideuser_find', [$idviewcn, $criteria], ['string', 'string'], \%opts, \%opt_type_map);
 }
 
 
@@ -10355,9 +11047,13 @@ sub api_idoverrideuser_mod
             return;
         };
     };
+    my @opt_types = qw(string boolean string string boolean string int string string string string boolean string boolean string string int string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('idoverrideuser_mod', $idviewcn, $ipaanchoruuid, %opts);
+    return $self->rpc_api('idoverrideuser_mod', [$idviewcn, $ipaanchoruuid], ['string', 'string'], \%opts, \%opt_type_map);
 }
 
 
@@ -10410,9 +11106,13 @@ sub api_idoverrideuser_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('idoverrideuser_show', $idviewcn, $ipaanchoruuid, %opts);
+    return $self->rpc_api('idoverrideuser_show', [$idviewcn, $ipaanchoruuid], ['string', 'string'], \%opts, \%opt_type_map);
 }
 
 
@@ -10477,9 +11177,13 @@ sub api_idrange_add
             return;
         };
     };
+    my @opt_types = qw(string boolean int int int string string string int boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('idrange_add', $cn, %opts);
+    return $self->rpc_api('idrange_add', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -10524,9 +11228,13 @@ sub api_idrange_del
             return;
         };
     };
+    my @opt_types = qw(boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('idrange_del', $cn, %opts);
+    return $self->rpc_api('idrange_del', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -10593,9 +11301,13 @@ sub api_idrange_find
             return;
         };
     };
+    my @opt_types = qw(boolean string int int int string string int boolean boolean int int string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('idrange_find', $criteria, %opts);
+    return $self->rpc_api('idrange_find', [$criteria], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -10662,9 +11374,13 @@ sub api_idrange_mod
             return;
         };
     };
+    my @opt_types = qw(string boolean string int int int string string int boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('idrange_mod', $cn, %opts);
+    return $self->rpc_api('idrange_mod', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -10713,9 +11429,13 @@ sub api_idrange_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('idrange_show', $cn, %opts);
+    return $self->rpc_api('idrange_show', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -10768,9 +11488,13 @@ sub api_idview_add
             return;
         };
     };
+    my @opt_types = qw(string boolean string boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('idview_add', $cn, %opts);
+    return $self->rpc_api('idview_add', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -10817,9 +11541,13 @@ sub api_idview_apply
             return;
         };
     };
+    my @opt_types = qw(string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('idview_apply', $cn, %opts);
+    return $self->rpc_api('idview_apply', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -10864,9 +11592,13 @@ sub api_idview_del
             return;
         };
     };
+    my @opt_types = qw(boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('idview_del', $cn, %opts);
+    return $self->rpc_api('idview_del', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -10923,9 +11655,13 @@ sub api_idview_find
             return;
         };
     };
+    my @opt_types = qw(boolean string string boolean boolean int int string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('idview_find', $criteria, %opts);
+    return $self->rpc_api('idview_find', [$criteria], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -10984,9 +11720,13 @@ sub api_idview_mod
             return;
         };
     };
+    my @opt_types = qw(string boolean string string boolean string boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('idview_mod', $cn, %opts);
+    return $self->rpc_api('idview_mod', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -11037,9 +11777,13 @@ sub api_idview_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('idview_show', $cn, %opts);
+    return $self->rpc_api('idview_show', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -11080,9 +11824,13 @@ sub api_idview_unapply
             return;
         };
     };
+    my @opt_types = qw(string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('idview_unapply', %opts);
+    return $self->rpc_api('idview_unapply', [], [], \%opts, \%opt_type_map);
 }
 
 
@@ -11133,9 +11881,13 @@ sub api_json_metadata
             return;
         };
     };
+    my @opt_types = qw(string string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('json_metadata', $objname, $methodname, %opts);
+    return $self->rpc_api('json_metadata', [$objname, $methodname], ['string', 'string'], \%opts, \%opt_type_map);
 }
 
 
@@ -11172,9 +11924,13 @@ sub api_kra_is_enabled
             return;
         };
     };
+    my @opt_types = qw(string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('kra_is_enabled', %opts);
+    return $self->rpc_api('kra_is_enabled', [], [], \%opts, \%opt_type_map);
 }
 
 
@@ -11233,9 +11989,13 @@ sub api_krbtpolicy_mod
             return;
         };
     };
+    my @opt_types = qw(string boolean string int int boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('krbtpolicy_mod', $uid, %opts);
+    return $self->rpc_api('krbtpolicy_mod', [$uid], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -11282,9 +12042,13 @@ sub api_krbtpolicy_reset
             return;
         };
     };
+    my @opt_types = qw(boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('krbtpolicy_reset', $uid, %opts);
+    return $self->rpc_api('krbtpolicy_reset', [$uid], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -11333,9 +12097,13 @@ sub api_krbtpolicy_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('krbtpolicy_show', $uid, %opts);
+    return $self->rpc_api('krbtpolicy_show', [$uid], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -11418,9 +12186,13 @@ sub api_migrate_ds
             return;
         };
     };
+    my @opt_types = qw(string string string boolean boolean string string string string string string boolean string string boolean string string string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('migrate_ds', $ldapuri, $bindpw, %opts);
+    return $self->rpc_api('migrate_ds', [$ldapuri, $bindpw], ['string', 'string'], \%opts, \%opt_type_map);
 }
 
 
@@ -11483,9 +12255,13 @@ sub api_netgroup_add
             return;
         };
     };
+    my @opt_types = qw(string boolean string string string string boolean boolean string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('netgroup_add', $cn, %opts);
+    return $self->rpc_api('netgroup_add', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -11544,9 +12320,13 @@ sub api_netgroup_add_member
             return;
         };
     };
+    my @opt_types = qw(boolean string string string string boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('netgroup_add_member', $cn, %opts);
+    return $self->rpc_api('netgroup_add_member', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -11591,9 +12371,13 @@ sub api_netgroup_del
             return;
         };
     };
+    my @opt_types = qw(boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('netgroup_del', $cn, %opts);
+    return $self->rpc_api('netgroup_del', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -11690,9 +12474,13 @@ sub api_netgroup_find
             return;
         };
     };
+    my @opt_types = qw(boolean string string string string string string string string string boolean string string string string string boolean string string string boolean boolean boolean int int string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('netgroup_find', $criteria, %opts);
+    return $self->rpc_api('netgroup_find', [$criteria], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -11759,9 +12547,13 @@ sub api_netgroup_mod
             return;
         };
     };
+    my @opt_types = qw(string boolean string string string string string boolean boolean boolean string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('netgroup_mod', $cn, %opts);
+    return $self->rpc_api('netgroup_mod', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -11820,9 +12612,13 @@ sub api_netgroup_remove_member
             return;
         };
     };
+    my @opt_types = qw(boolean string string string string boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('netgroup_remove_member', $cn, %opts);
+    return $self->rpc_api('netgroup_remove_member', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -11873,9 +12669,13 @@ sub api_netgroup_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('netgroup_show', $cn, %opts);
+    return $self->rpc_api('netgroup_show', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -11932,9 +12732,13 @@ sub api_otpconfig_mod
             return;
         };
     };
+    my @opt_types = qw(string boolean string int int int int boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('otpconfig_mod', %opts);
+    return $self->rpc_api('otpconfig_mod', [], [], \%opts, \%opt_type_map);
 }
 
 
@@ -11977,9 +12781,13 @@ sub api_otpconfig_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('otpconfig_show', %opts);
+    return $self->rpc_api('otpconfig_show', [], [], \%opts, \%opt_type_map);
 }
 
 
@@ -12066,9 +12874,13 @@ sub api_otptoken_add
             return;
         };
     };
+    my @opt_types = qw(string boolean string boolean int string datetime datetime string int string string string int int string boolean boolean boolean boolean string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('otptoken_add', $ipatokenuniqueid, %opts);
+    return $self->rpc_api('otptoken_add', [$ipatokenuniqueid], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -12119,9 +12931,13 @@ sub api_otptoken_add_managedby
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('otptoken_add_managedby', $ipatokenuniqueid, %opts);
+    return $self->rpc_api('otptoken_add_managedby', [$ipatokenuniqueid], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -12178,9 +12994,13 @@ sub api_otptoken_add_yubikey
             return;
         };
     };
+    my @opt_types = qw(string boolean datetime datetime int string int string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('otptoken_add_yubikey', $ipatokenuniqueid, %opts);
+    return $self->rpc_api('otptoken_add_yubikey', [$ipatokenuniqueid], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -12225,9 +13045,13 @@ sub api_otptoken_del
             return;
         };
     };
+    my @opt_types = qw(boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('otptoken_del', $ipatokenuniqueid, %opts);
+    return $self->rpc_api('otptoken_del', [$ipatokenuniqueid], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -12312,9 +13136,13 @@ sub api_otptoken_find
             return;
         };
     };
+    my @opt_types = qw(boolean string boolean int string datetime datetime string int string string int int string string boolean boolean boolean int int string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('otptoken_find', $criteria, %opts);
+    return $self->rpc_api('otptoken_find', [$criteria], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -12389,9 +13217,13 @@ sub api_otptoken_mod
             return;
         };
     };
+    my @opt_types = qw(string boolean string string boolean string datetime datetime string string string boolean boolean string boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('otptoken_mod', $ipatokenuniqueid, %opts);
+    return $self->rpc_api('otptoken_mod', [$ipatokenuniqueid], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -12442,9 +13274,13 @@ sub api_otptoken_remove_managedby
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('otptoken_remove_managedby', $ipatokenuniqueid, %opts);
+    return $self->rpc_api('otptoken_remove_managedby', [$ipatokenuniqueid], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -12495,9 +13331,13 @@ sub api_otptoken_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('otptoken_show', $ipatokenuniqueid, %opts);
+    return $self->rpc_api('otptoken_show', [$ipatokenuniqueid], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -12548,9 +13388,13 @@ sub api_otptoken_sync
             return;
         };
     };
+    my @opt_types = qw(string string string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('otptoken_sync', $token, %opts);
+    return $self->rpc_api('otptoken_sync', [$token], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -12599,9 +13443,13 @@ sub api_passwd
             return;
         };
     };
+    my @opt_types = qw(string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('passwd', $principal, $password, $current_password, %opts);
+    return $self->rpc_api('passwd', [$principal, $password, $current_password], ['string', 'string', 'string'], \%opts, \%opt_type_map);
 }
 
 
@@ -12684,9 +13532,13 @@ sub api_permission_add
             return;
         };
     };
+    my @opt_types = qw(string boolean string string string string string string string string string string string boolean string boolean string string string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('permission_add', $cn, %opts);
+    return $self->rpc_api('permission_add', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -12737,9 +13589,13 @@ sub api_permission_add_member
             return;
         };
     };
+    my @opt_types = qw(boolean boolean string boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('permission_add_member', $cn, %opts);
+    return $self->rpc_api('permission_add_member', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -12790,9 +13646,13 @@ sub api_permission_add_noaci
             return;
         };
     };
+    my @opt_types = qw(boolean string boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('permission_add_noaci', $cn, %opts);
+    return $self->rpc_api('permission_add_noaci', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -12839,9 +13699,13 @@ sub api_permission_del
             return;
         };
     };
+    my @opt_types = qw(boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('permission_del', $cn, %opts);
+    return $self->rpc_api('permission_del', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -12934,9 +13798,13 @@ sub api_permission_find
             return;
         };
     };
+    my @opt_types = qw(boolean string string string string string string string string string string string string string string string boolean string boolean boolean int string string int string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('permission_find', $criteria, %opts);
+    return $self->rpc_api('permission_find', [$criteria], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -13029,9 +13897,13 @@ sub api_permission_mod
             return;
         };
     };
+    my @opt_types = qw(string boolean string string string string string string string string string string string string string string boolean string boolean string boolean string string string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('permission_mod', $cn, %opts);
+    return $self->rpc_api('permission_mod', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -13082,9 +13954,13 @@ sub api_permission_remove_member
             return;
         };
     };
+    my @opt_types = qw(boolean boolean string boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('permission_remove_member', $cn, %opts);
+    return $self->rpc_api('permission_remove_member', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -13135,9 +14011,13 @@ sub api_permission_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('permission_show', $cn, %opts);
+    return $self->rpc_api('permission_show', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -13174,9 +14054,13 @@ sub api_ping
             return;
         };
     };
+    my @opt_types = qw(string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('ping', %opts);
+    return $self->rpc_api('ping', [], [], \%opts, \%opt_type_map);
 }
 
 
@@ -13219,9 +14103,13 @@ sub api_pkinit_anonymous
             return;
         };
     };
+    my @opt_types = qw(string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('pkinit_anonymous', $action, %opts);
+    return $self->rpc_api('pkinit_anonymous', [$action], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -13262,9 +14150,13 @@ sub api_plugins
             return;
         };
     };
+    my @opt_types = qw(boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('plugins', %opts);
+    return $self->rpc_api('plugins', [], [], \%opts, \%opt_type_map);
 }
 
 
@@ -13319,9 +14211,13 @@ sub api_privilege_add
             return;
         };
     };
+    my @opt_types = qw(string boolean string boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('privilege_add', $cn, %opts);
+    return $self->rpc_api('privilege_add', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -13372,9 +14268,13 @@ sub api_privilege_add_member
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('privilege_add_member', $cn, %opts);
+    return $self->rpc_api('privilege_add_member', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -13425,9 +14325,13 @@ sub api_privilege_add_permission
             return;
         };
     };
+    my @opt_types = qw(boolean boolean string boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('privilege_add_permission', $cn, %opts);
+    return $self->rpc_api('privilege_add_permission', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -13472,9 +14376,13 @@ sub api_privilege_del
             return;
         };
     };
+    my @opt_types = qw(boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('privilege_del', $cn, %opts);
+    return $self->rpc_api('privilege_del', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -13533,9 +14441,13 @@ sub api_privilege_find
             return;
         };
     };
+    my @opt_types = qw(boolean string string boolean boolean boolean int int string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('privilege_find', $criteria, %opts);
+    return $self->rpc_api('privilege_find', [$criteria], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -13596,9 +14508,13 @@ sub api_privilege_mod
             return;
         };
     };
+    my @opt_types = qw(string boolean string string boolean boolean string boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('privilege_mod', $cn, %opts);
+    return $self->rpc_api('privilege_mod', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -13649,9 +14565,13 @@ sub api_privilege_remove_member
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('privilege_remove_member', $cn, %opts);
+    return $self->rpc_api('privilege_remove_member', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -13702,9 +14622,13 @@ sub api_privilege_remove_permission
             return;
         };
     };
+    my @opt_types = qw(boolean boolean string boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('privilege_remove_permission', $cn, %opts);
+    return $self->rpc_api('privilege_remove_permission', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -13755,9 +14679,13 @@ sub api_privilege_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('privilege_show', $cn, %opts);
+    return $self->rpc_api('privilege_show', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -13826,9 +14754,13 @@ sub api_pwpolicy_add
             return;
         };
     };
+    my @opt_types = qw(string boolean int int int int int int int int int boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('pwpolicy_add', $cn, %opts);
+    return $self->rpc_api('pwpolicy_add', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -13873,9 +14805,13 @@ sub api_pwpolicy_del
             return;
         };
     };
+    my @opt_types = qw(boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('pwpolicy_del', $cn, %opts);
+    return $self->rpc_api('pwpolicy_del', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -13948,9 +14884,13 @@ sub api_pwpolicy_find
             return;
         };
     };
+    my @opt_types = qw(boolean string int int int int int int int int int boolean boolean int int string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('pwpolicy_find', $criteria, %opts);
+    return $self->rpc_api('pwpolicy_find', [$criteria], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -14023,9 +14963,13 @@ sub api_pwpolicy_mod
             return;
         };
     };
+    my @opt_types = qw(string boolean int string int int int int int int int int boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('pwpolicy_mod', $cn, %opts);
+    return $self->rpc_api('pwpolicy_mod', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -14076,9 +15020,13 @@ sub api_pwpolicy_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('pwpolicy_show', $cn, %opts);
+    return $self->rpc_api('pwpolicy_show', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -14141,9 +15089,13 @@ sub api_radiusproxy_add
             return;
         };
     };
+    my @opt_types = qw(string boolean string int string string int string boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('radiusproxy_add', $cn, %opts);
+    return $self->rpc_api('radiusproxy_add', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -14188,9 +15140,13 @@ sub api_radiusproxy_del
             return;
         };
     };
+    my @opt_types = qw(boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('radiusproxy_del', $cn, %opts);
+    return $self->rpc_api('radiusproxy_del', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -14257,9 +15213,13 @@ sub api_radiusproxy_find
             return;
         };
     };
+    my @opt_types = qw(boolean string string int string string int string boolean boolean int int string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('radiusproxy_find', $criteria, %opts);
+    return $self->rpc_api('radiusproxy_find', [$criteria], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -14328,9 +15288,13 @@ sub api_radiusproxy_mod
             return;
         };
     };
+    my @opt_types = qw(string boolean string string int string string int string boolean string boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('radiusproxy_mod', $cn, %opts);
+    return $self->rpc_api('radiusproxy_mod', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -14379,9 +15343,13 @@ sub api_radiusproxy_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('radiusproxy_show', $cn, %opts);
+    return $self->rpc_api('radiusproxy_show', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -14438,9 +15406,13 @@ sub api_realmdomains_mod
             return;
         };
     };
+    my @opt_types = qw(string string boolean string string string boolean boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('realmdomains_mod', %opts);
+    return $self->rpc_api('realmdomains_mod', [], [], \%opts, \%opt_type_map);
 }
 
 
@@ -14483,9 +15455,13 @@ sub api_realmdomains_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('realmdomains_show', %opts);
+    return $self->rpc_api('realmdomains_show', [], [], \%opts, \%opt_type_map);
 }
 
 
@@ -14540,9 +15516,13 @@ sub api_role_add
             return;
         };
     };
+    my @opt_types = qw(string boolean string boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('role_add', $cn, %opts);
+    return $self->rpc_api('role_add', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -14601,9 +15581,13 @@ sub api_role_add_member
             return;
         };
     };
+    my @opt_types = qw(boolean string string string boolean boolean string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('role_add_member', $cn, %opts);
+    return $self->rpc_api('role_add_member', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -14654,9 +15638,13 @@ sub api_role_add_privilege
             return;
         };
     };
+    my @opt_types = qw(boolean boolean string boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('role_add_privilege', $cn, %opts);
+    return $self->rpc_api('role_add_privilege', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -14701,9 +15689,13 @@ sub api_role_del
             return;
         };
     };
+    my @opt_types = qw(boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('role_del', $cn, %opts);
+    return $self->rpc_api('role_del', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -14762,9 +15754,13 @@ sub api_role_find
             return;
         };
     };
+    my @opt_types = qw(boolean string string boolean boolean boolean int int string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('role_find', $criteria, %opts);
+    return $self->rpc_api('role_find', [$criteria], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -14825,9 +15821,13 @@ sub api_role_mod
             return;
         };
     };
+    my @opt_types = qw(string boolean string string boolean boolean string boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('role_mod', $cn, %opts);
+    return $self->rpc_api('role_mod', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -14886,9 +15886,13 @@ sub api_role_remove_member
             return;
         };
     };
+    my @opt_types = qw(boolean string string string boolean boolean string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('role_remove_member', $cn, %opts);
+    return $self->rpc_api('role_remove_member', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -14939,9 +15943,13 @@ sub api_role_remove_privilege
             return;
         };
     };
+    my @opt_types = qw(boolean boolean string boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('role_remove_privilege', $cn, %opts);
+    return $self->rpc_api('role_remove_privilege', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -14992,9 +16000,13 @@ sub api_role_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('role_show', $cn, %opts);
+    return $self->rpc_api('role_show', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -15045,9 +16057,13 @@ sub api_selfservice_add
             return;
         };
     };
+    my @opt_types = qw(boolean string string boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('selfservice_add', $aciname, %opts);
+    return $self->rpc_api('selfservice_add', [$aciname], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -15090,9 +16106,13 @@ sub api_selfservice_del
             return;
         };
     };
+    my @opt_types = qw(string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('selfservice_del', $aciname, %opts);
+    return $self->rpc_api('selfservice_del', [$aciname], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -15147,9 +16167,13 @@ sub api_selfservice_find
             return;
         };
     };
+    my @opt_types = qw(string boolean string string boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('selfservice_find', $criteria, %opts);
+    return $self->rpc_api('selfservice_find', [$criteria], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -15200,9 +16224,13 @@ sub api_selfservice_mod
             return;
         };
     };
+    my @opt_types = qw(boolean string string boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('selfservice_mod', $aciname, %opts);
+    return $self->rpc_api('selfservice_mod', [$aciname], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -15249,9 +16277,13 @@ sub api_selfservice_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('selfservice_show', $aciname, %opts);
+    return $self->rpc_api('selfservice_show', [$aciname], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -15316,9 +16348,13 @@ sub api_selinuxusermap_add
             return;
         };
     };
+    my @opt_types = qw(string boolean string string boolean string boolean boolean string string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('selinuxusermap_add', $cn, %opts);
+    return $self->rpc_api('selinuxusermap_add', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -15371,9 +16407,13 @@ sub api_selinuxusermap_add_host
             return;
         };
     };
+    my @opt_types = qw(boolean string string boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('selinuxusermap_add_host', $cn, %opts);
+    return $self->rpc_api('selinuxusermap_add_host', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -15426,9 +16466,13 @@ sub api_selinuxusermap_add_user
             return;
         };
     };
+    my @opt_types = qw(boolean string boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('selinuxusermap_add_user', $cn, %opts);
+    return $self->rpc_api('selinuxusermap_add_user', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -15473,9 +16517,13 @@ sub api_selinuxusermap_del
             return;
         };
     };
+    my @opt_types = qw(boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('selinuxusermap_del', $cn, %opts);
+    return $self->rpc_api('selinuxusermap_del', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -15518,9 +16566,13 @@ sub api_selinuxusermap_disable
             return;
         };
     };
+    my @opt_types = qw(string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('selinuxusermap_disable', $cn, %opts);
+    return $self->rpc_api('selinuxusermap_disable', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -15563,9 +16615,13 @@ sub api_selinuxusermap_enable
             return;
         };
     };
+    my @opt_types = qw(string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('selinuxusermap_enable', $cn, %opts);
+    return $self->rpc_api('selinuxusermap_enable', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -15634,9 +16690,13 @@ sub api_selinuxusermap_find
             return;
         };
     };
+    my @opt_types = qw(boolean string string string boolean string boolean boolean boolean string int int string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('selinuxusermap_find', $criteria, %opts);
+    return $self->rpc_api('selinuxusermap_find', [$criteria], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -15705,9 +16765,13 @@ sub api_selinuxusermap_mod
             return;
         };
     };
+    my @opt_types = qw(string boolean string string string boolean string boolean boolean boolean string string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('selinuxusermap_mod', $cn, %opts);
+    return $self->rpc_api('selinuxusermap_mod', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -15760,9 +16824,13 @@ sub api_selinuxusermap_remove_host
             return;
         };
     };
+    my @opt_types = qw(boolean string string boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('selinuxusermap_remove_host', $cn, %opts);
+    return $self->rpc_api('selinuxusermap_remove_host', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -15815,9 +16883,13 @@ sub api_selinuxusermap_remove_user
             return;
         };
     };
+    my @opt_types = qw(boolean string boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('selinuxusermap_remove_user', $cn, %opts);
+    return $self->rpc_api('selinuxusermap_remove_user', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -15868,9 +16940,13 @@ sub api_selinuxusermap_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('selinuxusermap_show', $cn, %opts);
+    return $self->rpc_api('selinuxusermap_show', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -15915,9 +16991,13 @@ sub api_server_conncheck
             return;
         };
     };
+    my @opt_types = qw(string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('server_conncheck', $cn, $remote_cn, %opts);
+    return $self->rpc_api('server_conncheck', [$cn, $remote_cn], ['string', 'string'], \%opts, \%opt_type_map);
 }
 
 
@@ -15962,9 +17042,13 @@ sub api_server_del
             return;
         };
     };
+    my @opt_types = qw(boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('server_del', $cn, %opts);
+    return $self->rpc_api('server_del', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -16029,9 +17113,13 @@ sub api_server_find
             return;
         };
     };
+    my @opt_types = qw(boolean string int int boolean string boolean boolean int int string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('server_find', $criteria, %opts);
+    return $self->rpc_api('server_find', [$criteria], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -16082,9 +17170,13 @@ sub api_server_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('server_show', $cn, %opts);
+    return $self->rpc_api('server_show', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -16147,9 +17239,13 @@ sub api_service_add
             return;
         };
     };
+    my @opt_types = qw(string boolean boolean string boolean boolean boolean boolean string bytes string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('service_add', $krbprincipalname, %opts);
+    return $self->rpc_api('service_add', [$krbprincipalname], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -16200,9 +17296,13 @@ sub api_service_add_cert
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean bytes string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('service_add_cert', $krbprincipalname, %opts);
+    return $self->rpc_api('service_add_cert', [$krbprincipalname], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -16253,9 +17353,13 @@ sub api_service_add_host
             return;
         };
     };
+    my @opt_types = qw(boolean string boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('service_add_host', $krbprincipalname, %opts);
+    return $self->rpc_api('service_add_host', [$krbprincipalname], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -16312,9 +17416,13 @@ sub api_service_allow_create_keytab
             return;
         };
     };
+    my @opt_types = qw(boolean string string string boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('service_allow_create_keytab', $krbprincipalname, %opts);
+    return $self->rpc_api('service_allow_create_keytab', [$krbprincipalname], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -16371,9 +17479,13 @@ sub api_service_allow_retrieve_keytab
             return;
         };
     };
+    my @opt_types = qw(boolean string string string boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('service_allow_retrieve_keytab', $krbprincipalname, %opts);
+    return $self->rpc_api('service_allow_retrieve_keytab', [$krbprincipalname], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -16418,9 +17530,13 @@ sub api_service_del
             return;
         };
     };
+    my @opt_types = qw(boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('service_del', $krbprincipalname, %opts);
+    return $self->rpc_api('service_del', [$krbprincipalname], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -16463,9 +17579,13 @@ sub api_service_disable
             return;
         };
     };
+    my @opt_types = qw(string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('service_disable', $krbprincipalname, %opts);
+    return $self->rpc_api('service_disable', [$krbprincipalname], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -16522,9 +17642,13 @@ sub api_service_disallow_create_keytab
             return;
         };
     };
+    my @opt_types = qw(boolean string string string boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('service_disallow_create_keytab', $krbprincipalname, %opts);
+    return $self->rpc_api('service_disallow_create_keytab', [$krbprincipalname], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -16581,9 +17705,13 @@ sub api_service_disallow_retrieve_keytab
             return;
         };
     };
+    my @opt_types = qw(boolean string string string boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('service_disallow_retrieve_keytab', $krbprincipalname, %opts);
+    return $self->rpc_api('service_disallow_retrieve_keytab', [$krbprincipalname], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -16646,9 +17774,13 @@ sub api_service_find
             return;
         };
     };
+    my @opt_types = qw(boolean string string string boolean string boolean boolean int int string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('service_find', $criteria, %opts);
+    return $self->rpc_api('service_find', [$criteria], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -16713,9 +17845,13 @@ sub api_service_mod
             return;
         };
     };
+    my @opt_types = qw(string boolean string string boolean boolean boolean boolean boolean string bytes string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('service_mod', $krbprincipalname, %opts);
+    return $self->rpc_api('service_mod', [$krbprincipalname], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -16766,9 +17902,13 @@ sub api_service_remove_cert
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean bytes string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('service_remove_cert', $krbprincipalname, %opts);
+    return $self->rpc_api('service_remove_cert', [$krbprincipalname], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -16819,9 +17959,13 @@ sub api_service_remove_host
             return;
         };
     };
+    my @opt_types = qw(boolean string boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('service_remove_host', $krbprincipalname, %opts);
+    return $self->rpc_api('service_remove_host', [$krbprincipalname], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -16874,9 +18018,13 @@ sub api_service_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean string boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('service_show', $krbprincipalname, %opts);
+    return $self->rpc_api('service_show', [$krbprincipalname], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -16929,9 +18077,13 @@ sub api_servicedelegationrule_add
             return;
         };
     };
+    my @opt_types = qw(string boolean boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('servicedelegationrule_add', $cn, %opts);
+    return $self->rpc_api('servicedelegationrule_add', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -16982,9 +18134,13 @@ sub api_servicedelegationrule_add_member
             return;
         };
     };
+    my @opt_types = qw(boolean boolean string boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('servicedelegationrule_add_member', $cn, %opts);
+    return $self->rpc_api('servicedelegationrule_add_member', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -17035,9 +18191,13 @@ sub api_servicedelegationrule_add_target
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('servicedelegationrule_add_target', $cn, %opts);
+    return $self->rpc_api('servicedelegationrule_add_target', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -17082,9 +18242,13 @@ sub api_servicedelegationrule_del
             return;
         };
     };
+    my @opt_types = qw(boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('servicedelegationrule_del', $cn, %opts);
+    return $self->rpc_api('servicedelegationrule_del', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -17141,9 +18305,13 @@ sub api_servicedelegationrule_find
             return;
         };
     };
+    my @opt_types = qw(boolean string boolean boolean boolean int int string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('servicedelegationrule_find', $criteria, %opts);
+    return $self->rpc_api('servicedelegationrule_find', [$criteria], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -17194,9 +18362,13 @@ sub api_servicedelegationrule_remove_member
             return;
         };
     };
+    my @opt_types = qw(boolean boolean string boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('servicedelegationrule_remove_member', $cn, %opts);
+    return $self->rpc_api('servicedelegationrule_remove_member', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -17247,9 +18419,13 @@ sub api_servicedelegationrule_remove_target
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('servicedelegationrule_remove_target', $cn, %opts);
+    return $self->rpc_api('servicedelegationrule_remove_target', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -17300,9 +18476,13 @@ sub api_servicedelegationrule_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('servicedelegationrule_show', $cn, %opts);
+    return $self->rpc_api('servicedelegationrule_show', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -17353,9 +18533,13 @@ sub api_servicedelegationtarget_add
             return;
         };
     };
+    my @opt_types = qw(string boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('servicedelegationtarget_add', $cn, %opts);
+    return $self->rpc_api('servicedelegationtarget_add', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -17404,9 +18588,13 @@ sub api_servicedelegationtarget_add_member
             return;
         };
     };
+    my @opt_types = qw(boolean string boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('servicedelegationtarget_add_member', $cn, %opts);
+    return $self->rpc_api('servicedelegationtarget_add_member', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -17451,9 +18639,13 @@ sub api_servicedelegationtarget_del
             return;
         };
     };
+    my @opt_types = qw(boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('servicedelegationtarget_del', $cn, %opts);
+    return $self->rpc_api('servicedelegationtarget_del', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -17508,9 +18700,13 @@ sub api_servicedelegationtarget_find
             return;
         };
     };
+    my @opt_types = qw(boolean string boolean boolean int int string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('servicedelegationtarget_find', $criteria, %opts);
+    return $self->rpc_api('servicedelegationtarget_find', [$criteria], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -17559,9 +18755,13 @@ sub api_servicedelegationtarget_remove_member
             return;
         };
     };
+    my @opt_types = qw(boolean string boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('servicedelegationtarget_remove_member', $cn, %opts);
+    return $self->rpc_api('servicedelegationtarget_remove_member', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -17610,9 +18810,13 @@ sub api_servicedelegationtarget_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('servicedelegationtarget_show', $cn, %opts);
+    return $self->rpc_api('servicedelegationtarget_show', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -17649,9 +18853,13 @@ sub api_session_logout
             return;
         };
     };
+    my @opt_types = qw(string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('session_logout', %opts);
+    return $self->rpc_api('session_logout', [], [], \%opts, \%opt_type_map);
 }
 
 
@@ -17688,9 +18896,13 @@ sub api_sidgen_was_run
             return;
         };
     };
+    my @opt_types = qw(string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('sidgen_was_run', %opts);
+    return $self->rpc_api('sidgen_was_run', [], [], \%opts, \%opt_type_map);
 }
 
 
@@ -17739,9 +18951,13 @@ sub api_stageuser_activate
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('stageuser_activate', $uid, %opts);
+    return $self->rpc_api('stageuser_activate', [$uid], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -17870,9 +19086,13 @@ sub api_stageuser_add
             return;
         };
     };
+    my @opt_types = qw(string boolean string string string string string string string string string int string string string string string string string datetime string string string string string string boolean string string string string boolean boolean string string string string string string int bytes string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('stageuser_add', $uid, %opts);
+    return $self->rpc_api('stageuser_add', [$uid], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -17923,9 +19143,13 @@ sub api_stageuser_add_manager
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('stageuser_add_manager', $uid, %opts);
+    return $self->rpc_api('stageuser_add_manager', [$uid], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -17970,9 +19194,13 @@ sub api_stageuser_del
             return;
         };
     };
+    my @opt_types = qw(boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('stageuser_del', $uid, %opts);
+    return $self->rpc_api('stageuser_del', [$uid], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -18119,9 +19347,13 @@ sub api_stageuser_find
             return;
         };
     };
+    my @opt_types = qw(boolean string string string string string string string string int string string string string string string string string string string string datetime string string string string string string boolean string string string string string string string boolean string string boolean int string string string string int string string int bytes string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('stageuser_find', $criteria, %opts);
+    return $self->rpc_api('stageuser_find', [$criteria], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -18252,9 +19484,13 @@ sub api_stageuser_mod
             return;
         };
     };
+    my @opt_types = qw(string boolean string string string string string string string string string int string string string string string string string datetime string string string string string boolean string string string string boolean boolean string boolean string string string string string string int bytes string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('stageuser_mod', $uid, %opts);
+    return $self->rpc_api('stageuser_mod', [$uid], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -18305,9 +19541,13 @@ sub api_stageuser_remove_manager
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('stageuser_remove_manager', $uid, %opts);
+    return $self->rpc_api('stageuser_remove_manager', [$uid], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -18358,9 +19598,13 @@ sub api_stageuser_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('stageuser_show', $uid, %opts);
+    return $self->rpc_api('stageuser_show', [$uid], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -18415,9 +19659,13 @@ sub api_sudocmd_add
             return;
         };
     };
+    my @opt_types = qw(string boolean string boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('sudocmd_add', $sudocmd, %opts);
+    return $self->rpc_api('sudocmd_add', [$sudocmd], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -18462,9 +19710,13 @@ sub api_sudocmd_del
             return;
         };
     };
+    my @opt_types = qw(boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('sudocmd_del', $sudocmd, %opts);
+    return $self->rpc_api('sudocmd_del', [$sudocmd], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -18523,9 +19775,13 @@ sub api_sudocmd_find
             return;
         };
     };
+    my @opt_types = qw(boolean string boolean boolean boolean int string int string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('sudocmd_find', $criteria, %opts);
+    return $self->rpc_api('sudocmd_find', [$criteria], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -18584,9 +19840,13 @@ sub api_sudocmd_mod
             return;
         };
     };
+    my @opt_types = qw(string boolean string string boolean boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('sudocmd_mod', $sudocmd, %opts);
+    return $self->rpc_api('sudocmd_mod', [$sudocmd], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -18637,9 +19897,13 @@ sub api_sudocmd_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('sudocmd_show', $sudocmd, %opts);
+    return $self->rpc_api('sudocmd_show', [$sudocmd], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -18694,9 +19958,13 @@ sub api_sudocmdgroup_add
             return;
         };
     };
+    my @opt_types = qw(string boolean string boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('sudocmdgroup_add', $cn, %opts);
+    return $self->rpc_api('sudocmdgroup_add', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -18747,9 +20015,13 @@ sub api_sudocmdgroup_add_member
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('sudocmdgroup_add_member', $cn, %opts);
+    return $self->rpc_api('sudocmdgroup_add_member', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -18794,9 +20066,13 @@ sub api_sudocmdgroup_del
             return;
         };
     };
+    my @opt_types = qw(boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('sudocmdgroup_del', $cn, %opts);
+    return $self->rpc_api('sudocmdgroup_del', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -18855,9 +20131,13 @@ sub api_sudocmdgroup_find
             return;
         };
     };
+    my @opt_types = qw(boolean string string boolean boolean boolean int int string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('sudocmdgroup_find', $criteria, %opts);
+    return $self->rpc_api('sudocmdgroup_find', [$criteria], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -18916,9 +20196,13 @@ sub api_sudocmdgroup_mod
             return;
         };
     };
+    my @opt_types = qw(string boolean string string boolean boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('sudocmdgroup_mod', $cn, %opts);
+    return $self->rpc_api('sudocmdgroup_mod', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -18969,9 +20253,13 @@ sub api_sudocmdgroup_remove_member
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('sudocmdgroup_remove_member', $cn, %opts);
+    return $self->rpc_api('sudocmdgroup_remove_member', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -19022,9 +20310,13 @@ sub api_sudocmdgroup_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('sudocmdgroup_show', $cn, %opts);
+    return $self->rpc_api('sudocmdgroup_show', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -19101,9 +20393,13 @@ sub api_sudorule_add
             return;
         };
     };
+    my @opt_types = qw(string boolean string string string string string boolean string string string string boolean boolean string int string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('sudorule_add', $cn, %opts);
+    return $self->rpc_api('sudorule_add', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -19156,9 +20452,13 @@ sub api_sudorule_add_allow_command
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('sudorule_add_allow_command', $cn, %opts);
+    return $self->rpc_api('sudorule_add_allow_command', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -19211,9 +20511,13 @@ sub api_sudorule_add_deny_command
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('sudorule_add_deny_command', $cn, %opts);
+    return $self->rpc_api('sudorule_add_deny_command', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -19268,9 +20572,13 @@ sub api_sudorule_add_host
             return;
         };
     };
+    my @opt_types = qw(boolean string string string boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('sudorule_add_host', $cn, %opts);
+    return $self->rpc_api('sudorule_add_host', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -19321,9 +20629,13 @@ sub api_sudorule_add_option
             return;
         };
     };
+    my @opt_types = qw(boolean string boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('sudorule_add_option', $cn, %opts);
+    return $self->rpc_api('sudorule_add_option', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -19374,9 +20686,13 @@ sub api_sudorule_add_runasgroup
             return;
         };
     };
+    my @opt_types = qw(boolean string boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('sudorule_add_runasgroup', $cn, %opts);
+    return $self->rpc_api('sudorule_add_runasgroup', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -19429,9 +20745,13 @@ sub api_sudorule_add_runasuser
             return;
         };
     };
+    my @opt_types = qw(boolean string boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('sudorule_add_runasuser', $cn, %opts);
+    return $self->rpc_api('sudorule_add_runasuser', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -19484,9 +20804,13 @@ sub api_sudorule_add_user
             return;
         };
     };
+    my @opt_types = qw(boolean string boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('sudorule_add_user', $cn, %opts);
+    return $self->rpc_api('sudorule_add_user', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -19531,9 +20855,13 @@ sub api_sudorule_del
             return;
         };
     };
+    my @opt_types = qw(boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('sudorule_del', $cn, %opts);
+    return $self->rpc_api('sudorule_del', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -19576,9 +20904,13 @@ sub api_sudorule_disable
             return;
         };
     };
+    my @opt_types = qw(string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('sudorule_disable', $cn, %opts);
+    return $self->rpc_api('sudorule_disable', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -19621,9 +20953,13 @@ sub api_sudorule_enable
             return;
         };
     };
+    my @opt_types = qw(string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('sudorule_enable', $cn, %opts);
+    return $self->rpc_api('sudorule_enable', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -19704,9 +21040,13 @@ sub api_sudorule_find
             return;
         };
     };
+    my @opt_types = qw(boolean string string string string string string boolean string string string string boolean boolean boolean int int int string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('sudorule_find', $criteria, %opts);
+    return $self->rpc_api('sudorule_find', [$criteria], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -19787,9 +21127,13 @@ sub api_sudorule_mod
             return;
         };
     };
+    my @opt_types = qw(string boolean string string string string string string boolean string string string string boolean boolean boolean string int string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('sudorule_mod', $cn, %opts);
+    return $self->rpc_api('sudorule_mod', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -19842,9 +21186,13 @@ sub api_sudorule_remove_allow_command
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('sudorule_remove_allow_command', $cn, %opts);
+    return $self->rpc_api('sudorule_remove_allow_command', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -19897,9 +21245,13 @@ sub api_sudorule_remove_deny_command
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('sudorule_remove_deny_command', $cn, %opts);
+    return $self->rpc_api('sudorule_remove_deny_command', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -19954,9 +21306,13 @@ sub api_sudorule_remove_host
             return;
         };
     };
+    my @opt_types = qw(boolean string string string boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('sudorule_remove_host', $cn, %opts);
+    return $self->rpc_api('sudorule_remove_host', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -20007,9 +21363,13 @@ sub api_sudorule_remove_option
             return;
         };
     };
+    my @opt_types = qw(boolean string boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('sudorule_remove_option', $cn, %opts);
+    return $self->rpc_api('sudorule_remove_option', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -20060,9 +21420,13 @@ sub api_sudorule_remove_runasgroup
             return;
         };
     };
+    my @opt_types = qw(boolean string boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('sudorule_remove_runasgroup', $cn, %opts);
+    return $self->rpc_api('sudorule_remove_runasgroup', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -20115,9 +21479,13 @@ sub api_sudorule_remove_runasuser
             return;
         };
     };
+    my @opt_types = qw(boolean string boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('sudorule_remove_runasuser', $cn, %opts);
+    return $self->rpc_api('sudorule_remove_runasuser', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -20170,9 +21538,13 @@ sub api_sudorule_remove_user
             return;
         };
     };
+    my @opt_types = qw(boolean string boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('sudorule_remove_user', $cn, %opts);
+    return $self->rpc_api('sudorule_remove_user', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -20223,9 +21595,13 @@ sub api_sudorule_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('sudorule_show', $cn, %opts);
+    return $self->rpc_api('sudorule_show', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -20294,9 +21670,13 @@ sub api_topologysegment_add
             return;
         };
     };
+    my @opt_types = qw(string boolean string string string string string string string int boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('topologysegment_add', $topologysuffixcn, $cn, %opts);
+    return $self->rpc_api('topologysegment_add', [$topologysuffixcn, $cn], ['string', 'string'], \%opts, \%opt_type_map);
 }
 
 
@@ -20343,9 +21723,13 @@ sub api_topologysegment_del
             return;
         };
     };
+    my @opt_types = qw(boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('topologysegment_del', $topologysuffixcn, $cn, %opts);
+    return $self->rpc_api('topologysegment_del', [$topologysuffixcn, $cn], ['string', 'string'], \%opts, \%opt_type_map);
 }
 
 
@@ -20418,9 +21802,13 @@ sub api_topologysegment_find
             return;
         };
     };
+    my @opt_types = qw(boolean string string string string string string string string int boolean boolean int int string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('topologysegment_find', $topologysuffixcn, $criteria, %opts);
+    return $self->rpc_api('topologysegment_find', [$topologysuffixcn, $criteria], ['string', 'string'], \%opts, \%opt_type_map);
 }
 
 
@@ -20487,9 +21875,13 @@ sub api_topologysegment_mod
             return;
         };
     };
+    my @opt_types = qw(string boolean string string string string string int boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('topologysegment_mod', $topologysuffixcn, $cn, %opts);
+    return $self->rpc_api('topologysegment_mod', [$topologysuffixcn, $cn], ['string', 'string'], \%opts, \%opt_type_map);
 }
 
 
@@ -20540,9 +21932,13 @@ sub api_topologysegment_reinitialize
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('topologysegment_reinitialize', $topologysuffixcn, $cn, %opts);
+    return $self->rpc_api('topologysegment_reinitialize', [$topologysuffixcn, $cn], ['string', 'string'], \%opts, \%opt_type_map);
 }
 
 
@@ -20593,9 +21989,13 @@ sub api_topologysegment_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('topologysegment_show', $topologysuffixcn, $cn, %opts);
+    return $self->rpc_api('topologysegment_show', [$topologysuffixcn, $cn], ['string', 'string'], \%opts, \%opt_type_map);
 }
 
 
@@ -20648,9 +22048,13 @@ sub api_topologysuffix_add
             return;
         };
     };
+    my @opt_types = qw(string boolean string boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('topologysuffix_add', $cn, %opts);
+    return $self->rpc_api('topologysuffix_add', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -20695,9 +22099,13 @@ sub api_topologysuffix_del
             return;
         };
     };
+    my @opt_types = qw(boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('topologysuffix_del', $cn, %opts);
+    return $self->rpc_api('topologysuffix_del', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -20754,9 +22162,13 @@ sub api_topologysuffix_find
             return;
         };
     };
+    my @opt_types = qw(boolean string string boolean boolean int int string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('topologysuffix_find', $criteria, %opts);
+    return $self->rpc_api('topologysuffix_find', [$criteria], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -20813,9 +22225,13 @@ sub api_topologysuffix_mod
             return;
         };
     };
+    my @opt_types = qw(string boolean string string boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('topologysuffix_mod', $cn, %opts);
+    return $self->rpc_api('topologysuffix_mod', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -20864,9 +22280,13 @@ sub api_topologysuffix_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('topologysuffix_show', $cn, %opts);
+    return $self->rpc_api('topologysuffix_show', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -20909,9 +22329,13 @@ sub api_topologysuffix_verify
             return;
         };
     };
+    my @opt_types = qw(string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('topologysuffix_verify', $cn, %opts);
+    return $self->rpc_api('topologysuffix_verify', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -20980,9 +22404,13 @@ sub api_trust_add
             return;
         };
     };
+    my @opt_types = qw(string boolean int boolean int string boolean string string string string string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('trust_add', $cn, %opts);
+    return $self->rpc_api('trust_add', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -21027,9 +22455,13 @@ sub api_trust_del
             return;
         };
     };
+    my @opt_types = qw(boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('trust_del', $cn, %opts);
+    return $self->rpc_api('trust_del', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -21080,9 +22512,13 @@ sub api_trust_fetch_domains
             return;
         };
     };
+    my @opt_types = qw(boolean boolean string boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('trust_fetch_domains', $cn, %opts);
+    return $self->rpc_api('trust_fetch_domains', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -21145,9 +22581,13 @@ sub api_trust_find
             return;
         };
     };
+    my @opt_types = qw(boolean string string string string string boolean boolean int int string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('trust_find', $criteria, %opts);
+    return $self->rpc_api('trust_find', [$criteria], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -21206,9 +22646,13 @@ sub api_trust_mod
             return;
         };
     };
+    my @opt_types = qw(string boolean string string string boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('trust_mod', $cn, %opts);
+    return $self->rpc_api('trust_mod', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -21251,9 +22695,13 @@ sub api_trust_resolve
             return;
         };
     };
+    my @opt_types = qw(boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('trust_resolve', %opts);
+    return $self->rpc_api('trust_resolve', [], [], \%opts, \%opt_type_map);
 }
 
 
@@ -21302,9 +22750,13 @@ sub api_trust_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('trust_show', $cn, %opts);
+    return $self->rpc_api('trust_show', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -21357,9 +22809,13 @@ sub api_trustconfig_mod
             return;
         };
     };
+    my @opt_types = qw(string boolean string string boolean boolean string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('trustconfig_mod', %opts);
+    return $self->rpc_api('trustconfig_mod', [], [], \%opts, \%opt_type_map);
 }
 
 
@@ -21404,9 +22860,13 @@ sub api_trustconfig_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('trustconfig_show', %opts);
+    return $self->rpc_api('trustconfig_show', [], [], \%opts, \%opt_type_map);
 }
 
 
@@ -21467,9 +22927,13 @@ sub api_trustdomain_add
             return;
         };
     };
+    my @opt_types = qw(string boolean string string string boolean string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('trustdomain_add', $trustcn, $cn, %opts);
+    return $self->rpc_api('trustdomain_add', [$trustcn, $cn], ['string', 'string'], \%opts, \%opt_type_map);
 }
 
 
@@ -21516,9 +22980,13 @@ sub api_trustdomain_del
             return;
         };
     };
+    my @opt_types = qw(boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('trustdomain_del', $trustcn, $cn, %opts);
+    return $self->rpc_api('trustdomain_del', [$trustcn, $cn], ['string', 'string'], \%opts, \%opt_type_map);
 }
 
 
@@ -21563,9 +23031,13 @@ sub api_trustdomain_disable
             return;
         };
     };
+    my @opt_types = qw(string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('trustdomain_disable', $trustcn, $cn, %opts);
+    return $self->rpc_api('trustdomain_disable', [$trustcn, $cn], ['string', 'string'], \%opts, \%opt_type_map);
 }
 
 
@@ -21610,9 +23082,13 @@ sub api_trustdomain_enable
             return;
         };
     };
+    my @opt_types = qw(string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('trustdomain_enable', $trustcn, $cn, %opts);
+    return $self->rpc_api('trustdomain_enable', [$trustcn, $cn], ['string', 'string'], \%opts, \%opt_type_map);
 }
 
 
@@ -21675,9 +23151,13 @@ sub api_trustdomain_find
             return;
         };
     };
+    my @opt_types = qw(boolean string string string string boolean boolean int int string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('trustdomain_find', $trustcn, $criteria, %opts);
+    return $self->rpc_api('trustdomain_find', [$trustcn, $criteria], ['string', 'string'], \%opts, \%opt_type_map);
 }
 
 
@@ -21742,9 +23222,13 @@ sub api_trustdomain_mod
             return;
         };
     };
+    my @opt_types = qw(string boolean string string string string boolean boolean string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('trustdomain_mod', $trustcn, $cn, %opts);
+    return $self->rpc_api('trustdomain_mod', [$trustcn, $cn], ['string', 'string'], \%opts, \%opt_type_map);
 }
 
 
@@ -21875,9 +23359,13 @@ sub api_user_add
             return;
         };
     };
+    my @opt_types = qw(string boolean string string string string string string string string int string string string string string string string datetime string string string string string string boolean boolean boolean string string string string boolean boolean string string string string string string int bytes string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('user_add', $uid, %opts);
+    return $self->rpc_api('user_add', [$uid], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -21928,9 +23416,13 @@ sub api_user_add_cert
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean bytes string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('user_add_cert', $uid, %opts);
+    return $self->rpc_api('user_add_cert', [$uid], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -21981,9 +23473,13 @@ sub api_user_add_manager
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('user_add_manager', $uid, %opts);
+    return $self->rpc_api('user_add_manager', [$uid], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -22032,9 +23528,13 @@ sub api_user_del
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('user_del', $uid, %opts);
+    return $self->rpc_api('user_del', [$uid], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -22077,9 +23577,13 @@ sub api_user_disable
             return;
         };
     };
+    my @opt_types = qw(string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('user_disable', $uid, %opts);
+    return $self->rpc_api('user_disable', [$uid], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -22122,9 +23626,13 @@ sub api_user_enable
             return;
         };
     };
+    my @opt_types = qw(string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('user_enable', $uid, %opts);
+    return $self->rpc_api('user_enable', [$uid], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -22277,9 +23785,13 @@ sub api_user_find
             return;
         };
     };
+    my @opt_types = qw(boolean string string string string string string string string int string string string string string string string string string string string datetime string string string string string string boolean string string string string string boolean string string boolean string string boolean boolean int string string string string int string string int bytes string string string boolean);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('user_find', $criteria, %opts);
+    return $self->rpc_api('user_find', [$criteria], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -22412,9 +23924,13 @@ sub api_user_mod
             return;
         };
     };
+    my @opt_types = qw(string boolean string string string string string string string string string int string string string string string string string datetime string string string string string boolean boolean string string string string boolean boolean string boolean string string string string string string int bytes string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('user_mod', $uid, %opts);
+    return $self->rpc_api('user_mod', [$uid], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -22465,9 +23981,13 @@ sub api_user_remove_cert
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean bytes string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('user_remove_cert', $uid, %opts);
+    return $self->rpc_api('user_remove_cert', [$uid], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -22518,9 +24038,13 @@ sub api_user_remove_manager
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('user_remove_manager', $uid, %opts);
+    return $self->rpc_api('user_remove_manager', [$uid], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -22573,9 +24097,13 @@ sub api_user_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean string boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('user_show', $uid, %opts);
+    return $self->rpc_api('user_show', [$uid], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -22620,9 +24148,13 @@ sub api_user_stage
             return;
         };
     };
+    my @opt_types = qw(boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('user_stage', $uid, %opts);
+    return $self->rpc_api('user_stage', [$uid], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -22671,9 +24203,13 @@ sub api_user_status
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('user_status', $uid, %opts);
+    return $self->rpc_api('user_status', [$uid], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -22716,9 +24252,13 @@ sub api_user_undel
             return;
         };
     };
+    my @opt_types = qw(string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('user_undel', $uid, %opts);
+    return $self->rpc_api('user_undel', [$uid], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -22761,9 +24301,13 @@ sub api_user_unlock
             return;
         };
     };
+    my @opt_types = qw(string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('user_unlock', $uid, %opts);
+    return $self->rpc_api('user_unlock', [$uid], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -22832,9 +24376,13 @@ sub api_vault_add
             return;
         };
     };
+    my @opt_types = qw(string boolean string bytes string string string string boolean string string boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('vault_add', $cn, %opts);
+    return $self->rpc_api('vault_add', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -22897,9 +24445,13 @@ sub api_vault_add_internal
             return;
         };
     };
+    my @opt_types = qw(boolean string bytes bytes string boolean boolean string boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('vault_add_internal', $cn, %opts);
+    return $self->rpc_api('vault_add_internal', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -22960,9 +24512,13 @@ sub api_vault_add_member
             return;
         };
     };
+    my @opt_types = qw(boolean string boolean boolean string string boolean string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('vault_add_member', $cn, %opts);
+    return $self->rpc_api('vault_add_member', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -23023,9 +24579,13 @@ sub api_vault_add_owner
             return;
         };
     };
+    my @opt_types = qw(boolean string boolean boolean string string boolean string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('vault_add_owner', $cn, %opts);
+    return $self->rpc_api('vault_add_owner', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -23088,9 +24648,13 @@ sub api_vault_archive
             return;
         };
     };
+    my @opt_types = qw(boolean bytes string boolean string string boolean string boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('vault_archive', $cn, %opts);
+    return $self->rpc_api('vault_archive', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -23149,9 +24713,13 @@ sub api_vault_archive_internal
             return;
         };
     };
+    my @opt_types = qw(boolean bytes boolean string bytes boolean string bytes string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('vault_archive_internal', $cn, %opts);
+    return $self->rpc_api('vault_archive_internal', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -23202,9 +24770,13 @@ sub api_vault_del
             return;
         };
     };
+    my @opt_types = qw(boolean string boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('vault_del', $cn, %opts);
+    return $self->rpc_api('vault_del', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -23275,9 +24847,13 @@ sub api_vault_find
             return;
         };
     };
+    my @opt_types = qw(boolean string string string boolean boolean boolean string boolean boolean int int string boolean string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('vault_find', $criteria, %opts);
+    return $self->rpc_api('vault_find', [$criteria], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -23354,9 +24930,13 @@ sub api_vault_mod
             return;
         };
     };
+    my @opt_types = qw(boolean boolean string bytes bytes string string string string string bytes string string boolean string boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('vault_mod', $cn, %opts);
+    return $self->rpc_api('vault_mod', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -23427,9 +25007,13 @@ sub api_vault_mod_internal
             return;
         };
     };
+    my @opt_types = qw(string boolean string string bytes bytes string boolean boolean boolean string string boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('vault_mod_internal', $cn, %opts);
+    return $self->rpc_api('vault_mod_internal', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -23490,9 +25074,13 @@ sub api_vault_remove_member
             return;
         };
     };
+    my @opt_types = qw(boolean string boolean boolean string string boolean string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('vault_remove_member', $cn, %opts);
+    return $self->rpc_api('vault_remove_member', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -23553,9 +25141,13 @@ sub api_vault_remove_owner
             return;
         };
     };
+    my @opt_types = qw(boolean string boolean boolean string string boolean string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('vault_remove_owner', $cn, %opts);
+    return $self->rpc_api('vault_remove_owner', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -23618,9 +25210,13 @@ sub api_vault_retrieve
             return;
         };
     };
+    my @opt_types = qw(boolean string string string bytes string boolean string boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('vault_retrieve', $cn, %opts);
+    return $self->rpc_api('vault_retrieve', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -23675,9 +25271,13 @@ sub api_vault_retrieve_internal
             return;
         };
     };
+    my @opt_types = qw(boolean boolean string bytes boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('vault_retrieve_internal', $cn, %opts);
+    return $self->rpc_api('vault_retrieve_internal', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -23734,9 +25334,13 @@ sub api_vault_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean boolean string boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('vault_show', $cn, %opts);
+    return $self->rpc_api('vault_show', [$cn], ['string'], \%opts, \%opt_type_map);
 }
 
 
@@ -23779,9 +25383,13 @@ sub api_vaultconfig_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('vaultconfig_show', %opts);
+    return $self->rpc_api('vaultconfig_show', [], [], \%opts, \%opt_type_map);
 }
 
 
@@ -23836,9 +25444,13 @@ sub api_vaultcontainer_add_owner
             return;
         };
     };
+    my @opt_types = qw(boolean string boolean boolean string string boolean string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('vaultcontainer_add_owner', %opts);
+    return $self->rpc_api('vaultcontainer_add_owner', [], [], \%opts, \%opt_type_map);
 }
 
 
@@ -23883,9 +25495,13 @@ sub api_vaultcontainer_del
             return;
         };
     };
+    my @opt_types = qw(boolean string boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('vaultcontainer_del', %opts);
+    return $self->rpc_api('vaultcontainer_del', [], [], \%opts, \%opt_type_map);
 }
 
 
@@ -23940,9 +25556,13 @@ sub api_vaultcontainer_remove_owner
             return;
         };
     };
+    my @opt_types = qw(boolean string boolean boolean string string boolean string string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('vaultcontainer_remove_owner', %opts);
+    return $self->rpc_api('vaultcontainer_remove_owner', [], [], \%opts, \%opt_type_map);
 }
 
 
@@ -23993,9 +25613,13 @@ sub api_vaultcontainer_show
             return;
         };
     };
+    my @opt_types = qw(boolean boolean boolean boolean string boolean string string);
+    my %opt_type_map;
+    # Hash slice to create the map
+    @opt_type_map{@opt_keys} = @opt_types;
 
 
-    return $self->rpc('vaultcontainer_show', %opts);
+    return $self->rpc_api('vaultcontainer_show', [], [], \%opts, \%opt_type_map);
 }
 
 
