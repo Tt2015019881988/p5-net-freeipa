@@ -228,21 +228,40 @@ sub add_command
 {
     my ($command, $details) = @_;
 
+    my $command_name = "api_$command";
+
     # This is ordered
     my @opt_keys = map {$_->{name}} @{$details->{option}};
     my @opt_types = map {$_->{class}} @{$details->{option}};
 
     my @args = map {$_->{name}} @{$details->{arg}};
+    my @args_vars = map {'$'.$_} @args;
+    my $args_vars_txt = join(", ", @args_vars);
 
+    my $args_check_txt = '';
     my $arg_pod = "No arguments.\n";
     if (@args) {
         $arg_pod = "Arguments\n\n=over\n\n=item ";
         $arg_pod .= join("\n\n=item ", @args);
         $arg_pod .= "\n\n=back\n";
+
+        $args_check_txt = <<EOF_ARGS_CHECK;
+    my \@args_names = qw(@args);
+    my \$idx = 0;
+    foreach my \$arg ($args_vars_txt) {
+        \$idx += 1;    
+        my \$args_name = shift(\@args_names);
+        if (! defined(\$arg)) {
+            \$self->error("$command_name: undefined mandatory \$idx-th argument \$args_name");
+            return;
+        };
+    };
+EOF_ARGS_CHECK
+
     }
 
     my @method_args = qw($self);
-    push(@method_args, map {'$'.$_} @args);
+    push(@method_args, @args_vars);
     push (@method_args, '%opts') if @opt_keys;
 
     my $method_arg_txt = join(', ', @method_args);
@@ -272,7 +291,7 @@ sub add_command
     my \@opt_keys = qw(@opt_keys);
     foreach my \$key (keys \%opts) {
         if (! grep {\$key eq \$_} \@opt_keys) {
-            \$self->error("Not a valid option key: \$key (allowed \@opt_keys)");
+            \$self->error("$command_name: not a valid option key: \$key (allowed \@opt_keys)");
             return;
         };
     };
@@ -282,8 +301,6 @@ sub add_command
     \@opt_type_map{\@opt_keys} = \@opt_types;
 EOF_OPTS_CHECK
     }
-
-    my $command_name = "api_$command";
 
     my $txt = <<EOF_METHOD;
 
@@ -305,6 +322,7 @@ sub $command_name
 {
     my ($method_arg_txt) = \@_;
 
+$args_check_txt
 $opts_check_txt
 
     return \$self->rpc_api($rpc_arg_txt);

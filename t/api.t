@@ -96,12 +96,20 @@ is_deeply($all_args->{opts_types_map}, {
 
 ok(! defined($error), "error not called");
 
+$error = undef;
+$all_args = {};
+ok(! defined($f->api_user_add()),
+   'user_add api returns undef on missing mandatory');
+like($error->[0], qr{^api_user_add: undefined mandatory 1-th argument uid$},
+     "Error called on failure 1");
+ok(! $all_args->{command}, 'command empty, rpc_api not called 1');
 
+$error = undef;
 $all_args = {};
 ok(! defined($f->api_user_add("myuser", gecosss => 'mygecos')),
    'user_add api returns undef on unknown option');
-like($error->[0], qr{Not a valid option key: gecosss \(allowed addattr all.*\)$},
-     "Error called on failure");
-ok(! $all_args->{command}, 'command empty, rpc_api not called');
+like($error->[0], qr{^api_user_add: not a valid option key: gecosss \(allowed addattr all.*\)$},
+     "Error called on failure 2");
+ok(! $all_args->{command}, 'command empty, rpc_api not called 2');
 
 done_testing();

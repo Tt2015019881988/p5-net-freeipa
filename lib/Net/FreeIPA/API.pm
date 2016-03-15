@@ -77,10 +77,21 @@ sub api_aci_add
 {
     my ($self, $aciname, %opts) = @_;
 
+    my @args_names = qw(aciname);
+    my $idx = 0;
+    foreach my $arg ($aciname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_aci_add: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(aciprefix all attrs filter group memberof permission permissions raw selfaci subtree targetgroup test type version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_aci_add: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -128,10 +139,21 @@ sub api_aci_del
 {
     my ($self, $aciname, %opts) = @_;
 
+    my @args_names = qw(aciname);
+    my $idx = 0;
+    foreach my $arg ($aciname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_aci_del: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(aciprefix version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_aci_del: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -207,10 +229,21 @@ sub api_aci_find
 {
     my ($self, $criteria, %opts) = @_;
 
+    my @args_names = qw(criteria);
+    my $idx = 0;
+    foreach my $arg ($criteria) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_aci_find: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(aciname aciprefix all attrs filter group memberof permission permissions pkey_only raw selfaci subtree targetgroup type version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_aci_find: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -282,10 +315,21 @@ sub api_aci_mod
 {
     my ($self, $aciname, %opts) = @_;
 
+    my @args_names = qw(aciname);
+    my $idx = 0;
+    foreach my $arg ($aciname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_aci_mod: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(aciprefix all attrs filter group memberof permission permissions raw selfaci subtree targetgroup type version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_aci_mod: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -359,10 +403,21 @@ sub api_aci_rename
 {
     my ($self, $aciname, %opts) = @_;
 
+    my @args_names = qw(aciname);
+    my $idx = 0;
+    foreach my $arg ($aciname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_aci_rename: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(aciprefix all attrs filter group memberof newname permission permissions raw selfaci subtree targetgroup type version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_aci_rename: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -416,10 +471,21 @@ sub api_aci_show
 {
     my ($self, $aciname, %opts) = @_;
 
+    my @args_names = qw(aciname);
+    my $idx = 0;
+    foreach my $arg ($aciname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_aci_show: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(aciprefix all location raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_aci_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -459,10 +525,11 @@ sub api_adtrust_is_enabled
 {
     my ($self, %opts) = @_;
 
+
     my @opt_keys = qw(version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_adtrust_is_enabled: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -520,10 +587,21 @@ sub api_automember_add
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_automember_add: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all description raw setattr type version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_automember_add: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -583,10 +661,21 @@ sub api_automember_add_condition
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_automember_add_condition: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all automemberexclusiveregex automemberinclusiveregex description key raw type version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_automember_add_condition: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -634,10 +723,11 @@ sub api_automember_default_group_remove
 {
     my ($self, %opts) = @_;
 
+
     my @opt_keys = qw(all description raw type version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_automember_default_group_remove: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -687,10 +777,11 @@ sub api_automember_default_group_set
 {
     my ($self, %opts) = @_;
 
+
     my @opt_keys = qw(all automemberdefaultgroup description raw type version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_automember_default_group_set: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -736,10 +827,11 @@ sub api_automember_default_group_show
 {
     my ($self, %opts) = @_;
 
+
     my @opt_keys = qw(all raw type version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_automember_default_group_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -787,10 +879,21 @@ sub api_automember_del
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_automember_del: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(type version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_automember_del: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -844,10 +947,21 @@ sub api_automember_find
 {
     my ($self, $criteria, %opts) = @_;
 
+    my @args_names = qw(criteria);
+    my $idx = 0;
+    foreach my $arg ($criteria) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_automember_find: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all description raw type version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_automember_find: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -909,10 +1023,21 @@ sub api_automember_mod
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_automember_mod: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all delattr description raw rights setattr type version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_automember_mod: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -964,10 +1089,11 @@ sub api_automember_rebuild
 {
     my ($self, %opts) = @_;
 
+
     my @opt_keys = qw(all hosts no_wait raw type users version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_automember_rebuild: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -1027,10 +1153,21 @@ sub api_automember_remove_condition
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_automember_remove_condition: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all automemberexclusiveregex automemberinclusiveregex description key raw type version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_automember_remove_condition: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -1082,10 +1219,21 @@ sub api_automember_show
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_automember_show: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all raw type version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_automember_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -1145,10 +1293,21 @@ sub api_automountkey_add
 {
     my ($self, $automountlocationcn, $automountmapautomountmapname, %opts) = @_;
 
+    my @args_names = qw(automountlocationcn automountmapautomountmapname);
+    my $idx = 0;
+    foreach my $arg ($automountlocationcn, $automountmapautomountmapname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_automountkey_add: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all automountinformation automountkey raw setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_automountkey_add: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -1202,10 +1361,21 @@ sub api_automountkey_del
 {
     my ($self, $automountlocationcn, $automountmapautomountmapname, %opts) = @_;
 
+    my @args_names = qw(automountlocationcn automountmapautomountmapname);
+    my $idx = 0;
+    foreach my $arg ($automountlocationcn, $automountmapautomountmapname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_automountkey_del: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(automountinformation automountkey continue version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_automountkey_del: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -1267,10 +1437,21 @@ sub api_automountkey_find
 {
     my ($self, $automountlocationcn, $automountmapautomountmapname, $criteria, %opts) = @_;
 
+    my @args_names = qw(automountlocationcn automountmapautomountmapname criteria);
+    my $idx = 0;
+    foreach my $arg ($automountlocationcn, $automountmapautomountmapname, $criteria) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_automountkey_find: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all automountinformation automountkey raw sizelimit timelimit version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_automountkey_find: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -1338,10 +1519,21 @@ sub api_automountkey_mod
 {
     my ($self, $automountlocationcn, $automountmapautomountmapname, %opts) = @_;
 
+    my @args_names = qw(automountlocationcn automountmapautomountmapname);
+    my $idx = 0;
+    foreach my $arg ($automountlocationcn, $automountmapautomountmapname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_automountkey_mod: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all automountinformation automountkey delattr newautomountinformation raw rename rights setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_automountkey_mod: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -1399,10 +1591,21 @@ sub api_automountkey_show
 {
     my ($self, $automountlocationcn, $automountmapautomountmapname, %opts) = @_;
 
+    my @args_names = qw(automountlocationcn automountmapautomountmapname);
+    my $idx = 0;
+    foreach my $arg ($automountlocationcn, $automountmapautomountmapname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_automountkey_show: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all automountinformation automountkey raw rights version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_automountkey_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -1456,10 +1659,21 @@ sub api_automountlocation_add
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_automountlocation_add: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all raw setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_automountlocation_add: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -1507,10 +1721,21 @@ sub api_automountlocation_del
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_automountlocation_del: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(continue version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_automountlocation_del: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -1568,10 +1793,21 @@ sub api_automountlocation_find
 {
     my ($self, $criteria, %opts) = @_;
 
+    my @args_names = qw(criteria);
+    my $idx = 0;
+    foreach my $arg ($criteria) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_automountlocation_find: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all cn pkey_only raw sizelimit timelimit version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_automountlocation_find: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -1621,10 +1857,21 @@ sub api_automountlocation_import
 {
     my ($self, $cn, $masterfile, %opts) = @_;
 
+    my @args_names = qw(cn masterfile);
+    my $idx = 0;
+    foreach my $arg ($cn, $masterfile) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_automountlocation_import: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(continue version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_automountlocation_import: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -1676,10 +1923,21 @@ sub api_automountlocation_show
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_automountlocation_show: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all raw rights version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_automountlocation_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -1725,10 +1983,21 @@ sub api_automountlocation_tofiles
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_automountlocation_tofiles: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_automountlocation_tofiles: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -1786,10 +2055,21 @@ sub api_automountmap_add
 {
     my ($self, $automountlocationcn, $automountmapname, %opts) = @_;
 
+    my @args_names = qw(automountlocationcn automountmapname);
+    my $idx = 0;
+    foreach my $arg ($automountlocationcn, $automountmapname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_automountmap_add: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all description raw setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_automountmap_add: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -1851,10 +2131,21 @@ sub api_automountmap_add_indirect
 {
     my ($self, $automountlocationcn, $automountmapname, %opts) = @_;
 
+    my @args_names = qw(automountlocationcn automountmapname);
+    my $idx = 0;
+    foreach my $arg ($automountlocationcn, $automountmapname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_automountmap_add_indirect: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all description key parentmap raw setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_automountmap_add_indirect: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -1904,10 +2195,21 @@ sub api_automountmap_del
 {
     my ($self, $automountlocationcn, $automountmapname, %opts) = @_;
 
+    my @args_names = qw(automountlocationcn automountmapname);
+    my $idx = 0;
+    foreach my $arg ($automountlocationcn, $automountmapname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_automountmap_del: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(continue version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_automountmap_del: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -1969,10 +2271,21 @@ sub api_automountmap_find
 {
     my ($self, $automountlocationcn, $criteria, %opts) = @_;
 
+    my @args_names = qw(automountlocationcn criteria);
+    my $idx = 0;
+    foreach my $arg ($automountlocationcn, $criteria) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_automountmap_find: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all automountmapname description pkey_only raw sizelimit timelimit version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_automountmap_find: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -2034,10 +2347,21 @@ sub api_automountmap_mod
 {
     my ($self, $automountlocationcn, $automountmapname, %opts) = @_;
 
+    my @args_names = qw(automountlocationcn automountmapname);
+    my $idx = 0;
+    foreach my $arg ($automountlocationcn, $automountmapname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_automountmap_mod: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all delattr description raw rights setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_automountmap_mod: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -2091,10 +2415,21 @@ sub api_automountmap_show
 {
     my ($self, $automountlocationcn, $automountmapname, %opts) = @_;
 
+    my @args_names = qw(automountlocationcn automountmapname);
+    my $idx = 0;
+    foreach my $arg ($automountlocationcn, $automountmapname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_automountmap_show: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all raw rights version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_automountmap_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -2140,10 +2475,21 @@ sub api_batch
 {
     my ($self, $methods, %opts) = @_;
 
+    my @args_names = qw(methods);
+    my $idx = 0;
+    foreach my $arg ($methods) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_batch: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_batch: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -2183,10 +2529,11 @@ sub api_ca_is_enabled
 {
     my ($self, %opts) = @_;
 
+
     my @opt_keys = qw(version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_ca_is_enabled: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -2254,10 +2601,21 @@ sub api_caacl_add
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_caacl_add: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all description hostcategory ipacertprofilecategory ipaenabledflag no_members raw servicecategory setattr usercategory version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_caacl_add: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -2313,10 +2671,21 @@ sub api_caacl_add_host
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_caacl_add_host: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all host hostgroup no_members raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_caacl_add_host: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -2370,10 +2739,21 @@ sub api_caacl_add_profile
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_caacl_add_profile: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all certprofile no_members raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_caacl_add_profile: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -2427,10 +2807,21 @@ sub api_caacl_add_service
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_caacl_add_service: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members raw service version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_caacl_add_service: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -2486,10 +2877,21 @@ sub api_caacl_add_user
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_caacl_add_user: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all group no_members raw user version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_caacl_add_user: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -2537,10 +2939,21 @@ sub api_caacl_del
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_caacl_del: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(continue version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_caacl_del: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -2586,10 +2999,21 @@ sub api_caacl_disable
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_caacl_disable: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_caacl_disable: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -2635,10 +3059,21 @@ sub api_caacl_enable
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_caacl_enable: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_caacl_enable: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -2710,10 +3145,21 @@ sub api_caacl_find
 {
     my ($self, $criteria, %opts) = @_;
 
+    my @args_names = qw(criteria);
+    my $idx = 0;
+    foreach my $arg ($criteria) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_caacl_find: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all cn description hostcategory ipacertprofilecategory ipaenabledflag no_members pkey_only raw servicecategory sizelimit timelimit usercategory version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_caacl_find: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -2785,10 +3231,21 @@ sub api_caacl_mod
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_caacl_mod: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all delattr description hostcategory ipacertprofilecategory ipaenabledflag no_members raw rights servicecategory setattr usercategory version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_caacl_mod: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -2844,10 +3301,21 @@ sub api_caacl_remove_host
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_caacl_remove_host: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all host hostgroup no_members raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_caacl_remove_host: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -2901,10 +3369,21 @@ sub api_caacl_remove_profile
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_caacl_remove_profile: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all certprofile no_members raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_caacl_remove_profile: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -2958,10 +3437,21 @@ sub api_caacl_remove_service
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_caacl_remove_service: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members raw service version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_caacl_remove_service: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -3017,10 +3507,21 @@ sub api_caacl_remove_user
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_caacl_remove_user: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all group no_members raw user version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_caacl_remove_user: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -3074,10 +3575,21 @@ sub api_caacl_show
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_caacl_show: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members raw rights version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_caacl_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -3149,10 +3661,11 @@ sub api_cert_find
 {
     my ($self, %opts) = @_;
 
+
     my @opt_keys = qw(all exactly issuedon_from issuedon_to max_serial_number min_serial_number raw revocation_reason revokedon_from revokedon_to sizelimit subject validnotafter_from validnotafter_to validnotbefore_from validnotbefore_to version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_cert_find: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -3198,10 +3711,21 @@ sub api_cert_remove_hold
 {
     my ($self, $serial_number, %opts) = @_;
 
+    my @args_names = qw(serial_number);
+    my $idx = 0;
+    foreach my $arg ($serial_number) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_cert_remove_hold: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_cert_remove_hold: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -3255,10 +3779,21 @@ sub api_cert_request
 {
     my ($self, $csr, %opts) = @_;
 
+    my @args_names = qw(csr);
+    my $idx = 0;
+    foreach my $arg ($csr) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_cert_request: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(add principal profile_id request_type version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_cert_request: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -3306,10 +3841,21 @@ sub api_cert_revoke
 {
     my ($self, $serial_number, %opts) = @_;
 
+    my @args_names = qw(serial_number);
+    my $idx = 0;
+    foreach my $arg ($serial_number) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_cert_revoke: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(revocation_reason version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_cert_revoke: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -3357,10 +3903,21 @@ sub api_cert_show
 {
     my ($self, $serial_number, %opts) = @_;
 
+    my @args_names = qw(serial_number);
+    my $idx = 0;
+    foreach my $arg ($serial_number) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_cert_show: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(out version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_cert_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -3406,10 +3963,21 @@ sub api_cert_status
 {
     my ($self, $request_id, %opts) = @_;
 
+    my @args_names = qw(request_id);
+    my $idx = 0;
+    foreach my $arg ($request_id) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_cert_status: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_cert_status: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -3457,10 +4025,21 @@ sub api_certprofile_del
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_certprofile_del: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(continue version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_certprofile_del: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -3522,10 +4101,21 @@ sub api_certprofile_find
 {
     my ($self, $criteria, %opts) = @_;
 
+    my @args_names = qw(criteria);
+    my $idx = 0;
+    foreach my $arg ($criteria) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_certprofile_find: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all cn description ipacertprofilestoreissued pkey_only raw sizelimit timelimit version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_certprofile_find: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -3581,10 +4171,21 @@ sub api_certprofile_import
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_certprofile_import: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all description file ipacertprofilestoreissued raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_certprofile_import: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -3648,10 +4249,21 @@ sub api_certprofile_mod
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_certprofile_mod: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all delattr description file ipacertprofilestoreissued raw rights setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_certprofile_mod: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -3705,10 +4317,21 @@ sub api_certprofile_show
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_certprofile_show: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all out raw rights version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_certprofile_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -3748,10 +4371,11 @@ sub api_compat_is_enabled
 {
     my ($self, %opts) = @_;
 
+
     my @opt_keys = qw(version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_compat_is_enabled: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -3839,10 +4463,11 @@ sub api_config_mod
 {
     my ($self, %opts) = @_;
 
+
     my @opt_keys = qw(addattr all delattr ipaconfigstring ipadefaultemaildomain ipadefaultloginshell ipadefaultprimarygroup ipagroupobjectclasses ipagroupsearchfields ipahomesrootdir ipakrbauthzdata ipamaxusernamelength ipamigrationenabled ipapwdexpadvnotify ipasearchrecordslimit ipasearchtimelimit ipaselinuxusermapdefault ipaselinuxusermaporder ipauserauthtype ipauserobjectclasses ipausersearchfields raw rights setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_config_mod: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -3888,10 +4513,11 @@ sub api_config_show
 {
     my ($self, %opts) = @_;
 
+
     my @opt_keys = qw(all raw rights version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_config_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -3949,10 +4575,21 @@ sub api_cosentry_add
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_cosentry_add: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all cospriority krbpwdpolicyreference raw setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_cosentry_add: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -4000,10 +4637,21 @@ sub api_cosentry_del
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_cosentry_del: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(continue version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_cosentry_del: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -4065,10 +4713,21 @@ sub api_cosentry_find
 {
     my ($self, $criteria, %opts) = @_;
 
+    my @args_names = qw(criteria);
+    my $idx = 0;
+    foreach my $arg ($criteria) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_cosentry_find: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all cn cospriority krbpwdpolicyreference pkey_only raw sizelimit timelimit version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_cosentry_find: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -4130,10 +4789,21 @@ sub api_cosentry_mod
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_cosentry_mod: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all cospriority delattr krbpwdpolicyreference raw rights setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_cosentry_mod: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -4185,10 +4855,21 @@ sub api_cosentry_show
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_cosentry_show: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all raw rights version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_cosentry_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -4246,10 +4927,21 @@ sub api_delegation_add
 {
     my ($self, $aciname, %opts) = @_;
 
+    my @args_names = qw(aciname);
+    my $idx = 0;
+    foreach my $arg ($aciname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_delegation_add: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all attrs group memberof permissions raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_delegation_add: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -4295,10 +4987,21 @@ sub api_delegation_del
 {
     my ($self, $aciname, %opts) = @_;
 
+    my @args_names = qw(aciname);
+    my $idx = 0;
+    foreach my $arg ($aciname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_delegation_del: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_delegation_del: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -4360,10 +5063,21 @@ sub api_delegation_find
 {
     my ($self, $criteria, %opts) = @_;
 
+    my @args_names = qw(criteria);
+    my $idx = 0;
+    foreach my $arg ($criteria) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_delegation_find: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(aciname all attrs group memberof permissions pkey_only raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_delegation_find: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -4421,10 +5135,21 @@ sub api_delegation_mod
 {
     my ($self, $aciname, %opts) = @_;
 
+    my @args_names = qw(aciname);
+    my $idx = 0;
+    foreach my $arg ($aciname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_delegation_mod: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all attrs group memberof permissions raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_delegation_mod: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -4474,10 +5199,21 @@ sub api_delegation_show
 {
     my ($self, $aciname, %opts) = @_;
 
+    my @args_names = qw(aciname);
+    my $idx = 0;
+    foreach my $arg ($aciname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_delegation_show: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_delegation_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -4517,10 +5253,11 @@ sub api_dns_is_enabled
 {
     my ($self, %opts) = @_;
 
+
     my @opt_keys = qw(version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_dns_is_enabled: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -4566,10 +5303,21 @@ sub api_dns_resolve
 {
     my ($self, $hostname, %opts) = @_;
 
+    my @args_names = qw(hostname);
+    my $idx = 0;
+    foreach my $arg ($hostname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_dns_resolve: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_dns_resolve: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -4629,10 +5377,11 @@ sub api_dnsconfig_mod
 {
     my ($self, %opts) = @_;
 
+
     my @opt_keys = qw(addattr all delattr idnsallowsyncptr idnsforwarders idnsforwardpolicy idnszonerefresh raw rights setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_dnsconfig_mod: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -4678,10 +5427,11 @@ sub api_dnsconfig_show
 {
     my ($self, %opts) = @_;
 
+
     my @opt_keys = qw(all raw rights version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_dnsconfig_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -4743,10 +5493,21 @@ sub api_dnsforwardzone_add
 {
     my ($self, $idnsname, %opts) = @_;
 
+    my @args_names = qw(idnsname);
+    my $idx = 0;
+    foreach my $arg ($idnsname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_dnsforwardzone_add: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all idnsforwarders idnsforwardpolicy name_from_ip raw setattr skip_overlap_check version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_dnsforwardzone_add: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -4792,10 +5553,21 @@ sub api_dnsforwardzone_add_permission
 {
     my ($self, $idnsname, %opts) = @_;
 
+    my @args_names = qw(idnsname);
+    my $idx = 0;
+    foreach my $arg ($idnsname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_dnsforwardzone_add_permission: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_dnsforwardzone_add_permission: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -4843,10 +5615,21 @@ sub api_dnsforwardzone_del
 {
     my ($self, $idnsname, %opts) = @_;
 
+    my @args_names = qw(idnsname);
+    my $idx = 0;
+    foreach my $arg ($idnsname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_dnsforwardzone_del: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(continue version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_dnsforwardzone_del: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -4892,10 +5675,21 @@ sub api_dnsforwardzone_disable
 {
     my ($self, $idnsname, %opts) = @_;
 
+    my @args_names = qw(idnsname);
+    my $idx = 0;
+    foreach my $arg ($idnsname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_dnsforwardzone_disable: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_dnsforwardzone_disable: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -4941,10 +5735,21 @@ sub api_dnsforwardzone_enable
 {
     my ($self, $idnsname, %opts) = @_;
 
+    my @args_names = qw(idnsname);
+    my $idx = 0;
+    foreach my $arg ($idnsname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_dnsforwardzone_enable: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_dnsforwardzone_enable: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -5010,10 +5815,21 @@ sub api_dnsforwardzone_find
 {
     my ($self, $criteria, %opts) = @_;
 
+    my @args_names = qw(criteria);
+    my $idx = 0;
+    foreach my $arg ($criteria) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_dnsforwardzone_find: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all idnsforwarders idnsforwardpolicy idnsname idnszoneactive name_from_ip pkey_only raw sizelimit timelimit version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_dnsforwardzone_find: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -5077,10 +5893,21 @@ sub api_dnsforwardzone_mod
 {
     my ($self, $idnsname, %opts) = @_;
 
+    my @args_names = qw(idnsname);
+    my $idx = 0;
+    foreach my $arg ($idnsname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_dnsforwardzone_mod: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all delattr idnsforwarders idnsforwardpolicy name_from_ip raw rights setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_dnsforwardzone_mod: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -5126,10 +5953,21 @@ sub api_dnsforwardzone_remove_permission
 {
     my ($self, $idnsname, %opts) = @_;
 
+    my @args_names = qw(idnsname);
+    my $idx = 0;
+    foreach my $arg ($idnsname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_dnsforwardzone_remove_permission: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_dnsforwardzone_remove_permission: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -5181,10 +6019,21 @@ sub api_dnsforwardzone_show
 {
     my ($self, $idnsname, %opts) = @_;
 
+    my @args_names = qw(idnsname);
+    my $idx = 0;
+    foreach my $arg ($idnsname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_dnsforwardzone_show: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all raw rights version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_dnsforwardzone_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -5420,10 +6269,21 @@ sub api_dnsrecord_add
 {
     my ($self, $dnszoneidnsname, $idnsname, %opts) = @_;
 
+    my @args_names = qw(dnszoneidnsname idnsname);
+    my $idx = 0;
+    foreach my $arg ($dnszoneidnsname, $idnsname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_dnsrecord_add: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(a6_part_data a6record a_extra_create_reverse a_part_ip_address aaaa_extra_create_reverse aaaa_part_ip_address aaaarecord addattr afsdb_part_hostname afsdb_part_subtype afsdbrecord all aplrecord arecord cert_part_algorithm cert_part_certificate_or_crl cert_part_key_tag cert_part_type certrecord cname_part_hostname cnamerecord dhcidrecord dlv_part_algorithm dlv_part_digest dlv_part_digest_type dlv_part_key_tag dlvrecord dname_part_target dnamerecord dnsclass dnsttl ds_part_algorithm ds_part_digest ds_part_digest_type ds_part_key_tag dsrecord force hiprecord ipseckeyrecord keyrecord kx_part_exchanger kx_part_preference kxrecord loc_part_altitude loc_part_h_precision loc_part_lat_deg loc_part_lat_dir loc_part_lat_min loc_part_lat_sec loc_part_lon_deg loc_part_lon_dir loc_part_lon_min loc_part_lon_sec loc_part_size loc_part_v_precision locrecord mx_part_exchanger mx_part_preference mxrecord naptr_part_flags naptr_part_order naptr_part_preference naptr_part_regexp naptr_part_replacement naptr_part_service naptrrecord ns_part_hostname nsecrecord nsrecord ptr_part_hostname ptrrecord raw rprecord rrsigrecord setattr sigrecord spfrecord srv_part_port srv_part_priority srv_part_target srv_part_weight srvrecord sshfp_part_algorithm sshfp_part_fingerprint sshfp_part_fp_type sshfprecord structured tlsa_part_cert_association_data tlsa_part_cert_usage tlsa_part_matching_type tlsa_part_selector tlsarecord txt_part_data txtrecord version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_dnsrecord_add: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -5537,10 +6397,21 @@ sub api_dnsrecord_del
 {
     my ($self, $dnszoneidnsname, $idnsname, %opts) = @_;
 
+    my @args_names = qw(dnszoneidnsname idnsname);
+    my $idx = 0;
+    foreach my $arg ($dnszoneidnsname, $idnsname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_dnsrecord_del: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(a6record aaaarecord afsdbrecord aplrecord arecord certrecord cnamerecord del_all dhcidrecord dlvrecord dnamerecord dnsclass dnsttl dsrecord hiprecord ipseckeyrecord keyrecord kxrecord locrecord mxrecord naptrrecord nsecrecord nsrecord ptrrecord rprecord rrsigrecord sigrecord spfrecord srvrecord sshfprecord structured tlsarecord txtrecord version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_dnsrecord_del: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -5590,10 +6461,21 @@ sub api_dnsrecord_delentry
 {
     my ($self, $dnszoneidnsname, $idnsname, %opts) = @_;
 
+    my @args_names = qw(dnszoneidnsname idnsname);
+    my $idx = 0;
+    foreach my $arg ($dnszoneidnsname, $idnsname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_dnsrecord_delentry: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(continue version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_dnsrecord_delentry: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -5717,10 +6599,21 @@ sub api_dnsrecord_find
 {
     my ($self, $dnszoneidnsname, $criteria, %opts) = @_;
 
+    my @args_names = qw(dnszoneidnsname criteria);
+    my $idx = 0;
+    foreach my $arg ($dnszoneidnsname, $criteria) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_dnsrecord_find: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(a6record aaaarecord afsdbrecord all aplrecord arecord certrecord cnamerecord dhcidrecord dlvrecord dnamerecord dnsclass dnsttl dsrecord hiprecord idnsname ipseckeyrecord keyrecord kxrecord locrecord mxrecord naptrrecord nsecrecord nsrecord pkey_only ptrrecord raw rprecord rrsigrecord sigrecord sizelimit spfrecord srvrecord sshfprecord structured timelimit tlsarecord txtrecord version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_dnsrecord_find: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -5956,10 +6849,21 @@ sub api_dnsrecord_mod
 {
     my ($self, $dnszoneidnsname, $idnsname, %opts) = @_;
 
+    my @args_names = qw(dnszoneidnsname idnsname);
+    my $idx = 0;
+    foreach my $arg ($dnszoneidnsname, $idnsname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_dnsrecord_mod: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(a6_part_data a6record a_part_ip_address aaaa_part_ip_address aaaarecord addattr afsdb_part_hostname afsdb_part_subtype afsdbrecord all aplrecord arecord cert_part_algorithm cert_part_certificate_or_crl cert_part_key_tag cert_part_type certrecord cname_part_hostname cnamerecord delattr dhcidrecord dlv_part_algorithm dlv_part_digest dlv_part_digest_type dlv_part_key_tag dlvrecord dname_part_target dnamerecord dnsclass dnsttl ds_part_algorithm ds_part_digest ds_part_digest_type ds_part_key_tag dsrecord hiprecord ipseckeyrecord keyrecord kx_part_exchanger kx_part_preference kxrecord loc_part_altitude loc_part_h_precision loc_part_lat_deg loc_part_lat_dir loc_part_lat_min loc_part_lat_sec loc_part_lon_deg loc_part_lon_dir loc_part_lon_min loc_part_lon_sec loc_part_size loc_part_v_precision locrecord mx_part_exchanger mx_part_preference mxrecord naptr_part_flags naptr_part_order naptr_part_preference naptr_part_regexp naptr_part_replacement naptr_part_service naptrrecord ns_part_hostname nsecrecord nsrecord ptr_part_hostname ptrrecord raw rename rights rprecord rrsigrecord setattr sigrecord spfrecord srv_part_port srv_part_priority srv_part_target srv_part_weight srvrecord sshfp_part_algorithm sshfp_part_fingerprint sshfp_part_fp_type sshfprecord structured tlsa_part_cert_association_data tlsa_part_cert_usage tlsa_part_matching_type tlsa_part_selector tlsarecord txt_part_data txtrecord version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_dnsrecord_mod: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -6015,10 +6919,21 @@ sub api_dnsrecord_show
 {
     my ($self, $dnszoneidnsname, $idnsname, %opts) = @_;
 
+    my @args_names = qw(dnszoneidnsname idnsname);
+    my $idx = 0;
+    foreach my $arg ($dnszoneidnsname, $idnsname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_dnsrecord_show: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all raw rights structured version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_dnsrecord_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -6118,10 +7033,21 @@ sub api_dnszone_add
 {
     my ($self, $idnsname, %opts) = @_;
 
+    my @args_names = qw(idnsname);
+    my $idx = 0;
+    foreach my $arg ($idnsname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_dnszone_add: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all dnsclass dnsttl force idnsallowdynupdate idnsallowquery idnsallowsyncptr idnsallowtransfer idnsforwarders idnsforwardpolicy idnssecinlinesigning idnssoaexpire idnssoaminimum idnssoamname idnssoarefresh idnssoaretry idnssoarname idnssoaserial idnsupdatepolicy ip_address name_from_ip nsec3paramrecord raw setattr skip_nameserver_check skip_overlap_check version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_dnszone_add: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -6167,10 +7093,21 @@ sub api_dnszone_add_permission
 {
     my ($self, $idnsname, %opts) = @_;
 
+    my @args_names = qw(idnsname);
+    my $idx = 0;
+    foreach my $arg ($idnsname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_dnszone_add_permission: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_dnszone_add_permission: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -6218,10 +7155,21 @@ sub api_dnszone_del
 {
     my ($self, $idnsname, %opts) = @_;
 
+    my @args_names = qw(idnsname);
+    my $idx = 0;
+    foreach my $arg ($idnsname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_dnszone_del: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(continue version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_dnszone_del: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -6267,10 +7215,21 @@ sub api_dnszone_disable
 {
     my ($self, $idnsname, %opts) = @_;
 
+    my @args_names = qw(idnsname);
+    my $idx = 0;
+    foreach my $arg ($idnsname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_dnszone_disable: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_dnszone_disable: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -6316,10 +7275,21 @@ sub api_dnszone_enable
 {
     my ($self, $idnsname, %opts) = @_;
 
+    my @args_names = qw(idnsname);
+    my $idx = 0;
+    foreach my $arg ($idnsname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_dnszone_enable: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_dnszone_enable: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -6419,10 +7389,21 @@ sub api_dnszone_find
 {
     my ($self, $criteria, %opts) = @_;
 
+    my @args_names = qw(criteria);
+    my $idx = 0;
+    foreach my $arg ($criteria) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_dnszone_find: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all dnsclass dnsttl forward_only idnsallowdynupdate idnsallowquery idnsallowsyncptr idnsallowtransfer idnsforwarders idnsforwardpolicy idnsname idnssecinlinesigning idnssoaexpire idnssoaminimum idnssoamname idnssoarefresh idnssoaretry idnssoarname idnssoaserial idnsupdatepolicy idnszoneactive name_from_ip nsec3paramrecord pkey_only raw sizelimit timelimit version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_dnszone_find: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -6520,10 +7501,21 @@ sub api_dnszone_mod
 {
     my ($self, $idnsname, %opts) = @_;
 
+    my @args_names = qw(idnsname);
+    my $idx = 0;
+    foreach my $arg ($idnsname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_dnszone_mod: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all delattr dnsclass dnsttl force idnsallowdynupdate idnsallowquery idnsallowsyncptr idnsallowtransfer idnsforwarders idnsforwardpolicy idnssecinlinesigning idnssoaexpire idnssoaminimum idnssoamname idnssoarefresh idnssoaretry idnssoarname idnssoaserial idnsupdatepolicy name_from_ip nsec3paramrecord raw rights setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_dnszone_mod: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -6569,10 +7561,21 @@ sub api_dnszone_remove_permission
 {
     my ($self, $idnsname, %opts) = @_;
 
+    my @args_names = qw(idnsname);
+    my $idx = 0;
+    foreach my $arg ($idnsname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_dnszone_remove_permission: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_dnszone_remove_permission: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -6624,10 +7627,21 @@ sub api_dnszone_show
 {
     my ($self, $idnsname, %opts) = @_;
 
+    my @args_names = qw(idnsname);
+    my $idx = 0;
+    foreach my $arg ($idnsname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_dnszone_show: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all raw rights version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_dnszone_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -6667,10 +7681,11 @@ sub api_domainlevel_get
 {
     my ($self, %opts) = @_;
 
+
     my @opt_keys = qw(version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_domainlevel_get: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -6716,10 +7731,21 @@ sub api_domainlevel_set
 {
     my ($self, $ipadomainlevel, %opts) = @_;
 
+    my @args_names = qw(ipadomainlevel);
+    my $idx = 0;
+    foreach my $arg ($ipadomainlevel) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_domainlevel_set: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_domainlevel_set: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -6769,10 +7795,21 @@ sub api_env
 {
     my ($self, $variables, %opts) = @_;
 
+    my @args_names = qw(variables);
+    my $idx = 0;
+    foreach my $arg ($variables) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_env: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all server version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_env: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -6836,10 +7873,21 @@ sub api_group_add
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_group_add: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all description external gidnumber no_members nonposix raw setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_group_add: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -6897,10 +7945,21 @@ sub api_group_add_member
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_group_add_member: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all group ipaexternalmember no_members raw user version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_group_add_member: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -6948,10 +8007,21 @@ sub api_group_del
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_group_del: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(continue version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_group_del: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -6997,10 +8067,21 @@ sub api_group_detach
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_group_detach: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_group_detach: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -7100,10 +8181,21 @@ sub api_group_find
 {
     my ($self, $criteria, %opts) = @_;
 
+    my @args_names = qw(criteria);
+    my $idx = 0;
+    foreach my $arg ($criteria) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_group_find: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all cn description external gidnumber group in_group in_hbacrule in_netgroup in_role in_sudorule no_group no_members no_user nonposix not_in_group not_in_hbacrule not_in_netgroup not_in_role not_in_sudorule pkey_only posix private raw sizelimit timelimit user version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_group_find: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -7173,10 +8265,21 @@ sub api_group_mod
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_group_mod: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all delattr description external gidnumber no_members posix raw rename rights setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_group_mod: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -7234,10 +8337,21 @@ sub api_group_remove_member
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_group_remove_member: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all group ipaexternalmember no_members raw user version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_group_remove_member: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -7291,10 +8405,21 @@ sub api_group_show
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_group_show: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members raw rights version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_group_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -7370,10 +8495,21 @@ sub api_hbacrule_add
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_hbacrule_add: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(accessruletype addattr all description externalhost hostcategory ipaenabledflag no_members raw servicecategory setattr sourcehost_host sourcehost_hostgroup sourcehostcategory usercategory version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_hbacrule_add: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -7429,10 +8565,21 @@ sub api_hbacrule_add_host
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_hbacrule_add_host: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all host hostgroup no_members raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_hbacrule_add_host: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -7488,10 +8635,21 @@ sub api_hbacrule_add_service
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_hbacrule_add_service: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all hbacsvc hbacsvcgroup no_members raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_hbacrule_add_service: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -7547,10 +8705,21 @@ sub api_hbacrule_add_sourcehost
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_hbacrule_add_sourcehost: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all host hostgroup no_members raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_hbacrule_add_sourcehost: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -7606,10 +8775,21 @@ sub api_hbacrule_add_user
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_hbacrule_add_user: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all group no_members raw user version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_hbacrule_add_user: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -7657,10 +8837,21 @@ sub api_hbacrule_del
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_hbacrule_del: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(continue version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_hbacrule_del: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -7706,10 +8897,21 @@ sub api_hbacrule_disable
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_hbacrule_disable: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_hbacrule_disable: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -7755,10 +8957,21 @@ sub api_hbacrule_enable
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_hbacrule_enable: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_hbacrule_enable: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -7838,10 +9051,21 @@ sub api_hbacrule_find
 {
     my ($self, $criteria, %opts) = @_;
 
+    my @args_names = qw(criteria);
+    my $idx = 0;
+    foreach my $arg ($criteria) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_hbacrule_find: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(accessruletype all cn description externalhost hostcategory ipaenabledflag no_members pkey_only raw servicecategory sizelimit sourcehost_host sourcehost_hostgroup sourcehostcategory timelimit usercategory version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_hbacrule_find: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -7921,10 +9145,21 @@ sub api_hbacrule_mod
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_hbacrule_mod: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(accessruletype addattr all delattr description externalhost hostcategory ipaenabledflag no_members raw rights servicecategory setattr sourcehost_host sourcehost_hostgroup sourcehostcategory usercategory version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_hbacrule_mod: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -7980,10 +9215,21 @@ sub api_hbacrule_remove_host
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_hbacrule_remove_host: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all host hostgroup no_members raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_hbacrule_remove_host: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -8039,10 +9285,21 @@ sub api_hbacrule_remove_service
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_hbacrule_remove_service: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all hbacsvc hbacsvcgroup no_members raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_hbacrule_remove_service: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -8098,10 +9355,21 @@ sub api_hbacrule_remove_sourcehost
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_hbacrule_remove_sourcehost: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all host hostgroup no_members raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_hbacrule_remove_sourcehost: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -8157,10 +9425,21 @@ sub api_hbacrule_remove_user
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_hbacrule_remove_user: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all group no_members raw user version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_hbacrule_remove_user: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -8214,10 +9493,21 @@ sub api_hbacrule_show
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_hbacrule_show: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members raw rights version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_hbacrule_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -8275,10 +9565,21 @@ sub api_hbacsvc_add
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_hbacsvc_add: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all description no_members raw setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_hbacsvc_add: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -8326,10 +9627,21 @@ sub api_hbacsvc_del
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_hbacsvc_del: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(continue version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_hbacsvc_del: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -8391,10 +9703,21 @@ sub api_hbacsvc_find
 {
     my ($self, $criteria, %opts) = @_;
 
+    my @args_names = qw(criteria);
+    my $idx = 0;
+    foreach my $arg ($criteria) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_hbacsvc_find: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all cn description no_members pkey_only raw sizelimit timelimit version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_hbacsvc_find: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -8456,10 +9779,21 @@ sub api_hbacsvc_mod
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_hbacsvc_mod: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all delattr description no_members raw rights setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_hbacsvc_mod: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -8513,10 +9847,21 @@ sub api_hbacsvc_show
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_hbacsvc_show: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members raw rights version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_hbacsvc_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -8574,10 +9919,21 @@ sub api_hbacsvcgroup_add
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_hbacsvcgroup_add: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all description no_members raw setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_hbacsvcgroup_add: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -8631,10 +9987,21 @@ sub api_hbacsvcgroup_add_member
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_hbacsvcgroup_add_member: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all hbacsvc no_members raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_hbacsvcgroup_add_member: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -8682,10 +10049,21 @@ sub api_hbacsvcgroup_del
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_hbacsvcgroup_del: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(continue version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_hbacsvcgroup_del: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -8747,10 +10125,21 @@ sub api_hbacsvcgroup_find
 {
     my ($self, $criteria, %opts) = @_;
 
+    my @args_names = qw(criteria);
+    my $idx = 0;
+    foreach my $arg ($criteria) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_hbacsvcgroup_find: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all cn description no_members pkey_only raw sizelimit timelimit version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_hbacsvcgroup_find: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -8812,10 +10201,21 @@ sub api_hbacsvcgroup_mod
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_hbacsvcgroup_mod: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all delattr description no_members raw rights setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_hbacsvcgroup_mod: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -8869,10 +10269,21 @@ sub api_hbacsvcgroup_remove_member
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_hbacsvcgroup_remove_member: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all hbacsvc no_members raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_hbacsvcgroup_remove_member: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -8926,10 +10337,21 @@ sub api_hbacsvcgroup_show
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_hbacsvcgroup_show: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members raw rights version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_hbacsvcgroup_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -8987,10 +10409,11 @@ sub api_hbactest
 {
     my ($self, %opts) = @_;
 
+
     my @opt_keys = qw(disabled enabled nodetail rules service sizelimit sourcehost targethost user version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_hbactest: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -9080,10 +10503,21 @@ sub api_host_add
 {
     my ($self, $fqdn, %opts) = @_;
 
+    my @args_names = qw(fqdn);
+    my $idx = 0;
+    foreach my $arg ($fqdn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_host_add: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all description force ip_address ipaassignedidview ipakrbokasdelegate ipakrbrequirespreauth ipasshpubkey l macaddress no_members no_reverse nshardwareplatform nshostlocation nsosversion random raw setattr usercertificate userclass userpassword version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_host_add: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -9137,10 +10571,21 @@ sub api_host_add_cert
 {
     my ($self, $fqdn, %opts) = @_;
 
+    my @args_names = qw(fqdn);
+    my $idx = 0;
+    foreach my $arg ($fqdn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_host_add_cert: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members raw usercertificate version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_host_add_cert: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -9194,10 +10639,21 @@ sub api_host_add_managedby
 {
     my ($self, $fqdn, %opts) = @_;
 
+    my @args_names = qw(fqdn);
+    my $idx = 0;
+    foreach my $arg ($fqdn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_host_add_managedby: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all host no_members raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_host_add_managedby: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -9257,10 +10713,21 @@ sub api_host_allow_create_keytab
 {
     my ($self, $fqdn, %opts) = @_;
 
+    my @args_names = qw(fqdn);
+    my $idx = 0;
+    foreach my $arg ($fqdn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_host_allow_create_keytab: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all group host hostgroup no_members raw user version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_host_allow_create_keytab: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -9320,10 +10787,21 @@ sub api_host_allow_retrieve_keytab
 {
     my ($self, $fqdn, %opts) = @_;
 
+    my @args_names = qw(fqdn);
+    my $idx = 0;
+    foreach my $arg ($fqdn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_host_allow_retrieve_keytab: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all group host hostgroup no_members raw user version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_host_allow_retrieve_keytab: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -9373,10 +10851,21 @@ sub api_host_del
 {
     my ($self, $fqdn, %opts) = @_;
 
+    my @args_names = qw(fqdn);
+    my $idx = 0;
+    foreach my $arg ($fqdn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_host_del: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(continue updatedns version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_host_del: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -9422,10 +10911,21 @@ sub api_host_disable
 {
     my ($self, $fqdn, %opts) = @_;
 
+    my @args_names = qw(fqdn);
+    my $idx = 0;
+    foreach my $arg ($fqdn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_host_disable: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_host_disable: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -9485,10 +10985,21 @@ sub api_host_disallow_create_keytab
 {
     my ($self, $fqdn, %opts) = @_;
 
+    my @args_names = qw(fqdn);
+    my $idx = 0;
+    foreach my $arg ($fqdn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_host_disallow_create_keytab: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all group host hostgroup no_members raw user version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_host_disallow_create_keytab: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -9548,10 +11059,21 @@ sub api_host_disallow_retrieve_keytab
 {
     my ($self, $fqdn, %opts) = @_;
 
+    my @args_names = qw(fqdn);
+    my $idx = 0;
+    foreach my $arg ($fqdn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_host_disallow_retrieve_keytab: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all group host hostgroup no_members raw user version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_host_disallow_retrieve_keytab: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -9663,10 +11185,21 @@ sub api_host_find
 {
     my ($self, $criteria, %opts) = @_;
 
+    my @args_names = qw(criteria);
+    my $idx = 0;
+    foreach my $arg ($criteria) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_host_find: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all description enroll_by_user fqdn in_hbacrule in_hostgroup in_netgroup in_role in_sudorule ipaassignedidview l macaddress man_by_host man_host no_members not_enroll_by_user not_in_hbacrule not_in_hostgroup not_in_netgroup not_in_role not_in_sudorule not_man_by_host not_man_host nshardwareplatform nshostlocation nsosversion pkey_only raw sizelimit timelimit usercertificate userclass userpassword version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_host_find: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -9758,10 +11291,21 @@ sub api_host_mod
 {
     my ($self, $fqdn, %opts) = @_;
 
+    my @args_names = qw(fqdn);
+    my $idx = 0;
+    foreach my $arg ($fqdn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_host_mod: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all delattr description ipaassignedidview ipakrbokasdelegate ipakrbrequirespreauth ipasshpubkey krbprincipalname l macaddress no_members nshardwareplatform nshostlocation nsosversion random raw rights setattr updatedns usercertificate userclass userpassword version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_host_mod: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -9815,10 +11359,21 @@ sub api_host_remove_cert
 {
     my ($self, $fqdn, %opts) = @_;
 
+    my @args_names = qw(fqdn);
+    my $idx = 0;
+    foreach my $arg ($fqdn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_host_remove_cert: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members raw usercertificate version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_host_remove_cert: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -9872,10 +11427,21 @@ sub api_host_remove_managedby
 {
     my ($self, $fqdn, %opts) = @_;
 
+    my @args_names = qw(fqdn);
+    my $idx = 0;
+    foreach my $arg ($fqdn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_host_remove_managedby: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all host no_members raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_host_remove_managedby: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -9931,10 +11497,21 @@ sub api_host_show
 {
     my ($self, $fqdn, %opts) = @_;
 
+    my @args_names = qw(fqdn);
+    my $idx = 0;
+    foreach my $arg ($fqdn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_host_show: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members out raw rights version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_host_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -9992,10 +11569,21 @@ sub api_hostgroup_add
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_hostgroup_add: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all description no_members raw setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_hostgroup_add: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -10051,10 +11639,21 @@ sub api_hostgroup_add_member
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_hostgroup_add_member: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all host hostgroup no_members raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_hostgroup_add_member: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -10102,10 +11701,21 @@ sub api_hostgroup_del
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_hostgroup_del: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(continue version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_hostgroup_del: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -10191,10 +11801,21 @@ sub api_hostgroup_find
 {
     my ($self, $criteria, %opts) = @_;
 
+    my @args_names = qw(criteria);
+    my $idx = 0;
+    foreach my $arg ($criteria) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_hostgroup_find: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all cn description host hostgroup in_hbacrule in_hostgroup in_netgroup in_sudorule no_host no_hostgroup no_members not_in_hbacrule not_in_hostgroup not_in_netgroup not_in_sudorule pkey_only raw sizelimit timelimit version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_hostgroup_find: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -10256,10 +11877,21 @@ sub api_hostgroup_mod
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_hostgroup_mod: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all delattr description no_members raw rights setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_hostgroup_mod: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -10315,10 +11947,21 @@ sub api_hostgroup_remove_member
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_hostgroup_remove_member: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all host hostgroup no_members raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_hostgroup_remove_member: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -10372,10 +12015,21 @@ sub api_hostgroup_show
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_hostgroup_show: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members raw rights version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_hostgroup_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -10415,10 +12069,11 @@ sub api_i18n_messages
 {
     my ($self, %opts) = @_;
 
+
     my @opt_keys = qw(version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_i18n_messages: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -10482,10 +12137,21 @@ sub api_idoverridegroup_add
 {
     my ($self, $idviewcn, $ipaanchoruuid, %opts) = @_;
 
+    my @args_names = qw(idviewcn ipaanchoruuid);
+    my $idx = 0;
+    foreach my $arg ($idviewcn, $ipaanchoruuid) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_idoverridegroup_add: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all cn description fallback_to_ldap gidnumber raw setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_idoverridegroup_add: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -10537,10 +12203,21 @@ sub api_idoverridegroup_del
 {
     my ($self, $idviewcn, $ipaanchoruuid, %opts) = @_;
 
+    my @args_names = qw(idviewcn ipaanchoruuid);
+    my $idx = 0;
+    foreach my $arg ($idviewcn, $ipaanchoruuid) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_idoverridegroup_del: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(continue fallback_to_ldap version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_idoverridegroup_del: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -10608,10 +12285,21 @@ sub api_idoverridegroup_find
 {
     my ($self, $idviewcn, $criteria, %opts) = @_;
 
+    my @args_names = qw(idviewcn criteria);
+    my $idx = 0;
+    foreach my $arg ($idviewcn, $criteria) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_idoverridegroup_find: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all cn description fallback_to_ldap gidnumber ipaanchoruuid pkey_only raw sizelimit timelimit version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_idoverridegroup_find: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -10681,10 +12369,21 @@ sub api_idoverridegroup_mod
 {
     my ($self, $idviewcn, $ipaanchoruuid, %opts) = @_;
 
+    my @args_names = qw(idviewcn ipaanchoruuid);
+    my $idx = 0;
+    foreach my $arg ($idviewcn, $ipaanchoruuid) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_idoverridegroup_mod: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all cn delattr description fallback_to_ldap gidnumber raw rename rights setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_idoverridegroup_mod: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -10740,10 +12439,21 @@ sub api_idoverridegroup_show
 {
     my ($self, $idviewcn, $ipaanchoruuid, %opts) = @_;
 
+    my @args_names = qw(idviewcn ipaanchoruuid);
+    my $idx = 0;
+    foreach my $arg ($idviewcn, $ipaanchoruuid) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_idoverridegroup_show: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all fallback_to_ldap raw rights version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_idoverridegroup_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -10819,10 +12529,21 @@ sub api_idoverrideuser_add
 {
     my ($self, $idviewcn, $ipaanchoruuid, %opts) = @_;
 
+    my @args_names = qw(idviewcn ipaanchoruuid);
+    my $idx = 0;
+    foreach my $arg ($idviewcn, $ipaanchoruuid) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_idoverrideuser_add: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all description fallback_to_ldap gecos gidnumber homedirectory ipaoriginaluid ipasshpubkey loginshell raw setattr uid uidnumber version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_idoverrideuser_add: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -10874,10 +12595,21 @@ sub api_idoverrideuser_del
 {
     my ($self, $idviewcn, $ipaanchoruuid, %opts) = @_;
 
+    my @args_names = qw(idviewcn ipaanchoruuid);
+    my $idx = 0;
+    foreach my $arg ($idviewcn, $ipaanchoruuid) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_idoverrideuser_del: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(continue fallback_to_ldap version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_idoverrideuser_del: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -10955,10 +12687,21 @@ sub api_idoverrideuser_find
 {
     my ($self, $idviewcn, $criteria, %opts) = @_;
 
+    my @args_names = qw(idviewcn criteria);
+    my $idx = 0;
+    foreach my $arg ($idviewcn, $criteria) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_idoverrideuser_find: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all description fallback_to_ldap gecos gidnumber homedirectory ipaanchoruuid ipaoriginaluid loginshell pkey_only raw sizelimit timelimit uid uidnumber version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_idoverrideuser_find: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -11040,10 +12783,21 @@ sub api_idoverrideuser_mod
 {
     my ($self, $idviewcn, $ipaanchoruuid, %opts) = @_;
 
+    my @args_names = qw(idviewcn ipaanchoruuid);
+    my $idx = 0;
+    foreach my $arg ($idviewcn, $ipaanchoruuid) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_idoverrideuser_mod: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all delattr description fallback_to_ldap gecos gidnumber homedirectory ipaoriginaluid ipasshpubkey loginshell raw rename rights setattr uid uidnumber version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_idoverrideuser_mod: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -11099,10 +12853,21 @@ sub api_idoverrideuser_show
 {
     my ($self, $idviewcn, $ipaanchoruuid, %opts) = @_;
 
+    my @args_names = qw(idviewcn ipaanchoruuid);
+    my $idx = 0;
+    foreach my $arg ($idviewcn, $ipaanchoruuid) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_idoverrideuser_show: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all fallback_to_ldap raw rights version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_idoverrideuser_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -11170,10 +12935,21 @@ sub api_idrange_add
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_idrange_add: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all ipabaseid ipabaserid ipaidrangesize ipanttrusteddomainname ipanttrusteddomainsid iparangetype ipasecondarybaserid raw setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_idrange_add: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -11221,10 +12997,21 @@ sub api_idrange_del
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_idrange_del: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(continue version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_idrange_del: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -11294,10 +13081,21 @@ sub api_idrange_find
 {
     my ($self, $criteria, %opts) = @_;
 
+    my @args_names = qw(criteria);
+    my $idx = 0;
+    foreach my $arg ($criteria) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_idrange_find: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all cn ipabaseid ipabaserid ipaidrangesize ipanttrusteddomainsid iparangetype ipasecondarybaserid pkey_only raw sizelimit timelimit version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_idrange_find: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -11367,10 +13165,21 @@ sub api_idrange_mod
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_idrange_mod: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all delattr ipabaseid ipabaserid ipaidrangesize ipanttrusteddomainname ipanttrusteddomainsid ipasecondarybaserid raw rights setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_idrange_mod: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -11422,10 +13231,21 @@ sub api_idrange_show
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_idrange_show: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all raw rights version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_idrange_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -11481,10 +13301,21 @@ sub api_idview_add
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_idview_add: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all description raw setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_idview_add: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -11534,10 +13365,21 @@ sub api_idview_apply
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_idview_apply: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(host hostgroup version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_idview_apply: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -11585,10 +13427,21 @@ sub api_idview_del
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_idview_del: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(continue version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_idview_del: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -11648,10 +13501,21 @@ sub api_idview_find
 {
     my ($self, $criteria, %opts) = @_;
 
+    my @args_names = qw(criteria);
+    my $idx = 0;
+    foreach my $arg ($criteria) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_idview_find: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all cn description pkey_only raw sizelimit timelimit version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_idview_find: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -11713,10 +13577,21 @@ sub api_idview_mod
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_idview_mod: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all delattr description raw rename rights setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_idview_mod: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -11770,10 +13645,21 @@ sub api_idview_show
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_idview_show: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all raw rights show_hosts version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_idview_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -11817,10 +13703,11 @@ sub api_idview_unapply
 {
     my ($self, %opts) = @_;
 
+
     my @opt_keys = qw(host hostgroup version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_idview_unapply: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -11874,10 +13761,21 @@ sub api_json_metadata
 {
     my ($self, $objname, $methodname, %opts) = @_;
 
+    my @args_names = qw(objname methodname);
+    my $idx = 0;
+    foreach my $arg ($objname, $methodname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_json_metadata: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(command method object version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_json_metadata: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -11917,10 +13815,11 @@ sub api_kra_is_enabled
 {
     my ($self, %opts) = @_;
 
+
     my @opt_keys = qw(version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_kra_is_enabled: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -11982,10 +13881,21 @@ sub api_krbtpolicy_mod
 {
     my ($self, $uid, %opts) = @_;
 
+    my @args_names = qw(uid);
+    my $idx = 0;
+    foreach my $arg ($uid) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_krbtpolicy_mod: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all delattr krbmaxrenewableage krbmaxticketlife raw rights setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_krbtpolicy_mod: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -12035,10 +13945,21 @@ sub api_krbtpolicy_reset
 {
     my ($self, $uid, %opts) = @_;
 
+    my @args_names = qw(uid);
+    my $idx = 0;
+    foreach my $arg ($uid) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_krbtpolicy_reset: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_krbtpolicy_reset: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -12090,10 +14011,21 @@ sub api_krbtpolicy_show
 {
     my ($self, $uid, %opts) = @_;
 
+    my @args_names = qw(uid);
+    my $idx = 0;
+    foreach my $arg ($uid) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_krbtpolicy_show: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all raw rights version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_krbtpolicy_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -12179,10 +14111,21 @@ sub api_migrate_ds
 {
     my ($self, $ldapuri, $bindpw, %opts) = @_;
 
+    my @args_names = qw(ldapuri bindpw);
+    my $idx = 0;
+    foreach my $arg ($ldapuri, $bindpw) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_migrate_ds: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(basedn binddn cacertfile compat continue exclude_groups exclude_users groupcontainer groupignoreattribute groupignoreobjectclass groupobjectclass groupoverwritegid schema scope use_def_group usercontainer userignoreattribute userignoreobjectclass userobjectclass version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_migrate_ds: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -12248,10 +14191,21 @@ sub api_netgroup_add
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_netgroup_add: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all description externalhost hostcategory nisdomainname no_members raw setattr usercategory version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_netgroup_add: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -12313,10 +14267,21 @@ sub api_netgroup_add_member
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_netgroup_add_member: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all group host hostgroup netgroup no_members raw user version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_netgroup_add_member: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -12364,10 +14329,21 @@ sub api_netgroup_del
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_netgroup_del: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(continue version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_netgroup_del: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -12467,10 +14443,21 @@ sub api_netgroup_find
 {
     my ($self, $criteria, %opts) = @_;
 
+    my @args_names = qw(criteria);
+    my $idx = 0;
+    foreach my $arg ($criteria) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_netgroup_find: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all cn description externalhost group host hostcategory hostgroup in_netgroup ipauniqueid managed netgroup nisdomainname no_group no_host no_hostgroup no_members no_netgroup no_user not_in_netgroup pkey_only private raw sizelimit timelimit user usercategory version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_netgroup_find: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -12540,10 +14527,21 @@ sub api_netgroup_mod
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_netgroup_mod: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all delattr description externalhost hostcategory nisdomainname no_members raw rights setattr usercategory version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_netgroup_mod: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -12605,10 +14603,21 @@ sub api_netgroup_remove_member
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_netgroup_remove_member: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all group host hostgroup netgroup no_members raw user version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_netgroup_remove_member: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -12662,10 +14671,21 @@ sub api_netgroup_show
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_netgroup_show: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members raw rights version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_netgroup_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -12725,10 +14745,11 @@ sub api_otpconfig_mod
 {
     my ($self, %opts) = @_;
 
+
     my @opt_keys = qw(addattr all delattr ipatokenhotpauthwindow ipatokenhotpsyncwindow ipatokentotpauthwindow ipatokentotpsyncwindow raw rights setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_otpconfig_mod: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -12774,10 +14795,11 @@ sub api_otpconfig_show
 {
     my ($self, %opts) = @_;
 
+
     my @opt_keys = qw(all raw rights version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_otpconfig_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -12867,10 +14889,21 @@ sub api_otptoken_add
 {
     my ($self, $ipatokenuniqueid, %opts) = @_;
 
+    my @args_names = qw(ipatokenuniqueid);
+    my $idx = 0;
+    foreach my $arg ($ipatokenuniqueid) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_otptoken_add: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all description ipatokendisabled ipatokenhotpcounter ipatokenmodel ipatokennotafter ipatokennotbefore ipatokenotpalgorithm ipatokenotpdigits ipatokenotpkey ipatokenowner ipatokenserial ipatokentotpclockoffset ipatokentotptimestep ipatokenvendor no_members no_qrcode qrcode raw setattr type version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_otptoken_add: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -12924,10 +14957,21 @@ sub api_otptoken_add_managedby
 {
     my ($self, $ipatokenuniqueid, %opts) = @_;
 
+    my @args_names = qw(ipatokenuniqueid);
+    my $idx = 0;
+    foreach my $arg ($ipatokenuniqueid) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_otptoken_add_managedby: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members raw user version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_otptoken_add_managedby: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -12987,10 +15031,21 @@ sub api_otptoken_add_yubikey
 {
     my ($self, $ipatokenuniqueid, %opts) = @_;
 
+    my @args_names = qw(ipatokenuniqueid);
+    my $idx = 0;
+    foreach my $arg ($ipatokenuniqueid) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_otptoken_add_yubikey: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(description ipatokendisabled ipatokennotafter ipatokennotbefore ipatokenotpdigits ipatokenowner slot version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_otptoken_add_yubikey: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -13038,10 +15093,21 @@ sub api_otptoken_del
 {
     my ($self, $ipatokenuniqueid, %opts) = @_;
 
+    my @args_names = qw(ipatokenuniqueid);
+    my $idx = 0;
+    foreach my $arg ($ipatokenuniqueid) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_otptoken_del: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(continue version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_otptoken_del: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -13129,10 +15195,21 @@ sub api_otptoken_find
 {
     my ($self, $criteria, %opts) = @_;
 
+    my @args_names = qw(criteria);
+    my $idx = 0;
+    foreach my $arg ($criteria) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_otptoken_find: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all description ipatokendisabled ipatokenhotpcounter ipatokenmodel ipatokennotafter ipatokennotbefore ipatokenotpalgorithm ipatokenotpdigits ipatokenowner ipatokenserial ipatokentotpclockoffset ipatokentotptimestep ipatokenuniqueid ipatokenvendor no_members pkey_only raw sizelimit timelimit type version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_otptoken_find: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -13210,10 +15287,21 @@ sub api_otptoken_mod
 {
     my ($self, $ipatokenuniqueid, %opts) = @_;
 
+    my @args_names = qw(ipatokenuniqueid);
+    my $idx = 0;
+    foreach my $arg ($ipatokenuniqueid) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_otptoken_mod: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all delattr description ipatokendisabled ipatokenmodel ipatokennotafter ipatokennotbefore ipatokenowner ipatokenserial ipatokenvendor no_members raw rename rights setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_otptoken_mod: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -13267,10 +15355,21 @@ sub api_otptoken_remove_managedby
 {
     my ($self, $ipatokenuniqueid, %opts) = @_;
 
+    my @args_names = qw(ipatokenuniqueid);
+    my $idx = 0;
+    foreach my $arg ($ipatokenuniqueid) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_otptoken_remove_managedby: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members raw user version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_otptoken_remove_managedby: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -13324,10 +15423,21 @@ sub api_otptoken_show
 {
     my ($self, $ipatokenuniqueid, %opts) = @_;
 
+    my @args_names = qw(ipatokenuniqueid);
+    my $idx = 0;
+    foreach my $arg ($ipatokenuniqueid) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_otptoken_show: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members raw rights version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_otptoken_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -13381,10 +15491,21 @@ sub api_otptoken_sync
 {
     my ($self, $token, %opts) = @_;
 
+    my @args_names = qw(token);
+    my $idx = 0;
+    foreach my $arg ($token) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_otptoken_sync: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(first_code password second_code user version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_otptoken_sync: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -13436,10 +15557,21 @@ sub api_passwd
 {
     my ($self, $principal, $password, $current_password, %opts) = @_;
 
+    my @args_names = qw(principal password current_password);
+    my $idx = 0;
+    foreach my $arg ($principal, $password, $current_password) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_passwd: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(otp version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_passwd: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -13525,10 +15657,21 @@ sub api_permission_add
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_permission_add: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all attrs extratargetfilter filter ipapermbindruletype ipapermlocation ipapermright ipapermtarget ipapermtargetfilter ipapermtargetfrom ipapermtargetto memberof no_members permissions raw setattr subtree targetgroup type version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_permission_add: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -13582,10 +15725,21 @@ sub api_permission_add_member
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_permission_add_member: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members privilege raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_permission_add_member: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -13639,10 +15793,21 @@ sub api_permission_add_noaci
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_permission_add_noaci: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all ipapermissiontype no_members raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_permission_add_noaci: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -13692,10 +15857,21 @@ sub api_permission_del
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_permission_del: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(continue force version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_permission_del: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -13791,10 +15967,21 @@ sub api_permission_find
 {
     my ($self, $criteria, %opts) = @_;
 
+    my @args_names = qw(criteria);
+    my $idx = 0;
+    foreach my $arg ($criteria) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_permission_find: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all attrs cn extratargetfilter filter ipapermbindruletype ipapermdefaultattr ipapermexcludedattr ipapermincludedattr ipapermlocation ipapermright ipapermtarget ipapermtargetfilter ipapermtargetfrom ipapermtargetto memberof no_members permissions pkey_only raw sizelimit subtree targetgroup timelimit type version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_permission_find: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -13890,10 +16077,21 @@ sub api_permission_mod
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_permission_mod: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all attrs delattr extratargetfilter filter ipapermbindruletype ipapermexcludedattr ipapermincludedattr ipapermlocation ipapermright ipapermtarget ipapermtargetfilter ipapermtargetfrom ipapermtargetto memberof no_members permissions raw rename rights setattr subtree targetgroup type version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_permission_mod: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -13947,10 +16145,21 @@ sub api_permission_remove_member
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_permission_remove_member: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members privilege raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_permission_remove_member: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -14004,10 +16213,21 @@ sub api_permission_show
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_permission_show: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members raw rights version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_permission_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -14047,10 +16267,11 @@ sub api_ping
 {
     my ($self, %opts) = @_;
 
+
     my @opt_keys = qw(version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_ping: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -14096,10 +16317,21 @@ sub api_pkinit_anonymous
 {
     my ($self, $action, %opts) = @_;
 
+    my @args_names = qw(action);
+    my $idx = 0;
+    foreach my $arg ($action) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_pkinit_anonymous: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_pkinit_anonymous: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -14143,10 +16375,11 @@ sub api_plugins
 {
     my ($self, %opts) = @_;
 
+
     my @opt_keys = qw(all server version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_plugins: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -14204,10 +16437,21 @@ sub api_privilege_add
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_privilege_add: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all description no_members raw setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_privilege_add: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -14261,10 +16505,21 @@ sub api_privilege_add_member
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_privilege_add_member: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members raw role version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_privilege_add_member: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -14318,10 +16573,21 @@ sub api_privilege_add_permission
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_privilege_add_permission: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members permission raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_privilege_add_permission: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -14369,10 +16635,21 @@ sub api_privilege_del
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_privilege_del: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(continue version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_privilege_del: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -14434,10 +16711,21 @@ sub api_privilege_find
 {
     my ($self, $criteria, %opts) = @_;
 
+    my @args_names = qw(criteria);
+    my $idx = 0;
+    foreach my $arg ($criteria) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_privilege_find: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all cn description no_members pkey_only raw sizelimit timelimit version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_privilege_find: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -14501,10 +16789,21 @@ sub api_privilege_mod
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_privilege_mod: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all delattr description no_members raw rename rights setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_privilege_mod: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -14558,10 +16857,21 @@ sub api_privilege_remove_member
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_privilege_remove_member: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members raw role version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_privilege_remove_member: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -14615,10 +16925,21 @@ sub api_privilege_remove_permission
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_privilege_remove_permission: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members permission raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_privilege_remove_permission: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -14672,10 +16993,21 @@ sub api_privilege_show
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_privilege_show: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members raw rights version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_privilege_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -14747,10 +17079,21 @@ sub api_pwpolicy_add
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_pwpolicy_add: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all cospriority krbmaxpwdlife krbminpwdlife krbpwdfailurecountinterval krbpwdhistorylength krbpwdlockoutduration krbpwdmaxfailure krbpwdmindiffchars krbpwdminlength raw setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_pwpolicy_add: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -14798,10 +17141,21 @@ sub api_pwpolicy_del
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_pwpolicy_del: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(continue version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_pwpolicy_del: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -14877,10 +17231,21 @@ sub api_pwpolicy_find
 {
     my ($self, $criteria, %opts) = @_;
 
+    my @args_names = qw(criteria);
+    my $idx = 0;
+    foreach my $arg ($criteria) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_pwpolicy_find: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all cn cospriority krbmaxpwdlife krbminpwdlife krbpwdfailurecountinterval krbpwdhistorylength krbpwdlockoutduration krbpwdmaxfailure krbpwdmindiffchars krbpwdminlength pkey_only raw sizelimit timelimit version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_pwpolicy_find: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -14956,10 +17321,21 @@ sub api_pwpolicy_mod
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_pwpolicy_mod: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all cospriority delattr krbmaxpwdlife krbminpwdlife krbpwdfailurecountinterval krbpwdhistorylength krbpwdlockoutduration krbpwdmaxfailure krbpwdmindiffchars krbpwdminlength raw rights setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_pwpolicy_mod: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -15013,10 +17389,21 @@ sub api_pwpolicy_show
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_pwpolicy_show: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all raw rights user version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_pwpolicy_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -15082,10 +17469,21 @@ sub api_radiusproxy_add
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_radiusproxy_add: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all description ipatokenradiusretries ipatokenradiussecret ipatokenradiusserver ipatokenradiustimeout ipatokenusermapattribute raw setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_radiusproxy_add: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -15133,10 +17531,21 @@ sub api_radiusproxy_del
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_radiusproxy_del: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(continue version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_radiusproxy_del: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -15206,10 +17615,21 @@ sub api_radiusproxy_find
 {
     my ($self, $criteria, %opts) = @_;
 
+    my @args_names = qw(criteria);
+    my $idx = 0;
+    foreach my $arg ($criteria) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_radiusproxy_find: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all cn description ipatokenradiusretries ipatokenradiussecret ipatokenradiusserver ipatokenradiustimeout ipatokenusermapattribute pkey_only raw sizelimit timelimit version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_radiusproxy_find: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -15281,10 +17701,21 @@ sub api_radiusproxy_mod
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_radiusproxy_mod: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all delattr description ipatokenradiusretries ipatokenradiussecret ipatokenradiusserver ipatokenradiustimeout ipatokenusermapattribute raw rename rights setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_radiusproxy_mod: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -15336,10 +17767,21 @@ sub api_radiusproxy_show
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_radiusproxy_show: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all raw rights version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_radiusproxy_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -15399,10 +17841,11 @@ sub api_realmdomains_mod
 {
     my ($self, %opts) = @_;
 
+
     my @opt_keys = qw(add_domain addattr all associateddomain del_domain delattr force raw rights setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_realmdomains_mod: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -15448,10 +17891,11 @@ sub api_realmdomains_show
 {
     my ($self, %opts) = @_;
 
+
     my @opt_keys = qw(all raw rights version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_realmdomains_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -15509,10 +17953,21 @@ sub api_role_add
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_role_add: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all description no_members raw setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_role_add: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -15574,10 +18029,21 @@ sub api_role_add_member
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_role_add_member: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all group host hostgroup no_members raw service user version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_role_add_member: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -15631,10 +18097,21 @@ sub api_role_add_privilege
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_role_add_privilege: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members privilege raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_role_add_privilege: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -15682,10 +18159,21 @@ sub api_role_del
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_role_del: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(continue version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_role_del: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -15747,10 +18235,21 @@ sub api_role_find
 {
     my ($self, $criteria, %opts) = @_;
 
+    my @args_names = qw(criteria);
+    my $idx = 0;
+    foreach my $arg ($criteria) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_role_find: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all cn description no_members pkey_only raw sizelimit timelimit version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_role_find: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -15814,10 +18313,21 @@ sub api_role_mod
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_role_mod: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all delattr description no_members raw rename rights setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_role_mod: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -15879,10 +18389,21 @@ sub api_role_remove_member
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_role_remove_member: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all group host hostgroup no_members raw service user version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_role_remove_member: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -15936,10 +18457,21 @@ sub api_role_remove_privilege
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_role_remove_privilege: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members privilege raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_role_remove_privilege: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -15993,10 +18525,21 @@ sub api_role_show
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_role_show: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members raw rights version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_role_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -16050,10 +18593,21 @@ sub api_selfservice_add
 {
     my ($self, $aciname, %opts) = @_;
 
+    my @args_names = qw(aciname);
+    my $idx = 0;
+    foreach my $arg ($aciname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_selfservice_add: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all attrs permissions raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_selfservice_add: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -16099,10 +18653,21 @@ sub api_selfservice_del
 {
     my ($self, $aciname, %opts) = @_;
 
+    my @args_names = qw(aciname);
+    my $idx = 0;
+    foreach my $arg ($aciname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_selfservice_del: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_selfservice_del: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -16160,10 +18725,21 @@ sub api_selfservice_find
 {
     my ($self, $criteria, %opts) = @_;
 
+    my @args_names = qw(criteria);
+    my $idx = 0;
+    foreach my $arg ($criteria) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_selfservice_find: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(aciname all attrs permissions pkey_only raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_selfservice_find: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -16217,10 +18793,21 @@ sub api_selfservice_mod
 {
     my ($self, $aciname, %opts) = @_;
 
+    my @args_names = qw(aciname);
+    my $idx = 0;
+    foreach my $arg ($aciname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_selfservice_mod: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all attrs permissions raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_selfservice_mod: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -16270,10 +18857,21 @@ sub api_selfservice_show
 {
     my ($self, $aciname, %opts) = @_;
 
+    my @args_names = qw(aciname);
+    my $idx = 0;
+    foreach my $arg ($aciname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_selfservice_show: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_selfservice_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -16341,10 +18939,21 @@ sub api_selinuxusermap_add
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_selinuxusermap_add: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all description hostcategory ipaenabledflag ipaselinuxuser no_members raw seealso setattr usercategory version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_selinuxusermap_add: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -16400,10 +19009,21 @@ sub api_selinuxusermap_add_host
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_selinuxusermap_add_host: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all host hostgroup no_members raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_selinuxusermap_add_host: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -16459,10 +19079,21 @@ sub api_selinuxusermap_add_user
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_selinuxusermap_add_user: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all group no_members raw user version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_selinuxusermap_add_user: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -16510,10 +19141,21 @@ sub api_selinuxusermap_del
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_selinuxusermap_del: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(continue version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_selinuxusermap_del: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -16559,10 +19201,21 @@ sub api_selinuxusermap_disable
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_selinuxusermap_disable: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_selinuxusermap_disable: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -16608,10 +19261,21 @@ sub api_selinuxusermap_enable
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_selinuxusermap_enable: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_selinuxusermap_enable: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -16683,10 +19347,21 @@ sub api_selinuxusermap_find
 {
     my ($self, $criteria, %opts) = @_;
 
+    my @args_names = qw(criteria);
+    my $idx = 0;
+    foreach my $arg ($criteria) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_selinuxusermap_find: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all cn description hostcategory ipaenabledflag ipaselinuxuser no_members pkey_only raw seealso sizelimit timelimit usercategory version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_selinuxusermap_find: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -16758,10 +19433,21 @@ sub api_selinuxusermap_mod
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_selinuxusermap_mod: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all delattr description hostcategory ipaenabledflag ipaselinuxuser no_members raw rights seealso setattr usercategory version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_selinuxusermap_mod: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -16817,10 +19503,21 @@ sub api_selinuxusermap_remove_host
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_selinuxusermap_remove_host: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all host hostgroup no_members raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_selinuxusermap_remove_host: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -16876,10 +19573,21 @@ sub api_selinuxusermap_remove_user
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_selinuxusermap_remove_user: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all group no_members raw user version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_selinuxusermap_remove_user: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -16933,10 +19641,21 @@ sub api_selinuxusermap_show
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_selinuxusermap_show: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members raw rights version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_selinuxusermap_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -16984,10 +19703,21 @@ sub api_server_conncheck
 {
     my ($self, $cn, $remote_cn, %opts) = @_;
 
+    my @args_names = qw(cn remote_cn);
+    my $idx = 0;
+    foreach my $arg ($cn, $remote_cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_server_conncheck: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_server_conncheck: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -17035,10 +19765,21 @@ sub api_server_del
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_server_del: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(continue version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_server_del: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -17106,10 +19847,21 @@ sub api_server_find
 {
     my ($self, $criteria, %opts) = @_;
 
+    my @args_names = qw(criteria);
+    my $idx = 0;
+    foreach my $arg ($criteria) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_server_find: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all cn ipamaxdomainlevel ipamindomainlevel no_members no_topologysuffix pkey_only raw sizelimit timelimit topologysuffix version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_server_find: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -17163,10 +19915,21 @@ sub api_server_show
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_server_show: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members raw rights version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_server_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -17232,10 +19995,21 @@ sub api_service_add
 {
     my ($self, $krbprincipalname, %opts) = @_;
 
+    my @args_names = qw(krbprincipalname);
+    my $idx = 0;
+    foreach my $arg ($krbprincipalname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_service_add: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all force ipakrbauthzdata ipakrbokasdelegate ipakrbrequirespreauth no_members raw setattr usercertificate version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_service_add: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -17289,10 +20063,21 @@ sub api_service_add_cert
 {
     my ($self, $krbprincipalname, %opts) = @_;
 
+    my @args_names = qw(krbprincipalname);
+    my $idx = 0;
+    foreach my $arg ($krbprincipalname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_service_add_cert: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members raw usercertificate version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_service_add_cert: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -17346,10 +20131,21 @@ sub api_service_add_host
 {
     my ($self, $krbprincipalname, %opts) = @_;
 
+    my @args_names = qw(krbprincipalname);
+    my $idx = 0;
+    foreach my $arg ($krbprincipalname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_service_add_host: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all host no_members raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_service_add_host: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -17409,10 +20205,21 @@ sub api_service_allow_create_keytab
 {
     my ($self, $krbprincipalname, %opts) = @_;
 
+    my @args_names = qw(krbprincipalname);
+    my $idx = 0;
+    foreach my $arg ($krbprincipalname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_service_allow_create_keytab: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all group host hostgroup no_members raw user version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_service_allow_create_keytab: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -17472,10 +20279,21 @@ sub api_service_allow_retrieve_keytab
 {
     my ($self, $krbprincipalname, %opts) = @_;
 
+    my @args_names = qw(krbprincipalname);
+    my $idx = 0;
+    foreach my $arg ($krbprincipalname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_service_allow_retrieve_keytab: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all group host hostgroup no_members raw user version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_service_allow_retrieve_keytab: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -17523,10 +20341,21 @@ sub api_service_del
 {
     my ($self, $krbprincipalname, %opts) = @_;
 
+    my @args_names = qw(krbprincipalname);
+    my $idx = 0;
+    foreach my $arg ($krbprincipalname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_service_del: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(continue version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_service_del: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -17572,10 +20401,21 @@ sub api_service_disable
 {
     my ($self, $krbprincipalname, %opts) = @_;
 
+    my @args_names = qw(krbprincipalname);
+    my $idx = 0;
+    foreach my $arg ($krbprincipalname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_service_disable: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_service_disable: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -17635,10 +20475,21 @@ sub api_service_disallow_create_keytab
 {
     my ($self, $krbprincipalname, %opts) = @_;
 
+    my @args_names = qw(krbprincipalname);
+    my $idx = 0;
+    foreach my $arg ($krbprincipalname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_service_disallow_create_keytab: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all group host hostgroup no_members raw user version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_service_disallow_create_keytab: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -17698,10 +20549,21 @@ sub api_service_disallow_retrieve_keytab
 {
     my ($self, $krbprincipalname, %opts) = @_;
 
+    my @args_names = qw(krbprincipalname);
+    my $idx = 0;
+    foreach my $arg ($krbprincipalname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_service_disallow_retrieve_keytab: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all group host hostgroup no_members raw user version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_service_disallow_retrieve_keytab: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -17767,10 +20629,21 @@ sub api_service_find
 {
     my ($self, $criteria, %opts) = @_;
 
+    my @args_names = qw(criteria);
+    my $idx = 0;
+    foreach my $arg ($criteria) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_service_find: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all ipakrbauthzdata krbprincipalname man_by_host no_members not_man_by_host pkey_only raw sizelimit timelimit version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_service_find: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -17838,10 +20711,21 @@ sub api_service_mod
 {
     my ($self, $krbprincipalname, %opts) = @_;
 
+    my @args_names = qw(krbprincipalname);
+    my $idx = 0;
+    foreach my $arg ($krbprincipalname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_service_mod: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all delattr ipakrbauthzdata ipakrbokasdelegate ipakrbrequirespreauth no_members raw rights setattr usercertificate version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_service_mod: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -17895,10 +20779,21 @@ sub api_service_remove_cert
 {
     my ($self, $krbprincipalname, %opts) = @_;
 
+    my @args_names = qw(krbprincipalname);
+    my $idx = 0;
+    foreach my $arg ($krbprincipalname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_service_remove_cert: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members raw usercertificate version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_service_remove_cert: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -17952,10 +20847,21 @@ sub api_service_remove_host
 {
     my ($self, $krbprincipalname, %opts) = @_;
 
+    my @args_names = qw(krbprincipalname);
+    my $idx = 0;
+    foreach my $arg ($krbprincipalname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_service_remove_host: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all host no_members raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_service_remove_host: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -18011,10 +20917,21 @@ sub api_service_show
 {
     my ($self, $krbprincipalname, %opts) = @_;
 
+    my @args_names = qw(krbprincipalname);
+    my $idx = 0;
+    foreach my $arg ($krbprincipalname) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_service_show: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members out raw rights version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_service_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -18070,10 +20987,21 @@ sub api_servicedelegationrule_add
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_servicedelegationrule_add: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all no_members raw setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_servicedelegationrule_add: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -18127,10 +21055,21 @@ sub api_servicedelegationrule_add_member
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_servicedelegationrule_add_member: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members principal raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_servicedelegationrule_add_member: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -18184,10 +21123,21 @@ sub api_servicedelegationrule_add_target
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_servicedelegationrule_add_target: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members raw servicedelegationtarget version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_servicedelegationrule_add_target: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -18235,10 +21185,21 @@ sub api_servicedelegationrule_del
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_servicedelegationrule_del: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(continue version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_servicedelegationrule_del: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -18298,10 +21259,21 @@ sub api_servicedelegationrule_find
 {
     my ($self, $criteria, %opts) = @_;
 
+    my @args_names = qw(criteria);
+    my $idx = 0;
+    foreach my $arg ($criteria) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_servicedelegationrule_find: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all cn no_members pkey_only raw sizelimit timelimit version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_servicedelegationrule_find: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -18355,10 +21327,21 @@ sub api_servicedelegationrule_remove_member
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_servicedelegationrule_remove_member: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members principal raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_servicedelegationrule_remove_member: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -18412,10 +21395,21 @@ sub api_servicedelegationrule_remove_target
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_servicedelegationrule_remove_target: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members raw servicedelegationtarget version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_servicedelegationrule_remove_target: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -18469,10 +21463,21 @@ sub api_servicedelegationrule_show
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_servicedelegationrule_show: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members raw rights version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_servicedelegationrule_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -18526,10 +21531,21 @@ sub api_servicedelegationtarget_add
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_servicedelegationtarget_add: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all raw setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_servicedelegationtarget_add: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -18581,10 +21597,21 @@ sub api_servicedelegationtarget_add_member
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_servicedelegationtarget_add_member: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all principal raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_servicedelegationtarget_add_member: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -18632,10 +21659,21 @@ sub api_servicedelegationtarget_del
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_servicedelegationtarget_del: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(continue version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_servicedelegationtarget_del: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -18693,10 +21731,21 @@ sub api_servicedelegationtarget_find
 {
     my ($self, $criteria, %opts) = @_;
 
+    my @args_names = qw(criteria);
+    my $idx = 0;
+    foreach my $arg ($criteria) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_servicedelegationtarget_find: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all cn pkey_only raw sizelimit timelimit version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_servicedelegationtarget_find: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -18748,10 +21797,21 @@ sub api_servicedelegationtarget_remove_member
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_servicedelegationtarget_remove_member: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all principal raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_servicedelegationtarget_remove_member: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -18803,10 +21863,21 @@ sub api_servicedelegationtarget_show
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_servicedelegationtarget_show: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all raw rights version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_servicedelegationtarget_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -18846,10 +21917,11 @@ sub api_session_logout
 {
     my ($self, %opts) = @_;
 
+
     my @opt_keys = qw(version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_session_logout: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -18889,10 +21961,11 @@ sub api_sidgen_was_run
 {
     my ($self, %opts) = @_;
 
+
     my @opt_keys = qw(version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_sidgen_was_run: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -18944,10 +22017,21 @@ sub api_stageuser_activate
 {
     my ($self, $uid, %opts) = @_;
 
+    my @args_names = qw(uid);
+    my $idx = 0;
+    foreach my $arg ($uid) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_stageuser_activate: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_stageuser_activate: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -19079,10 +22163,21 @@ sub api_stageuser_add
 {
     my ($self, $uid, %opts) = @_;
 
+    my @args_names = qw(uid);
+    my $idx = 0;
+    foreach my $arg ($uid) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_stageuser_add: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all carlicense cn departmentnumber displayname employeenumber employeetype facsimiletelephonenumber from_delete gecos gidnumber givenname homedirectory initials ipasshpubkey ipatokenradiusconfiglink ipatokenradiususername ipauserauthtype krbprincipalexpiration krbprincipalname l loginshell mail manager mobile no_members ou pager postalcode preferredlanguage random raw setattr sn st street telephonenumber title uidnumber usercertificate userclass userpassword version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_stageuser_add: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -19136,10 +22231,21 @@ sub api_stageuser_add_manager
 {
     my ($self, $uid, %opts) = @_;
 
+    my @args_names = qw(uid);
+    my $idx = 0;
+    foreach my $arg ($uid) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_stageuser_add_manager: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members raw user version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_stageuser_add_manager: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -19187,10 +22293,21 @@ sub api_stageuser_del
 {
     my ($self, $uid, %opts) = @_;
 
+    my @args_names = qw(uid);
+    my $idx = 0;
+    foreach my $arg ($uid) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_stageuser_del: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(continue version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_stageuser_del: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -19340,10 +22457,21 @@ sub api_stageuser_find
 {
     my ($self, $criteria, %opts) = @_;
 
+    my @args_names = qw(criteria);
+    my $idx = 0;
+    foreach my $arg ($criteria) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_stageuser_find: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all carlicense cn departmentnumber displayname employeenumber employeetype facsimiletelephonenumber gecos gidnumber givenname homedirectory in_group in_hbacrule in_netgroup in_role in_sudorule initials ipatokenradiusconfiglink ipatokenradiususername ipauserauthtype krbprincipalexpiration krbprincipalname l loginshell mail manager mobile no_members not_in_group not_in_hbacrule not_in_netgroup not_in_role not_in_sudorule ou pager pkey_only postalcode preferredlanguage raw sizelimit sn st street telephonenumber timelimit title uid uidnumber usercertificate userclass userpassword version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_stageuser_find: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -19477,10 +22605,21 @@ sub api_stageuser_mod
 {
     my ($self, $uid, %opts) = @_;
 
+    my @args_names = qw(uid);
+    my $idx = 0;
+    foreach my $arg ($uid) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_stageuser_mod: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all carlicense cn delattr departmentnumber displayname employeenumber employeetype facsimiletelephonenumber gecos gidnumber givenname homedirectory initials ipasshpubkey ipatokenradiusconfiglink ipatokenradiususername ipauserauthtype krbprincipalexpiration l loginshell mail manager mobile no_members ou pager postalcode preferredlanguage random raw rename rights setattr sn st street telephonenumber title uidnumber usercertificate userclass userpassword version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_stageuser_mod: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -19534,10 +22673,21 @@ sub api_stageuser_remove_manager
 {
     my ($self, $uid, %opts) = @_;
 
+    my @args_names = qw(uid);
+    my $idx = 0;
+    foreach my $arg ($uid) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_stageuser_remove_manager: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members raw user version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_stageuser_remove_manager: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -19591,10 +22741,21 @@ sub api_stageuser_show
 {
     my ($self, $uid, %opts) = @_;
 
+    my @args_names = qw(uid);
+    my $idx = 0;
+    foreach my $arg ($uid) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_stageuser_show: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members raw rights version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_stageuser_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -19652,10 +22813,21 @@ sub api_sudocmd_add
 {
     my ($self, $sudocmd, %opts) = @_;
 
+    my @args_names = qw(sudocmd);
+    my $idx = 0;
+    foreach my $arg ($sudocmd) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_sudocmd_add: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all description no_members raw setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_sudocmd_add: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -19703,10 +22875,21 @@ sub api_sudocmd_del
 {
     my ($self, $sudocmd, %opts) = @_;
 
+    my @args_names = qw(sudocmd);
+    my $idx = 0;
+    foreach my $arg ($sudocmd) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_sudocmd_del: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(continue version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_sudocmd_del: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -19768,10 +22951,21 @@ sub api_sudocmd_find
 {
     my ($self, $criteria, %opts) = @_;
 
+    my @args_names = qw(criteria);
+    my $idx = 0;
+    foreach my $arg ($criteria) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_sudocmd_find: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all description no_members pkey_only raw sizelimit sudocmd timelimit version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_sudocmd_find: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -19833,10 +23027,21 @@ sub api_sudocmd_mod
 {
     my ($self, $sudocmd, %opts) = @_;
 
+    my @args_names = qw(sudocmd);
+    my $idx = 0;
+    foreach my $arg ($sudocmd) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_sudocmd_mod: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all delattr description no_members raw rights setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_sudocmd_mod: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -19890,10 +23095,21 @@ sub api_sudocmd_show
 {
     my ($self, $sudocmd, %opts) = @_;
 
+    my @args_names = qw(sudocmd);
+    my $idx = 0;
+    foreach my $arg ($sudocmd) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_sudocmd_show: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members raw rights version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_sudocmd_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -19951,10 +23167,21 @@ sub api_sudocmdgroup_add
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_sudocmdgroup_add: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all description no_members raw setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_sudocmdgroup_add: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -20008,10 +23235,21 @@ sub api_sudocmdgroup_add_member
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_sudocmdgroup_add_member: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members raw sudocmd version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_sudocmdgroup_add_member: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -20059,10 +23297,21 @@ sub api_sudocmdgroup_del
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_sudocmdgroup_del: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(continue version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_sudocmdgroup_del: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -20124,10 +23373,21 @@ sub api_sudocmdgroup_find
 {
     my ($self, $criteria, %opts) = @_;
 
+    my @args_names = qw(criteria);
+    my $idx = 0;
+    foreach my $arg ($criteria) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_sudocmdgroup_find: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all cn description no_members pkey_only raw sizelimit timelimit version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_sudocmdgroup_find: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -20189,10 +23449,21 @@ sub api_sudocmdgroup_mod
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_sudocmdgroup_mod: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all delattr description no_members raw rights setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_sudocmdgroup_mod: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -20246,10 +23517,21 @@ sub api_sudocmdgroup_remove_member
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_sudocmdgroup_remove_member: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members raw sudocmd version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_sudocmdgroup_remove_member: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -20303,10 +23585,21 @@ sub api_sudocmdgroup_show
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_sudocmdgroup_show: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members raw rights version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_sudocmdgroup_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -20386,10 +23679,21 @@ sub api_sudorule_add
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_sudorule_add: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all cmdcategory description externalhost externaluser hostcategory ipaenabledflag ipasudorunasextgroup ipasudorunasextuser ipasudorunasgroupcategory ipasudorunasusercategory no_members raw setattr sudoorder usercategory version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_sudorule_add: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -20445,10 +23749,21 @@ sub api_sudorule_add_allow_command
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_sudorule_add_allow_command: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members raw sudocmd sudocmdgroup version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_sudorule_add_allow_command: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -20504,10 +23819,21 @@ sub api_sudorule_add_deny_command
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_sudorule_add_deny_command: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members raw sudocmd sudocmdgroup version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_sudorule_add_deny_command: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -20565,10 +23891,21 @@ sub api_sudorule_add_host
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_sudorule_add_host: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all host hostgroup hostmask no_members raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_sudorule_add_host: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -20622,10 +23959,21 @@ sub api_sudorule_add_option
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_sudorule_add_option: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all ipasudoopt no_members raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_sudorule_add_option: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -20679,10 +24027,21 @@ sub api_sudorule_add_runasgroup
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_sudorule_add_runasgroup: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all group no_members raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_sudorule_add_runasgroup: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -20738,10 +24097,21 @@ sub api_sudorule_add_runasuser
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_sudorule_add_runasuser: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all group no_members raw user version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_sudorule_add_runasuser: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -20797,10 +24167,21 @@ sub api_sudorule_add_user
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_sudorule_add_user: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all group no_members raw user version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_sudorule_add_user: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -20848,10 +24229,21 @@ sub api_sudorule_del
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_sudorule_del: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(continue version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_sudorule_del: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -20897,10 +24289,21 @@ sub api_sudorule_disable
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_sudorule_disable: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_sudorule_disable: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -20946,10 +24349,21 @@ sub api_sudorule_enable
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_sudorule_enable: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_sudorule_enable: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -21033,10 +24447,21 @@ sub api_sudorule_find
 {
     my ($self, $criteria, %opts) = @_;
 
+    my @args_names = qw(criteria);
+    my $idx = 0;
+    foreach my $arg ($criteria) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_sudorule_find: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all cmdcategory cn description externalhost externaluser hostcategory ipaenabledflag ipasudorunasextgroup ipasudorunasextuser ipasudorunasgroupcategory ipasudorunasusercategory no_members pkey_only raw sizelimit sudoorder timelimit usercategory version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_sudorule_find: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -21120,10 +24545,21 @@ sub api_sudorule_mod
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_sudorule_mod: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all cmdcategory delattr description externalhost externaluser hostcategory ipaenabledflag ipasudorunasextgroup ipasudorunasextuser ipasudorunasgroupcategory ipasudorunasusercategory no_members raw rights setattr sudoorder usercategory version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_sudorule_mod: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -21179,10 +24615,21 @@ sub api_sudorule_remove_allow_command
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_sudorule_remove_allow_command: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members raw sudocmd sudocmdgroup version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_sudorule_remove_allow_command: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -21238,10 +24685,21 @@ sub api_sudorule_remove_deny_command
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_sudorule_remove_deny_command: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members raw sudocmd sudocmdgroup version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_sudorule_remove_deny_command: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -21299,10 +24757,21 @@ sub api_sudorule_remove_host
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_sudorule_remove_host: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all host hostgroup hostmask no_members raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_sudorule_remove_host: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -21356,10 +24825,21 @@ sub api_sudorule_remove_option
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_sudorule_remove_option: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all ipasudoopt no_members raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_sudorule_remove_option: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -21413,10 +24893,21 @@ sub api_sudorule_remove_runasgroup
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_sudorule_remove_runasgroup: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all group no_members raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_sudorule_remove_runasgroup: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -21472,10 +24963,21 @@ sub api_sudorule_remove_runasuser
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_sudorule_remove_runasuser: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all group no_members raw user version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_sudorule_remove_runasuser: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -21531,10 +25033,21 @@ sub api_sudorule_remove_user
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_sudorule_remove_user: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all group no_members raw user version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_sudorule_remove_user: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -21588,10 +25101,21 @@ sub api_sudorule_show
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_sudorule_show: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members raw rights version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_sudorule_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -21663,10 +25187,21 @@ sub api_topologysegment_add
 {
     my ($self, $topologysuffixcn, $cn, %opts) = @_;
 
+    my @args_names = qw(topologysuffixcn cn);
+    my $idx = 0;
+    foreach my $arg ($topologysuffixcn, $cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_topologysegment_add: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all iparepltoposegmentdirection iparepltoposegmentleftnode iparepltoposegmentrightnode nsds5replicaenabled nsds5replicastripattrs nsds5replicatedattributelist nsds5replicatedattributelisttotal nsds5replicatimeout raw setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_topologysegment_add: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -21716,10 +25251,21 @@ sub api_topologysegment_del
 {
     my ($self, $topologysuffixcn, $cn, %opts) = @_;
 
+    my @args_names = qw(topologysuffixcn cn);
+    my $idx = 0;
+    foreach my $arg ($topologysuffixcn, $cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_topologysegment_del: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(continue version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_topologysegment_del: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -21795,10 +25341,21 @@ sub api_topologysegment_find
 {
     my ($self, $topologysuffixcn, $criteria, %opts) = @_;
 
+    my @args_names = qw(topologysuffixcn criteria);
+    my $idx = 0;
+    foreach my $arg ($topologysuffixcn, $criteria) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_topologysegment_find: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all cn iparepltoposegmentdirection iparepltoposegmentleftnode iparepltoposegmentrightnode nsds5replicaenabled nsds5replicastripattrs nsds5replicatedattributelist nsds5replicatedattributelisttotal nsds5replicatimeout pkey_only raw sizelimit timelimit version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_topologysegment_find: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -21868,10 +25425,21 @@ sub api_topologysegment_mod
 {
     my ($self, $topologysuffixcn, $cn, %opts) = @_;
 
+    my @args_names = qw(topologysuffixcn cn);
+    my $idx = 0;
+    foreach my $arg ($topologysuffixcn, $cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_topologysegment_mod: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all delattr nsds5replicaenabled nsds5replicastripattrs nsds5replicatedattributelist nsds5replicatedattributelisttotal nsds5replicatimeout raw rights setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_topologysegment_mod: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -21925,10 +25493,21 @@ sub api_topologysegment_reinitialize
 {
     my ($self, $topologysuffixcn, $cn, %opts) = @_;
 
+    my @args_names = qw(topologysuffixcn cn);
+    my $idx = 0;
+    foreach my $arg ($topologysuffixcn, $cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_topologysegment_reinitialize: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(left right stop version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_topologysegment_reinitialize: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -21982,10 +25561,21 @@ sub api_topologysegment_show
 {
     my ($self, $topologysuffixcn, $cn, %opts) = @_;
 
+    my @args_names = qw(topologysuffixcn cn);
+    my $idx = 0;
+    foreach my $arg ($topologysuffixcn, $cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_topologysegment_show: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all raw rights version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_topologysegment_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -22041,10 +25631,21 @@ sub api_topologysuffix_add
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_topologysuffix_add: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all iparepltopoconfroot raw setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_topologysuffix_add: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -22092,10 +25693,21 @@ sub api_topologysuffix_del
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_topologysuffix_del: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(continue version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_topologysuffix_del: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -22155,10 +25767,21 @@ sub api_topologysuffix_find
 {
     my ($self, $criteria, %opts) = @_;
 
+    my @args_names = qw(criteria);
+    my $idx = 0;
+    foreach my $arg ($criteria) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_topologysuffix_find: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all cn iparepltopoconfroot pkey_only raw sizelimit timelimit version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_topologysuffix_find: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -22218,10 +25841,21 @@ sub api_topologysuffix_mod
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_topologysuffix_mod: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all delattr iparepltopoconfroot raw rights setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_topologysuffix_mod: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -22273,10 +25907,21 @@ sub api_topologysuffix_show
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_topologysuffix_show: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all raw rights version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_topologysuffix_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -22322,10 +25967,21 @@ sub api_topologysuffix_verify
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_topologysuffix_verify: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_topologysuffix_verify: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -22397,10 +26053,21 @@ sub api_trust_add
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_trust_add: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all base_id bidirectional range_size range_type raw realm_admin realm_passwd realm_server setattr trust_secret trust_type version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_trust_add: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -22448,10 +26115,21 @@ sub api_trust_del
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_trust_del: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(continue version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_trust_del: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -22505,10 +26183,21 @@ sub api_trust_fetch_domains
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_trust_fetch_domains: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all raw realm_server rights version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_trust_fetch_domains: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -22574,10 +26263,21 @@ sub api_trust_find
 {
     my ($self, $criteria, %opts) = @_;
 
+    my @args_names = qw(criteria);
+    my $idx = 0;
+    foreach my $arg ($criteria) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_trust_find: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all cn ipantflatname ipantsidblacklistincoming ipantsidblacklistoutgoing ipanttrusteddomainsid pkey_only raw sizelimit timelimit version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_trust_find: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -22639,10 +26339,21 @@ sub api_trust_mod
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_trust_mod: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all delattr ipantsidblacklistincoming ipantsidblacklistoutgoing raw rights setattr version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_trust_mod: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -22688,10 +26399,11 @@ sub api_trust_resolve
 {
     my ($self, %opts) = @_;
 
+
     my @opt_keys = qw(all raw sids version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_trust_resolve: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -22743,10 +26455,21 @@ sub api_trust_show
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_trust_show: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all raw rights version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_trust_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -22802,10 +26525,11 @@ sub api_trustconfig_mod
 {
     my ($self, %opts) = @_;
 
+
     my @opt_keys = qw(addattr all delattr ipantfallbackprimarygroup raw rights setattr trust_type version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_trustconfig_mod: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -22853,10 +26577,11 @@ sub api_trustconfig_show
 {
     my ($self, %opts) = @_;
 
+
     my @opt_keys = qw(all raw rights trust_type version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_trustconfig_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -22920,10 +26645,21 @@ sub api_trustdomain_add
 {
     my ($self, $trustcn, $cn, %opts) = @_;
 
+    my @args_names = qw(trustcn cn);
+    my $idx = 0;
+    foreach my $arg ($trustcn, $cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_trustdomain_add: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all ipantflatname ipanttrusteddomainsid ipanttrustpartner raw setattr trust_type version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_trustdomain_add: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -22973,10 +26709,21 @@ sub api_trustdomain_del
 {
     my ($self, $trustcn, $cn, %opts) = @_;
 
+    my @args_names = qw(trustcn cn);
+    my $idx = 0;
+    foreach my $arg ($trustcn, $cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_trustdomain_del: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(continue version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_trustdomain_del: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -23024,10 +26771,21 @@ sub api_trustdomain_disable
 {
     my ($self, $trustcn, $cn, %opts) = @_;
 
+    my @args_names = qw(trustcn cn);
+    my $idx = 0;
+    foreach my $arg ($trustcn, $cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_trustdomain_disable: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_trustdomain_disable: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -23075,10 +26833,21 @@ sub api_trustdomain_enable
 {
     my ($self, $trustcn, $cn, %opts) = @_;
 
+    my @args_names = qw(trustcn cn);
+    my $idx = 0;
+    foreach my $arg ($trustcn, $cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_trustdomain_enable: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_trustdomain_enable: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -23144,10 +26913,21 @@ sub api_trustdomain_find
 {
     my ($self, $trustcn, $criteria, %opts) = @_;
 
+    my @args_names = qw(trustcn criteria);
+    my $idx = 0;
+    foreach my $arg ($trustcn, $criteria) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_trustdomain_find: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all cn ipantflatname ipanttrusteddomainsid ipanttrustpartner pkey_only raw sizelimit timelimit version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_trustdomain_find: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -23215,10 +26995,21 @@ sub api_trustdomain_mod
 {
     my ($self, $trustcn, $cn, %opts) = @_;
 
+    my @args_names = qw(trustcn cn);
+    my $idx = 0;
+    foreach my $arg ($trustcn, $cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_trustdomain_mod: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all delattr ipantflatname ipanttrusteddomainsid ipanttrustpartner raw rights setattr trust_type version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_trustdomain_mod: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -23352,10 +27143,21 @@ sub api_user_add
 {
     my ($self, $uid, %opts) = @_;
 
+    my @args_names = qw(uid);
+    my $idx = 0;
+    foreach my $arg ($uid) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_user_add: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all carlicense cn departmentnumber displayname employeenumber employeetype facsimiletelephonenumber gecos gidnumber givenname homedirectory initials ipasshpubkey ipatokenradiusconfiglink ipatokenradiususername ipauserauthtype krbprincipalexpiration krbprincipalname l loginshell mail manager mobile no_members noprivate nsaccountlock ou pager postalcode preferredlanguage random raw setattr sn st street telephonenumber title uidnumber usercertificate userclass userpassword version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_user_add: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -23409,10 +27211,21 @@ sub api_user_add_cert
 {
     my ($self, $uid, %opts) = @_;
 
+    my @args_names = qw(uid);
+    my $idx = 0;
+    foreach my $arg ($uid) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_user_add_cert: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members raw usercertificate version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_user_add_cert: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -23466,10 +27279,21 @@ sub api_user_add_manager
 {
     my ($self, $uid, %opts) = @_;
 
+    my @args_names = qw(uid);
+    my $idx = 0;
+    foreach my $arg ($uid) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_user_add_manager: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members raw user version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_user_add_manager: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -23521,10 +27345,21 @@ sub api_user_del
 {
     my ($self, $uid, %opts) = @_;
 
+    my @args_names = qw(uid);
+    my $idx = 0;
+    foreach my $arg ($uid) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_user_del: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(continue no_preserve preserve version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_user_del: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -23570,10 +27405,21 @@ sub api_user_disable
 {
     my ($self, $uid, %opts) = @_;
 
+    my @args_names = qw(uid);
+    my $idx = 0;
+    foreach my $arg ($uid) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_user_disable: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_user_disable: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -23619,10 +27465,21 @@ sub api_user_enable
 {
     my ($self, $uid, %opts) = @_;
 
+    my @args_names = qw(uid);
+    my $idx = 0;
+    foreach my $arg ($uid) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_user_enable: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_user_enable: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -23778,10 +27635,21 @@ sub api_user_find
 {
     my ($self, $criteria, %opts) = @_;
 
+    my @args_names = qw(criteria);
+    my $idx = 0;
+    foreach my $arg ($criteria) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_user_find: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all carlicense cn departmentnumber displayname employeenumber employeetype facsimiletelephonenumber gecos gidnumber givenname homedirectory in_group in_hbacrule in_netgroup in_role in_sudorule initials ipatokenradiusconfiglink ipatokenradiususername ipauserauthtype krbprincipalexpiration krbprincipalname l loginshell mail manager mobile no_members not_in_group not_in_hbacrule not_in_netgroup not_in_role not_in_sudorule nsaccountlock ou pager pkey_only postalcode preferredlanguage preserved raw sizelimit sn st street telephonenumber timelimit title uid uidnumber usercertificate userclass userpassword version whoami);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_user_find: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -23917,10 +27785,21 @@ sub api_user_mod
 {
     my ($self, $uid, %opts) = @_;
 
+    my @args_names = qw(uid);
+    my $idx = 0;
+    foreach my $arg ($uid) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_user_mod: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all carlicense cn delattr departmentnumber displayname employeenumber employeetype facsimiletelephonenumber gecos gidnumber givenname homedirectory initials ipasshpubkey ipatokenradiusconfiglink ipatokenradiususername ipauserauthtype krbprincipalexpiration l loginshell mail manager mobile no_members nsaccountlock ou pager postalcode preferredlanguage random raw rename rights setattr sn st street telephonenumber title uidnumber usercertificate userclass userpassword version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_user_mod: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -23974,10 +27853,21 @@ sub api_user_remove_cert
 {
     my ($self, $uid, %opts) = @_;
 
+    my @args_names = qw(uid);
+    my $idx = 0;
+    foreach my $arg ($uid) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_user_remove_cert: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members raw usercertificate version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_user_remove_cert: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -24031,10 +27921,21 @@ sub api_user_remove_manager
 {
     my ($self, $uid, %opts) = @_;
 
+    my @args_names = qw(uid);
+    my $idx = 0;
+    foreach my $arg ($uid) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_user_remove_manager: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members raw user version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_user_remove_manager: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -24090,10 +27991,21 @@ sub api_user_show
 {
     my ($self, $uid, %opts) = @_;
 
+    my @args_names = qw(uid);
+    my $idx = 0;
+    foreach my $arg ($uid) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_user_show: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members out raw rights version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_user_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -24141,10 +28053,21 @@ sub api_user_stage
 {
     my ($self, $uid, %opts) = @_;
 
+    my @args_names = qw(uid);
+    my $idx = 0;
+    foreach my $arg ($uid) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_user_stage: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(continue version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_user_stage: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -24196,10 +28119,21 @@ sub api_user_status
 {
     my ($self, $uid, %opts) = @_;
 
+    my @args_names = qw(uid);
+    my $idx = 0;
+    foreach my $arg ($uid) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_user_status: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members raw version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_user_status: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -24245,10 +28179,21 @@ sub api_user_undel
 {
     my ($self, $uid, %opts) = @_;
 
+    my @args_names = qw(uid);
+    my $idx = 0;
+    foreach my $arg ($uid) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_user_undel: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_user_undel: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -24294,10 +28239,21 @@ sub api_user_unlock
 {
     my ($self, $uid, %opts) = @_;
 
+    my @args_names = qw(uid);
+    my $idx = 0;
+    foreach my $arg ($uid) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_user_unlock: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_user_unlock: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -24369,10 +28325,21 @@ sub api_vault_add
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_vault_add: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all description ipavaultpublickey ipavaulttype password password_file public_key_file raw service setattr shared username version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_vault_add: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -24438,10 +28405,21 @@ sub api_vault_add_internal
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_vault_add_internal: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all description ipavaultpublickey ipavaultsalt ipavaulttype no_members raw service shared username version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_vault_add_internal: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -24505,10 +28483,21 @@ sub api_vault_add_member
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_vault_add_member: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all group no_members raw service services shared user username version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_vault_add_member: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -24572,10 +28561,21 @@ sub api_vault_add_owner
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_vault_add_owner: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all group no_members raw service services shared user username version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_vault_add_owner: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -24641,10 +28641,21 @@ sub api_vault_archive
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_vault_archive: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all data in override_password password password_file raw service shared username version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_vault_archive: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -24706,10 +28717,21 @@ sub api_vault_archive_internal
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_vault_archive_internal: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all nonce raw service session_key shared username vault_data version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_vault_archive_internal: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -24763,10 +28785,21 @@ sub api_vault_del
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_vault_del: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(continue service shared username version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_vault_del: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -24840,10 +28873,21 @@ sub api_vault_find
 {
     my ($self, $criteria, %opts) = @_;
 
+    my @args_names = qw(criteria);
+    my $idx = 0;
+    foreach my $arg ($criteria) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_vault_find: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all cn description ipavaulttype no_members pkey_only raw service services shared sizelimit timelimit username users version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_vault_find: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -24923,10 +28967,21 @@ sub api_vault_mod
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_vault_mod: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all change_password description ipavaultpublickey ipavaultsalt ipavaulttype new_password new_password_file old_password old_password_file private_key private_key_file public_key_file raw service shared username version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_vault_mod: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -25000,10 +29055,21 @@ sub api_vault_mod_internal
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_vault_mod_internal: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(addattr all delattr description ipavaultpublickey ipavaultsalt ipavaulttype no_members raw rights service setattr shared username version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_vault_mod_internal: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -25067,10 +29133,21 @@ sub api_vault_remove_member
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_vault_remove_member: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all group no_members raw service services shared user username version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_vault_remove_member: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -25134,10 +29211,21 @@ sub api_vault_remove_owner
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_vault_remove_owner: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all group no_members raw service services shared user username version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_vault_remove_owner: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -25203,10 +29291,21 @@ sub api_vault_retrieve
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_vault_retrieve: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all out password password_file private_key private_key_file raw service shared username version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_vault_retrieve: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -25264,10 +29363,21 @@ sub api_vault_retrieve_internal
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_vault_retrieve_internal: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all raw service session_key shared username version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_vault_retrieve_internal: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -25327,10 +29437,21 @@ sub api_vault_show
 {
     my ($self, $cn, %opts) = @_;
 
+    my @args_names = qw(cn);
+    my $idx = 0;
+    foreach my $arg ($cn) {
+        $idx += 1;    
+        my $args_name = shift(@args_names);
+        if (! defined($arg)) {
+            $self->error("api_vault_show: undefined mandatory $idx-th argument $args_name");
+            return;
+        };
+    };
+
     my @opt_keys = qw(all no_members raw rights service shared username version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_vault_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -25376,10 +29497,11 @@ sub api_vaultconfig_show
 {
     my ($self, %opts) = @_;
 
+
     my @opt_keys = qw(all raw transport_out version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_vaultconfig_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -25437,10 +29559,11 @@ sub api_vaultcontainer_add_owner
 {
     my ($self, %opts) = @_;
 
+
     my @opt_keys = qw(all group no_members raw service services shared user username version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_vaultcontainer_add_owner: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -25488,10 +29611,11 @@ sub api_vaultcontainer_del
 {
     my ($self, %opts) = @_;
 
+
     my @opt_keys = qw(continue service shared username version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_vaultcontainer_del: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -25549,10 +29673,11 @@ sub api_vaultcontainer_remove_owner
 {
     my ($self, %opts) = @_;
 
+
     my @opt_keys = qw(all group no_members raw service services shared user username version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_vaultcontainer_remove_owner: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };
@@ -25606,10 +29731,11 @@ sub api_vaultcontainer_show
 {
     my ($self, %opts) = @_;
 
+
     my @opt_keys = qw(all no_members raw rights service shared username version);
     foreach my $key (keys %opts) {
         if (! grep {$key eq $_} @opt_keys) {
-            $self->error("Not a valid option key: $key (allowed @opt_keys)");
+            $self->error("api_vaultcontainer_show: not a valid option key: $key (allowed @opt_keys)");
             return;
         };
     };

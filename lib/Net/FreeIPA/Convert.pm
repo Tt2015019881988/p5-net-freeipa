@@ -87,4 +87,10 @@ sub convert
     }
 }
 
+=pod
+
+=back
+
+=cut
+
 1;
