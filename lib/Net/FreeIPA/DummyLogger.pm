@@ -32,5 +32,10 @@ foreach my $i (qw(error warn info verbose debug)) {
 }
 use strict 'refs';
 
+=pod
+
+=back
+
+=cut
 
 1;

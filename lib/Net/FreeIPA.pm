@@ -31,12 +31,6 @@ See L<Net::FreeIPA::RPC::new_client> for authentication details.
     }
 
 
-=cut
-
-=pod
-
-=back
-
 =head2 Private methods
 
 =over
@@ -73,5 +67,11 @@ sub _initialize
     # Return 1, $self holds any errors from new_client in answer attribute
     return 1;
 }
+
+=pod
+
+=back
+
+=cut
 
 1;

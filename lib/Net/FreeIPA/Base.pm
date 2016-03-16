@@ -46,8 +46,6 @@ foreach my $i (qw(error warn info debug)) {
 }
 use strict 'refs';
 
-
-
 =pod
 
 =back
