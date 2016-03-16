@@ -1,0 +1,32 @@
+#
+# This module is generated with [% script_name %]
+# Do not modify.
+#
+
+package Net::FreeIPA::[% module_name %];
+
+use strict;
+use warnings;
+
+use version;
+our \$VERSION = version->new("v[% version %]");
+
+=pod
+
+=head2 Generated API wrapper methods
+
+=over
+
+=cut
+
+[% FOREACH command IN commands.pairs %]
+[%      INCLUDE command.tt name=command.key details=command.value %]
+[% END %]
+
+=pod
+
+=back
+
+=cut
+
+1;

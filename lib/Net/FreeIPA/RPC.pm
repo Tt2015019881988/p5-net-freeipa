@@ -119,6 +119,7 @@ sub new_client
         $self->{id} = 0;
         $self->{json} = JSON::XS->new();
         $self->{json}->canonical(1); # sort the keys, to create reproducable results
+        $self->{APIversion} = $Net::FreeIPA::API::VERSION;
 
         return 1;
     } else {
@@ -144,6 +145,13 @@ sub post
     # Reset any previous answer
     $self->{answer} = undef;
 
+    # For now, only support the API version from Net::FreeIPA::API
+    if ($self->{APIversion}) {
+        my $version = $self->{APIversion}->stringify();
+        $version =~ s/^v//;
+        $opts->{version} = $version;
+    }
+
     my $data = {
         method => $command,
         params => [$args, $opts],
@@ -152,6 +160,7 @@ sub post
 
     # For convenience
     my $rc = $self->{rc};
+    return if (! defined($rc));
 
     $rc->POST($IPA_URL_JSON, $self->{json}->encode($data));
 
@@ -208,6 +217,29 @@ sub rpc
     };
 
     return $ret;
+}
+
+
+=item get_api_commands
+
+Retrieve the API command metatdata.
+
+The result attribute holds the commands hashref.
+
+Returns 1 on success, undef on failure.
+
+=cut
+
+sub get_api_metadata
+{
+    my ($self) = @_;
+
+    my $ec = $self->rpc('json_metadata', [], {command => "all"});
+
+    # All commands are in result->commands
+    $self->{result} = $self->{answer}->{result}->{commands} if $ec;
+
+    return $ec;
 }
 
 =pod

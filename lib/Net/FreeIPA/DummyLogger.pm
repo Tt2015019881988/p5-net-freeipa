@@ -5,7 +5,7 @@ use warnings;
 
 =head1 NAME
 
-Net::FreeIPA::Logger provides dummy logger with log4perl interface
+Net::FreeIPA::DummyLogger provides dummy logger with log4perl interface
 
 =head2 Public methods
 

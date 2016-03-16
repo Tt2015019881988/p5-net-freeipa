@@ -8,10 +8,11 @@ use Readonly;
 
 # Convert dispatch table
 Readonly::Hash my %CONVERT_DISPATCH => {
-    string => sub {my $val = shift; return "$val";}, # stringify
+    str => sub {my $val = shift; return "$val";}, # stringify
+    unicode => sub {my $val = shift; return "$val";}, # stringify
     int => sub {my $val = shift; return 0 + $val;}, # Force internal conversion to int
     float => sub {my $val = shift; return 1.0 * $val;}, # Force internal convertion to float
-    boolean => sub {my $val = shift; return $val ? Types::Serialiser::true : Types::Serialiser::false;},
+    bool => sub {my $val = shift; return $val ? Types::Serialiser::true : Types::Serialiser::false;},
 };
 
 =head1 NAME

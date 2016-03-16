@@ -6,6 +6,8 @@ use Test::MockModule;
 
 use Net::FreeIPA;
 
+use Net::FreeIPA::API;
+
 my $mock_rest = Test::MockModule->new('REST::Client');
 my $mockbase = Test::MockModule->new("Net::FreeIPA::Base");
 
@@ -40,7 +42,7 @@ is($f->{rc}, $args->[0], "REST::Client instance is save on success");
 is($f->{id}, 0, 'id attribute is set');
 isa_ok($f->{json}, 'JSON::XS', 'json attribute is JSON::XS instance');
 ok($f->{json}->canonical(), 'json attribute has canonical flag set');
-
+is($f->{APIversion}, $Net::FreeIPA::API::VERSION, "API VERSION set");
 
 my $rc_cfg = $args->[0]->{_config};
 is($rc_cfg->{ca}, "/etc/ipa/ca.crt", "ca.crt set");
@@ -121,7 +123,7 @@ is($rc_cfg->{ca}, "/etc/ipa/ca.crt", "ca.crt set");
 is($rc_cfg->{host}, "https://myhost.example.com", "ca.crt set");
 
 is($args->[1], '/ipa/session/json', 'json url');
-is($args->[2], '{"id":100,"method":"mycommand","params":[["a","b","c"],{"int":1,"opt":"ok"}]}', 'JSON API body');
+is($args->[2], '{"id":100,"method":"mycommand","params":[["a","b","c"],{"int":1,"opt":"ok","version":"2.156"}]}', 'JSON API body');
 ok(! defined($args->[3]), 'No extra headers');
 
 is_deeply($args->[0]->{_headers}, {
@@ -173,6 +175,31 @@ ok(! defined($f->rpc("mycommand", [qw(a b c)], {opt => 'ok', int => 1})),
    "failed rpc with succesful post and error in answer");
 is($error->[0], 'post got error ({"some":"error"})', 'Error after failed post');
 ok(! defined($f->{result}), "Result attribute is reset");
+
+
+=head2 test get_api_metadata
+
+=cut
+
+$error = undef;
+$args = undef;
+$code = 200;
+$content = '{"a":1,"result":{"commands":{"fake":1}}}'; # JSON with result->commands
+$f->{id} = 101;
+my $version = delete $f->{APIversion};
+ok($f->get_api_metadata(),
+    "succesful rpc call return 1 for get_api_metadata");
+ok(! defined($error), 'No error after successful post');
+is_deeply($f->{result}, {fake => 1}, "Commands in result attribute");
+
+isa_ok($args->[0], 'REST::Client', "REST::Client->POST called");
+is($args->[1], '/ipa/session/json', 'json url');
+is($args->[2], '{"id":101,"method":"json_metadata","params":[[],{"command":"all"}]}',
+   'JSON API body for json_metadata with no version and all commands');
+ok(! defined($args->[3]), 'No extra headers');
+
+# restore version
+$f->{APIversion} = $version;
 
 
 done_testing();

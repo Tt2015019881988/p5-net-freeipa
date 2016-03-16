@@ -5,342 +5,107 @@ use warnings;
 
 use Readonly;
 use Data::Dumper;
+use Log::Log4perl qw(get_logger :levels);
 
+BEGIN {
+    push(@INC, 'lib');
+};
+
+use Net::FreeIPA;
+use Template;
 
 use Cwd qw(abs_path);
 use File::Basename qw(dirname basename);
 
 
-Readonly my $PWD => dirname(abs_path($0));
-Readonly my $SCRIPTNAME => basename($0);
-Readonly my $DEBUG => $ENV{GEN_API_DEBUG};
+Readonly my $GEN_API_DIR => dirname(abs_path($0));
 
-Readonly my $API => 'API.txt';
-Readonly::Hash my %API_CLASS_MAP => {
-    Flag => 'boolean',
-    Bool => 'boolean',
-
-    Str => 'string',
-    StrEnum => 'string',
-    IA5Str => 'string',
-    DNParam => 'string',
-    File => 'string',
-    DeprecatedParam => 'string',
-    DNSNameParam => 'string',
-    A6Record => 'string',
-    AAAARecord => 'string',
-    AFSDBRecord => 'string',
-    APLRecord => 'string',
-    ARecord => 'string',
-    CERTRecord => 'string',
-    CNAMERecord => 'string',
-    DHCIDRecord => 'string',
-    DLVRecord => 'string',
-    DNAMERecord => 'string',
-    DSRecord => 'string',
-    TXTRecord => 'string',
-    SSHFPRecord => 'string',
-    SRVRecord => 'string',
-    TLSARecord => 'string',
-    NAPTRRecord => 'string',
-    MXRecord => 'string',
-    HIPRecord => 'string',
-    IPSECKEYRecord => 'string',
-    KEYRecord => 'string',
-    KXRecord => 'string',
-    LOCRecord => 'string',
-    NSECRecord => 'string',
-    NSRecord => 'string',
-    PTRRecord => 'string',
-    RPRecord => 'string',
-    RRSIGRecord => 'string',
-    SIGRecord => 'string',
-    SPFRecord => 'string',
-    Record => 'string',
-    Record => 'string',
-    Password => 'string',
-    OTPTokenKey => 'string',
-    DNOrURL => 'string',
-
-    DateTime => 'datetime',
-
-    Bytes => 'bytes',
-
-    Decimal => 'float',
-
-    Int => 'int',
-    IntEnum => 'int',
-
-    Entry => 'hashref',
-
-    ListOfEntries => 'arrayref',
-    Any => 'arrayref',
-
-    Output => 'output', # do nothing?
-    PrimaryKey => 'output', # ?
-    ListOfPrimaryKeys => 'output',
-};
+Readonly my $SCRIPT_NAME => basename($0);
 
 Readonly my $MODULE_NAME => 'API';
 
-Readonly my $MODULE_HEADER => <<"EOF";
-#
-# This module is generated with $SCRIPTNAME
-# Do not modify.
-#
+=head1 SYNOPSIS
 
-package Net::FreeIPA::$MODULE_NAME;
+Generate the API.pm from JSON API
 
-use strict;
-use warnings;
-
-=pod
-
-=head2 Generated API wrapper methods
-
-=over
-
-=cut
-
-EOF
-
-Readonly my $MODULE_FOOTER => <<'EOF';
-
-=pod
-
-=back
-
-=cut
-
-1;
-EOF
-
+    GEN_API_DEBUG=1 GEN_API_HOSTNAME=host.example.com ./gen_api/gen_api.pl
 
 =head2 Functions
 
 =over
 
-=item parse_api
+=item get_api
 
-Read API.txt and convert in hashref with command as key,
-and args/opts hashref as value.
+Get the API from the JSON API.
 
-=cut
+Args/opts are passed to C<<Net::FreeIPA->new>>
+(so at least the hostname should be set).
 
-sub parse_api
-{
-
-    open FH, "$PWD/$API" || die("Failed to open API $API");
-    my $txt  = join('', <FH>);
-    close FH;
-
-    my $regex = qr{^command:\s*(?<command>\w+)\s*\n}ms;
-    my @raw_api_split = split($regex, $txt);
-
-    # shift first (empty or invalid) entry
-    shift(@raw_api_split);
-
-    my %raw_api = @raw_api_split;
-
-    my $api;
-    foreach my $command (keys %raw_api) {
-        my $res = {
-            args => [],
-            arg => [],
-            option => [],
-            output => [],
-        };
-        foreach my $line (split(/\s*\n\s*/, $raw_api{$command})) {
-            if ($line =~ m/^([\w-]+):\s*(.*)/) {
-                my $type = $1;
-                my $data = $2;
-
-                if ($type eq 'args') {
-                    $res->{args} = [split(',', $data)];
-                } elsif (grep {$type eq $_} qw(arg option output)) {
-                    push(@{$res->{$type}}, parse_api_klass($data));
-                }
-            }
-        };
-
-        $api->{$command} = $res;
-    }
-
-    print "Parsed API ", Dumper($api) if $DEBUG;
-    return $api;
-}
-
-=item parse_api_klass
-
-Parse API class type and name, returns hashref
+Return version and commands hashref.
 
 =cut
 
-sub parse_api_klass
+sub get_api
 {
-    my ($data) = @_;
-    my $res;
 
-    if ($data =~ m/^(?<class>\w+)\(\s*['"](?<name>[\w-]+)(?<multi>[?*+])?['"](?<remainder>.*)?\s*\)\s*$/) {
-        my $class = $API_CLASS_MAP{$+{class}};
-        if ($class) {
-            $res->{class} = $class;
-            $res->{name} = $+{name};
-            $res->{multi} = $+{multi};
+    my ($hostname, %opts) = @_;
+    $opts{log} = mklogger();
+    my $f = Net::FreeIPA->new($hostname, %opts);
+    die("Failed to initialise the rest client") if ! $f->{rc};
 
-            # Not for output
-            my @remainder = split(/,\s*(\w+)=/, $+{remainder} || '');
+    # most recent
+    delete $f->{APIversion};
 
-            # shift first (empty or invalid) entry
-            my $first = shift(@remainder);
-            # TODO: non-empty first is from output related fields
+    $f->get_api_metadata() || die("Failed to get metdata ".Dumper($f));
 
+    # Ugliest way to determine proper version?
+    my $msgs = $f->{answer}->{result}->{messages};
+    my @msg = map {$_->{message}} grep {$_->{name} eq 'VersionMissing'} @$msgs;
+    die("Failed to get version missing message ".Dumper($msgs)) if ! @msg;
 
-            my %remainder  = @remainder;
-            while (my ($k, $v) = each(%remainder)) {
-                if($v eq 'False') {
-                    $v = 0;
-                } elsif ($v eq 'True') {
-                    $v = 1;
-                } else {
-                    # strip any quotes and unicode
-                    $v =~ s/^\s*u?(['"])(.*)\1\s*/$2/;
-                }
-                $res->{remainder}->{$k} = $v;
-            }
-        } else {
-            die("Unknown API class $1 for data $data");
-        }
+    my $version;
+    if ($msg[0] =~ m/API\s+version,?\s+(\d+\.\d+(?:\.\d+)?)/) {
+        $version = $1;
+    } else {
+        die("Could not determine version from @msg");
     }
-    die("Failed to parse API klass from $data") if not $res;
 
-    return $res;
+
+    return $version, $f->{result};
 }
 
 
-=item add_command
-
-Generate method code for command and its details
-
-=cut
-
-sub add_command
+sub mklogger
 {
-    my ($command, $details) = @_;
+    my $logger = get_logger("Net::FreeIPA");
 
-    my $command_name = "api_$command";
-
-    # This is ordered
-    my @opt_keys = map {$_->{name}} @{$details->{option}};
-    my @opt_types = map {$_->{class}} @{$details->{option}};
-
-    my @args = map {$_->{name}} @{$details->{arg}};
-    my @args_vars = map {'$'.$_} @args;
-    my $args_vars_txt = join(", ", @args_vars);
-
-    my $args_check_txt = '';
-    my $arg_pod = "No arguments.\n";
-    if (@args) {
-        $arg_pod = "Arguments\n\n=over\n\n=item ";
-        $arg_pod .= join("\n\n=item ", @args);
-        $arg_pod .= "\n\n=back\n";
-
-        $args_check_txt = <<EOF_ARGS_CHECK;
-    my \@args_names = qw(@args);
-    my \$idx = 0;
-    foreach my \$arg ($args_vars_txt) {
-        \$idx += 1;    
-        my \$args_name = shift(\@args_names);
-        if (! defined(\$arg)) {
-            \$self->error("$command_name: undefined mandatory \$idx-th argument \$args_name");
-            return;
-        };
+    if ($ENV{GEN_API_DEBUG}) {
+        $logger->level($DEBUG);
+    } else {
+        $logger->level($INFO);
     };
-EOF_ARGS_CHECK
+    my $appender = Log::Log4perl::Appender->new(
+        "Log::Log4perl::Appender::Screen",
+        mode     => "append",
+        );
+    my $layout =
+        Log::Log4perl::Layout::PatternLayout->new(
+            "%d [%p] %F{1}:%L %M - %m%n");
+    $appender->layout($layout);
+    $logger->add_appender($appender);
 
-    }
-
-    my @method_args = qw($self);
-    push(@method_args, @args_vars);
-    push (@method_args, '%opts') if @opt_keys;
-
-    my $method_arg_txt = join(', ', @method_args);
-
-    # Pass the args and opts as references
-    my @rpc_args = ("'$command'");
-    # Add arrayref with args
-    push(@rpc_args, "[".join(', ', map {'$'.$_} @args)."]");
-    # Add arrayref with args types
-    push(@rpc_args, "[".join(', ', map {"'$_->{class}'"} @{$details->{arg}})."]");
-    # Add options hasref
-    push(@rpc_args, @opt_keys ? '\%opts' : '{}');
-    # Add generated opt_type_map
-    push(@rpc_args, @opt_keys ? '\%opt_type_map' : '{}');
-
-
-    my $rpc_arg_txt = join(', ', @rpc_args);
-
-    my $opts_check_txt = '';
-    my $opt_pod = "No options.\n";
-    if (@opt_keys) {
-        $opt_pod = "Options\n\n=over\n\n=item ";
-        $opt_pod .= join("\n\n=item ", @opt_keys);
-        $opt_pod .= "\n\n=back\n";
-
-        $opts_check_txt = <<EOF_OPTS_CHECK;
-    my \@opt_keys = qw(@opt_keys);
-    foreach my \$key (keys \%opts) {
-        if (! grep {\$key eq \$_} \@opt_keys) {
-            \$self->error("$command_name: not a valid option key: \$key (allowed \@opt_keys)");
-            return;
-        };
-    };
-    my \@opt_types = qw(@opt_types);
-    my \%opt_type_map;
-    # Hash slice to create the map
-    \@opt_type_map{\@opt_keys} = \@opt_types;
-EOF_OPTS_CHECK
-    }
-
-    my $txt = <<EOF_METHOD;
-
-=item $command_name
-
-Wrapper method for $command API
-
-=over
-
-=item $arg_pod
-
-=item $opt_pod
-
-=back
-
-=cut
-
-sub $command_name
-{
-    my ($method_arg_txt) = \@_;
-
-$args_check_txt
-$opts_check_txt
-
-    return \$self->rpc_api($rpc_arg_txt);
+    return $logger;
 }
 
-EOF_METHOD
 
-    print "add_command $command details ".Dumper($details), "\n generated code\n$txt\n" if $DEBUG;
-
-    return $txt;
-}
+my $f = Net::FreeIPA->new();
 
 
 sub make_module
 {
     my ($text) = @_;
 
-    my $fn = "$PWD/../lib/Net/FreeIPA/$MODULE_NAME.pm";
+    my $fn = "$GEN_API_DIR/../lib/Net/FreeIPA/$MODULE_NAME.pm";
 
     open FH, "> $fn";
     print FH $text;
@@ -352,17 +117,46 @@ sub make_module
 
 sub main
 {
-    my $api = parse_api();
+    my ($version, $commands) = get_api($ENV{GEN_API_HOSTNAME});
 
-    # Use string concat, otherwise $text becomes a readonly,
-    # and adding more text won't work.
-    my $text = "".$MODULE_HEADER;
+    my $tt = Template->new({
+        INCLUDE_PATH => $GEN_API_DIR,
+        INTERPOLATE  => 1,
+    }) || die "$Template::ERROR\n";
 
-    foreach my $command (sort keys %$api) {
-        $text .= add_command($command, $api->{$command});
-    }
+    my $vars = {
+        prefix => 'api_',
+        version => $version,
+        commands => $commands,
+        module_name => $MODULE_NAME,
+        script_name => $SCRIPT_NAME,
+        join_name => sub {my $args = shift; return join(' ', map {$_->{name}} @$args); },
+        join_name_vars => sub {my $args = shift; return join(', ', map {'$'.$_->{name}} @$args)},
+        join_type => sub {my $args = shift; return join(' ', map {$_->{type}} @$args) },
+        ref => sub {return ref(shift) },
+        check_hash => sub {
+            my $array = shift;
+            my @newarray;
+            foreach my $el (@$array) {
+                if (ref($el) eq '') {
+                    my $oldel = $el;
+                    $oldel =~ s/[*+?]$//;
+                    $el = {
+                        name => $oldel,
+                        type => 'unknown',
+                        class => 'unknown',
+                        doc => 'unknown',
+                    };
+                }
+                push(@newarray, $el);
+            };
+            return \@newarray;
+        }
+    };
 
-    $text .= $MODULE_FOOTER;
+    my $text = '';
+    $tt->process('api.tt', $vars, \$text)
+        || die $tt->error(), "\n";
 
     make_module($text);
 }
