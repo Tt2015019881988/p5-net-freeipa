@@ -48,9 +48,9 @@ $mockrpc->mock('rpc', sub {
 
 is($f->rpc_api('do_something',
                [1, 2.5], [qw(bool float)],
-               {false => 0, int => 1, str => 'a string'},
+               {false => 0, int => 1, string => 'a string'},
                {false => 'bool', int => 'int', string => 'str'}),
-   'do_something[true,2.5]{"false":false,"int":1,"str":"a string"}',
+   'do_something[true,2.5]{"false":false,"int":1,"string":"a string"}',
    "rpc_api converts and calls rpc method as expected");
 
 done_testing();

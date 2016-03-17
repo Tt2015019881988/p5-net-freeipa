@@ -78,6 +78,7 @@ If a type is not found in the dispatch tabel, log a warning and return the value
 sub convert
 {
     my ($self, $value, $type) = @_;
+    
     my $funcref = $CONVERT_DISPATCH{$type};
 
     if (defined($funcref)) {

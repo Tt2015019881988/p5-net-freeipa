@@ -119,7 +119,7 @@ sub new_client
         $self->{id} = 0;
         $self->{json} = JSON::XS->new();
         $self->{json}->canonical(1); # sort the keys, to create reproducable results
-        $self->{APIversion} = $Net::FreeIPA::API::VERSION;
+        $self->set_api_version('API');
 
         return 1;
     } else {
@@ -128,6 +128,47 @@ sub new_client
         $self->error("Login failed (url $url$login_url code $code): $content");
         return;
     }
+}
+
+=item set_apiversion
+
+Set the API version for this session.
+
+If no version string is passed, the C<api_version> attribute
+is set to undef (effecitively removing it), and this is typically
+interpreted by the server as using the latest version.
+
+If the string C<API> is passed as version,
+it will use verison from C<Net::FreeIPA::API::VERSION>.
+
+If the version is a C<version> instance, the used version is
+stringified and any leading 'v' is removed.
+
+Returns the version that was set version on success, undef otherwise.
+(If you want to get the current version, use the C<api_version> attribute.
+This method will always set a version.)
+
+=cut
+
+sub set_api_version
+{
+    my ($self, $version) = @_;
+
+    if (defined($version)) {
+        if ( (! ref($version)) && ($version eq 'API')) {
+            $version = $Net::FreeIPA::API::VERSION;
+            $self->debug("set_api_version using API version $version");
+        };
+
+        if (ref($version) eq 'version') {
+            $version = $version->stringify();
+            $version =~ s/^v//;
+        }
+    };
+
+    $self->{api_version} = $version;
+    $self->debug("set api_version to ".(defined($version) ? $version : '<undef>'));
+    return $version;
 }
 
 =item post
@@ -146,10 +187,8 @@ sub post
     $self->{answer} = undef;
 
     # For now, only support the API version from Net::FreeIPA::API
-    if ($self->{APIversion}) {
-        my $version = $self->{APIversion}->stringify();
-        $version =~ s/^v//;
-        $opts->{version} = $version;
+    if ($self->{api_version}) {
+        $opts->{version} = $self->{api_version};
     }
 
     my $data = {
@@ -190,30 +229,61 @@ sub post
 =item rpc
 
 Make a JSON API rpc. Return 1 on succes, undef on failure.
+
+Arguments
+
+=over
+
+=item command: API command (passed to C<post> method)
+
+=item args: arrayref with API command arguments (passed to C<post> method)
+
+=item opts: hashref with API command options (passed to C<post> method)
+
+=back
+
+Options
+
+=over
+
+=item result_path
+
+A path-like string, indicating which subtree of the decoided JSON response
+should be set as result attribute (default C<result/result>).
+
+=back
+
 Processed result is stored in the result attribute.
 
 =cut
 
 sub rpc
 {
-    my $self = shift;
+    my ($self, $command, $args, $opts, $result_path) = @_;
+
+    $result_path = 'result/result' if (! defined($result_path));
 
     # Reset any previous result
     $self->{result} = undef;
 
-    return if (! $self->post(@_));
+    return if (! $self->post($command, $args, $opts));
 
     my $ret;
+
     my $error = $self->{answer}->{error};
     if ($error) {
         $self->error("post got error (".$self->{json}->encode($error).")");
     } else {
         $ret = 1;
 
-        my $full_result = $self->{answer}->{result};
-        $self->warn("rpc got truncated result") if $full_result->{truncated};
+        $self->warn("rpc got truncated result") if $self->{answer}->{result}->{truncated};
 
-        $self->{result} = $full_result->{result};
+        my $res = $self->{answer};
+        # remove any "empty" paths
+        foreach my $subpath (grep {$_} split('/', $result_path)) {
+            $res = $res->{$subpath} if (defined($res));
+        };
+        $self->{result} = $res;
     };
 
     return $ret;
@@ -222,24 +292,42 @@ sub rpc
 
 =item get_api_commands
 
-Retrieve the API command metatdata.
+Retrieve the API commands metadata.
 
 The result attribute holds the commands hashref.
 
-Returns 1 on success, undef on failure.
+Returns commands hasref on success, undef on failure.
 
 =cut
 
-sub get_api_metadata
+sub get_api_commands
 {
     my ($self) = @_;
 
-    my $ec = $self->rpc('json_metadata', [], {command => "all"});
+    return $self->rpc('json_metadata', [], {command => "all"}, 'result/commands') ? $self->{result} : undef;
+}
 
-    # All commands are in result->commands
-    $self->{result} = $self->{answer}->{result}->{commands} if $ec;
 
-    return $ec;
+=item get_api_version
+
+Retrieve the API version from the server.
+
+The result attribute holds the version.
+
+(To retrieve the latest version remove
+the C<api_version> attribute first).
+
+Does not set the version.
+
+Returns the C<api_version> on success, undef on failure.
+
+=cut
+
+sub get_api_version
+{
+    my ($self) = @_;
+
+    return $self->rpc('env', ['api_version'], {}, 'result/result/api_version') ? $self->{result} : undef;
 }
 
 =pod

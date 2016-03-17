@@ -54,22 +54,13 @@ sub get_api
     die("Failed to initialise the rest client") if ! $f->{rc};
 
     # most recent
-    delete $f->{APIversion};
+    delete $f->{api_version};
 
-    $f->get_api_metadata() || die("Failed to get metdata ".Dumper($f));
-
-    # Ugliest way to determine proper version?
-    my $msgs = $f->{answer}->{result}->{messages};
-    my @msg = map {$_->{message}} grep {$_->{name} eq 'VersionMissing'} @$msgs;
-    die("Failed to get version missing message ".Dumper($msgs)) if ! @msg;
-
-    my $version;
-    if ($msg[0] =~ m/API\s+version,?\s+(\d+\.\d+(?:\.\d+)?)/) {
-        $version = $1;
-    } else {
-        die("Could not determine version from @msg");
-    }
-
+    $f->get_api_version() || die("Failed to get api_version ".Dumper($f));
+    my $version = $f->{result};
+    $f->set_api_version($version);
+    
+    $f->get_api_commands() || die("Failed to get commands metdata ".Dumper($f));
 
     return $version, $f->{result};
 }
