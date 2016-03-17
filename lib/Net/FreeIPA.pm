@@ -16,7 +16,7 @@ Net::FreeIPA is a perl FreeIPA JSON API client class
 
 =head1 SYNOPSIS
 
-'api user-find' equivalent using API call and basic result postprocessing.
+'ipa user-find' equivalent using API call and basic result postprocessing.
 The connection in this example will (try to) use kerberos authentication.
 See L<Net::FreeIPA::RPC::new_client> for authentication details.
 
