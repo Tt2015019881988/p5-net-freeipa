@@ -46,6 +46,10 @@ Handle the actual initializtion of new. Return 1 on success, undef otherwise.
 An instance that can be used for logging (with error/warn/info/debug methods)
 (e.g. L<LOG::Log4perl>).
 
+=item debugapi
+
+When true, log the JSON POST and JSON reply data with debug.
+
 =back
 
 All other arguments and options are passed to L<Net::FreeIPA::RPC::new_client>
@@ -60,6 +64,8 @@ sub _initialize
     my ($self, $hostname, %opts) = @_;
 
     $self->{log} = delete $opts{log} || Net::FreeIPA::DummyLogger->new();
+
+    $self->{debugapi} = delete $opts{debugapi};
 
     # Pass all other options to new_client
     my $nc = $self->new_client($hostname, %opts) if $hostname;

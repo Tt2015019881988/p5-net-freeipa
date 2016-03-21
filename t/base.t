@@ -5,7 +5,7 @@ use Test::More;
 
 use Net::FreeIPA;
 
-my $f = Net::FreeIPA->new();
+my $f = Net::FreeIPA->new("host", debugapi => 1);
 
 diag "Net::FreeIPA instance ", explain $b;
 
@@ -17,5 +17,7 @@ foreach my $mod ('', qw(Base API RPC)) {
 
 isa_ok($f->{log}, 'Net::FreeIPA::DummyLogger',
        "Log atribute is initialized with a DummyLogger");
+
+ok($f->{debugapi}, "debugapi attribute is set");
 
 done_testing();

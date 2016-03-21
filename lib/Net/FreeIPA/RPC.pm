@@ -201,7 +201,9 @@ sub post
     my $rc = $self->{rc};
     return if (! defined($rc));
 
-    $rc->POST($IPA_URL_JSON, $self->{json}->encode($data));
+    my $json_req = $self->{json}->encode($data);
+    $self->debug("JSON POST $json_req") if $self->{debugapi};
+    $rc->POST($IPA_URL_JSON, $json_req);
 
     my $code = $rc->responseCode();
     my $content = $rc->responseContent();
@@ -210,7 +212,7 @@ sub post
     my $ret;
     if ($code == 200) {
         $ans = decode_json($content);
-        $self->debug("Successful POST");
+        $self->debug("Successful JSON POST".($self->{debugapi} ? " JSON $content" : ""));
         $ret = 1;
     } else {
         $ans = $content;
