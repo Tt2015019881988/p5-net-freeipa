@@ -8,7 +8,7 @@ use warnings;
 use Net::FreeIPA::DummyLogger;
 
 use parent qw(Net::FreeIPA::Base Net::FreeIPA::RPC Net::FreeIPA::API
-              Net::FreeIPA::Convert);
+              Net::FreeIPA::Convert Net::FreeIPA::Common);
 
 =head1 NAME
 

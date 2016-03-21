@@ -9,7 +9,7 @@ my $f = Net::FreeIPA->new("host", debugapi => 1);
 
 diag "Net::FreeIPA instance ", explain $b;
 
-foreach my $mod ('', qw(Base API RPC)) {
+foreach my $mod ('', qw(Base API RPC Convert Common)) {
     my $module = "Net::FreeIPA";
     $module .= "::$mod" if $mod;
     isa_ok($f, "$module", "instance is a $module instance");
