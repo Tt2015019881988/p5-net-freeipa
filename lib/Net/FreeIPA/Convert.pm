@@ -9,10 +9,14 @@ use Readonly;
 # Convert dispatch table
 Readonly::Hash my %CONVERT_DISPATCH => {
     str => sub {my $val = shift; return "$val";}, # stringify
-    unicode => sub {my $val = shift; return "$val";}, # stringify
     int => sub {my $val = shift; return 0 + $val;}, # Force internal conversion to int
     float => sub {my $val = shift; return 1.0 * $val;}, # Force internal convertion to float
     bool => sub {my $val = shift; return $val ? Types::Serialiser::true : Types::Serialiser::false;},
+};
+
+# Aliases for each dispatch
+Readonly::Hash my %CONVERT_ALIAS => {
+    str => [qw(unicode DNSName)],
 };
 
 =head1 NAME
@@ -78,8 +82,15 @@ If a type is not found in the dispatch tabel, log a warning and return the value
 sub convert
 {
     my ($self, $value, $type) = @_;
-    
+
     my $funcref = $CONVERT_DISPATCH{$type};
+
+    if(!defined($funcref)) {
+        # is it an alias?
+        foreach my $tmpref (sort keys %CONVERT_ALIAS) {
+            $funcref = $CONVERT_DISPATCH{$tmpref} if (grep {$_ eq $type} @{$CONVERT_ALIAS{$tmpref}});
+        }
+    };
 
     if (defined($funcref)) {
         return $funcref->($value);
