@@ -8,9 +8,11 @@ The connection in this example will (try to) use kerberos authentication.
 (See `Net::FreeIPA::RPC::new_client` for authentication details.)
 
 ```perl
+use Net::FreeIPA;
+
 my $fi = Net::FreeIPA->new("host.example.com");
 die("Failed to initialise the rest client") if ! $fi->{rc};
-if($fi->api_user_find("")) {
+if ($fi->api_user_find("")) {
     print "Found ", scalar @{$fi->{result}}, " users\n";
 } else {
     print "Something went wrong\n";

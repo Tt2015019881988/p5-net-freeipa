@@ -27,7 +27,7 @@ sub new
 
 # Mock basic methods of Log4Perl getLogger instance
 no strict 'refs'; ## no critic
-foreach my $i (qw(error warn info verbose debug)) {
+foreach my $i (qw(error warn info debug)) {
     *{$i} = sub {}
 }
 use strict 'refs';
