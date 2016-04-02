@@ -32,12 +32,26 @@ is($f->{rc}->{opts}->{ca}, '/etc/ipa/ca.crt',
 isa_ok($f->{rc}->{opts}->{useragent}, 'LWP::UserAgent',
        'REST::Client useragent arg in opts attribute');
 
-
 $f->{id} = 0;
 is($f->get_api_version(), '0.1.2', 'mocked env api_version found with id=0');
 
+my @hist = find_POST_history(''); # empty string matches everything
+diag "whole history ", explain \@hist;
+is_deeply(\@hist, [
+    '0 NOMETHOD  ', # login
+    '0 env api_version version=2.156',
+], "POST history: one non-method call from login, one call to get the api_version");
+
+reset_POST_history;
+
 $f->{id} = 1;
 is($f->get_api_version(), '1.1.2', 'mocked env api_version found with id=1');
+
+@hist = find_POST_history('');
+diag "whole after reset history ", explain \@hist;
+is_deeply(\@hist, [
+    '1 env api_version version=2.156',
+], "POST history after reset: one call to get the api_version with id=1 (no new login)");
 
 $f->{id} = 2;
 is($f->get_api_version(), '2.1.3', 'mocked env api_version found with id=2, specified params precedes');

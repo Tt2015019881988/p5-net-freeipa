@@ -4,7 +4,9 @@ use strict;
 use warnings;
 
 use base 'Exporter';
-our @EXPORT = qw(load_mock_rpc_data);
+our @EXPORT = qw(load_mock_rpc_data
+    reset_POST_history find_POST_history
+    );
 
 use Test::More;
 use Test::MockModule;
@@ -15,6 +17,8 @@ use Readonly;
 
 Readonly my $DATA_DIR => 'rpc_data';
 Readonly my $BASE_DIR => dirname(__FILE__);
+
+Readonly my $NOMETHOD => 'NOMETHOD';
 
 # Simple single content, without result
 Readonly::Hash my %SINGLE_CONTENT => {
@@ -37,13 +41,17 @@ Readonly::Hash my %SINGLE_RESULT => {
 my @data_files = qw();
 
 our $rc = Test::MockModule->new('REST::Client');
-$rc->mock('setFollow', 1); # not useful
+$rc->mock('setFollow', 1); # nothing useful to mock, but is called
 
 our $nic = Test::MockModule->new('Net::FreeIPA::RPC');
 our $json = Test::MockModule->new('JSON::XS');
 
 # bunch of commands and their output
 our %cmds;
+
+# POST commands called
+our @POST_history = qw();
+
 
 sub import
 {
@@ -134,10 +142,14 @@ sub _evalfn {
 
 Return blessed instance, keep the options hashref in C<opts>
 
+Also reset the POST_history
+
 =cut
 
 $rc->mock('new', sub {
     my ($this, %opts) = @_;
+
+    reset_POST_history();
 
     my $class = ref($this) || $this;
     my $self = {
@@ -191,6 +203,17 @@ $rc->mock('POST', sub {
     my $id = $data->{id} || 0;
     $self->{content}->{id} = $id;
 
+    my $method = $data->{method} || $NOMETHOD;
+    my ($args, $opts) = @{$data->{params} || [[], {}]};
+    my $args_txt = join(',', @$args);
+    my $opts_txt = '';
+    foreach my $key (sort keys %$opts) {
+        $opts_txt .= ",$key=".$opts->{$key};
+    }
+    $opts_txt =~ s/^,//;
+
+    push(@POST_history, "$id $method $args_txt $opts_txt");
+
     note "POST url $url id $id data ", explain $data;
 
     # Binned results, one bin per class (update the pod above when increasing this)
@@ -221,15 +244,8 @@ $rc->mock('POST', sub {
             note "short $short idx ".(defined($idx) ? $idx : 'undef')." pat $pat cmd_txt $cmd_txt";
         };
 
-        my $method = $fields[0];
-        if ($method eq ($data->{method} || 'NOMETHOD')) {
-            my ($args, $opts) = @{$data->{params} || [[], []]};
-            my $args_txt = join(',', @$args);
-            my $opts_txt = '';
-            foreach my $key (sort keys %$opts) {
-                $opts_txt .= ",$key=".$opts->{$key};
-            }
-            $opts_txt =~ s/^,//;
+        my $fmethod = $fields[0];
+        if ($fmethod eq $method) {
 
             my $cmd_pat = join(' ', @fields);
 
@@ -274,15 +290,17 @@ $rc->mock('POST', sub {
 
         my $result = $cmds{$short}{result};
         my $code = $cmds{$short}{code};
+        my $count = $cmds{$short}{count};
 
         $self->{content}->{result}->{result} = $result if defined($result);
+        $self->{content}->{result}->{count} = $count if defined($count);
         $self->{code} = $code if defined($code);
     } else {
         my $msg;
-        if (defined($data->{method})) {
-            $msg = "method $data->{method}";
-        } else {
+        if ($method eq $NOMETHOD) {
             $msg = "url $url";
+        } else {
+            $msg = "method $method";
         }
         diag "POST: no match cmd found for $msg. Return default single result.";
     }
@@ -330,6 +348,30 @@ $json->mock('decode', sub {
     my ($self, $content) = @_;
     return $content;
 });
+
+=item reset_POST_history
+
+=cut
+
+sub reset_POST_history
+{
+    @POST_history = qw();
+}
+
+=item find_POST_history
+
+Return all POST commands that were called matching C<pattern>.
+
+=cut
+
+sub find_POST_history
+{
+    my ($pattern) = @_;
+
+    my @args = grep {m/$pattern/} @POST_history;
+
+    return @args;
+};
 
 =pod
 
