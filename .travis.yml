@@ -20,6 +20,9 @@ install:
 
    - export RELEASE_TESTING=1 AUTOMATED_TESTING=1 AUTHOR_TESTING=1 HARNESS_OPTIONS=j10:c HARNESS_TIMER=1
 
+   # Packages that fail the tests on travis (GSSAPI: kerberos tests fail, no worries)
+   - echo "GSSAPI" | cpanm --notest --verbose
+    
    - dzil listdeps | grep -vP '[^\w:]' | cpanm --verbose
 
 
