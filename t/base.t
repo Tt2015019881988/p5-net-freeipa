@@ -5,9 +5,9 @@ use Test::More;
 
 use Net::FreeIPA;
 
-my $f = Net::FreeIPA->new("host", debugapi => 1);
+my $f = Net::FreeIPA->new(undef, debugapi => 1);
 
-diag "Net::FreeIPA instance ", explain $b;
+diag "Net::FreeIPA instance ", explain $f;
 
 foreach my $mod ('', qw(Base API RPC Convert Common)) {
     my $module = "Net::FreeIPA";
