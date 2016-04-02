@@ -211,7 +211,7 @@ sub post
 
     my $ret;
     if ($code == 200) {
-        $ans = decode_json($content);
+        $ans = $self->{json}->decode($content);
         $self->debug("Successful JSON POST".($self->{debugapi} ? " JSON $content" : ""));
         $ret = 1;
     } else {
