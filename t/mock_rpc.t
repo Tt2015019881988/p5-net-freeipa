@@ -46,6 +46,10 @@ ok(POST_history_ok(['NOMETHOD', 'env api_version']), "call history ok");
 # Tests the order
 ok(! POST_history_ok(['env api_version', 'NOMETHOD']), "login/NOMETHOD not called after env");
 
+# Test not_commands
+ok(! POST_history_ok(['env api_version'], ['NOMETHOD']), "NOMETHOD not_command found");
+
+
 reset_POST_history;
 
 $f->{id} = 1;

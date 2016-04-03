@@ -187,6 +187,8 @@ Option keys are sorted.
 
 If an id is prefixed to the cmd pattern, it will take precedence over none-matching id (id=0 is the default).
 
+The space after the method name is significant, it is used to determine the used methodname.
+
 =cut
 
 $rc->mock('POST', sub {
@@ -375,7 +377,7 @@ sub find_POST_history
 
 =item C<POST_history_ok>
 
-Given a list of commands, it checks the C<@POST_history> if all commands were
+Given a arrayref of commands, it checks the C<@POST_history> if all commands were
 called in the given order (it allows for other commands to exist inbetween).
 The commands are interpreted as regular expressions.
 
@@ -385,13 +387,29 @@ the fact that x2 was also called but not checked is allowed.).
 C<POST_history_ok([x3,x2])> returns 0 (wrong order),
 C<POST_history_ok([x1,x4])> returns 0 (no x4 command).
 
+A optional second argument is an arrayref of command regexps that were not called.
+
 =cut
 
 # code from Test::Quattor
 
 sub POST_history_ok
 {
-    my $commands = shift;
+    my ($commands, $not_commands) = @_;
+
+    die "POST_history_ok commands must be an arrayref" if ($commands && (ref($commands) ne 'ARRAY'));
+    die "POST_history_ok not_commands must be an arrayref" if ($not_commands && (ref($not_commands) ne 'ARRAY'));
+
+    if ($not_commands) {
+        my @found;
+        foreach my $nc (@$not_commands) {
+            push(@found, grep {m/$nc/} @POST_history);
+        };
+        if (@found) {
+            note "Found matches for not_commands, return false: @found";
+            return 0;
+        };
+    }
 
     my $lastidx = -1;
     foreach my $cmd (@$commands) {
