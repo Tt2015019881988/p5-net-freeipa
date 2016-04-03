@@ -5,7 +5,7 @@ use warnings;
 
 use base 'Exporter';
 our @EXPORT = qw(load_mock_rpc_data
-    reset_POST_history find_POST_history
+    reset_POST_history find_POST_history POST_history_ok
     );
 
 use Test::More;
@@ -372,6 +372,50 @@ sub find_POST_history
 
     return @args;
 };
+
+=item C<POST_history_ok>
+
+Given a list of commands, it checks the C<@POST_history> if all commands were
+called in the given order (it allows for other commands to exist inbetween).
+The commands are interpreted as regular expressions.
+
+E.g. if C<@POST_history> is (x1, x2, x3) then
+C<POST_history_ok([x1,X3])> returns 1 (Both x1 and x3 were called and in that order,
+the fact that x2 was also called but not checked is allowed.).
+C<POST_history_ok([x3,x2])> returns 0 (wrong order),
+C<POST_history_ok([x1,x4])> returns 0 (no x4 command).
+
+=cut
+
+# code from Test::Quattor
+
+sub POST_history_ok
+{
+    my $commands = shift;
+
+    my $lastidx = -1;
+    foreach my $cmd (@$commands) {
+        # start iterating from lastidx+1
+        my ( $index )= grep { $POST_history[$_] =~ /$cmd/  } ($lastidx+1)..$#POST_history;
+        my $msg = "POST_history_ok command pattern '$cmd'";
+        if (!defined($index)) {
+            note "$msg no match; return false";
+            return 0;
+        } else {
+            $msg .= " index $index (full command $POST_history[$index])";
+            if ($index <= $lastidx) {
+                note "$msg <= lastindex $lastidx; return false";
+                return 0;
+            } else {
+                note "$msg; continue";
+            }
+        };
+        $lastidx = $index;
+    };
+    # in principle, when you get here, all is ok.
+    # but at least 1 command should be found, so lastidx should be > -1
+    return $lastidx > -1;
+}
 
 =pod
 

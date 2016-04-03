@@ -42,6 +42,10 @@ is_deeply(\@hist, [
     '0 env api_version version=2.156',
 ], "POST history: one non-method call from login, one call to get the api_version");
 
+ok(POST_history_ok(['NOMETHOD', 'env api_version']), "call history ok");
+# Tests the order
+ok(! POST_history_ok(['env api_version', 'NOMETHOD']), "login/NOMETHOD not called after env");
+
 reset_POST_history;
 
 $f->{id} = 1;
