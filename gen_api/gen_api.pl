@@ -116,7 +116,7 @@ sub main
     }) || die "$Template::ERROR\n";
 
     my $vars = {
-        prefix => 'api_',
+        prefix => $Net::FreeIPA::Convert::API_METHOD_PREFIX,
         version => $version,
         commands => $commands,
         module_name => $MODULE_NAME,

@@ -47,9 +47,10 @@ $mockrpc->mock('rpc', sub {
 });
 
 is($f->rpc_api('do_something',
-               [1, 2.5], [qw(bool float)],
+               [1, 2.5], [qw(arg1 arg2)], [qw(bool float)],
                {false => 0, int => 1, DNSName => 10}, # DNSName is an alias, will be stringified
-               {false => 'bool', int => 'int', DNSName => 'DNSName'}),
+               [qw(false int DNSName)],
+               [qw(bool int DNSName)]),
    'do_something[true,2.5]{"DNSName":"10","false":false,"int":1}',
    "rpc_api converts and calls rpc method as expected");
 

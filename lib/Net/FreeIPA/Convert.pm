@@ -19,6 +19,8 @@ Readonly::Hash my %CONVERT_ALIAS => {
     str => [qw(unicode DNSName)],
 };
 
+Readonly our $API_METHOD_PREFIX => 'api_';
+
 =head1 NAME
 
 Net::FreeIPA::Convert provides type conversion for Net::FreeIPA
@@ -39,11 +41,16 @@ Arguments are
 
 =item args: arrayref with arguments
 
-=item args_types: arrayref with argument types
+=item args_names: arrayref with argument names (same order as C<args>)
+
+=item args_types: arrayref with argument types (same order as C<args>)
 
 =item opts: hashref with the options
 
-=item opts_types_map: hashref with mapping between optoina name and type
+=item opts_keys: arrayref with valid option keys.
+(All options startting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>).
+
+=item opts_types: arrayref with option types (same order as C<opts_keys>).
 
 =back
 
@@ -53,19 +60,44 @@ Calls rpc with args refarray and opts hashref after conversion.
 
 sub rpc_api
 {
-    my ($self, $command, $args, $args_types, $opts, $opts_types_map) = @_;
+    my ($self, $command, $args, $args_names, $args_types, $opts, $opts_keys, $opts_types) = @_;
 
+    my $method = "$API_METHOD_PREFIX$command";
+    
+    # Check arguments
+    my $aidx = 0;
     my @new_args;
     foreach my $arg (@$args) {
-        push(@new_args, $self->convert($arg, shift(@$args_types)));
-    }
+        $aidx += 1;
+        my $args_name = shift(@$args_names);
+        if (defined($arg)) {
+            push(@new_args, $self->convert($arg, shift(@$args_types)));
+        } else {
+            $self->error("$method: undefined mandatory $aidx-th argument $args_name");
+            return;
+        };
+    };
 
+    my %opts_types_map;
+    # Hash slice to create the map
+    @opts_types_map{@$opts_keys} = @$opts_types;
+    
     my %new_opts;
-    foreach my $key (keys %$opts) {
-        $new_opts{$key} = $self->convert($opts->{$key}, $opts_types_map->{$key});
+    my %rpc_opts;
+    foreach my $key (sort keys %$opts) {
+        if ($key =~ m/^__/) {
+            $rpc_opts{$key} = $opts->{$key};
+        } else {
+            if (grep {$key eq $_} @$opts_keys) {
+                $new_opts{$key} = $self->convert($opts->{$key}, $opts_types_map{$key});
+            } else {
+                $self->error("$method: not a valid option key: $key (allowed ".join(",", @$opts_keys).")");
+                return;
+            }
+        };
     }
 
-    return $self->rpc($command, \@new_args, \%new_opts);
+    return $self->rpc($command, \@new_args, \%new_opts, %rpc_opts);
 }
 
 
