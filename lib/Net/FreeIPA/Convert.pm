@@ -21,6 +21,9 @@ Readonly::Hash my %CONVERT_ALIAS => {
 
 Readonly our $API_METHOD_PREFIX => 'api_';
 
+Readonly my $API_RPC_OPTION_PATTERN => '^__';
+
+
 =head1 NAME
 
 Net::FreeIPA::Convert provides type conversion for Net::FreeIPA
@@ -48,7 +51,8 @@ Arguments are
 =item opts: hashref with the options
 
 =item opts_keys: arrayref with valid option keys.
-(All options startting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>).
+(All options starting with C<__> are passed as options to
+C<Net::FreeIPA::RPC::rpc>, with C<__> prefix removed).
 
 =item opts_types: arrayref with option types (same order as C<opts_keys>).
 
@@ -63,7 +67,7 @@ sub rpc_api
     my ($self, $command, $args, $args_names, $args_types, $opts, $opts_keys, $opts_types) = @_;
 
     my $method = "$API_METHOD_PREFIX$command";
-    
+
     # Check arguments
     my $aidx = 0;
     my @new_args;
@@ -81,12 +85,14 @@ sub rpc_api
     my %opts_types_map;
     # Hash slice to create the map
     @opts_types_map{@$opts_keys} = @$opts_types;
-    
+
     my %new_opts;
     my %rpc_opts;
     foreach my $key (sort keys %$opts) {
-        if ($key =~ m/^__/) {
-            $rpc_opts{$key} = $opts->{$key};
+        if ($key =~ m/$API_RPC_OPTION_PATTERN/) {
+            my $val = $opts->{$key};
+            $key =~ s/$API_RPC_OPTION_PATTERN//;
+            $rpc_opts{$key} = $val;
         } else {
             if (grep {$key eq $_} @$opts_keys) {
                 $new_opts{$key} = $self->convert($opts->{$key}, $opts_types_map{$key});

@@ -1,7 +1,15 @@
 use strict;
 use warnings;
 
+use File::Basename;
 use Test::More;
+
+BEGIN {
+    push(@INC, dirname(__FILE__));
+}
+
+use mock_rpc qw(common);
+
 use Test::MockModule;
 
 use Net::FreeIPA;
@@ -40,8 +48,12 @@ is_deeply(\%Net::FreeIPA::Common::FIND_ONE, {
     vault => 'cn',
 }, "FIND_ONE as expected");
 
-my $f = Net::FreeIPA->new();
+is_deeply(\%Net::FreeIPA::Common::ERROR_CODES, {
+    DuplicateEntry => 4002,
+    NotFound => 4001,
+}, "ERROR_CODES as expected");
 
+my $f = Net::FreeIPA->new("myhost");
 
 =head2 unknown method
 
@@ -62,52 +74,109 @@ is($error->[0], "find_one: no supported attribute for api awesome",
    "not-mapped attr method reports error");
 is($awesome, 1, "not-mapped attr method is not called");
 
-=head2 method fails
+
+=head2 find_one: method fails
 
 =cut
 
-my $args;
-$mockapi->mock('api_host_find', sub {shift; $args = \@_; return;});
+$error = undef;
+reset_POST_history();
 ok(! defined($f->find_one('host', 'my.host')), "failed method returns undef");
-# all args and opts are squashed in an arrayref
-is_deeply($args, ["", qw(fqdn my.host all 1)], "api_host_find called with correct args/opts");
+ok(POST_history_ok(["0 host_find  all=1,fqdn=my.host,"]), "api_host_find called with correct args/opts id=0");
+is_deeply($f->{answer}->{error}, {unittest => 1}, "answer with error result");
+like($error->[0], qr{^host_find got error}, "failed method reports error");
 
-=head2 method finds no answers
+=head2 find_one: method finds no answers
 
 =cut
 
 # return 1 for success, but count=0
-$mockapi->mock('api_host_find', sub {my $self = shift; $self->{answer}->{result} = {count => 0}; return 1;});
+$error = undef;
+reset_POST_history();
+$f->{id} = 1;
 ok(! defined($f->find_one('host', 'my.host')), "0 answers returns undef");
+ok(POST_history_ok(["1 host_find  all=1,fqdn=my.host,"]), "api_host_find called with correct args/opts id=1");
+is($f->{answer}->{result}->{count}, 0, "result with count=0");
+ok(! defined($error), "no error reported");
 
-=head2 one answer
+=head2 find_one: one answer
 
 =cut
 
-# return 1 for success, count=1, result
-$mockapi->mock('api_host_find', sub {
-    my $self = shift;
-    $self->{answer}->{result} = {count => 1};
-    $self->{result} = [{ans => 1}];
-    return 1;
-});
-is_deeply($f->find_one('host', 'my.host'), {ans => 1}, "1 answer returns the answer");
+$error = undef;
+reset_POST_history();
+$f->{id} = 2;
+is_deeply($f->find_one('host', 'my.host'), {unittest => 1}, "return result");
+ok(POST_history_ok(["2 host_find  all=1,fqdn=my.host,"]), "api_host_find called with correct args/opts id=2");
+is($f->{answer}->{result}->{count}, 1, "result with count=1");
+ok(! defined($error), "no error reported");
 
-=head2 2 answers
+=head2 find_one: 2 answers
 
 =cut
 
 # return 1 for success, count=2, result
 $warn = undef;
-$mockapi->mock('api_host_find', sub {
-    my $self = shift;
-    $self->{answer}->{result} = {count => 2};
-    $self->{result} = [{ans => 0},{ans => 1}];
-    return 1;
-});
-is_deeply($f->find_one('host', 'my.host'), {ans => 0}, "2 answers returns the first answer");
+$error = undef;
+reset_POST_history();
+$f->{id} = 3;
+is_deeply($f->find_one('host', 'my.host'), {unittest => 2}, "return first result");
+ok(POST_history_ok(["3 host_find  all=1,fqdn=my.host,"]), "api_host_find called with correct args/opts id=3");
+is($f->{answer}->{result}->{count}, 2, "result with count=2");
 is($warn->[0], 'one_find method api_host_find and value my.host returns 2 answers',
    "warn reported on more than one answer");
+ok(! defined($error), "no error reported");
+
+
+=head2 do_one: fail and error
+
+=cut
+
+# add
+$error = undef;
+reset_POST_history();
+$f->{id} = 0;
+ok(! defined($f->do_one('host', 'add', 'my.host')), 
+   "do_one host add fails id=0");
+ok(POST_history_ok(["0 host_add my.host "]), "api_host_add called with correct args/opts id=1");
+like($error->[0], qr{^host_add got error}, "error reported");
+
+=head2 do_one: fail and no error
+
+=cut
+
+# add
+$error = undef;
+reset_POST_history();
+$f->{id} = 1;
+ok(! defined($f->do_one('host', 'add', 'my.host')), 
+   "do_one host add fails id=1");
+ok(POST_history_ok(["1 host_add my.host "]), "api_host_add called with correct args/opts id=1");
+is($f->{answer}->{error}->{name}, 'DuplicateEntry', 'DuplicateEntry error');
+ok(! defined($error), "no error reported with add and DuplicateEntry");
+
+# mod
+$error = undef;
+reset_POST_history();
+$f->{id} = 1;
+ok(! defined($f->do_one('host', 'mod', 'my.host')), 
+   "do_one host mod fails id=1");
+ok(POST_history_ok(["1 host_mod my.host "]), "api_host_mod called with correct args/opts id=1");
+is($f->{answer}->{error}->{name}, 'NotFound', 'NotFound error');
+ok(! defined($error), "no error reported with mod and NotFound");
+
+=head2 do_one: success, no error
+
+=cut
+    
+# test result_path
+$error = undef;
+reset_POST_history();
+$f->{id} = 2;
+is_deeply($f->do_one('host', 'add', 'my.host', __result_path => 'result/result/unittest'), 
+          {woohoo => 1}, "return result with custom result_path");
+ok(POST_history_ok(["2 host_add my.host "]), "api_host_add called with correct args/opts id=2");
+ok(! defined($error), "no error reported");
 
 
 done_testing();

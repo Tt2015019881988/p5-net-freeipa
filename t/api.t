@@ -24,18 +24,18 @@ isa_ok($f, 'Net::FreeIPA::API', "Net::FreeIPA instance is a Net::FreeIPA::API to
 
 =cut
 
-$mockconvert->mock('rpc', sub {
+$mockrpc->mock('rpc', sub {
 
     my ($self, $command, $args, $opts, %opts) = @_;
 
-    $all_args = {
+    $rpc_args = {
         command => $command,
         args => $args,
         opts => $opts,
         rpc_opts => \%opts,
     };
 
-    return 1;
+    return 123; # something unique
 });
 
 
@@ -55,6 +55,19 @@ ok(! defined($f->api_user_add("myuser", gecosss => 'mygecos')),
 like($error->[0], qr{^api_user_add: not a valid option key: gecosss \(allowed .*\)$},
      "Error called on failure 2");
 ok(! $rpc_args->{command}, 'command empty, rpc not called 2');
+
+
+$error = undef;
+$rpc_args = {};
+is($f->api_user_add("myuser", gecos => 'mygecos', __result_path => 'some/path'), 123,
+   'user_add api returns rpc result');
+ok(! defined($error), 'no error reported');
+is_deeply($rpc_args, {
+    command => 'user_add',
+    args => ['myuser'],
+    opts => {gecos => 'mygecos'},
+    rpc_opts => {result_path => 'some/path'}, # __ removed and passed to rpc as option
+}, "expected rpc arguments/options");
 
 =head2 test passed args
 

@@ -281,17 +281,13 @@ sub rpc
     if ($error) {
         my @noerrors = grep {$_ =~ m/^\d+$/ ? $error->{code} == $_ : $error->{name} eq $_} @{$opts{noerror} || []};
 
-        my $error_method;
-        if(@noerrors) {
-            $error_method = 'debug';
-        } else {
-            $error_method = 'error';
-        }
-        $self->$error_method("post got error (".$self->{json}->encode($error).")");
+        my $error_method = @noerrors ? 'debug' : 'error';
+
+        $self->$error_method("$command got error (".$self->{json}->encode($error).")");
     } else {
         $ret = 1;
 
-        $self->warn("rpc got truncated result") if $self->{answer}->{result}->{truncated};
+        $self->warn("$command got truncated result") if $self->{answer}->{result}->{truncated};
 
         my $res = $self->{answer};
         # remove any "empty" paths

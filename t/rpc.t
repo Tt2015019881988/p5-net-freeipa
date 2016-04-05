@@ -202,7 +202,7 @@ $code = 200;
 $content = '{"error":{"some":"error"},"id":0,"principal":"user@DOMAIN","result":{"count":1,"messages":[{"code":13001,"message":"API Version number was not sent, forward compatibility not guaranteed. Assuming servers API version, 2.156","name":"VersionMissing","type":"warning"}],"result":[{"dn":"uid=user,cn=users,cn=accounts,dc=domain","gidnumber":["1234567"],"has_keytab":true,"has_password":true,"homedirectory":["/home/user"],"loginshell":["/bin/bash"],"nsaccountlock":false,"sn":["Superman"],"uid":["user"],"uidnumber":["1234567"]}],"summary":"1 user matched","truncated":false},"version":"4.2.0"}';
 ok(! defined($f->rpc("mycommand", [qw(a b c)], {opt => 'ok', int => 1})),
    "failed rpc with succesful post and error in answer");
-is($error->[0], 'post got error ({"some":"error"})', 'Error after failed post');
+is($error->[0], 'mycommand got error ({"some":"error"})', 'Error after failed post');
 ok(! defined($f->{result}), "Result attribute is reset");
 
 
