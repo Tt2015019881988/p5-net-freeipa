@@ -4,6 +4,7 @@ use strict;
 use warnings;
 
 use Net::FreeIPA::Convert;
+use Net::FreeIPA::Error;
 
 use Readonly;
 
@@ -24,11 +25,6 @@ Readonly::Hash our %FIND_ONE => {
     trust => 'cn',
     user => 'uid',
     vault => 'cn',
-};
-
-Readonly::Hash our %ERROR_CODES => {
-    DuplicateEntry => 4002,
-    NotFound => 4001,
 };
 
 =head1 NAME
@@ -119,12 +115,12 @@ sub do_one
 
     # For add, do not report existing name as error
     # for other methods, do not report missing name as error
-    my ($noerror, $noerrormsg);
+    my ($noerror, $errormethod, $noerrormsg);
     if ($method eq 'add') {
-        $noerror = 'DuplicateEntry';
+        $noerror = $Net::FreeIPA::Error::DUPLICATE_ENTRY;
         $noerrormsg = "already exists";
     } else {
-        $noerror = 'NotFound';
+        $noerror = $Net::FreeIPA::Error::NOT_FOUND;
         $noerrormsg = "does not exist";
     }
     $opts{__noerror} = [$noerror];
@@ -136,7 +132,7 @@ sub do_one
         $msg = "succesfully $method-ed $api $name";
     } else {
         $msg = "failed to $method $api $name";
-        if ($self->{answer}->{error}->{name} eq $noerror) {
+        if ($self->{error} == $noerror) {
             $msg .= " $api $noerrormsg";
         }
     }

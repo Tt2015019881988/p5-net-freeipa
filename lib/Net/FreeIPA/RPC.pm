@@ -8,6 +8,8 @@ use Readonly;
 use REST::Client;
 use JSON::XS;
 
+use Net::FreeIPA::Error;
+
 use LWP::UserAgent;
 # Add kerberos support
 use LWP::Authen::Negotiate;
@@ -121,11 +123,15 @@ sub new_client
         $self->{json}->canonical(1); # sort the keys, to create reproducable results
         $self->set_api_version('API');
 
+        # Reset error atrribute (will be adapted by rpc method)
+        $self->{error} = mkerror();
         return 1;
     } else {
         $content = '<undef>' if ! defined($content);
         # Do no print possible password
         $self->error("Login failed (url $url$login_url code $code): $content");
+        # Set error attribute
+        $self->{error} = mkerror({message => "Login failed (url $url$login_url code $code)"});
         return;
     }
 }
@@ -214,11 +220,15 @@ sub post
         $ans = $self->{json}->decode($content);
         $self->debug("Successful JSON POST".($self->{debugapi} ? " JSON $content" : ""));
         $ret = 1;
+        # Reset error atrribute (will be adapted by rpc method)
+        $self->{error} = mkerror();
     } else {
         $ans = $content;
 
         $content = '<undef>' if ! defined($content);
         $self->error("POST failed (url $IPA_URL_JSON code $code): $content");
+        # Set error (not processed anymore by rpc)
+        $self->{error} = mkerror({message => "POST failed (url $IPA_URL_JSON code $code)"});
     }
 
     # Store last (decoded) answer in answer attribute
@@ -277,13 +287,17 @@ sub rpc
 
     my $ret;
 
-    my $error = $self->{answer}->{error};
+    my $error = mkerror($self->{answer}->{error});
+
+    # Save error attribute
+    $self->{error} = $error;
+
     if ($error) {
-        my @noerrors = grep {$_ =~ m/^\d+$/ ? $error->{code} == $_ : $error->{name} eq $_} @{$opts{noerror} || []};
+        my @noerrors = grep {$error == $_} @{$opts{noerror} || []};
 
         my $error_method = @noerrors ? 'debug' : 'error';
 
-        $self->$error_method("$command got error (".$self->{json}->encode($error).")");
+        $self->$error_method("$command got error ($error)");
     } else {
         $ret = 1;
 
