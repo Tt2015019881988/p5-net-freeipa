@@ -3,6 +3,8 @@ package Net::FreeIPA::Common;
 use strict;
 use warnings;
 
+use Net::FreeIPA::Convert;
+
 use Readonly;
 
 # Convert find one API method in attribute name to find
@@ -24,6 +26,10 @@ Readonly::Hash our %FIND_ONE => {
     vault => 'cn',
 };
 
+Readonly::Hash our %ERROR_CODES => {
+    DuplicateEntry => 4002,
+    NotFound => 4001,
+};
 
 =head1 NAME
 
@@ -80,6 +86,66 @@ sub find_one
 
     return $res;
 }
+
+=item do_one
+
+Wrapper for simple call using C<api> and C<method> via
+C<<api_<api>_<method>(C<name>)>>.
+
+Any options are passed.
+
+An error-type is not reported as error
+(still returns C<undef>):
+
+=over
+
+=item DuplicateEntry: when C<method> is C<add>,
+an existing entry is not reported as an error
+
+=item NotFound: when C<method> is not C<add>,
+an missing entry is not reported as an error
+
+=back
+
+Returns the result attribute on success, or undef otherwise.
+
+=cut
+
+sub do_one
+{
+    my ($self, $api, $method, $name, %opts) = @_;
+
+    my $api_method = $Net::FreeIPA::Convert::API_METHOD_PREFIX.$api."_$method";
+
+    # For add, do not report existing name as error
+    # for other methods, do not report missing name as error
+    my ($noerror, $noerrormsg);
+    if ($method eq 'add') {
+        $noerror = 'DuplicateEntry';
+        $noerrormsg = "already exists";
+    } else {
+        $noerror = 'NotFound';
+        $noerrormsg = "does not exist";
+    }
+    $opts{__noerror} = [$noerror];
+
+    my $res = $self->$api_method($name, %opts) ? $self->{result} : undef;
+
+    my $msg;
+    if ($res) {
+        $msg = "succesfully $method-ed $api $name";
+    } else {
+        $msg = "failed to $method $api $name";
+        if ($self->{answer}->{error}->{name} eq $noerror) {
+            $msg .= " $api $noerrormsg";
+        }
+    }
+
+    $self->debug("$api_method: $msg");
+
+    return $res;
+};
+
 
 =pod
 

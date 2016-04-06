@@ -16,24 +16,20 @@ Required arguments
 =item [% arg.name %]: [% arg.doc %] (type [% arg.type %] class [% arg.class %])
 [%      END %]
 =back
-
 [% ELSE -%]
 No required arguments
 [%- END %]
 
-=item [% -%]
-[%- IF check_hash(details.takes_options).size -%]
-Options
+=item  Options
 
 =over
 [%      FOREACH opt IN check_hash(details.takes_options) %]
 =item [% opt.name %]: [% opt.doc %] (type [% opt.type %] class [% opt.class %])
-[%      END %]
-=back
+[%      END -%]
 
-[%  ELSE -%]
-No options
-[%- END %]
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
 
 =back
 
@@ -41,49 +37,21 @@ No options
 
 sub [% prefix %][% name %]
 {
-[% FILTER indent %]
+[%- FILTER indent %]
 my (\$self
 [%- check_hash(details.takes_args).size ? ', ' _ join_name_vars(check_hash(details.takes_args)) : '' -%]
-[%- check_hash(details.takes_options).size ? ', %opts' : '' -%]
+, %opts[% -%]
 ) = @_;
 
-[%- IF check_hash(details.takes_args).size %]
-# Check arguments
-my @args_names = qw([% join_name(check_hash(details.takes_args)) %]);
-my \$aidx = 0;
-foreach my \$arg ([% join_name_vars(check_hash(details.takes_args)) %]) {
-    \$aidx += 1;
-    my \$args_name = shift(@args_names);
-    if (! defined(\$arg)) {
-        \$self->error("[% prefix %][% name %]: undefined mandatory \$aidx-th argument \$args_name");
-        return;
-    };
-};
-[% END %]
-
-[%- IF check_hash(details.takes_options).size %]
-# Check options
-my @opt_keys = qw([% join_name(check_hash(details.takes_options)) %]);
-foreach my \$key (keys %opts) {
-    if (! grep {\$key eq \$_} @opt_keys) {
-        \$self->error("[% prefix %][% name %]: not a valid option key: \$key (allowed @opt_keys)");
-        return;
-    };
-};
-my @opt_types = qw([% join_type(check_hash(details.takes_options)) %]);
-my %opt_type_map;
-# Hash slice to create the map
-@opt_type_map{@opt_keys} = @opt_types;
-[% END %]
-
-return \$self->rpc_api('[% name %]', [
-[%- join_name_vars(check_hash(details.takes_args)) -%]
-], [qw(
-[%- join_type(check_hash(details.takes_args)) -%]
-)], [% -%]
-[%- check_hash(details.takes_options).size ? '\%opts' : '{}' -%]
-, [% -%]
-[%- check_hash(details.takes_options).size ? '\%opt_type_map' : '{}' -%]
+return \$self->rpc_api('[% name %]',
+[%-     FILTER indent %]
+[[%- join_name_vars(check_hash(details.takes_args)) -%]],
+[qw([%- join_name(check_hash(details.takes_args)) %])],
+[qw([%- join_type(check_hash(details.takes_args)) -%])],
+\%opts,
+[qw([%- join_name(check_hash(details.takes_options)) -%])],
+[qw([%- join_type(check_hash(details.takes_options)) -%])],
+[%-      END %]
 );
-[% END %]
+[%- END %]
 }

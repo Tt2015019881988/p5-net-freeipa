@@ -40,8 +40,7 @@ Wrapper method for aci_add API
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -75,48 +74,26 @@ Wrapper method for aci_add API
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_aci_add
-{
-    
+{    
     my ($self, $aciname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(aciname);
-    my $aidx = 0;
-    foreach my $arg ($aciname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_aci_add: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(permission group permissions attrs type memberof filter subtree targetgroup selfaci aciprefix test all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_aci_add: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode unicode unicode unicode unicode unicode bool unicode bool bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('aci_add', [$aciname], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('aci_add',    
+        [$aciname],
+        [qw(aciname)],
+        [qw(unicode)],
+        \%opts,
+        [qw(permission group permissions attrs type memberof filter subtree targetgroup selfaci aciprefix test all raw version)],
+        [qw(unicode unicode unicode unicode unicode unicode unicode unicode unicode bool unicode bool bool bool unicode)],
+    );
 }
 
 
@@ -140,8 +117,7 @@ Wrapper method for aci_del API
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -149,48 +125,26 @@ Wrapper method for aci_del API
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_aci_del
-{
-    
+{    
     my ($self, $aciname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(aciname);
-    my $aidx = 0;
-    foreach my $arg ($aciname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_aci_del: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(aciprefix version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_aci_del: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('aci_del', [$aciname], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('aci_del',    
+        [$aciname],
+        [qw(aciname)],
+        [qw(unicode)],
+        \%opts,
+        [qw(aciprefix version)],
+        [qw(unicode unicode)],
+    );
 }
 
 
@@ -230,8 +184,7 @@ Wrapper method for aci_find API
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -267,48 +220,26 @@ Wrapper method for aci_find API
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_aci_find
-{
-    
+{    
     my ($self, $criteria, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(criteria);
-    my $aidx = 0;
-    foreach my $arg ($criteria) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_aci_find: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(aciname permission group permissions attrs type memberof filter subtree targetgroup selfaci aciprefix pkey_only all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_aci_find: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode bool unicode bool bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('aci_find', [$criteria], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('aci_find',    
+        [$criteria],
+        [qw(criteria)],
+        [qw(unicode)],
+        \%opts,
+        [qw(aciname permission group permissions attrs type memberof filter subtree targetgroup selfaci aciprefix pkey_only all raw version)],
+        [qw(unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode bool unicode bool bool bool unicode)],
+    );
 }
 
 
@@ -332,8 +263,7 @@ Wrapper method for aci_mod API
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -365,48 +295,26 @@ Wrapper method for aci_mod API
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_aci_mod
-{
-    
+{    
     my ($self, $aciname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(aciname);
-    my $aidx = 0;
-    foreach my $arg ($aciname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_aci_mod: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(permission group permissions attrs type memberof filter subtree targetgroup selfaci aciprefix all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_aci_mod: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode unicode unicode unicode unicode unicode bool unicode bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('aci_mod', [$aciname], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('aci_mod',    
+        [$aciname],
+        [qw(aciname)],
+        [qw(unicode)],
+        \%opts,
+        [qw(permission group permissions attrs type memberof filter subtree targetgroup selfaci aciprefix all raw version)],
+        [qw(unicode unicode unicode unicode unicode unicode unicode unicode unicode bool unicode bool bool unicode)],
+    );
 }
 
 
@@ -430,8 +338,7 @@ Wrapper method for aci_rename API
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -465,48 +372,26 @@ Wrapper method for aci_rename API
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_aci_rename
-{
-    
+{    
     my ($self, $aciname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(aciname);
-    my $aidx = 0;
-    foreach my $arg ($aciname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_aci_rename: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(permission group permissions attrs type memberof filter subtree targetgroup selfaci aciprefix newname all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_aci_rename: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode unicode unicode unicode unicode unicode bool unicode unicode bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('aci_rename', [$aciname], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('aci_rename',    
+        [$aciname],
+        [qw(aciname)],
+        [qw(unicode)],
+        \%opts,
+        [qw(permission group permissions attrs type memberof filter subtree targetgroup selfaci aciprefix newname all raw version)],
+        [qw(unicode unicode unicode unicode unicode unicode unicode unicode unicode bool unicode unicode bool bool unicode)],
+    );
 }
 
 
@@ -530,8 +415,7 @@ Wrapper method for aci_show API
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -545,48 +429,26 @@ Wrapper method for aci_show API
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_aci_show
-{
-    
+{    
     my ($self, $aciname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(aciname);
-    my $aidx = 0;
-    foreach my $arg ($aciname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_aci_show: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(aciprefix location all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_aci_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode DN bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('aci_show', [$aciname], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('aci_show',    
+        [$aciname],
+        [qw(aciname)],
+        [qw(unicode)],
+        \%opts,
+        [qw(aciprefix location all raw version)],
+        [qw(unicode DN bool bool unicode)],
+    );
 }
 
 
@@ -601,42 +463,32 @@ Determine whether ipa-adtrust-install has been run on this system
 
 =item No required arguments
 
-=item Options
+=item  Options
 
 =over
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_adtrust_is_enabled
-{
-    
+{    
     my ($self, %opts) = @_;
     
-    
-    # Check options
-    my @opt_keys = qw(version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_adtrust_is_enabled: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('adtrust_is_enabled', [], [qw()], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('adtrust_is_enabled',    
+        [],
+        [qw()],
+        [qw()],
+        \%opts,
+        [qw(version)],
+        [qw(unicode)],
+    );
 }
 
 
@@ -660,8 +512,7 @@ Wrapper method for automember_add API
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -681,48 +532,26 @@ must be part of the schema. (type unicode class Str)
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_automember_add
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_automember_add: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(description setattr addattr type all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_automember_add: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('automember_add', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('automember_add',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(description setattr addattr type all raw version)],
+        [qw(unicode unicode unicode unicode bool bool unicode)],
+    );
 }
 
 
@@ -746,8 +575,7 @@ Wrapper method for automember_add_condition API
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -767,48 +595,26 @@ Wrapper method for automember_add_condition API
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_automember_add_condition
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_automember_add_condition: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(description automemberinclusiveregex automemberexclusiveregex key type all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_automember_add_condition: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode unicode bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('automember_add_condition', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('automember_add_condition',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(description automemberinclusiveregex automemberexclusiveregex key type all raw version)],
+        [qw(unicode unicode unicode unicode unicode bool bool unicode)],
+    );
 }
 
 
@@ -825,7 +631,7 @@ Wrapper method for automember_default_group_remove API
 
 =item No required arguments
 
-=item Options
+=item  Options
 
 =over
 
@@ -839,36 +645,26 @@ Wrapper method for automember_default_group_remove API
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_automember_default_group_remove
-{
-    
+{    
     my ($self, %opts) = @_;
     
-    
-    # Check options
-    my @opt_keys = qw(description type all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_automember_default_group_remove: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('automember_default_group_remove', [], [qw()], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('automember_default_group_remove',    
+        [],
+        [qw()],
+        [qw()],
+        \%opts,
+        [qw(description type all raw version)],
+        [qw(unicode unicode bool bool unicode)],
+    );
 }
 
 
@@ -885,7 +681,7 @@ Wrapper method for automember_default_group_set API
 
 =item No required arguments
 
-=item Options
+=item  Options
 
 =over
 
@@ -901,36 +697,26 @@ Wrapper method for automember_default_group_set API
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_automember_default_group_set
-{
-    
+{    
     my ($self, %opts) = @_;
     
-    
-    # Check options
-    my @opt_keys = qw(description automemberdefaultgroup type all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_automember_default_group_set: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('automember_default_group_set', [], [qw()], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('automember_default_group_set',    
+        [],
+        [qw()],
+        [qw()],
+        \%opts,
+        [qw(description automemberdefaultgroup type all raw version)],
+        [qw(unicode unicode unicode bool bool unicode)],
+    );
 }
 
 
@@ -947,7 +733,7 @@ Wrapper method for automember_default_group_show API
 
 =item No required arguments
 
-=item Options
+=item  Options
 
 =over
 
@@ -959,36 +745,26 @@ Wrapper method for automember_default_group_show API
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_automember_default_group_show
-{
-    
+{    
     my ($self, %opts) = @_;
     
-    
-    # Check options
-    my @opt_keys = qw(type all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_automember_default_group_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('automember_default_group_show', [], [qw()], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('automember_default_group_show',    
+        [],
+        [qw()],
+        [qw()],
+        \%opts,
+        [qw(type all raw version)],
+        [qw(unicode bool bool unicode)],
+    );
 }
 
 
@@ -1012,8 +788,7 @@ Wrapper method for automember_del API
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -1021,48 +796,26 @@ Wrapper method for automember_del API
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_automember_del
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_automember_del: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(type version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_automember_del: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('automember_del', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('automember_del',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(type version)],
+        [qw(unicode unicode)],
+    );
 }
 
 
@@ -1086,8 +839,7 @@ Wrapper method for automember_find API
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -1101,48 +853,26 @@ Wrapper method for automember_find API
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_automember_find
-{
-    
+{    
     my ($self, $criteria, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(criteria);
-    my $aidx = 0;
-    foreach my $arg ($criteria) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_automember_find: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(description type all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_automember_find: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('automember_find', [$criteria], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('automember_find',    
+        [$criteria],
+        [qw(criteria)],
+        [qw(unicode)],
+        \%opts,
+        [qw(description type all raw version)],
+        [qw(unicode unicode bool bool unicode)],
+    );
 }
 
 
@@ -1166,8 +896,7 @@ Wrapper method for automember_mod API
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -1192,48 +921,26 @@ last, after all sets and adds. (type unicode class Str)
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_automember_mod
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_automember_mod: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(description setattr addattr delattr rights type all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_automember_mod: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode bool unicode bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('automember_mod', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('automember_mod',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(description setattr addattr delattr rights type all raw version)],
+        [qw(unicode unicode unicode unicode bool unicode bool bool unicode)],
+    );
 }
 
 
@@ -1248,7 +955,7 @@ Rebuild auto membership.
 
 =item No required arguments
 
-=item Options
+=item  Options
 
 =over
 
@@ -1266,36 +973,26 @@ Rebuild auto membership.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_automember_rebuild
-{
-    
+{    
     my ($self, %opts) = @_;
     
-    
-    # Check options
-    my @opt_keys = qw(type users hosts no_wait all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_automember_rebuild: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode bool bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('automember_rebuild', [], [qw()], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('automember_rebuild',    
+        [],
+        [qw()],
+        [qw()],
+        \%opts,
+        [qw(type users hosts no_wait all raw version)],
+        [qw(unicode unicode unicode bool bool bool unicode)],
+    );
 }
 
 
@@ -1319,8 +1016,7 @@ Wrapper method for automember_remove_condition API
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -1340,48 +1036,26 @@ Wrapper method for automember_remove_condition API
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_automember_remove_condition
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_automember_remove_condition: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(description automemberinclusiveregex automemberexclusiveregex key type all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_automember_remove_condition: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode unicode bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('automember_remove_condition', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('automember_remove_condition',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(description automemberinclusiveregex automemberexclusiveregex key type all raw version)],
+        [qw(unicode unicode unicode unicode unicode bool bool unicode)],
+    );
 }
 
 
@@ -1405,8 +1079,7 @@ Wrapper method for automember_show API
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -1418,48 +1091,26 @@ Wrapper method for automember_show API
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_automember_show
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_automember_show: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(type all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_automember_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('automember_show', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('automember_show',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(type all raw version)],
+        [qw(unicode bool bool unicode)],
+    );
 }
 
 
@@ -1483,8 +1134,7 @@ Create a new automount key.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -1504,48 +1154,26 @@ must be part of the schema. (type unicode class Str)
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_automountkey_add
-{
-    
+{    
     my ($self, $automountlocationcn, $automountmapautomountmapname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(automountlocationcn automountmapautomountmapname);
-    my $aidx = 0;
-    foreach my $arg ($automountlocationcn, $automountmapautomountmapname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_automountkey_add: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(automountkey automountinformation setattr addattr all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_automountkey_add: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('automountkey_add', [$automountlocationcn, $automountmapautomountmapname], [qw(unicode unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('automountkey_add',    
+        [$automountlocationcn, $automountmapautomountmapname],
+        [qw(automountlocationcn automountmapautomountmapname)],
+        [qw(unicode unicode)],
+        \%opts,
+        [qw(automountkey automountinformation setattr addattr all raw version)],
+        [qw(unicode unicode unicode unicode bool bool unicode)],
+    );
 }
 
 
@@ -1569,8 +1197,7 @@ Delete an automount key.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -1582,48 +1209,26 @@ Delete an automount key.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_automountkey_del
-{
-    
+{    
     my ($self, $automountlocationcn, $automountmapautomountmapname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(automountlocationcn automountmapautomountmapname);
-    my $aidx = 0;
-    foreach my $arg ($automountlocationcn, $automountmapautomountmapname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_automountkey_del: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(continue automountkey automountinformation version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_automountkey_del: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('automountkey_del', [$automountlocationcn, $automountmapautomountmapname], [qw(unicode unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('automountkey_del',    
+        [$automountlocationcn, $automountmapautomountmapname],
+        [qw(automountlocationcn automountmapautomountmapname)],
+        [qw(unicode unicode)],
+        \%opts,
+        [qw(continue automountkey automountinformation version)],
+        [qw(bool unicode unicode unicode)],
+    );
 }
 
 
@@ -1649,8 +1254,7 @@ Search for an automount key.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -1668,48 +1272,26 @@ Search for an automount key.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_automountkey_find
-{
-    
+{    
     my ($self, $automountlocationcn, $automountmapautomountmapname, $criteria, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(automountlocationcn automountmapautomountmapname criteria);
-    my $aidx = 0;
-    foreach my $arg ($automountlocationcn, $automountmapautomountmapname, $criteria) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_automountkey_find: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(automountkey automountinformation timelimit sizelimit all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_automountkey_find: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode int int bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('automountkey_find', [$automountlocationcn, $automountmapautomountmapname, $criteria], [qw(unicode unicode unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('automountkey_find',    
+        [$automountlocationcn, $automountmapautomountmapname, $criteria],
+        [qw(automountlocationcn automountmapautomountmapname criteria)],
+        [qw(unicode unicode unicode)],
+        \%opts,
+        [qw(automountkey automountinformation timelimit sizelimit all raw version)],
+        [qw(unicode unicode int int bool bool unicode)],
+    );
 }
 
 
@@ -1733,8 +1315,7 @@ Modify an automount key.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -1763,48 +1344,26 @@ last, after all sets and adds. (type unicode class Str)
 
 =item rename: Rename the automount key object (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_automountkey_mod
-{
-    
+{    
     my ($self, $automountlocationcn, $automountmapautomountmapname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(automountlocationcn automountmapautomountmapname);
-    my $aidx = 0;
-    foreach my $arg ($automountlocationcn, $automountmapautomountmapname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_automountkey_mod: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(automountkey automountinformation setattr addattr delattr rights newautomountinformation all raw version rename);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_automountkey_mod: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode unicode bool unicode bool bool unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('automountkey_mod', [$automountlocationcn, $automountmapautomountmapname], [qw(unicode unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('automountkey_mod',    
+        [$automountlocationcn, $automountmapautomountmapname],
+        [qw(automountlocationcn automountmapautomountmapname)],
+        [qw(unicode unicode)],
+        \%opts,
+        [qw(automountkey automountinformation setattr addattr delattr rights newautomountinformation all raw version rename)],
+        [qw(unicode unicode unicode unicode unicode bool unicode bool bool unicode unicode)],
+    );
 }
 
 
@@ -1828,8 +1387,7 @@ Display an automount key.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -1845,48 +1403,26 @@ Display an automount key.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_automountkey_show
-{
-    
+{    
     my ($self, $automountlocationcn, $automountmapautomountmapname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(automountlocationcn automountmapautomountmapname);
-    my $aidx = 0;
-    foreach my $arg ($automountlocationcn, $automountmapautomountmapname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_automountkey_show: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(rights automountkey automountinformation all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_automountkey_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode unicode bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('automountkey_show', [$automountlocationcn, $automountmapautomountmapname], [qw(unicode unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('automountkey_show',    
+        [$automountlocationcn, $automountmapautomountmapname],
+        [qw(automountlocationcn automountmapautomountmapname)],
+        [qw(unicode unicode)],
+        \%opts,
+        [qw(rights automountkey automountinformation all raw version)],
+        [qw(bool unicode unicode bool bool unicode)],
+    );
 }
 
 
@@ -1908,8 +1444,7 @@ Create a new automount location.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -1925,48 +1460,26 @@ must be part of the schema. (type unicode class Str)
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_automountlocation_add
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_automountlocation_add: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(setattr addattr all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_automountlocation_add: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('automountlocation_add', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('automountlocation_add',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(setattr addattr all raw version)],
+        [qw(unicode unicode bool bool unicode)],
+    );
 }
 
 
@@ -1988,8 +1501,7 @@ Delete an automount location.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -1997,48 +1509,26 @@ Delete an automount location.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_automountlocation_del
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_automountlocation_del: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(continue version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_automountlocation_del: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('automountlocation_del', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('automountlocation_del',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(continue version)],
+        [qw(bool unicode)],
+    );
 }
 
 
@@ -2060,8 +1550,7 @@ Search for an automount location.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -2079,48 +1568,26 @@ Search for an automount location.
 
 =item pkey_only: Results should contain primary key attribute only ("location") (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_automountlocation_find
-{
-    
+{    
     my ($self, $criteria, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(criteria);
-    my $aidx = 0;
-    foreach my $arg ($criteria) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_automountlocation_find: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(cn timelimit sizelimit all raw version pkey_only);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_automountlocation_find: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode int int bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('automountlocation_find', [$criteria], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('automountlocation_find',    
+        [$criteria],
+        [qw(criteria)],
+        [qw(unicode)],
+        \%opts,
+        [qw(cn timelimit sizelimit all raw version pkey_only)],
+        [qw(unicode int int bool bool unicode bool)],
+    );
 }
 
 
@@ -2144,8 +1611,7 @@ Import automount files for a specific location.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -2153,48 +1619,26 @@ Import automount files for a specific location.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_automountlocation_import
-{
-    
+{    
     my ($self, $cn, $masterfile, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn masterfile);
-    my $aidx = 0;
-    foreach my $arg ($cn, $masterfile) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_automountlocation_import: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(continue version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_automountlocation_import: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('automountlocation_import', [$cn, $masterfile], [qw(unicode unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('automountlocation_import',    
+        [$cn, $masterfile],
+        [qw(cn masterfile)],
+        [qw(unicode unicode)],
+        \%opts,
+        [qw(continue version)],
+        [qw(bool unicode)],
+    );
 }
 
 
@@ -2216,8 +1660,7 @@ Display an automount location.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -2229,48 +1672,26 @@ Display an automount location.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_automountlocation_show
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_automountlocation_show: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(rights all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_automountlocation_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('automountlocation_show', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('automountlocation_show',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(rights all raw version)],
+        [qw(bool bool bool unicode)],
+    );
 }
 
 
@@ -2292,55 +1713,32 @@ Generate automount files for a specific location.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_automountlocation_tofiles
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_automountlocation_tofiles: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_automountlocation_tofiles: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('automountlocation_tofiles', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('automountlocation_tofiles',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(version)],
+        [qw(unicode)],
+    );
 }
 
 
@@ -2364,8 +1762,7 @@ Create a new automount map.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -2383,48 +1780,26 @@ must be part of the schema. (type unicode class Str)
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_automountmap_add
-{
-    
+{    
     my ($self, $automountlocationcn, $automountmapname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(automountlocationcn automountmapname);
-    my $aidx = 0;
-    foreach my $arg ($automountlocationcn, $automountmapname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_automountmap_add: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(description setattr addattr all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_automountmap_add: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('automountmap_add', [$automountlocationcn, $automountmapname], [qw(unicode unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('automountmap_add',    
+        [$automountlocationcn, $automountmapname],
+        [qw(automountlocationcn automountmapname)],
+        [qw(unicode unicode)],
+        \%opts,
+        [qw(description setattr addattr all raw version)],
+        [qw(unicode unicode unicode bool bool unicode)],
+    );
 }
 
 
@@ -2448,8 +1823,7 @@ Create a new indirect mount point.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -2471,48 +1845,26 @@ must be part of the schema. (type unicode class Str)
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_automountmap_add_indirect
-{
-    
+{    
     my ($self, $automountlocationcn, $automountmapname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(automountlocationcn automountmapname);
-    my $aidx = 0;
-    foreach my $arg ($automountlocationcn, $automountmapname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_automountmap_add_indirect: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(description setattr addattr key parentmap all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_automountmap_add_indirect: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode unicode bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('automountmap_add_indirect', [$automountlocationcn, $automountmapname], [qw(unicode unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('automountmap_add_indirect',    
+        [$automountlocationcn, $automountmapname],
+        [qw(automountlocationcn automountmapname)],
+        [qw(unicode unicode)],
+        \%opts,
+        [qw(description setattr addattr key parentmap all raw version)],
+        [qw(unicode unicode unicode unicode unicode bool bool unicode)],
+    );
 }
 
 
@@ -2536,8 +1888,7 @@ Delete an automount map.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -2545,48 +1896,26 @@ Delete an automount map.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_automountmap_del
-{
-    
+{    
     my ($self, $automountlocationcn, $automountmapname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(automountlocationcn automountmapname);
-    my $aidx = 0;
-    foreach my $arg ($automountlocationcn, $automountmapname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_automountmap_del: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(continue version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_automountmap_del: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('automountmap_del', [$automountlocationcn, $automountmapname], [qw(unicode unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('automountmap_del',    
+        [$automountlocationcn, $automountmapname],
+        [qw(automountlocationcn automountmapname)],
+        [qw(unicode unicode)],
+        \%opts,
+        [qw(continue version)],
+        [qw(bool unicode)],
+    );
 }
 
 
@@ -2610,8 +1939,7 @@ Search for an automount map.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -2631,48 +1959,26 @@ Search for an automount map.
 
 =item pkey_only: Results should contain primary key attribute only ("map") (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_automountmap_find
-{
-    
+{    
     my ($self, $automountlocationcn, $criteria, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(automountlocationcn criteria);
-    my $aidx = 0;
-    foreach my $arg ($automountlocationcn, $criteria) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_automountmap_find: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(automountmapname description timelimit sizelimit all raw version pkey_only);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_automountmap_find: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode int int bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('automountmap_find', [$automountlocationcn, $criteria], [qw(unicode unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('automountmap_find',    
+        [$automountlocationcn, $criteria],
+        [qw(automountlocationcn criteria)],
+        [qw(unicode unicode)],
+        \%opts,
+        [qw(automountmapname description timelimit sizelimit all raw version pkey_only)],
+        [qw(unicode unicode int int bool bool unicode bool)],
+    );
 }
 
 
@@ -2696,8 +2002,7 @@ Modify an automount map.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -2720,48 +2025,26 @@ last, after all sets and adds. (type unicode class Str)
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_automountmap_mod
-{
-    
+{    
     my ($self, $automountlocationcn, $automountmapname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(automountlocationcn automountmapname);
-    my $aidx = 0;
-    foreach my $arg ($automountlocationcn, $automountmapname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_automountmap_mod: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(description setattr addattr delattr rights all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_automountmap_mod: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode bool bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('automountmap_mod', [$automountlocationcn, $automountmapname], [qw(unicode unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('automountmap_mod',    
+        [$automountlocationcn, $automountmapname],
+        [qw(automountlocationcn automountmapname)],
+        [qw(unicode unicode)],
+        \%opts,
+        [qw(description setattr addattr delattr rights all raw version)],
+        [qw(unicode unicode unicode unicode bool bool bool unicode)],
+    );
 }
 
 
@@ -2785,8 +2068,7 @@ Display an automount map.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -2798,48 +2080,26 @@ Display an automount map.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_automountmap_show
-{
-    
+{    
     my ($self, $automountlocationcn, $automountmapname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(automountlocationcn automountmapname);
-    my $aidx = 0;
-    foreach my $arg ($automountlocationcn, $automountmapname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_automountmap_show: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(rights all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_automountmap_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('automountmap_show', [$automountlocationcn, $automountmapname], [qw(unicode unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('automountmap_show',    
+        [$automountlocationcn, $automountmapname],
+        [qw(automountlocationcn automountmapname)],
+        [qw(unicode unicode)],
+        \%opts,
+        [qw(rights all raw version)],
+        [qw(bool bool bool unicode)],
+    );
 }
 
 
@@ -2861,55 +2121,32 @@ None
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_batch
-{
-    
+{    
     my ($self, $methods, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(methods);
-    my $aidx = 0;
-    foreach my $arg ($methods) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_batch: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_batch: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('batch', [$methods], [qw(object)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('batch',    
+        [$methods],
+        [qw(methods)],
+        [qw(object)],
+        \%opts,
+        [qw(version)],
+        [qw(unicode)],
+    );
 }
 
 
@@ -2926,42 +2163,32 @@ Wrapper method for ca_is_enabled API
 
 =item No required arguments
 
-=item Options
+=item  Options
 
 =over
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_ca_is_enabled
-{
-    
+{    
     my ($self, %opts) = @_;
     
-    
-    # Check options
-    my @opt_keys = qw(version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_ca_is_enabled: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('ca_is_enabled', [], [qw()], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('ca_is_enabled',    
+        [],
+        [qw()],
+        [qw()],
+        \%opts,
+        [qw(version)],
+        [qw(unicode)],
+    );
 }
 
 
@@ -2983,8 +2210,7 @@ Create a new CA ACL.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -3014,48 +2240,26 @@ must be part of the schema. (type unicode class Str)
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_caacl_add
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_caacl_add: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(description ipaenabledflag ipacertprofilecategory usercategory hostcategory servicecategory setattr addattr all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_caacl_add: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode bool unicode unicode unicode unicode unicode unicode bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('caacl_add', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('caacl_add',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(description ipaenabledflag ipacertprofilecategory usercategory hostcategory servicecategory setattr addattr all raw version no_members)],
+        [qw(unicode bool unicode unicode unicode unicode unicode unicode bool bool unicode bool)],
+    );
 }
 
 
@@ -3077,8 +2281,7 @@ Add target hosts and hostgroups to a CA ACL.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -3094,48 +2297,26 @@ Add target hosts and hostgroups to a CA ACL.
 
 =item hostgroup: host groups to add (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_caacl_add_host
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_caacl_add_host: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members host hostgroup);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_caacl_add_host: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('caacl_add_host', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('caacl_add_host',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members host hostgroup)],
+        [qw(bool bool unicode bool unicode unicode)],
+    );
 }
 
 
@@ -3157,8 +2338,7 @@ Add profiles to a CA ACL.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -3172,48 +2352,26 @@ Add profiles to a CA ACL.
 
 =item certprofile: Certificate Profiles to add (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_caacl_add_profile
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_caacl_add_profile: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members certprofile);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_caacl_add_profile: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('caacl_add_profile', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('caacl_add_profile',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members certprofile)],
+        [qw(bool bool unicode bool unicode)],
+    );
 }
 
 
@@ -3235,8 +2393,7 @@ Add services to a CA ACL.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -3250,48 +2407,26 @@ Add services to a CA ACL.
 
 =item service: services to add (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_caacl_add_service
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_caacl_add_service: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members service);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_caacl_add_service: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('caacl_add_service', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('caacl_add_service',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members service)],
+        [qw(bool bool unicode bool unicode)],
+    );
 }
 
 
@@ -3313,8 +2448,7 @@ Add users and groups to a CA ACL.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -3330,48 +2464,26 @@ Add users and groups to a CA ACL.
 
 =item group: groups to add (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_caacl_add_user
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_caacl_add_user: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members user group);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_caacl_add_user: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('caacl_add_user', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('caacl_add_user',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members user group)],
+        [qw(bool bool unicode bool unicode unicode)],
+    );
 }
 
 
@@ -3393,8 +2505,7 @@ Delete a CA ACL.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -3402,48 +2513,26 @@ Delete a CA ACL.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_caacl_del
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_caacl_del: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(continue version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_caacl_del: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('caacl_del', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('caacl_del',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(continue version)],
+        [qw(bool unicode)],
+    );
 }
 
 
@@ -3465,55 +2554,32 @@ Disable a CA ACL.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_caacl_disable
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_caacl_disable: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_caacl_disable: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('caacl_disable', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('caacl_disable',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(version)],
+        [qw(unicode)],
+    );
 }
 
 
@@ -3535,55 +2601,32 @@ Enable a CA ACL.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_caacl_enable
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_caacl_enable: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_caacl_enable: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('caacl_enable', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('caacl_enable',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(version)],
+        [qw(unicode)],
+    );
 }
 
 
@@ -3605,8 +2648,7 @@ Search for CA ACLs.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -3638,48 +2680,26 @@ Search for CA ACLs.
 
 =item pkey_only: Results should contain primary key attribute only ("name") (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_caacl_find
-{
-    
+{    
     my ($self, $criteria, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(criteria);
-    my $aidx = 0;
-    foreach my $arg ($criteria) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_caacl_find: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(cn description ipaenabledflag ipacertprofilecategory usercategory hostcategory servicecategory timelimit sizelimit all raw version no_members pkey_only);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_caacl_find: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode bool unicode unicode unicode unicode int int bool bool unicode bool bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('caacl_find', [$criteria], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('caacl_find',    
+        [$criteria],
+        [qw(criteria)],
+        [qw(unicode)],
+        \%opts,
+        [qw(cn description ipaenabledflag ipacertprofilecategory usercategory hostcategory servicecategory timelimit sizelimit all raw version no_members pkey_only)],
+        [qw(unicode unicode bool unicode unicode unicode unicode int int bool bool unicode bool bool)],
+    );
 }
 
 
@@ -3701,8 +2721,7 @@ Modify a CA ACL.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -3737,48 +2756,26 @@ last, after all sets and adds. (type unicode class Str)
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_caacl_mod
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_caacl_mod: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(description ipaenabledflag ipacertprofilecategory usercategory hostcategory servicecategory setattr addattr delattr rights all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_caacl_mod: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode bool unicode unicode unicode unicode unicode unicode unicode bool bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('caacl_mod', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('caacl_mod',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(description ipaenabledflag ipacertprofilecategory usercategory hostcategory servicecategory setattr addattr delattr rights all raw version no_members)],
+        [qw(unicode bool unicode unicode unicode unicode unicode unicode unicode bool bool bool unicode bool)],
+    );
 }
 
 
@@ -3800,8 +2797,7 @@ Remove target hosts and hostgroups from a CA ACL.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -3817,48 +2813,26 @@ Remove target hosts and hostgroups from a CA ACL.
 
 =item hostgroup: host groups to remove (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_caacl_remove_host
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_caacl_remove_host: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members host hostgroup);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_caacl_remove_host: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('caacl_remove_host', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('caacl_remove_host',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members host hostgroup)],
+        [qw(bool bool unicode bool unicode unicode)],
+    );
 }
 
 
@@ -3880,8 +2854,7 @@ Remove profiles from a CA ACL.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -3895,48 +2868,26 @@ Remove profiles from a CA ACL.
 
 =item certprofile: Certificate Profiles to remove (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_caacl_remove_profile
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_caacl_remove_profile: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members certprofile);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_caacl_remove_profile: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('caacl_remove_profile', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('caacl_remove_profile',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members certprofile)],
+        [qw(bool bool unicode bool unicode)],
+    );
 }
 
 
@@ -3958,8 +2909,7 @@ Remove services from a CA ACL.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -3973,48 +2923,26 @@ Remove services from a CA ACL.
 
 =item service: services to remove (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_caacl_remove_service
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_caacl_remove_service: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members service);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_caacl_remove_service: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('caacl_remove_service', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('caacl_remove_service',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members service)],
+        [qw(bool bool unicode bool unicode)],
+    );
 }
 
 
@@ -4036,8 +2964,7 @@ Remove users and groups from a CA ACL.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -4053,48 +2980,26 @@ Remove users and groups from a CA ACL.
 
 =item group: groups to remove (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_caacl_remove_user
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_caacl_remove_user: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members user group);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_caacl_remove_user: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('caacl_remove_user', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('caacl_remove_user',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members user group)],
+        [qw(bool bool unicode bool unicode unicode)],
+    );
 }
 
 
@@ -4116,8 +3021,7 @@ Display the properties of a CA ACL.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -4131,48 +3035,26 @@ Display the properties of a CA ACL.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_caacl_show
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_caacl_show: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(rights all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_caacl_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('caacl_show', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('caacl_show',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(rights all raw version no_members)],
+        [qw(bool bool bool unicode bool)],
+    );
 }
 
 
@@ -4187,7 +3069,7 @@ Search for existing certificates.
 
 =item No required arguments
 
-=item Options
+=item  Options
 
 =over
 
@@ -4225,36 +3107,26 @@ Search for existing certificates.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_cert_find
-{
-    
+{    
     my ($self, %opts) = @_;
     
-    
-    # Check options
-    my @opt_keys = qw(subject revocation_reason min_serial_number max_serial_number exactly validnotafter_from validnotafter_to validnotbefore_from validnotbefore_to issuedon_from issuedon_to revokedon_from revokedon_to sizelimit all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_cert_find: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode int int int bool unicode unicode unicode unicode unicode unicode unicode unicode int bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('cert_find', [], [qw()], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('cert_find',    
+        [],
+        [qw()],
+        [qw()],
+        \%opts,
+        [qw(subject revocation_reason min_serial_number max_serial_number exactly validnotafter_from validnotafter_to validnotbefore_from validnotbefore_to issuedon_from issuedon_to revokedon_from revokedon_to sizelimit all raw version)],
+        [qw(unicode int int int bool unicode unicode unicode unicode unicode unicode unicode unicode int bool bool unicode)],
+    );
 }
 
 
@@ -4276,55 +3148,32 @@ Take a revoked certificate off hold.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_cert_remove_hold
-{
-    
+{    
     my ($self, $serial_number, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(serial_number);
-    my $aidx = 0;
-    foreach my $arg ($serial_number) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_cert_remove_hold: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_cert_remove_hold: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('cert_remove_hold', [$serial_number], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('cert_remove_hold',    
+        [$serial_number],
+        [qw(serial_number)],
+        [qw(unicode)],
+        \%opts,
+        [qw(version)],
+        [qw(unicode)],
+    );
 }
 
 
@@ -4346,8 +3195,7 @@ Submit a certificate signing request.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -4361,48 +3209,26 @@ Submit a certificate signing request.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_cert_request
-{
-    
+{    
     my ($self, $csr, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(csr);
-    my $aidx = 0;
-    foreach my $arg ($csr) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_cert_request: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(principal request_type add profile_id version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_cert_request: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode bool unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('cert_request', [$csr], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('cert_request',    
+        [$csr],
+        [qw(csr)],
+        [qw(unicode)],
+        \%opts,
+        [qw(principal request_type add profile_id version)],
+        [qw(unicode unicode bool unicode unicode)],
+    );
 }
 
 
@@ -4424,8 +3250,7 @@ Revoke a certificate.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -4433,48 +3258,26 @@ Revoke a certificate.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_cert_revoke
-{
-    
+{    
     my ($self, $serial_number, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(serial_number);
-    my $aidx = 0;
-    foreach my $arg ($serial_number) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_cert_revoke: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(revocation_reason version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_cert_revoke: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(int unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('cert_revoke', [$serial_number], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('cert_revoke',    
+        [$serial_number],
+        [qw(serial_number)],
+        [qw(unicode)],
+        \%opts,
+        [qw(revocation_reason version)],
+        [qw(int unicode)],
+    );
 }
 
 
@@ -4496,8 +3299,7 @@ Retrieve an existing certificate.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -4505,48 +3307,26 @@ Retrieve an existing certificate.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_cert_show
-{
-    
+{    
     my ($self, $serial_number, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(serial_number);
-    my $aidx = 0;
-    foreach my $arg ($serial_number) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_cert_show: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(out version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_cert_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('cert_show', [$serial_number], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('cert_show',    
+        [$serial_number],
+        [qw(serial_number)],
+        [qw(unicode)],
+        \%opts,
+        [qw(out version)],
+        [qw(unicode unicode)],
+    );
 }
 
 
@@ -4568,55 +3348,32 @@ Check the status of a certificate signing request.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_cert_status
-{
-    
+{    
     my ($self, $request_id, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(request_id);
-    my $aidx = 0;
-    foreach my $arg ($request_id) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_cert_status: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_cert_status: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('cert_status', [$request_id], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('cert_status',    
+        [$request_id],
+        [qw(request_id)],
+        [qw(unicode)],
+        \%opts,
+        [qw(version)],
+        [qw(unicode)],
+    );
 }
 
 
@@ -4638,8 +3395,7 @@ Delete a Certificate Profile.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -4647,48 +3403,26 @@ Delete a Certificate Profile.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_certprofile_del
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_certprofile_del: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(continue version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_certprofile_del: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('certprofile_del', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('certprofile_del',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(continue version)],
+        [qw(bool unicode)],
+    );
 }
 
 
@@ -4710,8 +3444,7 @@ Search for Certificate Profiles.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -4733,48 +3466,26 @@ Search for Certificate Profiles.
 
 =item pkey_only: Results should contain primary key attribute only ("id") (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_certprofile_find
-{
-    
+{    
     my ($self, $criteria, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(criteria);
-    my $aidx = 0;
-    foreach my $arg ($criteria) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_certprofile_find: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(cn description ipacertprofilestoreissued timelimit sizelimit all raw version pkey_only);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_certprofile_find: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode bool int int bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('certprofile_find', [$criteria], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('certprofile_find',    
+        [$criteria],
+        [qw(criteria)],
+        [qw(unicode)],
+        \%opts,
+        [qw(cn description ipacertprofilestoreissued timelimit sizelimit all raw version pkey_only)],
+        [qw(unicode unicode bool int int bool bool unicode bool)],
+    );
 }
 
 
@@ -4796,8 +3507,7 @@ Import a Certificate Profile.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -4813,48 +3523,26 @@ Import a Certificate Profile.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_certprofile_import
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_certprofile_import: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(description ipacertprofilestoreissued file all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_certprofile_import: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode bool unicode bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('certprofile_import', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('certprofile_import',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(description ipacertprofilestoreissued file all raw version)],
+        [qw(unicode bool unicode bool bool unicode)],
+    );
 }
 
 
@@ -4876,8 +3564,7 @@ Modify Certificate Profile configuration.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -4904,48 +3591,26 @@ last, after all sets and adds. (type unicode class Str)
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_certprofile_mod
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_certprofile_mod: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(description ipacertprofilestoreissued setattr addattr delattr rights file all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_certprofile_mod: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode bool unicode unicode unicode bool unicode bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('certprofile_mod', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('certprofile_mod',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(description ipacertprofilestoreissued setattr addattr delattr rights file all raw version)],
+        [qw(unicode bool unicode unicode unicode bool unicode bool bool unicode)],
+    );
 }
 
 
@@ -4967,8 +3632,7 @@ Display the properties of a Certificate Profile.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -4982,48 +3646,26 @@ Display the properties of a Certificate Profile.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_certprofile_show
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_certprofile_show: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(rights out all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_certprofile_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('certprofile_show', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('certprofile_show',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(rights out all raw version)],
+        [qw(bool unicode bool bool unicode)],
+    );
 }
 
 
@@ -5038,42 +3680,32 @@ Determine whether Schema Compatibility plugin is configured to serve trusted dom
 
 =item No required arguments
 
-=item Options
+=item  Options
 
 =over
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_compat_is_enabled
-{
-    
+{    
     my ($self, %opts) = @_;
     
-    
-    # Check options
-    my @opt_keys = qw(version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_compat_is_enabled: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('compat_is_enabled', [], [qw()], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('compat_is_enabled',    
+        [],
+        [qw()],
+        [qw()],
+        \%opts,
+        [qw(version)],
+        [qw(unicode)],
+    );
 }
 
 
@@ -5088,7 +3720,7 @@ Modify configuration options.
 
 =item No required arguments
 
-=item Options
+=item  Options
 
 =over
 
@@ -5145,36 +3777,26 @@ last, after all sets and adds. (type unicode class Str)
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_config_mod
-{
-    
+{    
     my ($self, %opts) = @_;
     
-    
-    # Check options
-    my @opt_keys = qw(ipamaxusernamelength ipahomesrootdir ipadefaultloginshell ipadefaultprimarygroup ipadefaultemaildomain ipasearchtimelimit ipasearchrecordslimit ipausersearchfields ipagroupsearchfields ipamigrationenabled ipagroupobjectclasses ipauserobjectclasses ipapwdexpadvnotify ipaconfigstring ipaselinuxusermaporder ipaselinuxusermapdefault ipakrbauthzdata ipauserauthtype setattr addattr delattr rights all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_config_mod: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(int unicode unicode unicode unicode int int unicode unicode bool unicode unicode int unicode unicode unicode unicode unicode unicode unicode unicode bool bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('config_mod', [], [qw()], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('config_mod',    
+        [],
+        [qw()],
+        [qw()],
+        \%opts,
+        [qw(ipamaxusernamelength ipahomesrootdir ipadefaultloginshell ipadefaultprimarygroup ipadefaultemaildomain ipasearchtimelimit ipasearchrecordslimit ipausersearchfields ipagroupsearchfields ipamigrationenabled ipagroupobjectclasses ipauserobjectclasses ipapwdexpadvnotify ipaconfigstring ipaselinuxusermaporder ipaselinuxusermapdefault ipakrbauthzdata ipauserauthtype setattr addattr delattr rights all raw version)],
+        [qw(int unicode unicode unicode unicode int int unicode unicode bool unicode unicode int unicode unicode unicode unicode unicode unicode unicode unicode bool bool bool unicode)],
+    );
 }
 
 
@@ -5189,7 +3811,7 @@ Show the current configuration.
 
 =item No required arguments
 
-=item Options
+=item  Options
 
 =over
 
@@ -5201,36 +3823,26 @@ Show the current configuration.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_config_show
-{
-    
+{    
     my ($self, %opts) = @_;
     
-    
-    # Check options
-    my @opt_keys = qw(rights all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_config_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('config_show', [], [qw()], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('config_show',    
+        [],
+        [qw()],
+        [qw()],
+        \%opts,
+        [qw(rights all raw version)],
+        [qw(bool bool bool unicode)],
+    );
 }
 
 
@@ -5252,8 +3864,7 @@ None
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -5273,48 +3884,26 @@ must be part of the schema. (type unicode class Str)
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_cosentry_add
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_cosentry_add: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(krbpwdpolicyreference cospriority setattr addattr all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_cosentry_add: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(DN int unicode unicode bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('cosentry_add', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('cosentry_add',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(krbpwdpolicyreference cospriority setattr addattr all raw version)],
+        [qw(DN int unicode unicode bool bool unicode)],
+    );
 }
 
 
@@ -5336,8 +3925,7 @@ None
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -5345,48 +3933,26 @@ None
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_cosentry_del
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_cosentry_del: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(continue version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_cosentry_del: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('cosentry_del', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('cosentry_del',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(continue version)],
+        [qw(bool unicode)],
+    );
 }
 
 
@@ -5408,8 +3974,7 @@ None
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -5431,48 +3996,26 @@ None
 
 =item pkey_only: Results should contain primary key attribute only ("cn") (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_cosentry_find
-{
-    
+{    
     my ($self, $criteria, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(criteria);
-    my $aidx = 0;
-    foreach my $arg ($criteria) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_cosentry_find: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(cn krbpwdpolicyreference cospriority timelimit sizelimit all raw version pkey_only);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_cosentry_find: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode DN int int int bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('cosentry_find', [$criteria], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('cosentry_find',    
+        [$criteria],
+        [qw(criteria)],
+        [qw(unicode)],
+        \%opts,
+        [qw(cn krbpwdpolicyreference cospriority timelimit sizelimit all raw version pkey_only)],
+        [qw(unicode DN int int int bool bool unicode bool)],
+    );
 }
 
 
@@ -5494,8 +4037,7 @@ None
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -5520,48 +4062,26 @@ last, after all sets and adds. (type unicode class Str)
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_cosentry_mod
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_cosentry_mod: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(krbpwdpolicyreference cospriority setattr addattr delattr rights all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_cosentry_mod: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(DN int unicode unicode unicode bool bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('cosentry_mod', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('cosentry_mod',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(krbpwdpolicyreference cospriority setattr addattr delattr rights all raw version)],
+        [qw(DN int unicode unicode unicode bool bool bool unicode)],
+    );
 }
 
 
@@ -5583,8 +4103,7 @@ None
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -5596,48 +4115,26 @@ None
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_cosentry_show
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_cosentry_show: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(rights all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_cosentry_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('cosentry_show', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('cosentry_show',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(rights all raw version)],
+        [qw(bool bool bool unicode)],
+    );
 }
 
 
@@ -5659,8 +4156,7 @@ Add a new delegation.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -5678,48 +4174,26 @@ Add a new delegation.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_delegation_add
-{
-    
+{    
     my ($self, $aciname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(aciname);
-    my $aidx = 0;
-    foreach my $arg ($aciname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_delegation_add: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(permissions attrs memberof group all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_delegation_add: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('delegation_add', [$aciname], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('delegation_add',    
+        [$aciname],
+        [qw(aciname)],
+        [qw(unicode)],
+        \%opts,
+        [qw(permissions attrs memberof group all raw version)],
+        [qw(unicode unicode unicode unicode bool bool unicode)],
+    );
 }
 
 
@@ -5741,55 +4215,32 @@ Delete a delegation.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_delegation_del
-{
-    
+{    
     my ($self, $aciname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(aciname);
-    my $aidx = 0;
-    foreach my $arg ($aciname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_delegation_del: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_delegation_del: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('delegation_del', [$aciname], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('delegation_del',    
+        [$aciname],
+        [qw(aciname)],
+        [qw(unicode)],
+        \%opts,
+        [qw(version)],
+        [qw(unicode)],
+    );
 }
 
 
@@ -5811,8 +4262,7 @@ Search for delegations.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -5834,48 +4284,26 @@ Search for delegations.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_delegation_find
-{
-    
+{    
     my ($self, $criteria, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(criteria);
-    my $aidx = 0;
-    foreach my $arg ($criteria) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_delegation_find: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(aciname permissions attrs memberof group pkey_only all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_delegation_find: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode unicode bool bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('delegation_find', [$criteria], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('delegation_find',    
+        [$criteria],
+        [qw(criteria)],
+        [qw(unicode)],
+        \%opts,
+        [qw(aciname permissions attrs memberof group pkey_only all raw version)],
+        [qw(unicode unicode unicode unicode unicode bool bool bool unicode)],
+    );
 }
 
 
@@ -5897,8 +4325,7 @@ Modify a delegation.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -5916,48 +4343,26 @@ Modify a delegation.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_delegation_mod
-{
-    
+{    
     my ($self, $aciname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(aciname);
-    my $aidx = 0;
-    foreach my $arg ($aciname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_delegation_mod: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(permissions attrs memberof group all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_delegation_mod: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('delegation_mod', [$aciname], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('delegation_mod',    
+        [$aciname],
+        [qw(aciname)],
+        [qw(unicode)],
+        \%opts,
+        [qw(permissions attrs memberof group all raw version)],
+        [qw(unicode unicode unicode unicode bool bool unicode)],
+    );
 }
 
 
@@ -5979,8 +4384,7 @@ Display information about a delegation.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -5990,48 +4394,26 @@ Display information about a delegation.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_delegation_show
-{
-    
+{    
     my ($self, $aciname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(aciname);
-    my $aidx = 0;
-    foreach my $arg ($aciname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_delegation_show: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_delegation_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('delegation_show', [$aciname], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('delegation_show',    
+        [$aciname],
+        [qw(aciname)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version)],
+        [qw(bool bool unicode)],
+    );
 }
 
 
@@ -6048,42 +4430,32 @@ Wrapper method for dns_is_enabled API
 
 =item No required arguments
 
-=item Options
+=item  Options
 
 =over
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_dns_is_enabled
-{
-    
+{    
     my ($self, %opts) = @_;
     
-    
-    # Check options
-    my @opt_keys = qw(version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_dns_is_enabled: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('dns_is_enabled', [], [qw()], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('dns_is_enabled',    
+        [],
+        [qw()],
+        [qw()],
+        \%opts,
+        [qw(version)],
+        [qw(unicode)],
+    );
 }
 
 
@@ -6105,55 +4477,32 @@ Resolve a host name in DNS.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_dns_resolve
-{
-    
+{    
     my ($self, $hostname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(hostname);
-    my $aidx = 0;
-    foreach my $arg ($hostname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_dns_resolve: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_dns_resolve: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('dns_resolve', [$hostname], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('dns_resolve',    
+        [$hostname],
+        [qw(hostname)],
+        [qw(unicode)],
+        \%opts,
+        [qw(version)],
+        [qw(unicode)],
+    );
 }
 
 
@@ -6168,7 +4517,7 @@ Modify global DNS configuration.
 
 =item No required arguments
 
-=item Options
+=item  Options
 
 =over
 
@@ -6197,36 +4546,26 @@ last, after all sets and adds. (type unicode class Str)
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_dnsconfig_mod
-{
-    
+{    
     my ($self, %opts) = @_;
     
-    
-    # Check options
-    my @opt_keys = qw(idnsforwarders idnsforwardpolicy idnsallowsyncptr idnszonerefresh setattr addattr delattr rights all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_dnsconfig_mod: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode bool object unicode unicode unicode bool bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('dnsconfig_mod', [], [qw()], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('dnsconfig_mod',    
+        [],
+        [qw()],
+        [qw()],
+        \%opts,
+        [qw(idnsforwarders idnsforwardpolicy idnsallowsyncptr idnszonerefresh setattr addattr delattr rights all raw version)],
+        [qw(unicode unicode bool object unicode unicode unicode bool bool bool unicode)],
+    );
 }
 
 
@@ -6241,7 +4580,7 @@ Show the current global DNS configuration.
 
 =item No required arguments
 
-=item Options
+=item  Options
 
 =over
 
@@ -6253,36 +4592,26 @@ Show the current global DNS configuration.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_dnsconfig_show
-{
-    
+{    
     my ($self, %opts) = @_;
     
-    
-    # Check options
-    my @opt_keys = qw(rights all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_dnsconfig_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('dnsconfig_show', [], [qw()], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('dnsconfig_show',    
+        [],
+        [qw()],
+        [qw()],
+        \%opts,
+        [qw(rights all raw version)],
+        [qw(bool bool bool unicode)],
+    );
 }
 
 
@@ -6304,8 +4633,7 @@ Create new DNS forward zone.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -6327,48 +4655,26 @@ must be part of the schema. (type unicode class Str)
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_dnsforwardzone_add
-{
-    
+{    
     my ($self, $idnsname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(idnsname);
-    my $aidx = 0;
-    foreach my $arg ($idnsname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_dnsforwardzone_add: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(name_from_ip idnsforwarders idnsforwardpolicy setattr addattr all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_dnsforwardzone_add: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode unicode bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('dnsforwardzone_add', [$idnsname], [qw(DNSName)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('dnsforwardzone_add',    
+        [$idnsname],
+        [qw(idnsname)],
+        [qw(DNSName)],
+        \%opts,
+        [qw(name_from_ip idnsforwarders idnsforwardpolicy setattr addattr all raw version)],
+        [qw(unicode unicode unicode unicode unicode bool bool unicode)],
+    );
 }
 
 
@@ -6390,55 +4696,32 @@ Add a permission for per-forward zone access delegation.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_dnsforwardzone_add_permission
-{
-    
+{    
     my ($self, $idnsname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(idnsname);
-    my $aidx = 0;
-    foreach my $arg ($idnsname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_dnsforwardzone_add_permission: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_dnsforwardzone_add_permission: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('dnsforwardzone_add_permission', [$idnsname], [qw(DNSName)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('dnsforwardzone_add_permission',    
+        [$idnsname],
+        [qw(idnsname)],
+        [qw(DNSName)],
+        \%opts,
+        [qw(version)],
+        [qw(unicode)],
+    );
 }
 
 
@@ -6460,8 +4743,7 @@ Delete DNS forward zone.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -6469,48 +4751,26 @@ Delete DNS forward zone.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_dnsforwardzone_del
-{
-    
+{    
     my ($self, $idnsname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(idnsname);
-    my $aidx = 0;
-    foreach my $arg ($idnsname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_dnsforwardzone_del: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(continue version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_dnsforwardzone_del: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('dnsforwardzone_del', [$idnsname], [qw(DNSName)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('dnsforwardzone_del',    
+        [$idnsname],
+        [qw(idnsname)],
+        [qw(DNSName)],
+        \%opts,
+        [qw(continue version)],
+        [qw(bool unicode)],
+    );
 }
 
 
@@ -6532,55 +4792,32 @@ Disable DNS Forward Zone.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_dnsforwardzone_disable
-{
-    
+{    
     my ($self, $idnsname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(idnsname);
-    my $aidx = 0;
-    foreach my $arg ($idnsname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_dnsforwardzone_disable: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_dnsforwardzone_disable: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('dnsforwardzone_disable', [$idnsname], [qw(DNSName)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('dnsforwardzone_disable',    
+        [$idnsname],
+        [qw(idnsname)],
+        [qw(DNSName)],
+        \%opts,
+        [qw(version)],
+        [qw(unicode)],
+    );
 }
 
 
@@ -6602,55 +4839,32 @@ Enable DNS Forward Zone.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_dnsforwardzone_enable
-{
-    
+{    
     my ($self, $idnsname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(idnsname);
-    my $aidx = 0;
-    foreach my $arg ($idnsname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_dnsforwardzone_enable: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_dnsforwardzone_enable: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('dnsforwardzone_enable', [$idnsname], [qw(DNSName)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('dnsforwardzone_enable',    
+        [$idnsname],
+        [qw(idnsname)],
+        [qw(DNSName)],
+        \%opts,
+        [qw(version)],
+        [qw(unicode)],
+    );
 }
 
 
@@ -6672,8 +4886,7 @@ Search for DNS forward zones.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -6699,48 +4912,26 @@ Search for DNS forward zones.
 
 =item pkey_only: Results should contain primary key attribute only ("name") (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_dnsforwardzone_find
-{
-    
+{    
     my ($self, $criteria, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(criteria);
-    my $aidx = 0;
-    foreach my $arg ($criteria) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_dnsforwardzone_find: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(idnsname name_from_ip idnszoneactive idnsforwarders idnsforwardpolicy timelimit sizelimit all raw version pkey_only);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_dnsforwardzone_find: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(DNSName unicode bool unicode unicode int int bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('dnsforwardzone_find', [$criteria], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('dnsforwardzone_find',    
+        [$criteria],
+        [qw(criteria)],
+        [qw(unicode)],
+        \%opts,
+        [qw(idnsname name_from_ip idnszoneactive idnsforwarders idnsforwardpolicy timelimit sizelimit all raw version pkey_only)],
+        [qw(DNSName unicode bool unicode unicode int int bool bool unicode bool)],
+    );
 }
 
 
@@ -6762,8 +4953,7 @@ Modify DNS forward zone.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -6790,48 +4980,26 @@ last, after all sets and adds. (type unicode class Str)
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_dnsforwardzone_mod
-{
-    
+{    
     my ($self, $idnsname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(idnsname);
-    my $aidx = 0;
-    foreach my $arg ($idnsname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_dnsforwardzone_mod: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(name_from_ip idnsforwarders idnsforwardpolicy setattr addattr delattr rights all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_dnsforwardzone_mod: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode unicode unicode bool bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('dnsforwardzone_mod', [$idnsname], [qw(DNSName)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('dnsforwardzone_mod',    
+        [$idnsname],
+        [qw(idnsname)],
+        [qw(DNSName)],
+        \%opts,
+        [qw(name_from_ip idnsforwarders idnsforwardpolicy setattr addattr delattr rights all raw version)],
+        [qw(unicode unicode unicode unicode unicode unicode bool bool bool unicode)],
+    );
 }
 
 
@@ -6853,55 +5021,32 @@ Remove a permission for per-forward zone access delegation.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_dnsforwardzone_remove_permission
-{
-    
+{    
     my ($self, $idnsname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(idnsname);
-    my $aidx = 0;
-    foreach my $arg ($idnsname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_dnsforwardzone_remove_permission: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_dnsforwardzone_remove_permission: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('dnsforwardzone_remove_permission', [$idnsname], [qw(DNSName)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('dnsforwardzone_remove_permission',    
+        [$idnsname],
+        [qw(idnsname)],
+        [qw(DNSName)],
+        \%opts,
+        [qw(version)],
+        [qw(unicode)],
+    );
 }
 
 
@@ -6923,8 +5068,7 @@ Display information about a DNS forward zone.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -6936,48 +5080,26 @@ Display information about a DNS forward zone.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_dnsforwardzone_show
-{
-    
+{    
     my ($self, $idnsname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(idnsname);
-    my $aidx = 0;
-    foreach my $arg ($idnsname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_dnsforwardzone_show: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(rights all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_dnsforwardzone_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('dnsforwardzone_show', [$idnsname], [qw(DNSName)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('dnsforwardzone_show',    
+        [$idnsname],
+        [qw(idnsname)],
+        [qw(DNSName)],
+        \%opts,
+        [qw(rights all raw version)],
+        [qw(bool bool bool unicode)],
+    );
 }
 
 
@@ -7001,8 +5123,7 @@ Add new DNS resource record.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -7198,48 +5319,26 @@ must be part of the schema. (type unicode class Str)
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_dnsrecord_add
-{
-    
+{    
     my ($self, $dnszoneidnsname, $idnsname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(dnszoneidnsname idnsname);
-    my $aidx = 0;
-    foreach my $arg ($dnszoneidnsname, $idnsname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_dnsrecord_add: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(dnsttl dnsclass arecord a_part_ip_address a_extra_create_reverse aaaarecord aaaa_part_ip_address aaaa_extra_create_reverse a6record a6_part_data afsdbrecord afsdb_part_subtype afsdb_part_hostname aplrecord certrecord cert_part_type cert_part_key_tag cert_part_algorithm cert_part_certificate_or_crl cnamerecord cname_part_hostname dhcidrecord dlvrecord dlv_part_key_tag dlv_part_algorithm dlv_part_digest_type dlv_part_digest dnamerecord dname_part_target dsrecord ds_part_key_tag ds_part_algorithm ds_part_digest_type ds_part_digest hiprecord ipseckeyrecord keyrecord kxrecord kx_part_preference kx_part_exchanger locrecord loc_part_lat_deg loc_part_lat_min loc_part_lat_sec loc_part_lat_dir loc_part_lon_deg loc_part_lon_min loc_part_lon_sec loc_part_lon_dir loc_part_altitude loc_part_size loc_part_h_precision loc_part_v_precision mxrecord mx_part_preference mx_part_exchanger naptrrecord naptr_part_order naptr_part_preference naptr_part_flags naptr_part_service naptr_part_regexp naptr_part_replacement nsrecord ns_part_hostname nsecrecord ptrrecord ptr_part_hostname rrsigrecord rprecord sigrecord spfrecord srvrecord srv_part_priority srv_part_weight srv_part_port srv_part_target sshfprecord sshfp_part_algorithm sshfp_part_fp_type sshfp_part_fingerprint tlsarecord tlsa_part_cert_usage tlsa_part_selector tlsa_part_matching_type tlsa_part_cert_association_data txtrecord txt_part_data setattr addattr force structured all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_dnsrecord_add: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(int unicode unicode unicode bool unicode unicode bool unicode unicode unicode int DNSName unicode unicode int int int unicode unicode DNSName unicode unicode int int int unicode unicode DNSName unicode int int int unicode unicode unicode unicode unicode int DNSName unicode int int Decimal unicode int int Decimal unicode Decimal Decimal Decimal Decimal unicode int DNSName unicode int int unicode unicode unicode unicode unicode DNSName unicode unicode DNSName unicode unicode unicode unicode unicode int int int DNSName unicode int int unicode unicode int int int unicode unicode unicode unicode unicode bool bool bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('dnsrecord_add', [$dnszoneidnsname, $idnsname], [qw(DNSName DNSName)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('dnsrecord_add',    
+        [$dnszoneidnsname, $idnsname],
+        [qw(dnszoneidnsname idnsname)],
+        [qw(DNSName DNSName)],
+        \%opts,
+        [qw(dnsttl dnsclass arecord a_part_ip_address a_extra_create_reverse aaaarecord aaaa_part_ip_address aaaa_extra_create_reverse a6record a6_part_data afsdbrecord afsdb_part_subtype afsdb_part_hostname aplrecord certrecord cert_part_type cert_part_key_tag cert_part_algorithm cert_part_certificate_or_crl cnamerecord cname_part_hostname dhcidrecord dlvrecord dlv_part_key_tag dlv_part_algorithm dlv_part_digest_type dlv_part_digest dnamerecord dname_part_target dsrecord ds_part_key_tag ds_part_algorithm ds_part_digest_type ds_part_digest hiprecord ipseckeyrecord keyrecord kxrecord kx_part_preference kx_part_exchanger locrecord loc_part_lat_deg loc_part_lat_min loc_part_lat_sec loc_part_lat_dir loc_part_lon_deg loc_part_lon_min loc_part_lon_sec loc_part_lon_dir loc_part_altitude loc_part_size loc_part_h_precision loc_part_v_precision mxrecord mx_part_preference mx_part_exchanger naptrrecord naptr_part_order naptr_part_preference naptr_part_flags naptr_part_service naptr_part_regexp naptr_part_replacement nsrecord ns_part_hostname nsecrecord ptrrecord ptr_part_hostname rrsigrecord rprecord sigrecord spfrecord srvrecord srv_part_priority srv_part_weight srv_part_port srv_part_target sshfprecord sshfp_part_algorithm sshfp_part_fp_type sshfp_part_fingerprint tlsarecord tlsa_part_cert_usage tlsa_part_selector tlsa_part_matching_type tlsa_part_cert_association_data txtrecord txt_part_data setattr addattr force structured all raw version)],
+        [qw(int unicode unicode unicode bool unicode unicode bool unicode unicode unicode int DNSName unicode unicode int int int unicode unicode DNSName unicode unicode int int int unicode unicode DNSName unicode int int int unicode unicode unicode unicode unicode int DNSName unicode int int Decimal unicode int int Decimal unicode Decimal Decimal Decimal Decimal unicode int DNSName unicode int int unicode unicode unicode unicode unicode DNSName unicode unicode DNSName unicode unicode unicode unicode unicode int int int DNSName unicode int int unicode unicode int int int unicode unicode unicode unicode unicode bool bool bool bool unicode)],
+    );
 }
 
 
@@ -7263,8 +5362,7 @@ Delete DNS resource record.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -7336,48 +5434,26 @@ Delete DNS resource record.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_dnsrecord_del
-{
-    
+{    
     my ($self, $dnszoneidnsname, $idnsname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(dnszoneidnsname idnsname);
-    my $aidx = 0;
-    foreach my $arg ($dnszoneidnsname, $idnsname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_dnsrecord_del: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(dnsttl dnsclass arecord aaaarecord a6record afsdbrecord aplrecord certrecord cnamerecord dhcidrecord dlvrecord dnamerecord dsrecord hiprecord ipseckeyrecord keyrecord kxrecord locrecord mxrecord naptrrecord nsrecord nsecrecord ptrrecord rrsigrecord rprecord sigrecord spfrecord srvrecord sshfprecord tlsarecord txtrecord del_all structured version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_dnsrecord_del: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(int unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('dnsrecord_del', [$dnszoneidnsname, $idnsname], [qw(DNSName DNSName)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('dnsrecord_del',    
+        [$dnszoneidnsname, $idnsname],
+        [qw(dnszoneidnsname idnsname)],
+        [qw(DNSName DNSName)],
+        \%opts,
+        [qw(dnsttl dnsclass arecord aaaarecord a6record afsdbrecord aplrecord certrecord cnamerecord dhcidrecord dlvrecord dnamerecord dsrecord hiprecord ipseckeyrecord keyrecord kxrecord locrecord mxrecord naptrrecord nsrecord nsecrecord ptrrecord rrsigrecord rprecord sigrecord spfrecord srvrecord sshfprecord tlsarecord txtrecord del_all structured version)],
+        [qw(int unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode bool bool unicode)],
+    );
 }
 
 
@@ -7403,8 +5479,7 @@ Wrapper method for dnsrecord_delentry API
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -7412,48 +5487,26 @@ Wrapper method for dnsrecord_delentry API
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_dnsrecord_delentry
-{
-    
+{    
     my ($self, $dnszoneidnsname, $idnsname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(dnszoneidnsname idnsname);
-    my $aidx = 0;
-    foreach my $arg ($dnszoneidnsname, $idnsname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_dnsrecord_delentry: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(continue version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_dnsrecord_delentry: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('dnsrecord_delentry', [$dnszoneidnsname, $idnsname], [qw(DNSName DNSName)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('dnsrecord_delentry',    
+        [$dnszoneidnsname, $idnsname],
+        [qw(dnszoneidnsname idnsname)],
+        [qw(DNSName DNSName)],
+        \%opts,
+        [qw(continue version)],
+        [qw(bool unicode)],
+    );
 }
 
 
@@ -7477,8 +5530,7 @@ Search for DNS resources.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -7560,48 +5612,26 @@ Search for DNS resources.
 
 =item pkey_only: Results should contain primary key attribute only ("name") (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_dnsrecord_find
-{
-    
+{    
     my ($self, $dnszoneidnsname, $criteria, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(dnszoneidnsname criteria);
-    my $aidx = 0;
-    foreach my $arg ($dnszoneidnsname, $criteria) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_dnsrecord_find: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(idnsname dnsttl dnsclass arecord aaaarecord a6record afsdbrecord aplrecord certrecord cnamerecord dhcidrecord dlvrecord dnamerecord dsrecord hiprecord ipseckeyrecord keyrecord kxrecord locrecord mxrecord naptrrecord nsrecord nsecrecord ptrrecord rrsigrecord rprecord sigrecord spfrecord srvrecord sshfprecord tlsarecord txtrecord timelimit sizelimit structured all raw version pkey_only);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_dnsrecord_find: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(DNSName int unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode int int bool bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('dnsrecord_find', [$dnszoneidnsname, $criteria], [qw(DNSName unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('dnsrecord_find',    
+        [$dnszoneidnsname, $criteria],
+        [qw(dnszoneidnsname criteria)],
+        [qw(DNSName unicode)],
+        \%opts,
+        [qw(idnsname dnsttl dnsclass arecord aaaarecord a6record afsdbrecord aplrecord certrecord cnamerecord dhcidrecord dlvrecord dnamerecord dsrecord hiprecord ipseckeyrecord keyrecord kxrecord locrecord mxrecord naptrrecord nsrecord nsecrecord ptrrecord rrsigrecord rprecord sigrecord spfrecord srvrecord sshfprecord tlsarecord txtrecord timelimit sizelimit structured all raw version pkey_only)],
+        [qw(DNSName int unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode int int bool bool bool unicode bool)],
+    );
 }
 
 
@@ -7625,8 +5655,7 @@ Modify a DNS resource record.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -7823,48 +5852,26 @@ last, after all sets and adds. (type unicode class Str)
 
 =item rename: Rename the DNS resource record object (type DNSName class DNSNameParam)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_dnsrecord_mod
-{
-    
+{    
     my ($self, $dnszoneidnsname, $idnsname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(dnszoneidnsname idnsname);
-    my $aidx = 0;
-    foreach my $arg ($dnszoneidnsname, $idnsname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_dnsrecord_mod: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(dnsttl dnsclass arecord a_part_ip_address aaaarecord aaaa_part_ip_address a6record a6_part_data afsdbrecord afsdb_part_subtype afsdb_part_hostname aplrecord certrecord cert_part_type cert_part_key_tag cert_part_algorithm cert_part_certificate_or_crl cnamerecord cname_part_hostname dhcidrecord dlvrecord dlv_part_key_tag dlv_part_algorithm dlv_part_digest_type dlv_part_digest dnamerecord dname_part_target dsrecord ds_part_key_tag ds_part_algorithm ds_part_digest_type ds_part_digest hiprecord ipseckeyrecord keyrecord kxrecord kx_part_preference kx_part_exchanger locrecord loc_part_lat_deg loc_part_lat_min loc_part_lat_sec loc_part_lat_dir loc_part_lon_deg loc_part_lon_min loc_part_lon_sec loc_part_lon_dir loc_part_altitude loc_part_size loc_part_h_precision loc_part_v_precision mxrecord mx_part_preference mx_part_exchanger naptrrecord naptr_part_order naptr_part_preference naptr_part_flags naptr_part_service naptr_part_regexp naptr_part_replacement nsrecord ns_part_hostname nsecrecord ptrrecord ptr_part_hostname rrsigrecord rprecord sigrecord spfrecord srvrecord srv_part_priority srv_part_weight srv_part_port srv_part_target sshfprecord sshfp_part_algorithm sshfp_part_fp_type sshfp_part_fingerprint tlsarecord tlsa_part_cert_usage tlsa_part_selector tlsa_part_matching_type tlsa_part_cert_association_data txtrecord txt_part_data setattr addattr delattr rights structured all raw version rename);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_dnsrecord_mod: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(int unicode unicode unicode unicode unicode unicode unicode unicode int DNSName unicode unicode int int int unicode unicode DNSName unicode unicode int int int unicode unicode DNSName unicode int int int unicode unicode unicode unicode unicode int DNSName unicode int int Decimal unicode int int Decimal unicode Decimal Decimal Decimal Decimal unicode int DNSName unicode int int unicode unicode unicode unicode unicode DNSName unicode unicode DNSName unicode unicode unicode unicode unicode int int int DNSName unicode int int unicode unicode int int int unicode unicode unicode unicode unicode unicode bool bool bool bool unicode DNSName);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('dnsrecord_mod', [$dnszoneidnsname, $idnsname], [qw(DNSName DNSName)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('dnsrecord_mod',    
+        [$dnszoneidnsname, $idnsname],
+        [qw(dnszoneidnsname idnsname)],
+        [qw(DNSName DNSName)],
+        \%opts,
+        [qw(dnsttl dnsclass arecord a_part_ip_address aaaarecord aaaa_part_ip_address a6record a6_part_data afsdbrecord afsdb_part_subtype afsdb_part_hostname aplrecord certrecord cert_part_type cert_part_key_tag cert_part_algorithm cert_part_certificate_or_crl cnamerecord cname_part_hostname dhcidrecord dlvrecord dlv_part_key_tag dlv_part_algorithm dlv_part_digest_type dlv_part_digest dnamerecord dname_part_target dsrecord ds_part_key_tag ds_part_algorithm ds_part_digest_type ds_part_digest hiprecord ipseckeyrecord keyrecord kxrecord kx_part_preference kx_part_exchanger locrecord loc_part_lat_deg loc_part_lat_min loc_part_lat_sec loc_part_lat_dir loc_part_lon_deg loc_part_lon_min loc_part_lon_sec loc_part_lon_dir loc_part_altitude loc_part_size loc_part_h_precision loc_part_v_precision mxrecord mx_part_preference mx_part_exchanger naptrrecord naptr_part_order naptr_part_preference naptr_part_flags naptr_part_service naptr_part_regexp naptr_part_replacement nsrecord ns_part_hostname nsecrecord ptrrecord ptr_part_hostname rrsigrecord rprecord sigrecord spfrecord srvrecord srv_part_priority srv_part_weight srv_part_port srv_part_target sshfprecord sshfp_part_algorithm sshfp_part_fp_type sshfp_part_fingerprint tlsarecord tlsa_part_cert_usage tlsa_part_selector tlsa_part_matching_type tlsa_part_cert_association_data txtrecord txt_part_data setattr addattr delattr rights structured all raw version rename)],
+        [qw(int unicode unicode unicode unicode unicode unicode unicode unicode int DNSName unicode unicode int int int unicode unicode DNSName unicode unicode int int int unicode unicode DNSName unicode int int int unicode unicode unicode unicode unicode int DNSName unicode int int Decimal unicode int int Decimal unicode Decimal Decimal Decimal Decimal unicode int DNSName unicode int int unicode unicode unicode unicode unicode DNSName unicode unicode DNSName unicode unicode unicode unicode unicode int int int DNSName unicode int int unicode unicode int int int unicode unicode unicode unicode unicode unicode bool bool bool bool unicode DNSName)],
+    );
 }
 
 
@@ -7888,8 +5895,7 @@ Display DNS resource.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -7903,48 +5909,26 @@ Display DNS resource.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_dnsrecord_show
-{
-    
+{    
     my ($self, $dnszoneidnsname, $idnsname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(dnszoneidnsname idnsname);
-    my $aidx = 0;
-    foreach my $arg ($dnszoneidnsname, $idnsname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_dnsrecord_show: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(rights structured all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_dnsrecord_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('dnsrecord_show', [$dnszoneidnsname, $idnsname], [qw(DNSName DNSName)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('dnsrecord_show',    
+        [$dnszoneidnsname, $idnsname],
+        [qw(dnszoneidnsname idnsname)],
+        [qw(DNSName DNSName)],
+        \%opts,
+        [qw(rights structured all raw version)],
+        [qw(bool bool bool bool unicode)],
+    );
 }
 
 
@@ -7966,8 +5950,7 @@ Create new DNS zone (SOA record).
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -8025,48 +6008,26 @@ must be part of the schema. (type unicode class Str)
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_dnszone_add
-{
-    
+{    
     my ($self, $idnsname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(idnsname);
-    my $aidx = 0;
-    foreach my $arg ($idnsname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_dnszone_add: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(name_from_ip idnsforwarders idnsforwardpolicy idnssoamname idnssoarname idnssoaserial idnssoarefresh idnssoaretry idnssoaexpire idnssoaminimum dnsttl dnsclass idnsupdatepolicy idnsallowdynupdate idnsallowquery idnsallowtransfer idnsallowsyncptr idnssecinlinesigning nsec3paramrecord setattr addattr force ip_address all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_dnszone_add: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode DNSName DNSName int int int int int int unicode unicode bool unicode unicode bool bool unicode unicode unicode bool unicode bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('dnszone_add', [$idnsname], [qw(DNSName)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('dnszone_add',    
+        [$idnsname],
+        [qw(idnsname)],
+        [qw(DNSName)],
+        \%opts,
+        [qw(name_from_ip idnsforwarders idnsforwardpolicy idnssoamname idnssoarname idnssoaserial idnssoarefresh idnssoaretry idnssoaexpire idnssoaminimum dnsttl dnsclass idnsupdatepolicy idnsallowdynupdate idnsallowquery idnsallowtransfer idnsallowsyncptr idnssecinlinesigning nsec3paramrecord setattr addattr force ip_address all raw version)],
+        [qw(unicode unicode unicode DNSName DNSName int int int int int int unicode unicode bool unicode unicode bool bool unicode unicode unicode bool unicode bool bool unicode)],
+    );
 }
 
 
@@ -8088,55 +6049,32 @@ Add a permission for per-zone access delegation.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_dnszone_add_permission
-{
-    
+{    
     my ($self, $idnsname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(idnsname);
-    my $aidx = 0;
-    foreach my $arg ($idnsname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_dnszone_add_permission: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_dnszone_add_permission: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('dnszone_add_permission', [$idnsname], [qw(DNSName)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('dnszone_add_permission',    
+        [$idnsname],
+        [qw(idnsname)],
+        [qw(DNSName)],
+        \%opts,
+        [qw(version)],
+        [qw(unicode)],
+    );
 }
 
 
@@ -8158,8 +6096,7 @@ Delete DNS zone (SOA record).
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -8167,48 +6104,26 @@ Delete DNS zone (SOA record).
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_dnszone_del
-{
-    
+{    
     my ($self, $idnsname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(idnsname);
-    my $aidx = 0;
-    foreach my $arg ($idnsname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_dnszone_del: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(continue version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_dnszone_del: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('dnszone_del', [$idnsname], [qw(DNSName)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('dnszone_del',    
+        [$idnsname],
+        [qw(idnsname)],
+        [qw(DNSName)],
+        \%opts,
+        [qw(continue version)],
+        [qw(bool unicode)],
+    );
 }
 
 
@@ -8230,55 +6145,32 @@ Disable DNS Zone.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_dnszone_disable
-{
-    
+{    
     my ($self, $idnsname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(idnsname);
-    my $aidx = 0;
-    foreach my $arg ($idnsname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_dnszone_disable: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_dnszone_disable: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('dnszone_disable', [$idnsname], [qw(DNSName)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('dnszone_disable',    
+        [$idnsname],
+        [qw(idnsname)],
+        [qw(DNSName)],
+        \%opts,
+        [qw(version)],
+        [qw(unicode)],
+    );
 }
 
 
@@ -8300,55 +6192,32 @@ Enable DNS Zone.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_dnszone_enable
-{
-    
+{    
     my ($self, $idnsname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(idnsname);
-    my $aidx = 0;
-    foreach my $arg ($idnsname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_dnszone_enable: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_dnszone_enable: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('dnszone_enable', [$idnsname], [qw(DNSName)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('dnszone_enable',    
+        [$idnsname],
+        [qw(idnsname)],
+        [qw(DNSName)],
+        \%opts,
+        [qw(version)],
+        [qw(unicode)],
+    );
 }
 
 
@@ -8370,8 +6239,7 @@ Search for DNS zones (SOA records).
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -8431,48 +6299,26 @@ Search for DNS zones (SOA records).
 
 =item pkey_only: Results should contain primary key attribute only ("name") (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_dnszone_find
-{
-    
+{    
     my ($self, $criteria, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(criteria);
-    my $aidx = 0;
-    foreach my $arg ($criteria) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_dnszone_find: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(idnsname name_from_ip idnszoneactive idnsforwarders idnsforwardpolicy idnssoamname idnssoarname idnssoaserial idnssoarefresh idnssoaretry idnssoaexpire idnssoaminimum dnsttl dnsclass idnsupdatepolicy idnsallowdynupdate idnsallowquery idnsallowtransfer idnsallowsyncptr idnssecinlinesigning nsec3paramrecord timelimit sizelimit forward_only all raw version pkey_only);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_dnszone_find: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(DNSName unicode bool unicode unicode DNSName DNSName int int int int int int unicode unicode bool unicode unicode bool bool unicode int int bool bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('dnszone_find', [$criteria], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('dnszone_find',    
+        [$criteria],
+        [qw(criteria)],
+        [qw(unicode)],
+        \%opts,
+        [qw(idnsname name_from_ip idnszoneactive idnsforwarders idnsforwardpolicy idnssoamname idnssoarname idnssoaserial idnssoarefresh idnssoaretry idnssoaexpire idnssoaminimum dnsttl dnsclass idnsupdatepolicy idnsallowdynupdate idnsallowquery idnsallowtransfer idnsallowsyncptr idnssecinlinesigning nsec3paramrecord timelimit sizelimit forward_only all raw version pkey_only)],
+        [qw(DNSName unicode bool unicode unicode DNSName DNSName int int int int int int unicode unicode bool unicode unicode bool bool unicode int int bool bool bool unicode bool)],
+    );
 }
 
 
@@ -8494,8 +6340,7 @@ Modify DNS zone (SOA record).
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -8556,48 +6401,26 @@ last, after all sets and adds. (type unicode class Str)
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_dnszone_mod
-{
-    
+{    
     my ($self, $idnsname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(idnsname);
-    my $aidx = 0;
-    foreach my $arg ($idnsname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_dnszone_mod: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(name_from_ip idnsforwarders idnsforwardpolicy idnssoamname idnssoarname idnssoaserial idnssoarefresh idnssoaretry idnssoaexpire idnssoaminimum dnsttl dnsclass idnsupdatepolicy idnsallowdynupdate idnsallowquery idnsallowtransfer idnsallowsyncptr idnssecinlinesigning nsec3paramrecord setattr addattr delattr rights force all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_dnszone_mod: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode DNSName DNSName int int int int int int unicode unicode bool unicode unicode bool bool unicode unicode unicode unicode bool bool bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('dnszone_mod', [$idnsname], [qw(DNSName)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('dnszone_mod',    
+        [$idnsname],
+        [qw(idnsname)],
+        [qw(DNSName)],
+        \%opts,
+        [qw(name_from_ip idnsforwarders idnsforwardpolicy idnssoamname idnssoarname idnssoaserial idnssoarefresh idnssoaretry idnssoaexpire idnssoaminimum dnsttl dnsclass idnsupdatepolicy idnsallowdynupdate idnsallowquery idnsallowtransfer idnsallowsyncptr idnssecinlinesigning nsec3paramrecord setattr addattr delattr rights force all raw version)],
+        [qw(unicode unicode unicode DNSName DNSName int int int int int int unicode unicode bool unicode unicode bool bool unicode unicode unicode unicode bool bool bool bool unicode)],
+    );
 }
 
 
@@ -8619,55 +6442,32 @@ Remove a permission for per-zone access delegation.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_dnszone_remove_permission
-{
-    
+{    
     my ($self, $idnsname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(idnsname);
-    my $aidx = 0;
-    foreach my $arg ($idnsname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_dnszone_remove_permission: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_dnszone_remove_permission: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('dnszone_remove_permission', [$idnsname], [qw(DNSName)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('dnszone_remove_permission',    
+        [$idnsname],
+        [qw(idnsname)],
+        [qw(DNSName)],
+        \%opts,
+        [qw(version)],
+        [qw(unicode)],
+    );
 }
 
 
@@ -8689,8 +6489,7 @@ Display information about a DNS zone (SOA record).
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -8702,48 +6501,26 @@ Display information about a DNS zone (SOA record).
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_dnszone_show
-{
-    
+{    
     my ($self, $idnsname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(idnsname);
-    my $aidx = 0;
-    foreach my $arg ($idnsname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_dnszone_show: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(rights all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_dnszone_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('dnszone_show', [$idnsname], [qw(DNSName)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('dnszone_show',    
+        [$idnsname],
+        [qw(idnsname)],
+        [qw(DNSName)],
+        \%opts,
+        [qw(rights all raw version)],
+        [qw(bool bool bool unicode)],
+    );
 }
 
 
@@ -8758,42 +6535,32 @@ Query current Domain Level.
 
 =item No required arguments
 
-=item Options
+=item  Options
 
 =over
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_domainlevel_get
-{
-    
+{    
     my ($self, %opts) = @_;
     
-    
-    # Check options
-    my @opt_keys = qw(version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_domainlevel_get: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('domainlevel_get', [], [qw()], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('domainlevel_get',    
+        [],
+        [qw()],
+        [qw()],
+        \%opts,
+        [qw(version)],
+        [qw(unicode)],
+    );
 }
 
 
@@ -8815,55 +6582,32 @@ Change current Domain Level.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_domainlevel_set
-{
-    
+{    
     my ($self, $ipadomainlevel, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(ipadomainlevel);
-    my $aidx = 0;
-    foreach my $arg ($ipadomainlevel) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_domainlevel_set: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_domainlevel_set: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('domainlevel_set', [$ipadomainlevel], [qw(int)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('domainlevel_set',    
+        [$ipadomainlevel],
+        [qw(ipadomainlevel)],
+        [qw(int)],
+        \%opts,
+        [qw(version)],
+        [qw(unicode)],
+    );
 }
 
 
@@ -8885,8 +6629,7 @@ Show environment variables.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -8896,48 +6639,26 @@ Show environment variables.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_env
-{
-    
+{    
     my ($self, $variables, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(variables);
-    my $aidx = 0;
-    foreach my $arg ($variables) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_env: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(server all version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_env: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('env', [$variables], [qw(unknown)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('env',    
+        [$variables],
+        [qw(variables)],
+        [qw(unknown)],
+        \%opts,
+        [qw(server all version)],
+        [qw(bool bool unicode)],
+    );
 }
 
 
@@ -8959,8 +6680,7 @@ Create a new group.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -8986,48 +6706,26 @@ must be part of the schema. (type unicode class Str)
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_group_add
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_group_add: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(description gidnumber setattr addattr nonposix external all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_group_add: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode int unicode unicode bool bool bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('group_add', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('group_add',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(description gidnumber setattr addattr nonposix external all raw version no_members)],
+        [qw(unicode int unicode unicode bool bool bool bool unicode bool)],
+    );
 }
 
 
@@ -9049,8 +6747,7 @@ Add members to a group.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -9068,48 +6765,26 @@ Add members to a group.
 
 =item group: groups to add (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_group_add_member
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_group_add_member: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(ipaexternalmember all raw version no_members user group);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_group_add_member: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode bool bool unicode bool unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('group_add_member', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('group_add_member',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(ipaexternalmember all raw version no_members user group)],
+        [qw(unicode bool bool unicode bool unicode unicode)],
+    );
 }
 
 
@@ -9131,8 +6806,7 @@ Delete group.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -9140,48 +6814,26 @@ Delete group.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_group_del
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_group_del: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(continue version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_group_del: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('group_del', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('group_del',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(continue version)],
+        [qw(bool unicode)],
+    );
 }
 
 
@@ -9203,55 +6855,32 @@ Detach a managed group from a user.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_group_detach
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_group_detach: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_group_detach: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('group_detach', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('group_detach',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(version)],
+        [qw(unicode)],
+    );
 }
 
 
@@ -9273,8 +6902,7 @@ Search for groups.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -9334,48 +6962,26 @@ Search for groups.
 
 =item not_in_sudorule: Search for groups without these member of sudo rules. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_group_find
-{
-    
+{    
     my ($self, $criteria, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(criteria);
-    my $aidx = 0;
-    foreach my $arg ($criteria) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_group_find: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(cn description gidnumber timelimit sizelimit private posix external nonposix all raw version no_members pkey_only user no_user group no_group in_group not_in_group in_netgroup not_in_netgroup in_role not_in_role in_hbacrule not_in_hbacrule in_sudorule not_in_sudorule);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_group_find: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode int int int bool bool bool bool bool bool unicode bool bool unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('group_find', [$criteria], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('group_find',    
+        [$criteria],
+        [qw(criteria)],
+        [qw(unicode)],
+        \%opts,
+        [qw(cn description gidnumber timelimit sizelimit private posix external nonposix all raw version no_members pkey_only user no_user group no_group in_group not_in_group in_netgroup not_in_netgroup in_role not_in_role in_hbacrule not_in_hbacrule in_sudorule not_in_sudorule)],
+        [qw(unicode unicode int int int bool bool bool bool bool bool unicode bool bool unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode)],
+    );
 }
 
 
@@ -9397,8 +7003,7 @@ Modify a group.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -9431,48 +7036,26 @@ last, after all sets and adds. (type unicode class Str)
 
 =item rename: Rename the group object (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_group_mod
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_group_mod: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(description gidnumber setattr addattr delattr rights posix external all raw version no_members rename);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_group_mod: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode int unicode unicode unicode bool bool bool bool bool unicode bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('group_mod', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('group_mod',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(description gidnumber setattr addattr delattr rights posix external all raw version no_members rename)],
+        [qw(unicode int unicode unicode unicode bool bool bool bool bool unicode bool unicode)],
+    );
 }
 
 
@@ -9494,8 +7077,7 @@ Remove members from a group.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -9513,48 +7095,26 @@ Remove members from a group.
 
 =item group: groups to remove (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_group_remove_member
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_group_remove_member: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(ipaexternalmember all raw version no_members user group);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_group_remove_member: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode bool bool unicode bool unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('group_remove_member', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('group_remove_member',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(ipaexternalmember all raw version no_members user group)],
+        [qw(unicode bool bool unicode bool unicode unicode)],
+    );
 }
 
 
@@ -9576,8 +7136,7 @@ Display information about a named group.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -9591,48 +7150,26 @@ Display information about a named group.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_group_show
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_group_show: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(rights all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_group_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('group_show', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('group_show',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(rights all raw version no_members)],
+        [qw(bool bool bool unicode bool)],
+    );
 }
 
 
@@ -9654,8 +7191,7 @@ Create a new HBAC rule.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -9693,48 +7229,26 @@ must be part of the schema. (type unicode class Str)
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_hbacrule_add
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_hbacrule_add: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(accessruletype usercategory hostcategory sourcehostcategory servicecategory description ipaenabledflag sourcehost_host sourcehost_hostgroup externalhost setattr addattr all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_hbacrule_add: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode object unicode unicode bool object object unicode unicode unicode bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('hbacrule_add', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('hbacrule_add',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(accessruletype usercategory hostcategory sourcehostcategory servicecategory description ipaenabledflag sourcehost_host sourcehost_hostgroup externalhost setattr addattr all raw version no_members)],
+        [qw(unicode unicode unicode object unicode unicode bool object object unicode unicode unicode bool bool unicode bool)],
+    );
 }
 
 
@@ -9756,8 +7270,7 @@ Add target hosts and hostgroups to an HBAC rule.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -9773,48 +7286,26 @@ Add target hosts and hostgroups to an HBAC rule.
 
 =item hostgroup: host groups to add (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_hbacrule_add_host
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_hbacrule_add_host: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members host hostgroup);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_hbacrule_add_host: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('hbacrule_add_host', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('hbacrule_add_host',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members host hostgroup)],
+        [qw(bool bool unicode bool unicode unicode)],
+    );
 }
 
 
@@ -9836,8 +7327,7 @@ Add services to an HBAC rule.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -9853,48 +7343,26 @@ Add services to an HBAC rule.
 
 =item hbacsvcgroup: HBAC service groups to add (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_hbacrule_add_service
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_hbacrule_add_service: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members hbacsvc hbacsvcgroup);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_hbacrule_add_service: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('hbacrule_add_service', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('hbacrule_add_service',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members hbacsvc hbacsvcgroup)],
+        [qw(bool bool unicode bool unicode unicode)],
+    );
 }
 
 
@@ -9916,8 +7384,7 @@ None
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -9933,48 +7400,26 @@ None
 
 =item hostgroup: host groups to add (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_hbacrule_add_sourcehost
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_hbacrule_add_sourcehost: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members host hostgroup);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_hbacrule_add_sourcehost: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('hbacrule_add_sourcehost', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('hbacrule_add_sourcehost',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members host hostgroup)],
+        [qw(bool bool unicode bool unicode unicode)],
+    );
 }
 
 
@@ -9996,8 +7441,7 @@ Add users and groups to an HBAC rule.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -10013,48 +7457,26 @@ Add users and groups to an HBAC rule.
 
 =item group: groups to add (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_hbacrule_add_user
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_hbacrule_add_user: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members user group);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_hbacrule_add_user: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('hbacrule_add_user', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('hbacrule_add_user',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members user group)],
+        [qw(bool bool unicode bool unicode unicode)],
+    );
 }
 
 
@@ -10076,8 +7498,7 @@ Delete an HBAC rule.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -10085,48 +7506,26 @@ Delete an HBAC rule.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_hbacrule_del
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_hbacrule_del: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(continue version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_hbacrule_del: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('hbacrule_del', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('hbacrule_del',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(continue version)],
+        [qw(bool unicode)],
+    );
 }
 
 
@@ -10148,55 +7547,32 @@ Disable an HBAC rule.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_hbacrule_disable
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_hbacrule_disable: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_hbacrule_disable: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('hbacrule_disable', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('hbacrule_disable',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(version)],
+        [qw(unicode)],
+    );
 }
 
 
@@ -10218,55 +7594,32 @@ Enable an HBAC rule.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_hbacrule_enable
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_hbacrule_enable: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_hbacrule_enable: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('hbacrule_enable', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('hbacrule_enable',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(version)],
+        [qw(unicode)],
+    );
 }
 
 
@@ -10288,8 +7641,7 @@ Search for HBAC rules.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -10329,48 +7681,26 @@ Search for HBAC rules.
 
 =item pkey_only: Results should contain primary key attribute only ("name") (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_hbacrule_find
-{
-    
+{    
     my ($self, $criteria, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(criteria);
-    my $aidx = 0;
-    foreach my $arg ($criteria) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_hbacrule_find: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(cn accessruletype usercategory hostcategory sourcehostcategory servicecategory description ipaenabledflag sourcehost_host sourcehost_hostgroup externalhost timelimit sizelimit all raw version no_members pkey_only);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_hbacrule_find: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode object unicode unicode bool object object unicode int int bool bool unicode bool bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('hbacrule_find', [$criteria], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('hbacrule_find',    
+        [$criteria],
+        [qw(criteria)],
+        [qw(unicode)],
+        \%opts,
+        [qw(cn accessruletype usercategory hostcategory sourcehostcategory servicecategory description ipaenabledflag sourcehost_host sourcehost_hostgroup externalhost timelimit sizelimit all raw version no_members pkey_only)],
+        [qw(unicode unicode unicode unicode object unicode unicode bool object object unicode int int bool bool unicode bool bool)],
+    );
 }
 
 
@@ -10392,8 +7722,7 @@ Modify an HBAC rule.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -10436,48 +7765,26 @@ last, after all sets and adds. (type unicode class Str)
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_hbacrule_mod
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_hbacrule_mod: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(accessruletype usercategory hostcategory sourcehostcategory servicecategory description ipaenabledflag sourcehost_host sourcehost_hostgroup externalhost setattr addattr delattr rights all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_hbacrule_mod: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode object unicode unicode bool object object unicode unicode unicode unicode bool bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('hbacrule_mod', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('hbacrule_mod',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(accessruletype usercategory hostcategory sourcehostcategory servicecategory description ipaenabledflag sourcehost_host sourcehost_hostgroup externalhost setattr addattr delattr rights all raw version no_members)],
+        [qw(unicode unicode unicode object unicode unicode bool object object unicode unicode unicode unicode bool bool bool unicode bool)],
+    );
 }
 
 
@@ -10499,8 +7806,7 @@ Remove target hosts and hostgroups from an HBAC rule.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -10516,48 +7822,26 @@ Remove target hosts and hostgroups from an HBAC rule.
 
 =item hostgroup: host groups to remove (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_hbacrule_remove_host
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_hbacrule_remove_host: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members host hostgroup);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_hbacrule_remove_host: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('hbacrule_remove_host', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('hbacrule_remove_host',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members host hostgroup)],
+        [qw(bool bool unicode bool unicode unicode)],
+    );
 }
 
 
@@ -10579,8 +7863,7 @@ Remove service and service groups from an HBAC rule.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -10596,48 +7879,26 @@ Remove service and service groups from an HBAC rule.
 
 =item hbacsvcgroup: HBAC service groups to remove (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_hbacrule_remove_service
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_hbacrule_remove_service: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members hbacsvc hbacsvcgroup);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_hbacrule_remove_service: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('hbacrule_remove_service', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('hbacrule_remove_service',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members hbacsvc hbacsvcgroup)],
+        [qw(bool bool unicode bool unicode unicode)],
+    );
 }
 
 
@@ -10659,8 +7920,7 @@ None
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -10676,48 +7936,26 @@ None
 
 =item hostgroup: host groups to remove (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_hbacrule_remove_sourcehost
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_hbacrule_remove_sourcehost: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members host hostgroup);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_hbacrule_remove_sourcehost: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('hbacrule_remove_sourcehost', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('hbacrule_remove_sourcehost',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members host hostgroup)],
+        [qw(bool bool unicode bool unicode unicode)],
+    );
 }
 
 
@@ -10739,8 +7977,7 @@ Remove users and groups from an HBAC rule.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -10756,48 +7993,26 @@ Remove users and groups from an HBAC rule.
 
 =item group: groups to remove (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_hbacrule_remove_user
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_hbacrule_remove_user: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members user group);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_hbacrule_remove_user: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('hbacrule_remove_user', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('hbacrule_remove_user',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members user group)],
+        [qw(bool bool unicode bool unicode unicode)],
+    );
 }
 
 
@@ -10819,8 +8034,7 @@ Display the properties of an HBAC rule.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -10834,48 +8048,26 @@ Display the properties of an HBAC rule.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_hbacrule_show
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_hbacrule_show: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(rights all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_hbacrule_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('hbacrule_show', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('hbacrule_show',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(rights all raw version no_members)],
+        [qw(bool bool bool unicode bool)],
+    );
 }
 
 
@@ -10897,8 +8089,7 @@ Add a new HBAC service.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -10918,48 +8109,26 @@ must be part of the schema. (type unicode class Str)
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_hbacsvc_add
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_hbacsvc_add: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(description setattr addattr all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_hbacsvc_add: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('hbacsvc_add', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('hbacsvc_add',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(description setattr addattr all raw version no_members)],
+        [qw(unicode unicode unicode bool bool unicode bool)],
+    );
 }
 
 
@@ -10981,8 +8150,7 @@ Delete an existing HBAC service.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -10990,48 +8158,26 @@ Delete an existing HBAC service.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_hbacsvc_del
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_hbacsvc_del: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(continue version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_hbacsvc_del: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('hbacsvc_del', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('hbacsvc_del',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(continue version)],
+        [qw(bool unicode)],
+    );
 }
 
 
@@ -11053,8 +8199,7 @@ Search for HBAC services.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -11076,48 +8221,26 @@ Search for HBAC services.
 
 =item pkey_only: Results should contain primary key attribute only ("service") (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_hbacsvc_find
-{
-    
+{    
     my ($self, $criteria, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(criteria);
-    my $aidx = 0;
-    foreach my $arg ($criteria) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_hbacsvc_find: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(cn description timelimit sizelimit all raw version no_members pkey_only);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_hbacsvc_find: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode int int bool bool unicode bool bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('hbacsvc_find', [$criteria], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('hbacsvc_find',    
+        [$criteria],
+        [qw(criteria)],
+        [qw(unicode)],
+        \%opts,
+        [qw(cn description timelimit sizelimit all raw version no_members pkey_only)],
+        [qw(unicode unicode int int bool bool unicode bool bool)],
+    );
 }
 
 
@@ -11139,8 +8262,7 @@ Modify an HBAC service.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -11165,48 +8287,26 @@ last, after all sets and adds. (type unicode class Str)
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_hbacsvc_mod
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_hbacsvc_mod: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(description setattr addattr delattr rights all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_hbacsvc_mod: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode bool bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('hbacsvc_mod', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('hbacsvc_mod',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(description setattr addattr delattr rights all raw version no_members)],
+        [qw(unicode unicode unicode unicode bool bool bool unicode bool)],
+    );
 }
 
 
@@ -11228,8 +8328,7 @@ Display information about an HBAC service.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -11243,48 +8342,26 @@ Display information about an HBAC service.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_hbacsvc_show
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_hbacsvc_show: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(rights all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_hbacsvc_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('hbacsvc_show', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('hbacsvc_show',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(rights all raw version no_members)],
+        [qw(bool bool bool unicode bool)],
+    );
 }
 
 
@@ -11306,8 +8383,7 @@ Add a new HBAC service group.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -11327,48 +8403,26 @@ must be part of the schema. (type unicode class Str)
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_hbacsvcgroup_add
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_hbacsvcgroup_add: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(description setattr addattr all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_hbacsvcgroup_add: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('hbacsvcgroup_add', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('hbacsvcgroup_add',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(description setattr addattr all raw version no_members)],
+        [qw(unicode unicode unicode bool bool unicode bool)],
+    );
 }
 
 
@@ -11390,8 +8444,7 @@ Add members to an HBAC service group.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -11405,48 +8458,26 @@ Add members to an HBAC service group.
 
 =item hbacsvc: HBAC services to add (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_hbacsvcgroup_add_member
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_hbacsvcgroup_add_member: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members hbacsvc);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_hbacsvcgroup_add_member: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('hbacsvcgroup_add_member', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('hbacsvcgroup_add_member',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members hbacsvc)],
+        [qw(bool bool unicode bool unicode)],
+    );
 }
 
 
@@ -11468,8 +8499,7 @@ Delete an HBAC service group.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -11477,48 +8507,26 @@ Delete an HBAC service group.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_hbacsvcgroup_del
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_hbacsvcgroup_del: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(continue version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_hbacsvcgroup_del: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('hbacsvcgroup_del', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('hbacsvcgroup_del',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(continue version)],
+        [qw(bool unicode)],
+    );
 }
 
 
@@ -11540,8 +8548,7 @@ Search for an HBAC service group.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -11563,48 +8570,26 @@ Search for an HBAC service group.
 
 =item pkey_only: Results should contain primary key attribute only ("name") (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_hbacsvcgroup_find
-{
-    
+{    
     my ($self, $criteria, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(criteria);
-    my $aidx = 0;
-    foreach my $arg ($criteria) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_hbacsvcgroup_find: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(cn description timelimit sizelimit all raw version no_members pkey_only);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_hbacsvcgroup_find: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode int int bool bool unicode bool bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('hbacsvcgroup_find', [$criteria], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('hbacsvcgroup_find',    
+        [$criteria],
+        [qw(criteria)],
+        [qw(unicode)],
+        \%opts,
+        [qw(cn description timelimit sizelimit all raw version no_members pkey_only)],
+        [qw(unicode unicode int int bool bool unicode bool bool)],
+    );
 }
 
 
@@ -11626,8 +8611,7 @@ Modify an HBAC service group.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -11652,48 +8636,26 @@ last, after all sets and adds. (type unicode class Str)
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_hbacsvcgroup_mod
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_hbacsvcgroup_mod: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(description setattr addattr delattr rights all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_hbacsvcgroup_mod: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode bool bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('hbacsvcgroup_mod', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('hbacsvcgroup_mod',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(description setattr addattr delattr rights all raw version no_members)],
+        [qw(unicode unicode unicode unicode bool bool bool unicode bool)],
+    );
 }
 
 
@@ -11715,8 +8677,7 @@ Remove members from an HBAC service group.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -11730,48 +8691,26 @@ Remove members from an HBAC service group.
 
 =item hbacsvc: HBAC services to remove (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_hbacsvcgroup_remove_member
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_hbacsvcgroup_remove_member: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members hbacsvc);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_hbacsvcgroup_remove_member: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('hbacsvcgroup_remove_member', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('hbacsvcgroup_remove_member',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members hbacsvc)],
+        [qw(bool bool unicode bool unicode)],
+    );
 }
 
 
@@ -11793,8 +8732,7 @@ Display information about an HBAC service group.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -11808,48 +8746,26 @@ Display information about an HBAC service group.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_hbacsvcgroup_show
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_hbacsvcgroup_show: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(rights all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_hbacsvcgroup_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('hbacsvcgroup_show', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('hbacsvcgroup_show',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(rights all raw version no_members)],
+        [qw(bool bool bool unicode bool)],
+    );
 }
 
 
@@ -11864,7 +8780,7 @@ Simulate use of Host-based access controls
 
 =item No required arguments
 
-=item Options
+=item  Options
 
 =over
 
@@ -11888,36 +8804,26 @@ Simulate use of Host-based access controls
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_hbactest
-{
-    
+{    
     my ($self, %opts) = @_;
     
-    
-    # Check options
-    my @opt_keys = qw(user sourcehost targethost service rules nodetail enabled disabled sizelimit version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_hbactest: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode object unicode unicode unicode bool bool bool int unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('hbactest', [], [qw()], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('hbactest',    
+        [],
+        [qw()],
+        [qw()],
+        \%opts,
+        [qw(user sourcehost targethost service rules nodetail enabled disabled sizelimit version)],
+        [qw(unicode object unicode unicode unicode bool bool bool int unicode)],
+    );
 }
 
 
@@ -11939,8 +8845,7 @@ Add a new host.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -11992,48 +8897,26 @@ must be part of the schema. (type unicode class Str)
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_host_add
-{
-    
+{    
     my ($self, $fqdn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(fqdn);
-    my $aidx = 0;
-    foreach my $arg ($fqdn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_host_add: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(description l nshostlocation nshardwareplatform nsosversion userpassword random usercertificate macaddress ipasshpubkey userclass ipaassignedidview ipakrbrequirespreauth ipakrbokasdelegate setattr addattr force no_reverse ip_address all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_host_add: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode unicode unicode bool str unicode unicode unicode unicode bool bool unicode unicode bool bool unicode bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('host_add', [$fqdn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('host_add',    
+        [$fqdn],
+        [qw(fqdn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(description l nshostlocation nshardwareplatform nsosversion userpassword random usercertificate macaddress ipasshpubkey userclass ipaassignedidview ipakrbrequirespreauth ipakrbokasdelegate setattr addattr force no_reverse ip_address all raw version no_members)],
+        [qw(unicode unicode unicode unicode unicode unicode bool str unicode unicode unicode unicode bool bool unicode unicode bool bool unicode bool bool unicode bool)],
+    );
 }
 
 
@@ -12055,8 +8938,7 @@ Add certificates to host entry
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -12070,48 +8952,26 @@ Add certificates to host entry
 
 =item usercertificate: Base-64 encoded server certificate (type str class Bytes)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_host_add_cert
-{
-    
+{    
     my ($self, $fqdn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(fqdn);
-    my $aidx = 0;
-    foreach my $arg ($fqdn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_host_add_cert: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members usercertificate);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_host_add_cert: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool str);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('host_add_cert', [$fqdn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('host_add_cert',    
+        [$fqdn],
+        [qw(fqdn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members usercertificate)],
+        [qw(bool bool unicode bool str)],
+    );
 }
 
 
@@ -12133,8 +8993,7 @@ Add hosts that can manage this host.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -12148,48 +9007,26 @@ Add hosts that can manage this host.
 
 =item host: hosts to add (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_host_add_managedby
-{
-    
+{    
     my ($self, $fqdn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(fqdn);
-    my $aidx = 0;
-    foreach my $arg ($fqdn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_host_add_managedby: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members host);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_host_add_managedby: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('host_add_managedby', [$fqdn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('host_add_managedby',    
+        [$fqdn],
+        [qw(fqdn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members host)],
+        [qw(bool bool unicode bool unicode)],
+    );
 }
 
 
@@ -12211,8 +9048,7 @@ Allow users, groups, hosts or host groups to create a keytab of this host.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -12232,48 +9068,26 @@ Allow users, groups, hosts or host groups to create a keytab of this host.
 
 =item hostgroup: host groups to add (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_host_allow_create_keytab
-{
-    
+{    
     my ($self, $fqdn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(fqdn);
-    my $aidx = 0;
-    foreach my $arg ($fqdn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_host_allow_create_keytab: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members user group host hostgroup);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_host_allow_create_keytab: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode unicode unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('host_allow_create_keytab', [$fqdn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('host_allow_create_keytab',    
+        [$fqdn],
+        [qw(fqdn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members user group host hostgroup)],
+        [qw(bool bool unicode bool unicode unicode unicode unicode)],
+    );
 }
 
 
@@ -12295,8 +9109,7 @@ Allow users, groups, hosts or host groups to retrieve a keytab of this host.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -12316,48 +9129,26 @@ Allow users, groups, hosts or host groups to retrieve a keytab of this host.
 
 =item hostgroup: host groups to add (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_host_allow_retrieve_keytab
-{
-    
+{    
     my ($self, $fqdn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(fqdn);
-    my $aidx = 0;
-    foreach my $arg ($fqdn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_host_allow_retrieve_keytab: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members user group host hostgroup);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_host_allow_retrieve_keytab: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode unicode unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('host_allow_retrieve_keytab', [$fqdn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('host_allow_retrieve_keytab',    
+        [$fqdn],
+        [qw(fqdn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members user group host hostgroup)],
+        [qw(bool bool unicode bool unicode unicode unicode unicode)],
+    );
 }
 
 
@@ -12379,8 +9170,7 @@ Delete a host.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -12390,48 +9180,26 @@ Delete a host.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_host_del
-{
-    
+{    
     my ($self, $fqdn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(fqdn);
-    my $aidx = 0;
-    foreach my $arg ($fqdn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_host_del: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(continue updatedns version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_host_del: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('host_del', [$fqdn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('host_del',    
+        [$fqdn],
+        [qw(fqdn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(continue updatedns version)],
+        [qw(bool bool unicode)],
+    );
 }
 
 
@@ -12453,55 +9221,32 @@ Disable the Kerberos key, SSL certificate and all services of a host.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_host_disable
-{
-    
+{    
     my ($self, $fqdn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(fqdn);
-    my $aidx = 0;
-    foreach my $arg ($fqdn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_host_disable: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_host_disable: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('host_disable', [$fqdn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('host_disable',    
+        [$fqdn],
+        [qw(fqdn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(version)],
+        [qw(unicode)],
+    );
 }
 
 
@@ -12523,8 +9268,7 @@ Disallow users, groups, hosts or host groups to create a keytab of this host.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -12544,48 +9288,26 @@ Disallow users, groups, hosts or host groups to create a keytab of this host.
 
 =item hostgroup: host groups to remove (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_host_disallow_create_keytab
-{
-    
+{    
     my ($self, $fqdn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(fqdn);
-    my $aidx = 0;
-    foreach my $arg ($fqdn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_host_disallow_create_keytab: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members user group host hostgroup);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_host_disallow_create_keytab: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode unicode unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('host_disallow_create_keytab', [$fqdn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('host_disallow_create_keytab',    
+        [$fqdn],
+        [qw(fqdn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members user group host hostgroup)],
+        [qw(bool bool unicode bool unicode unicode unicode unicode)],
+    );
 }
 
 
@@ -12607,8 +9329,7 @@ Disallow users, groups, hosts or host groups to retrieve a keytab of this host.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -12628,48 +9349,26 @@ Disallow users, groups, hosts or host groups to retrieve a keytab of this host.
 
 =item hostgroup: host groups to remove (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_host_disallow_retrieve_keytab
-{
-    
+{    
     my ($self, $fqdn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(fqdn);
-    my $aidx = 0;
-    foreach my $arg ($fqdn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_host_disallow_retrieve_keytab: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members user group host hostgroup);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_host_disallow_retrieve_keytab: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode unicode unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('host_disallow_retrieve_keytab', [$fqdn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('host_disallow_retrieve_keytab',    
+        [$fqdn],
+        [qw(fqdn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members user group host hostgroup)],
+        [qw(bool bool unicode bool unicode unicode unicode unicode)],
+    );
 }
 
 
@@ -12691,8 +9390,7 @@ Search for hosts.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -12764,48 +9462,26 @@ Search for hosts.
 
 =item not_man_host: Search for hosts without these managing hosts. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_host_find
-{
-    
+{    
     my ($self, $criteria, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(criteria);
-    my $aidx = 0;
-    foreach my $arg ($criteria) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_host_find: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(fqdn description l nshostlocation nshardwareplatform nsosversion userpassword usercertificate macaddress userclass ipaassignedidview timelimit sizelimit all raw version no_members pkey_only in_hostgroup not_in_hostgroup in_netgroup not_in_netgroup in_role not_in_role in_hbacrule not_in_hbacrule in_sudorule not_in_sudorule enroll_by_user not_enroll_by_user man_by_host not_man_by_host man_host not_man_host);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_host_find: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode unicode unicode unicode str unicode unicode unicode int int bool bool unicode bool bool unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('host_find', [$criteria], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('host_find',    
+        [$criteria],
+        [qw(criteria)],
+        [qw(unicode)],
+        \%opts,
+        [qw(fqdn description l nshostlocation nshardwareplatform nsosversion userpassword usercertificate macaddress userclass ipaassignedidview timelimit sizelimit all raw version no_members pkey_only in_hostgroup not_in_hostgroup in_netgroup not_in_netgroup in_role not_in_role in_hbacrule not_in_hbacrule in_sudorule not_in_sudorule enroll_by_user not_enroll_by_user man_by_host not_man_by_host man_host not_man_host)],
+        [qw(unicode unicode unicode unicode unicode unicode unicode str unicode unicode unicode int int bool bool unicode bool bool unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode)],
+    );
 }
 
 
@@ -12827,8 +9503,7 @@ Modify information about a host.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -12883,48 +9558,26 @@ last, after all sets and adds. (type unicode class Str)
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_host_mod
-{
-    
+{    
     my ($self, $fqdn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(fqdn);
-    my $aidx = 0;
-    foreach my $arg ($fqdn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_host_mod: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(description l nshostlocation nshardwareplatform nsosversion userpassword random usercertificate macaddress ipasshpubkey userclass ipaassignedidview ipakrbrequirespreauth ipakrbokasdelegate setattr addattr delattr rights krbprincipalname updatedns all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_host_mod: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode unicode unicode bool str unicode unicode unicode unicode bool bool unicode unicode unicode bool unicode bool bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('host_mod', [$fqdn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('host_mod',    
+        [$fqdn],
+        [qw(fqdn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(description l nshostlocation nshardwareplatform nsosversion userpassword random usercertificate macaddress ipasshpubkey userclass ipaassignedidview ipakrbrequirespreauth ipakrbokasdelegate setattr addattr delattr rights krbprincipalname updatedns all raw version no_members)],
+        [qw(unicode unicode unicode unicode unicode unicode bool str unicode unicode unicode unicode bool bool unicode unicode unicode bool unicode bool bool bool unicode bool)],
+    );
 }
 
 
@@ -12946,8 +9599,7 @@ Remove certificates from host entry
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -12961,48 +9613,26 @@ Remove certificates from host entry
 
 =item usercertificate: Base-64 encoded server certificate (type str class Bytes)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_host_remove_cert
-{
-    
+{    
     my ($self, $fqdn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(fqdn);
-    my $aidx = 0;
-    foreach my $arg ($fqdn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_host_remove_cert: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members usercertificate);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_host_remove_cert: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool str);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('host_remove_cert', [$fqdn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('host_remove_cert',    
+        [$fqdn],
+        [qw(fqdn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members usercertificate)],
+        [qw(bool bool unicode bool str)],
+    );
 }
 
 
@@ -13024,8 +9654,7 @@ Remove hosts that can manage this host.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -13039,48 +9668,26 @@ Remove hosts that can manage this host.
 
 =item host: hosts to remove (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_host_remove_managedby
-{
-    
+{    
     my ($self, $fqdn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(fqdn);
-    my $aidx = 0;
-    foreach my $arg ($fqdn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_host_remove_managedby: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members host);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_host_remove_managedby: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('host_remove_managedby', [$fqdn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('host_remove_managedby',    
+        [$fqdn],
+        [qw(fqdn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members host)],
+        [qw(bool bool unicode bool unicode)],
+    );
 }
 
 
@@ -13102,8 +9709,7 @@ Display information about a host.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -13119,48 +9725,26 @@ Display information about a host.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_host_show
-{
-    
+{    
     my ($self, $fqdn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(fqdn);
-    my $aidx = 0;
-    foreach my $arg ($fqdn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_host_show: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(rights out all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_host_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('host_show', [$fqdn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('host_show',    
+        [$fqdn],
+        [qw(fqdn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(rights out all raw version no_members)],
+        [qw(bool unicode bool bool unicode bool)],
+    );
 }
 
 
@@ -13182,8 +9766,7 @@ Add a new hostgroup.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -13203,48 +9786,26 @@ must be part of the schema. (type unicode class Str)
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_hostgroup_add
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_hostgroup_add: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(description setattr addattr all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_hostgroup_add: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('hostgroup_add', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('hostgroup_add',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(description setattr addattr all raw version no_members)],
+        [qw(unicode unicode unicode bool bool unicode bool)],
+    );
 }
 
 
@@ -13266,8 +9827,7 @@ Add members to a hostgroup.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -13283,48 +9843,26 @@ Add members to a hostgroup.
 
 =item hostgroup: host groups to add (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_hostgroup_add_member
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_hostgroup_add_member: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members host hostgroup);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_hostgroup_add_member: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('hostgroup_add_member', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('hostgroup_add_member',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members host hostgroup)],
+        [qw(bool bool unicode bool unicode unicode)],
+    );
 }
 
 
@@ -13346,8 +9884,7 @@ Delete a hostgroup.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -13355,48 +9892,26 @@ Delete a hostgroup.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_hostgroup_del
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_hostgroup_del: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(continue version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_hostgroup_del: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('hostgroup_del', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('hostgroup_del',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(continue version)],
+        [qw(bool unicode)],
+    );
 }
 
 
@@ -13418,8 +9933,7 @@ Search for hostgroups.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -13465,48 +9979,26 @@ Search for hostgroups.
 
 =item not_in_sudorule: Search for host groups without these member of sudo rules. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_hostgroup_find
-{
-    
+{    
     my ($self, $criteria, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(criteria);
-    my $aidx = 0;
-    foreach my $arg ($criteria) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_hostgroup_find: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(cn description timelimit sizelimit all raw version no_members pkey_only host no_host hostgroup no_hostgroup in_hostgroup not_in_hostgroup in_netgroup not_in_netgroup in_hbacrule not_in_hbacrule in_sudorule not_in_sudorule);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_hostgroup_find: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode int int bool bool unicode bool bool unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('hostgroup_find', [$criteria], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('hostgroup_find',    
+        [$criteria],
+        [qw(criteria)],
+        [qw(unicode)],
+        \%opts,
+        [qw(cn description timelimit sizelimit all raw version no_members pkey_only host no_host hostgroup no_hostgroup in_hostgroup not_in_hostgroup in_netgroup not_in_netgroup in_hbacrule not_in_hbacrule in_sudorule not_in_sudorule)],
+        [qw(unicode unicode int int bool bool unicode bool bool unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode)],
+    );
 }
 
 
@@ -13528,8 +10020,7 @@ Modify a hostgroup.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -13554,48 +10045,26 @@ last, after all sets and adds. (type unicode class Str)
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_hostgroup_mod
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_hostgroup_mod: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(description setattr addattr delattr rights all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_hostgroup_mod: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode bool bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('hostgroup_mod', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('hostgroup_mod',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(description setattr addattr delattr rights all raw version no_members)],
+        [qw(unicode unicode unicode unicode bool bool bool unicode bool)],
+    );
 }
 
 
@@ -13617,8 +10086,7 @@ Remove members from a hostgroup.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -13634,48 +10102,26 @@ Remove members from a hostgroup.
 
 =item hostgroup: host groups to remove (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_hostgroup_remove_member
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_hostgroup_remove_member: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members host hostgroup);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_hostgroup_remove_member: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('hostgroup_remove_member', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('hostgroup_remove_member',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members host hostgroup)],
+        [qw(bool bool unicode bool unicode unicode)],
+    );
 }
 
 
@@ -13697,8 +10143,7 @@ Display information about a hostgroup.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -13712,48 +10157,26 @@ Display information about a hostgroup.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_hostgroup_show
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_hostgroup_show: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(rights all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_hostgroup_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('hostgroup_show', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('hostgroup_show',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(rights all raw version no_members)],
+        [qw(bool bool bool unicode bool)],
+    );
 }
 
 
@@ -13768,42 +10191,32 @@ None
 
 =item No required arguments
 
-=item Options
+=item  Options
 
 =over
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_i18n_messages
-{
-    
+{    
     my ($self, %opts) = @_;
     
-    
-    # Check options
-    my @opt_keys = qw(version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_i18n_messages: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('i18n_messages', [], [qw()], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('i18n_messages',    
+        [],
+        [qw()],
+        [qw()],
+        \%opts,
+        [qw(version)],
+        [qw(unicode)],
+    );
 }
 
 
@@ -13827,8 +10240,7 @@ Add a new Group ID override.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -13852,48 +10264,26 @@ must be part of the schema. (type unicode class Str)
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_idoverridegroup_add
-{
-    
+{    
     my ($self, $idviewcn, $ipaanchoruuid, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(idviewcn ipaanchoruuid);
-    my $aidx = 0;
-    foreach my $arg ($idviewcn, $ipaanchoruuid) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_idoverridegroup_add: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(description cn gidnumber setattr addattr fallback_to_ldap all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_idoverridegroup_add: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode int unicode unicode bool bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('idoverridegroup_add', [$idviewcn, $ipaanchoruuid], [qw(unicode unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('idoverridegroup_add',    
+        [$idviewcn, $ipaanchoruuid],
+        [qw(idviewcn ipaanchoruuid)],
+        [qw(unicode unicode)],
+        \%opts,
+        [qw(description cn gidnumber setattr addattr fallback_to_ldap all raw version)],
+        [qw(unicode unicode int unicode unicode bool bool bool unicode)],
+    );
 }
 
 
@@ -13917,8 +10307,7 @@ Delete an Group ID override.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -13928,48 +10317,26 @@ Delete an Group ID override.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_idoverridegroup_del
-{
-    
+{    
     my ($self, $idviewcn, $ipaanchoruuid, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(idviewcn ipaanchoruuid);
-    my $aidx = 0;
-    foreach my $arg ($idviewcn, $ipaanchoruuid) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_idoverridegroup_del: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(continue fallback_to_ldap version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_idoverridegroup_del: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('idoverridegroup_del', [$idviewcn, $ipaanchoruuid], [qw(unicode unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('idoverridegroup_del',    
+        [$idviewcn, $ipaanchoruuid],
+        [qw(idviewcn ipaanchoruuid)],
+        [qw(unicode unicode)],
+        \%opts,
+        [qw(continue fallback_to_ldap version)],
+        [qw(bool bool unicode)],
+    );
 }
 
 
@@ -13993,8 +10360,7 @@ Search for an Group ID override.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -14020,48 +10386,26 @@ Search for an Group ID override.
 
 =item pkey_only: Results should contain primary key attribute only ("anchor") (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_idoverridegroup_find
-{
-    
+{    
     my ($self, $idviewcn, $criteria, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(idviewcn criteria);
-    my $aidx = 0;
-    foreach my $arg ($idviewcn, $criteria) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_idoverridegroup_find: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(ipaanchoruuid description cn gidnumber timelimit sizelimit fallback_to_ldap all raw version pkey_only);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_idoverridegroup_find: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode int int int bool bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('idoverridegroup_find', [$idviewcn, $criteria], [qw(unicode unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('idoverridegroup_find',    
+        [$idviewcn, $criteria],
+        [qw(idviewcn criteria)],
+        [qw(unicode unicode)],
+        \%opts,
+        [qw(ipaanchoruuid description cn gidnumber timelimit sizelimit fallback_to_ldap all raw version pkey_only)],
+        [qw(unicode unicode unicode int int int bool bool bool unicode bool)],
+    );
 }
 
 
@@ -14085,8 +10429,7 @@ Modify an Group ID override.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -14117,48 +10460,26 @@ last, after all sets and adds. (type unicode class Str)
 
 =item rename: Rename the Group ID override object (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_idoverridegroup_mod
-{
-    
+{    
     my ($self, $idviewcn, $ipaanchoruuid, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(idviewcn ipaanchoruuid);
-    my $aidx = 0;
-    foreach my $arg ($idviewcn, $ipaanchoruuid) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_idoverridegroup_mod: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(description cn gidnumber setattr addattr delattr rights fallback_to_ldap all raw version rename);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_idoverridegroup_mod: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode int unicode unicode unicode bool bool bool bool unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('idoverridegroup_mod', [$idviewcn, $ipaanchoruuid], [qw(unicode unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('idoverridegroup_mod',    
+        [$idviewcn, $ipaanchoruuid],
+        [qw(idviewcn ipaanchoruuid)],
+        [qw(unicode unicode)],
+        \%opts,
+        [qw(description cn gidnumber setattr addattr delattr rights fallback_to_ldap all raw version rename)],
+        [qw(unicode unicode int unicode unicode unicode bool bool bool bool unicode unicode)],
+    );
 }
 
 
@@ -14182,8 +10503,7 @@ Display information about an Group ID override.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -14197,48 +10517,26 @@ Display information about an Group ID override.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_idoverridegroup_show
-{
-    
+{    
     my ($self, $idviewcn, $ipaanchoruuid, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(idviewcn ipaanchoruuid);
-    my $aidx = 0;
-    foreach my $arg ($idviewcn, $ipaanchoruuid) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_idoverridegroup_show: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(rights fallback_to_ldap all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_idoverridegroup_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('idoverridegroup_show', [$idviewcn, $ipaanchoruuid], [qw(unicode unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('idoverridegroup_show',    
+        [$idviewcn, $ipaanchoruuid],
+        [qw(idviewcn ipaanchoruuid)],
+        [qw(unicode unicode)],
+        \%opts,
+        [qw(rights fallback_to_ldap all raw version)],
+        [qw(bool bool bool bool unicode)],
+    );
 }
 
 
@@ -14262,8 +10560,7 @@ Add a new User ID override.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -14299,48 +10596,26 @@ must be part of the schema. (type unicode class Str)
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_idoverrideuser_add
-{
-    
+{    
     my ($self, $idviewcn, $ipaanchoruuid, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(idviewcn ipaanchoruuid);
-    my $aidx = 0;
-    foreach my $arg ($idviewcn, $ipaanchoruuid) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_idoverrideuser_add: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(description uid uidnumber gecos gidnumber homedirectory loginshell ipaoriginaluid ipasshpubkey setattr addattr fallback_to_ldap all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_idoverrideuser_add: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode int unicode int unicode unicode unicode unicode unicode unicode bool bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('idoverrideuser_add', [$idviewcn, $ipaanchoruuid], [qw(unicode unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('idoverrideuser_add',    
+        [$idviewcn, $ipaanchoruuid],
+        [qw(idviewcn ipaanchoruuid)],
+        [qw(unicode unicode)],
+        \%opts,
+        [qw(description uid uidnumber gecos gidnumber homedirectory loginshell ipaoriginaluid ipasshpubkey setattr addattr fallback_to_ldap all raw version)],
+        [qw(unicode unicode int unicode int unicode unicode unicode unicode unicode unicode bool bool bool unicode)],
+    );
 }
 
 
@@ -14364,8 +10639,7 @@ Delete an User ID override.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -14375,48 +10649,26 @@ Delete an User ID override.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_idoverrideuser_del
-{
-    
+{    
     my ($self, $idviewcn, $ipaanchoruuid, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(idviewcn ipaanchoruuid);
-    my $aidx = 0;
-    foreach my $arg ($idviewcn, $ipaanchoruuid) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_idoverrideuser_del: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(continue fallback_to_ldap version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_idoverrideuser_del: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('idoverrideuser_del', [$idviewcn, $ipaanchoruuid], [qw(unicode unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('idoverrideuser_del',    
+        [$idviewcn, $ipaanchoruuid],
+        [qw(idviewcn ipaanchoruuid)],
+        [qw(unicode unicode)],
+        \%opts,
+        [qw(continue fallback_to_ldap version)],
+        [qw(bool bool unicode)],
+    );
 }
 
 
@@ -14440,8 +10692,7 @@ Search for an User ID override.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -14477,48 +10728,26 @@ Search for an User ID override.
 
 =item pkey_only: Results should contain primary key attribute only ("anchor") (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_idoverrideuser_find
-{
-    
+{    
     my ($self, $idviewcn, $criteria, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(idviewcn criteria);
-    my $aidx = 0;
-    foreach my $arg ($idviewcn, $criteria) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_idoverrideuser_find: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(ipaanchoruuid description uid uidnumber gecos gidnumber homedirectory loginshell ipaoriginaluid timelimit sizelimit fallback_to_ldap all raw version pkey_only);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_idoverrideuser_find: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode int unicode int unicode unicode unicode int int bool bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('idoverrideuser_find', [$idviewcn, $criteria], [qw(unicode unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('idoverrideuser_find',    
+        [$idviewcn, $criteria],
+        [qw(idviewcn criteria)],
+        [qw(unicode unicode)],
+        \%opts,
+        [qw(ipaanchoruuid description uid uidnumber gecos gidnumber homedirectory loginshell ipaoriginaluid timelimit sizelimit fallback_to_ldap all raw version pkey_only)],
+        [qw(unicode unicode unicode int unicode int unicode unicode unicode int int bool bool bool unicode bool)],
+    );
 }
 
 
@@ -14542,8 +10771,7 @@ Modify an User ID override.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -14586,48 +10814,26 @@ last, after all sets and adds. (type unicode class Str)
 
 =item rename: Rename the User ID override object (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_idoverrideuser_mod
-{
-    
+{    
     my ($self, $idviewcn, $ipaanchoruuid, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(idviewcn ipaanchoruuid);
-    my $aidx = 0;
-    foreach my $arg ($idviewcn, $ipaanchoruuid) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_idoverrideuser_mod: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(description uid uidnumber gecos gidnumber homedirectory loginshell ipaoriginaluid ipasshpubkey setattr addattr delattr rights fallback_to_ldap all raw version rename);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_idoverrideuser_mod: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode int unicode int unicode unicode unicode unicode unicode unicode unicode bool bool bool bool unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('idoverrideuser_mod', [$idviewcn, $ipaanchoruuid], [qw(unicode unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('idoverrideuser_mod',    
+        [$idviewcn, $ipaanchoruuid],
+        [qw(idviewcn ipaanchoruuid)],
+        [qw(unicode unicode)],
+        \%opts,
+        [qw(description uid uidnumber gecos gidnumber homedirectory loginshell ipaoriginaluid ipasshpubkey setattr addattr delattr rights fallback_to_ldap all raw version rename)],
+        [qw(unicode unicode int unicode int unicode unicode unicode unicode unicode unicode unicode bool bool bool bool unicode unicode)],
+    );
 }
 
 
@@ -14651,8 +10857,7 @@ Display information about an User ID override.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -14666,48 +10871,26 @@ Display information about an User ID override.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_idoverrideuser_show
-{
-    
+{    
     my ($self, $idviewcn, $ipaanchoruuid, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(idviewcn ipaanchoruuid);
-    my $aidx = 0;
-    foreach my $arg ($idviewcn, $ipaanchoruuid) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_idoverrideuser_show: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(rights fallback_to_ldap all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_idoverrideuser_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('idoverrideuser_show', [$idviewcn, $ipaanchoruuid], [qw(unicode unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('idoverrideuser_show',    
+        [$idviewcn, $ipaanchoruuid],
+        [qw(idviewcn ipaanchoruuid)],
+        [qw(unicode unicode)],
+        \%opts,
+        [qw(rights fallback_to_ldap all raw version)],
+        [qw(bool bool bool bool unicode)],
+    );
 }
 
 
@@ -14762,8 +10945,7 @@ modified to match the new range.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -14793,48 +10975,26 @@ must be part of the schema. (type unicode class Str)
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_idrange_add
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_idrange_add: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(ipabaseid ipaidrangesize ipabaserid ipasecondarybaserid ipanttrusteddomainsid ipanttrusteddomainname iparangetype setattr addattr all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_idrange_add: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(int int int int unicode unicode unicode unicode unicode bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('idrange_add', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('idrange_add',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(ipabaseid ipaidrangesize ipabaserid ipasecondarybaserid ipanttrusteddomainsid ipanttrusteddomainname iparangetype setattr addattr all raw version)],
+        [qw(int int int int unicode unicode unicode unicode unicode bool bool unicode)],
+    );
 }
 
 
@@ -14856,8 +11016,7 @@ Delete an ID range.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -14865,48 +11024,26 @@ Delete an ID range.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_idrange_del
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_idrange_del: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(continue version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_idrange_del: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('idrange_del', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('idrange_del',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(continue version)],
+        [qw(bool unicode)],
+    );
 }
 
 
@@ -14928,8 +11065,7 @@ Search for ranges.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -14959,48 +11095,26 @@ Search for ranges.
 
 =item pkey_only: Results should contain primary key attribute only ("name") (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_idrange_find
-{
-    
+{    
     my ($self, $criteria, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(criteria);
-    my $aidx = 0;
-    foreach my $arg ($criteria) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_idrange_find: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(cn ipabaseid ipaidrangesize ipabaserid ipasecondarybaserid ipanttrusteddomainsid iparangetype timelimit sizelimit all raw version pkey_only);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_idrange_find: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode int int int int unicode unicode int int bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('idrange_find', [$criteria], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('idrange_find',    
+        [$criteria],
+        [qw(criteria)],
+        [qw(unicode)],
+        \%opts,
+        [qw(cn ipabaseid ipaidrangesize ipabaserid ipasecondarybaserid ipanttrusteddomainsid iparangetype timelimit sizelimit all raw version pkey_only)],
+        [qw(unicode int int int int unicode unicode int int bool bool unicode bool)],
+    );
 }
 
 
@@ -15037,8 +11151,7 @@ modified to match the new range.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -15071,48 +11184,26 @@ last, after all sets and adds. (type unicode class Str)
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_idrange_mod
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_idrange_mod: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(ipabaseid ipaidrangesize ipabaserid ipasecondarybaserid setattr addattr delattr rights ipanttrusteddomainsid ipanttrusteddomainname all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_idrange_mod: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(int int int int unicode unicode unicode bool object object bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('idrange_mod', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('idrange_mod',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(ipabaseid ipaidrangesize ipabaserid ipasecondarybaserid setattr addattr delattr rights ipanttrusteddomainsid ipanttrusteddomainname all raw version)],
+        [qw(int int int int unicode unicode unicode bool object object bool bool unicode)],
+    );
 }
 
 
@@ -15134,8 +11225,7 @@ Display information about a range.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -15147,48 +11237,26 @@ Display information about a range.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_idrange_show
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_idrange_show: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(rights all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_idrange_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('idrange_show', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('idrange_show',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(rights all raw version)],
+        [qw(bool bool bool unicode)],
+    );
 }
 
 
@@ -15210,8 +11278,7 @@ Add a new ID View.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -15229,48 +11296,26 @@ must be part of the schema. (type unicode class Str)
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_idview_add
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_idview_add: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(description setattr addattr all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_idview_add: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('idview_add', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('idview_add',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(description setattr addattr all raw version)],
+        [qw(unicode unicode unicode bool bool unicode)],
+    );
 }
 
 
@@ -15292,8 +11337,7 @@ Applies ID View to specified hosts or current members of specified hostgroups. I
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -15303,48 +11347,26 @@ Applies ID View to specified hosts or current members of specified hostgroups. I
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_idview_apply
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_idview_apply: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(host hostgroup version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_idview_apply: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('idview_apply', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('idview_apply',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(host hostgroup version)],
+        [qw(unicode unicode unicode)],
+    );
 }
 
 
@@ -15366,8 +11388,7 @@ Delete an ID View.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -15375,48 +11396,26 @@ Delete an ID View.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_idview_del
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_idview_del: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(continue version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_idview_del: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('idview_del', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('idview_del',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(continue version)],
+        [qw(bool unicode)],
+    );
 }
 
 
@@ -15438,8 +11437,7 @@ Search for an ID View.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -15459,48 +11457,26 @@ Search for an ID View.
 
 =item pkey_only: Results should contain primary key attribute only ("name") (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_idview_find
-{
-    
+{    
     my ($self, $criteria, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(criteria);
-    my $aidx = 0;
-    foreach my $arg ($criteria) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_idview_find: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(cn description timelimit sizelimit all raw version pkey_only);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_idview_find: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode int int bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('idview_find', [$criteria], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('idview_find',    
+        [$criteria],
+        [qw(criteria)],
+        [qw(unicode)],
+        \%opts,
+        [qw(cn description timelimit sizelimit all raw version pkey_only)],
+        [qw(unicode unicode int int bool bool unicode bool)],
+    );
 }
 
 
@@ -15522,8 +11498,7 @@ Modify an ID View.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -15548,48 +11523,26 @@ last, after all sets and adds. (type unicode class Str)
 
 =item rename: Rename the ID View object (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_idview_mod
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_idview_mod: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(description setattr addattr delattr rights all raw version rename);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_idview_mod: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode bool bool bool unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('idview_mod', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('idview_mod',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(description setattr addattr delattr rights all raw version rename)],
+        [qw(unicode unicode unicode unicode bool bool bool unicode unicode)],
+    );
 }
 
 
@@ -15611,8 +11564,7 @@ Display information about an ID View.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -15626,48 +11578,26 @@ Display information about an ID View.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_idview_show
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_idview_show: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(rights show_hosts all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_idview_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('idview_show', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('idview_show',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(rights show_hosts all raw version)],
+        [qw(bool bool bool bool unicode)],
+    );
 }
 
 
@@ -15682,7 +11612,7 @@ Clears ID View from specified hosts or current members of specified hostgroups.
 
 =item No required arguments
 
-=item Options
+=item  Options
 
 =over
 
@@ -15692,36 +11622,26 @@ Clears ID View from specified hosts or current members of specified hostgroups.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_idview_unapply
-{
-    
+{    
     my ($self, %opts) = @_;
     
-    
-    # Check options
-    my @opt_keys = qw(host hostgroup version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_idview_unapply: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('idview_unapply', [], [qw()], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('idview_unapply',    
+        [],
+        [qw()],
+        [qw()],
+        \%opts,
+        [qw(host hostgroup version)],
+        [qw(unicode unicode unicode)],
+    );
 }
 
 
@@ -15743,8 +11663,7 @@ Join an IPA domain
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -15756,48 +11675,26 @@ Join an IPA domain
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_join
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_join: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(realm nshardwareplatform nsosversion version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_join: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('join', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('join',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(realm nshardwareplatform nsosversion version)],
+        [qw(unicode unicode unicode unicode)],
+    );
 }
 
 
@@ -15823,8 +11720,7 @@ Wrapper method for json_metadata API
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -15836,48 +11732,26 @@ Wrapper method for json_metadata API
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_json_metadata
-{
-    
+{    
     my ($self, $objname, $methodname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(objname methodname);
-    my $aidx = 0;
-    foreach my $arg ($objname, $methodname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_json_metadata: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(object method command version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_json_metadata: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('json_metadata', [$objname, $methodname], [qw(unicode unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('json_metadata',    
+        [$objname, $methodname],
+        [qw(objname methodname)],
+        [qw(unicode unicode)],
+        \%opts,
+        [qw(object method command version)],
+        [qw(unicode unicode unicode unicode)],
+    );
 }
 
 
@@ -15892,42 +11766,32 @@ None
 
 =item No required arguments
 
-=item Options
+=item  Options
 
 =over
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_kra_is_enabled
-{
-    
+{    
     my ($self, %opts) = @_;
     
-    
-    # Check options
-    my @opt_keys = qw(version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_kra_is_enabled: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('kra_is_enabled', [], [qw()], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('kra_is_enabled',    
+        [],
+        [qw()],
+        [qw()],
+        \%opts,
+        [qw(version)],
+        [qw(unicode)],
+    );
 }
 
 
@@ -15949,8 +11813,7 @@ Modify Kerberos ticket policy.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -15975,48 +11838,26 @@ last, after all sets and adds. (type unicode class Str)
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_krbtpolicy_mod
-{
-    
+{    
     my ($self, $uid, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(uid);
-    my $aidx = 0;
-    foreach my $arg ($uid) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_krbtpolicy_mod: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(krbmaxticketlife krbmaxrenewableage setattr addattr delattr rights all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_krbtpolicy_mod: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(int int unicode unicode unicode bool bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('krbtpolicy_mod', [$uid], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('krbtpolicy_mod',    
+        [$uid],
+        [qw(uid)],
+        [qw(unicode)],
+        \%opts,
+        [qw(krbmaxticketlife krbmaxrenewableage setattr addattr delattr rights all raw version)],
+        [qw(int int unicode unicode unicode bool bool bool unicode)],
+    );
 }
 
 
@@ -16038,8 +11879,7 @@ Reset Kerberos ticket policy to the default values.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -16049,48 +11889,26 @@ Reset Kerberos ticket policy to the default values.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_krbtpolicy_reset
-{
-    
+{    
     my ($self, $uid, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(uid);
-    my $aidx = 0;
-    foreach my $arg ($uid) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_krbtpolicy_reset: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_krbtpolicy_reset: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('krbtpolicy_reset', [$uid], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('krbtpolicy_reset',    
+        [$uid],
+        [qw(uid)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version)],
+        [qw(bool bool unicode)],
+    );
 }
 
 
@@ -16112,8 +11930,7 @@ Display the current Kerberos ticket policy.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -16125,48 +11942,26 @@ Display the current Kerberos ticket policy.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_krbtpolicy_show
-{
-    
+{    
     my ($self, $uid, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(uid);
-    my $aidx = 0;
-    foreach my $arg ($uid) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_krbtpolicy_show: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(rights all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_krbtpolicy_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('krbtpolicy_show', [$uid], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('krbtpolicy_show',    
+        [$uid],
+        [qw(uid)],
+        [qw(unicode)],
+        \%opts,
+        [qw(rights all raw version)],
+        [qw(bool bool bool unicode)],
+    );
 }
 
 
@@ -16190,8 +11985,7 @@ Migrate users and groups from DS to IPA.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -16235,48 +12029,26 @@ Migrate users and groups from DS to IPA.
 
 =item exclude_users: users to exclude from migration (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_migrate_ds
-{
-    
+{    
     my ($self, $ldapuri, $bindpw, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(ldapuri bindpw);
-    my $aidx = 0;
-    foreach my $arg ($ldapuri, $bindpw) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_migrate_ds: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(binddn usercontainer groupcontainer userobjectclass groupobjectclass userignoreobjectclass userignoreattribute groupignoreobjectclass groupignoreattribute groupoverwritegid schema continue basedn compat cacertfile use_def_group scope version exclude_groups exclude_users);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_migrate_ds: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(DN DN DN unicode unicode unicode unicode unicode unicode bool unicode bool DN bool unicode bool unicode unicode unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('migrate_ds', [$ldapuri, $bindpw], [qw(unicode unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('migrate_ds',    
+        [$ldapuri, $bindpw],
+        [qw(ldapuri bindpw)],
+        [qw(unicode unicode)],
+        \%opts,
+        [qw(binddn usercontainer groupcontainer userobjectclass groupobjectclass userignoreobjectclass userignoreattribute groupignoreobjectclass groupignoreattribute groupoverwritegid schema continue basedn compat cacertfile use_def_group scope version exclude_groups exclude_users)],
+        [qw(DN DN DN unicode unicode unicode unicode unicode unicode bool unicode bool DN bool unicode bool unicode unicode unicode unicode)],
+    );
 }
 
 
@@ -16298,8 +12070,7 @@ Add a new netgroup.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -16327,48 +12098,26 @@ must be part of the schema. (type unicode class Str)
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_netgroup_add
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_netgroup_add: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(description nisdomainname usercategory hostcategory externalhost setattr addattr all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_netgroup_add: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode unicode unicode unicode bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('netgroup_add', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('netgroup_add',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(description nisdomainname usercategory hostcategory externalhost setattr addattr all raw version no_members)],
+        [qw(unicode unicode unicode unicode unicode unicode unicode bool bool unicode bool)],
+    );
 }
 
 
@@ -16390,8 +12139,7 @@ Add members to a netgroup.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -16413,48 +12161,26 @@ Add members to a netgroup.
 
 =item netgroup: netgroups to add (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_netgroup_add_member
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_netgroup_add_member: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members user group host hostgroup netgroup);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_netgroup_add_member: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode unicode unicode unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('netgroup_add_member', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('netgroup_add_member',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members user group host hostgroup netgroup)],
+        [qw(bool bool unicode bool unicode unicode unicode unicode unicode)],
+    );
 }
 
 
@@ -16476,8 +12202,7 @@ Delete a netgroup.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -16485,48 +12210,26 @@ Delete a netgroup.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_netgroup_del
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_netgroup_del: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(continue version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_netgroup_del: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('netgroup_del', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('netgroup_del',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(continue version)],
+        [qw(bool unicode)],
+    );
 }
 
 
@@ -16548,8 +12251,7 @@ Search for a netgroup.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -16609,48 +12311,26 @@ Search for a netgroup.
 
 =item not_in_netgroup: Search for netgroups without these member of netgroups. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_netgroup_find
-{
-    
+{    
     my ($self, $criteria, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(criteria);
-    my $aidx = 0;
-    foreach my $arg ($criteria) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_netgroup_find: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(cn description nisdomainname ipauniqueid usercategory hostcategory externalhost timelimit sizelimit private managed all raw version no_members pkey_only netgroup no_netgroup user no_user group no_group host no_host hostgroup no_hostgroup in_netgroup not_in_netgroup);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_netgroup_find: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode unicode unicode unicode int int bool bool bool bool unicode bool bool unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('netgroup_find', [$criteria], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('netgroup_find',    
+        [$criteria],
+        [qw(criteria)],
+        [qw(unicode)],
+        \%opts,
+        [qw(cn description nisdomainname ipauniqueid usercategory hostcategory externalhost timelimit sizelimit private managed all raw version no_members pkey_only netgroup no_netgroup user no_user group no_group host no_host hostgroup no_hostgroup in_netgroup not_in_netgroup)],
+        [qw(unicode unicode unicode unicode unicode unicode unicode int int bool bool bool bool unicode bool bool unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode)],
+    );
 }
 
 
@@ -16672,8 +12352,7 @@ Modify a netgroup.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -16706,48 +12385,26 @@ last, after all sets and adds. (type unicode class Str)
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_netgroup_mod
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_netgroup_mod: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(description nisdomainname usercategory hostcategory externalhost setattr addattr delattr rights all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_netgroup_mod: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode unicode unicode unicode unicode bool bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('netgroup_mod', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('netgroup_mod',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(description nisdomainname usercategory hostcategory externalhost setattr addattr delattr rights all raw version no_members)],
+        [qw(unicode unicode unicode unicode unicode unicode unicode unicode bool bool bool unicode bool)],
+    );
 }
 
 
@@ -16769,8 +12426,7 @@ Remove members from a netgroup.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -16792,48 +12448,26 @@ Remove members from a netgroup.
 
 =item netgroup: netgroups to remove (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_netgroup_remove_member
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_netgroup_remove_member: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members user group host hostgroup netgroup);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_netgroup_remove_member: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode unicode unicode unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('netgroup_remove_member', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('netgroup_remove_member',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members user group host hostgroup netgroup)],
+        [qw(bool bool unicode bool unicode unicode unicode unicode unicode)],
+    );
 }
 
 
@@ -16855,8 +12489,7 @@ Display information about a netgroup.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -16870,48 +12503,26 @@ Display information about a netgroup.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_netgroup_show
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_netgroup_show: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(rights all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_netgroup_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('netgroup_show', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('netgroup_show',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(rights all raw version no_members)],
+        [qw(bool bool bool unicode bool)],
+    );
 }
 
 
@@ -16926,7 +12537,7 @@ Modify OTP configuration options.
 
 =item No required arguments
 
-=item Options
+=item  Options
 
 =over
 
@@ -16955,36 +12566,26 @@ last, after all sets and adds. (type unicode class Str)
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_otpconfig_mod
-{
-    
+{    
     my ($self, %opts) = @_;
     
-    
-    # Check options
-    my @opt_keys = qw(ipatokentotpauthwindow ipatokentotpsyncwindow ipatokenhotpauthwindow ipatokenhotpsyncwindow setattr addattr delattr rights all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_otpconfig_mod: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(int int int int unicode unicode unicode bool bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('otpconfig_mod', [], [qw()], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('otpconfig_mod',    
+        [],
+        [qw()],
+        [qw()],
+        \%opts,
+        [qw(ipatokentotpauthwindow ipatokentotpsyncwindow ipatokenhotpauthwindow ipatokenhotpsyncwindow setattr addattr delattr rights all raw version)],
+        [qw(int int int int unicode unicode unicode bool bool bool unicode)],
+    );
 }
 
 
@@ -16999,7 +12600,7 @@ Show the current OTP configuration.
 
 =item No required arguments
 
-=item Options
+=item  Options
 
 =over
 
@@ -17011,36 +12612,26 @@ Show the current OTP configuration.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_otpconfig_show
-{
-    
+{    
     my ($self, %opts) = @_;
     
-    
-    # Check options
-    my @opt_keys = qw(rights all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_otpconfig_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('otpconfig_show', [], [qw()], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('otpconfig_show',    
+        [],
+        [qw()],
+        [qw()],
+        \%opts,
+        [qw(rights all raw version)],
+        [qw(bool bool bool unicode)],
+    );
 }
 
 
@@ -17062,8 +12653,7 @@ Add a new OTP token.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -17115,48 +12705,26 @@ must be part of the schema. (type unicode class Str)
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_otptoken_add
-{
-    
+{    
     my ($self, $ipatokenuniqueid, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(ipatokenuniqueid);
-    my $aidx = 0;
-    foreach my $arg ($ipatokenuniqueid) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_otptoken_add: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(type description ipatokenowner ipatokendisabled ipatokennotbefore ipatokennotafter ipatokenvendor ipatokenmodel ipatokenserial ipatokenotpkey ipatokenotpalgorithm ipatokenotpdigits ipatokentotpclockoffset ipatokentotptimestep ipatokenhotpcounter setattr addattr qrcode no_qrcode all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_otptoken_add: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode bool datetime datetime unicode unicode unicode str unicode int int int int unicode unicode bool bool bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('otptoken_add', [$ipatokenuniqueid], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('otptoken_add',    
+        [$ipatokenuniqueid],
+        [qw(ipatokenuniqueid)],
+        [qw(unicode)],
+        \%opts,
+        [qw(type description ipatokenowner ipatokendisabled ipatokennotbefore ipatokennotafter ipatokenvendor ipatokenmodel ipatokenserial ipatokenotpkey ipatokenotpalgorithm ipatokenotpdigits ipatokentotpclockoffset ipatokentotptimestep ipatokenhotpcounter setattr addattr qrcode no_qrcode all raw version no_members)],
+        [qw(unicode unicode unicode bool datetime datetime unicode unicode unicode str unicode int int int int unicode unicode bool bool bool bool unicode bool)],
+    );
 }
 
 
@@ -17178,8 +12746,7 @@ Add users that can manage this token.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -17193,48 +12760,26 @@ Add users that can manage this token.
 
 =item user: users to add (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_otptoken_add_managedby
-{
-    
+{    
     my ($self, $ipatokenuniqueid, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(ipatokenuniqueid);
-    my $aidx = 0;
-    foreach my $arg ($ipatokenuniqueid) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_otptoken_add_managedby: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members user);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_otptoken_add_managedby: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('otptoken_add_managedby', [$ipatokenuniqueid], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('otptoken_add_managedby',    
+        [$ipatokenuniqueid],
+        [qw(ipatokenuniqueid)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members user)],
+        [qw(bool bool unicode bool unicode)],
+    );
 }
 
 
@@ -17256,8 +12801,7 @@ Add a new YubiKey OTP token.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -17277,48 +12821,26 @@ Add a new YubiKey OTP token.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_otptoken_add_yubikey
-{
-    
+{    
     my ($self, $ipatokenuniqueid, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(ipatokenuniqueid);
-    my $aidx = 0;
-    foreach my $arg ($ipatokenuniqueid) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_otptoken_add_yubikey: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(slot description ipatokenowner ipatokendisabled ipatokennotbefore ipatokennotafter ipatokenotpdigits version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_otptoken_add_yubikey: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(int unicode unicode bool datetime datetime int unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('otptoken_add_yubikey', [$ipatokenuniqueid], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('otptoken_add_yubikey',    
+        [$ipatokenuniqueid],
+        [qw(ipatokenuniqueid)],
+        [qw(unicode)],
+        \%opts,
+        [qw(slot description ipatokenowner ipatokendisabled ipatokennotbefore ipatokennotafter ipatokenotpdigits version)],
+        [qw(int unicode unicode bool datetime datetime int unicode)],
+    );
 }
 
 
@@ -17340,8 +12862,7 @@ Delete an OTP token.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -17349,48 +12870,26 @@ Delete an OTP token.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_otptoken_del
-{
-    
+{    
     my ($self, $ipatokenuniqueid, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(ipatokenuniqueid);
-    my $aidx = 0;
-    foreach my $arg ($ipatokenuniqueid) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_otptoken_del: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(continue version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_otptoken_del: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('otptoken_del', [$ipatokenuniqueid], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('otptoken_del',    
+        [$ipatokenuniqueid],
+        [qw(ipatokenuniqueid)],
+        [qw(unicode)],
+        \%opts,
+        [qw(continue version)],
+        [qw(bool unicode)],
+    );
 }
 
 
@@ -17412,8 +12911,7 @@ Search for OTP token.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -17461,48 +12959,26 @@ Search for OTP token.
 
 =item pkey_only: Results should contain primary key attribute only ("id") (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_otptoken_find
-{
-    
+{    
     my ($self, $criteria, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(criteria);
-    my $aidx = 0;
-    foreach my $arg ($criteria) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_otptoken_find: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(ipatokenuniqueid type description ipatokenowner ipatokendisabled ipatokennotbefore ipatokennotafter ipatokenvendor ipatokenmodel ipatokenserial ipatokenotpalgorithm ipatokenotpdigits ipatokentotpclockoffset ipatokentotptimestep ipatokenhotpcounter timelimit sizelimit all raw version no_members pkey_only);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_otptoken_find: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode bool datetime datetime unicode unicode unicode unicode int int int int int int bool bool unicode bool bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('otptoken_find', [$criteria], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('otptoken_find',    
+        [$criteria],
+        [qw(criteria)],
+        [qw(unicode)],
+        \%opts,
+        [qw(ipatokenuniqueid type description ipatokenowner ipatokendisabled ipatokennotbefore ipatokennotafter ipatokenvendor ipatokenmodel ipatokenserial ipatokenotpalgorithm ipatokenotpdigits ipatokentotpclockoffset ipatokentotptimestep ipatokenhotpcounter timelimit sizelimit all raw version no_members pkey_only)],
+        [qw(unicode unicode unicode unicode bool datetime datetime unicode unicode unicode unicode int int int int int int bool bool unicode bool bool)],
+    );
 }
 
 
@@ -17524,8 +13000,7 @@ Modify a OTP token.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -17566,48 +13041,26 @@ last, after all sets and adds. (type unicode class Str)
 
 =item rename: Rename the OTP token object (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_otptoken_mod
-{
-    
+{    
     my ($self, $ipatokenuniqueid, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(ipatokenuniqueid);
-    my $aidx = 0;
-    foreach my $arg ($ipatokenuniqueid) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_otptoken_mod: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(description ipatokenowner ipatokendisabled ipatokennotbefore ipatokennotafter ipatokenvendor ipatokenmodel ipatokenserial setattr addattr delattr rights all raw version no_members rename);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_otptoken_mod: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode bool datetime datetime unicode unicode unicode unicode unicode unicode bool bool bool unicode bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('otptoken_mod', [$ipatokenuniqueid], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('otptoken_mod',    
+        [$ipatokenuniqueid],
+        [qw(ipatokenuniqueid)],
+        [qw(unicode)],
+        \%opts,
+        [qw(description ipatokenowner ipatokendisabled ipatokennotbefore ipatokennotafter ipatokenvendor ipatokenmodel ipatokenserial setattr addattr delattr rights all raw version no_members rename)],
+        [qw(unicode unicode bool datetime datetime unicode unicode unicode unicode unicode unicode bool bool bool unicode bool unicode)],
+    );
 }
 
 
@@ -17629,8 +13082,7 @@ Remove hosts that can manage this host.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -17644,48 +13096,26 @@ Remove hosts that can manage this host.
 
 =item user: users to remove (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_otptoken_remove_managedby
-{
-    
+{    
     my ($self, $ipatokenuniqueid, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(ipatokenuniqueid);
-    my $aidx = 0;
-    foreach my $arg ($ipatokenuniqueid) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_otptoken_remove_managedby: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members user);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_otptoken_remove_managedby: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('otptoken_remove_managedby', [$ipatokenuniqueid], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('otptoken_remove_managedby',    
+        [$ipatokenuniqueid],
+        [qw(ipatokenuniqueid)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members user)],
+        [qw(bool bool unicode bool unicode)],
+    );
 }
 
 
@@ -17707,8 +13137,7 @@ Display information about an OTP token.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -17722,48 +13151,26 @@ Display information about an OTP token.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_otptoken_show
-{
-    
+{    
     my ($self, $ipatokenuniqueid, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(ipatokenuniqueid);
-    my $aidx = 0;
-    foreach my $arg ($ipatokenuniqueid) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_otptoken_show: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(rights all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_otptoken_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('otptoken_show', [$ipatokenuniqueid], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('otptoken_show',    
+        [$ipatokenuniqueid],
+        [qw(ipatokenuniqueid)],
+        [qw(unicode)],
+        \%opts,
+        [qw(rights all raw version no_members)],
+        [qw(bool bool bool unicode bool)],
+    );
 }
 
 
@@ -17785,8 +13192,7 @@ Synchronize an OTP token.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -17800,48 +13206,26 @@ Synchronize an OTP token.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_otptoken_sync
-{
-    
+{    
     my ($self, $token, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(token);
-    my $aidx = 0;
-    foreach my $arg ($token) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_otptoken_sync: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(user password first_code second_code version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_otptoken_sync: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('otptoken_sync', [$token], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('otptoken_sync',    
+        [$token],
+        [qw(token)],
+        [qw(unicode)],
+        \%opts,
+        [qw(user password first_code second_code version)],
+        [qw(unicode unicode unicode unicode unicode)],
+    );
 }
 
 
@@ -17867,8 +13251,7 @@ Set a user's password.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -17876,48 +13259,26 @@ Set a user's password.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_passwd
-{
-    
+{    
     my ($self, $principal, $password, $current_password, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(principal password current_password);
-    my $aidx = 0;
-    foreach my $arg ($principal, $password, $current_password) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_passwd: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(otp version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_passwd: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('passwd', [$principal, $password, $current_password], [qw(unicode unicode unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('passwd',    
+        [$principal, $password, $current_password],
+        [qw(principal password current_password)],
+        [qw(unicode unicode unicode)],
+        \%opts,
+        [qw(otp version)],
+        [qw(unicode unicode)],
+    );
 }
 
 
@@ -17939,8 +13300,7 @@ Add a new permission.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -17988,48 +13348,26 @@ must be part of the schema. (type unicode class Str)
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_permission_add
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_permission_add: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(ipapermright attrs ipapermbindruletype ipapermlocation extratargetfilter ipapermtargetfilter ipapermtarget ipapermtargetto ipapermtargetfrom memberof targetgroup type filter subtree permissions setattr addattr all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_permission_add: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode DN unicode unicode DN DN DN unicode unicode unicode unicode unicode unicode unicode unicode bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('permission_add', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('permission_add',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(ipapermright attrs ipapermbindruletype ipapermlocation extratargetfilter ipapermtargetfilter ipapermtarget ipapermtargetto ipapermtargetfrom memberof targetgroup type filter subtree permissions setattr addattr all raw version no_members)],
+        [qw(unicode unicode unicode DN unicode unicode DN DN DN unicode unicode unicode unicode unicode unicode unicode unicode bool bool unicode bool)],
+    );
 }
 
 
@@ -18051,8 +13389,7 @@ Add members to a permission.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -18066,48 +13403,26 @@ Add members to a permission.
 
 =item privilege: privileges to add (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_permission_add_member
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_permission_add_member: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members privilege);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_permission_add_member: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('permission_add_member', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('permission_add_member',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members privilege)],
+        [qw(bool bool unicode bool unicode)],
+    );
 }
 
 
@@ -18129,8 +13444,7 @@ Add a system permission without an ACI (internal command)
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -18144,48 +13458,26 @@ Add a system permission without an ACI (internal command)
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_permission_add_noaci
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_permission_add_noaci: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(ipapermissiontype all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_permission_add_noaci: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('permission_add_noaci', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('permission_add_noaci',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(ipapermissiontype all raw version no_members)],
+        [qw(unicode bool bool unicode bool)],
+    );
 }
 
 
@@ -18207,8 +13499,7 @@ Delete a permission.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -18218,48 +13509,26 @@ Delete a permission.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_permission_del
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_permission_del: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(continue force version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_permission_del: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('permission_del', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('permission_del',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(continue force version)],
+        [qw(bool bool unicode)],
+    );
 }
 
 
@@ -18281,8 +13550,7 @@ Search for permissions.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -18338,48 +13606,26 @@ Search for permissions.
 
 =item pkey_only: Results should contain primary key attribute only ("name") (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_permission_find
-{
-    
+{    
     my ($self, $criteria, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(criteria);
-    my $aidx = 0;
-    foreach my $arg ($criteria) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_permission_find: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(cn ipapermright attrs ipapermincludedattr ipapermexcludedattr ipapermdefaultattr ipapermbindruletype ipapermlocation extratargetfilter ipapermtargetfilter ipapermtarget ipapermtargetto ipapermtargetfrom memberof targetgroup type filter subtree permissions timelimit sizelimit all raw version no_members pkey_only);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_permission_find: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode unicode unicode unicode DN unicode unicode DN DN DN unicode unicode unicode unicode unicode unicode int int bool bool unicode bool bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('permission_find', [$criteria], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('permission_find',    
+        [$criteria],
+        [qw(criteria)],
+        [qw(unicode)],
+        \%opts,
+        [qw(cn ipapermright attrs ipapermincludedattr ipapermexcludedattr ipapermdefaultattr ipapermbindruletype ipapermlocation extratargetfilter ipapermtargetfilter ipapermtarget ipapermtargetto ipapermtargetfrom memberof targetgroup type filter subtree permissions timelimit sizelimit all raw version no_members pkey_only)],
+        [qw(unicode unicode unicode unicode unicode unicode unicode DN unicode unicode DN DN DN unicode unicode unicode unicode unicode unicode int int bool bool unicode bool bool)],
+    );
 }
 
 
@@ -18401,8 +13647,7 @@ Modify a permission.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -18461,48 +13706,26 @@ last, after all sets and adds. (type unicode class Str)
 
 =item rename: Rename the permission object (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_permission_mod
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_permission_mod: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(ipapermright attrs ipapermincludedattr ipapermexcludedattr ipapermbindruletype ipapermlocation extratargetfilter ipapermtargetfilter ipapermtarget ipapermtargetto ipapermtargetfrom memberof targetgroup type filter subtree permissions setattr addattr delattr rights all raw version no_members rename);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_permission_mod: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode unicode DN unicode unicode DN DN DN unicode unicode unicode unicode unicode unicode unicode unicode unicode bool bool bool unicode bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('permission_mod', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('permission_mod',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(ipapermright attrs ipapermincludedattr ipapermexcludedattr ipapermbindruletype ipapermlocation extratargetfilter ipapermtargetfilter ipapermtarget ipapermtargetto ipapermtargetfrom memberof targetgroup type filter subtree permissions setattr addattr delattr rights all raw version no_members rename)],
+        [qw(unicode unicode unicode unicode unicode DN unicode unicode DN DN DN unicode unicode unicode unicode unicode unicode unicode unicode unicode bool bool bool unicode bool unicode)],
+    );
 }
 
 
@@ -18524,8 +13747,7 @@ Remove members from a permission.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -18539,48 +13761,26 @@ Remove members from a permission.
 
 =item privilege: privileges to remove (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_permission_remove_member
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_permission_remove_member: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members privilege);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_permission_remove_member: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('permission_remove_member', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('permission_remove_member',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members privilege)],
+        [qw(bool bool unicode bool unicode)],
+    );
 }
 
 
@@ -18602,8 +13802,7 @@ Display information about a permission.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -18617,48 +13816,26 @@ Display information about a permission.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_permission_show
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_permission_show: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(rights all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_permission_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('permission_show', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('permission_show',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(rights all raw version no_members)],
+        [qw(bool bool bool unicode bool)],
+    );
 }
 
 
@@ -18673,42 +13850,32 @@ Ping a remote server.
 
 =item No required arguments
 
-=item Options
+=item  Options
 
 =over
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_ping
-{
-    
+{    
     my ($self, %opts) = @_;
     
-    
-    # Check options
-    my @opt_keys = qw(version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_ping: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('ping', [], [qw()], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('ping',    
+        [],
+        [qw()],
+        [qw()],
+        \%opts,
+        [qw(version)],
+        [qw(unicode)],
+    );
 }
 
 
@@ -18723,7 +13890,7 @@ Show all loaded plugins.
 
 =item No required arguments
 
-=item Options
+=item  Options
 
 =over
 
@@ -18733,36 +13900,26 @@ Show all loaded plugins.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_plugins
-{
-    
+{    
     my ($self, %opts) = @_;
     
-    
-    # Check options
-    my @opt_keys = qw(server all version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_plugins: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('plugins', [], [qw()], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('plugins',    
+        [],
+        [qw()],
+        [qw()],
+        \%opts,
+        [qw(server all version)],
+        [qw(bool bool unicode)],
+    );
 }
 
 
@@ -18784,8 +13941,7 @@ Add a new privilege.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -18805,48 +13961,26 @@ must be part of the schema. (type unicode class Str)
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_privilege_add
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_privilege_add: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(description setattr addattr all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_privilege_add: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('privilege_add', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('privilege_add',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(description setattr addattr all raw version no_members)],
+        [qw(unicode unicode unicode bool bool unicode bool)],
+    );
 }
 
 
@@ -18868,8 +14002,7 @@ Add members to a privilege.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -18883,48 +14016,26 @@ Add members to a privilege.
 
 =item role: roles to add (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_privilege_add_member
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_privilege_add_member: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members role);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_privilege_add_member: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('privilege_add_member', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('privilege_add_member',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members role)],
+        [qw(bool bool unicode bool unicode)],
+    );
 }
 
 
@@ -18946,8 +14057,7 @@ Add permissions to a privilege.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -18961,48 +14071,26 @@ Add permissions to a privilege.
 
 =item permission: permissions (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_privilege_add_permission
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_privilege_add_permission: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members permission);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_privilege_add_permission: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('privilege_add_permission', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('privilege_add_permission',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members permission)],
+        [qw(bool bool unicode bool unicode)],
+    );
 }
 
 
@@ -19024,8 +14112,7 @@ Delete a privilege.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -19033,48 +14120,26 @@ Delete a privilege.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_privilege_del
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_privilege_del: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(continue version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_privilege_del: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('privilege_del', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('privilege_del',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(continue version)],
+        [qw(bool unicode)],
+    );
 }
 
 
@@ -19096,8 +14161,7 @@ Search for privileges.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -19119,48 +14183,26 @@ Search for privileges.
 
 =item pkey_only: Results should contain primary key attribute only ("name") (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_privilege_find
-{
-    
+{    
     my ($self, $criteria, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(criteria);
-    my $aidx = 0;
-    foreach my $arg ($criteria) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_privilege_find: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(cn description timelimit sizelimit all raw version no_members pkey_only);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_privilege_find: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode int int bool bool unicode bool bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('privilege_find', [$criteria], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('privilege_find',    
+        [$criteria],
+        [qw(criteria)],
+        [qw(unicode)],
+        \%opts,
+        [qw(cn description timelimit sizelimit all raw version no_members pkey_only)],
+        [qw(unicode unicode int int bool bool unicode bool bool)],
+    );
 }
 
 
@@ -19182,8 +14224,7 @@ Modify a privilege.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -19210,48 +14251,26 @@ last, after all sets and adds. (type unicode class Str)
 
 =item rename: Rename the privilege object (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_privilege_mod
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_privilege_mod: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(description setattr addattr delattr rights all raw version no_members rename);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_privilege_mod: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode bool bool bool unicode bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('privilege_mod', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('privilege_mod',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(description setattr addattr delattr rights all raw version no_members rename)],
+        [qw(unicode unicode unicode unicode bool bool bool unicode bool unicode)],
+    );
 }
 
 
@@ -19275,8 +14294,7 @@ Wrapper method for privilege_remove_member API
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -19290,48 +14308,26 @@ Wrapper method for privilege_remove_member API
 
 =item role: roles to remove (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_privilege_remove_member
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_privilege_remove_member: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members role);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_privilege_remove_member: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('privilege_remove_member', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('privilege_remove_member',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members role)],
+        [qw(bool bool unicode bool unicode)],
+    );
 }
 
 
@@ -19353,8 +14349,7 @@ Remove permissions from a privilege.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -19368,48 +14363,26 @@ Remove permissions from a privilege.
 
 =item permission: permissions (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_privilege_remove_permission
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_privilege_remove_permission: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members permission);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_privilege_remove_permission: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('privilege_remove_permission', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('privilege_remove_permission',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members permission)],
+        [qw(bool bool unicode bool unicode)],
+    );
 }
 
 
@@ -19431,8 +14404,7 @@ Display information about a privilege.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -19446,48 +14418,26 @@ Display information about a privilege.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_privilege_show
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_privilege_show: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(rights all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_privilege_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('privilege_show', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('privilege_show',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(rights all raw version no_members)],
+        [qw(bool bool bool unicode bool)],
+    );
 }
 
 
@@ -19509,8 +14459,7 @@ Add a new group password policy.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -19544,48 +14493,26 @@ must be part of the schema. (type unicode class Str)
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_pwpolicy_add
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_pwpolicy_add: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(krbmaxpwdlife krbminpwdlife krbpwdhistorylength krbpwdmindiffchars krbpwdminlength cospriority krbpwdmaxfailure krbpwdfailurecountinterval krbpwdlockoutduration setattr addattr all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_pwpolicy_add: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(int int int int int int int int int unicode unicode bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('pwpolicy_add', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('pwpolicy_add',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(krbmaxpwdlife krbminpwdlife krbpwdhistorylength krbpwdmindiffchars krbpwdminlength cospriority krbpwdmaxfailure krbpwdfailurecountinterval krbpwdlockoutduration setattr addattr all raw version)],
+        [qw(int int int int int int int int int unicode unicode bool bool unicode)],
+    );
 }
 
 
@@ -19607,8 +14534,7 @@ Delete a group password policy.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -19616,48 +14542,26 @@ Delete a group password policy.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_pwpolicy_del
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_pwpolicy_del: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(continue version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_pwpolicy_del: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('pwpolicy_del', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('pwpolicy_del',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(continue version)],
+        [qw(bool unicode)],
+    );
 }
 
 
@@ -19679,8 +14583,7 @@ Search for group password policies.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -19716,48 +14619,26 @@ Search for group password policies.
 
 =item pkey_only: Results should contain primary key attribute only ("group") (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_pwpolicy_find
-{
-    
+{    
     my ($self, $criteria, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(criteria);
-    my $aidx = 0;
-    foreach my $arg ($criteria) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_pwpolicy_find: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(cn krbmaxpwdlife krbminpwdlife krbpwdhistorylength krbpwdmindiffchars krbpwdminlength cospriority krbpwdmaxfailure krbpwdfailurecountinterval krbpwdlockoutduration timelimit sizelimit all raw version pkey_only);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_pwpolicy_find: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode int int int int int int int int int int int bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('pwpolicy_find', [$criteria], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('pwpolicy_find',    
+        [$criteria],
+        [qw(criteria)],
+        [qw(unicode)],
+        \%opts,
+        [qw(cn krbmaxpwdlife krbminpwdlife krbpwdhistorylength krbpwdmindiffchars krbpwdminlength cospriority krbpwdmaxfailure krbpwdfailurecountinterval krbpwdlockoutduration timelimit sizelimit all raw version pkey_only)],
+        [qw(unicode int int int int int int int int int int int bool bool unicode bool)],
+    );
 }
 
 
@@ -19779,8 +14660,7 @@ Modify a group password policy.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -19819,48 +14699,26 @@ last, after all sets and adds. (type unicode class Str)
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_pwpolicy_mod
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_pwpolicy_mod: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(krbmaxpwdlife krbminpwdlife krbpwdhistorylength krbpwdmindiffchars krbpwdminlength cospriority krbpwdmaxfailure krbpwdfailurecountinterval krbpwdlockoutduration setattr addattr delattr rights all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_pwpolicy_mod: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(int int int int int int int int int unicode unicode unicode bool bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('pwpolicy_mod', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('pwpolicy_mod',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(krbmaxpwdlife krbminpwdlife krbpwdhistorylength krbpwdmindiffchars krbpwdminlength cospriority krbpwdmaxfailure krbpwdfailurecountinterval krbpwdlockoutduration setattr addattr delattr rights all raw version)],
+        [qw(int int int int int int int int int unicode unicode unicode bool bool bool unicode)],
+    );
 }
 
 
@@ -19882,8 +14740,7 @@ Display information about password policy.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -19897,48 +14754,26 @@ Display information about password policy.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_pwpolicy_show
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_pwpolicy_show: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(rights user all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_pwpolicy_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('pwpolicy_show', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('pwpolicy_show',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(rights user all raw version)],
+        [qw(bool unicode bool bool unicode)],
+    );
 }
 
 
@@ -19960,8 +14795,7 @@ Add a new RADIUS proxy server.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -19989,48 +14823,26 @@ must be part of the schema. (type unicode class Str)
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_radiusproxy_add
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_radiusproxy_add: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(description ipatokenradiusserver ipatokenradiussecret ipatokenradiustimeout ipatokenradiusretries ipatokenusermapattribute setattr addattr all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_radiusproxy_add: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode int int unicode unicode unicode bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('radiusproxy_add', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('radiusproxy_add',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(description ipatokenradiusserver ipatokenradiussecret ipatokenradiustimeout ipatokenradiusretries ipatokenusermapattribute setattr addattr all raw version)],
+        [qw(unicode unicode unicode int int unicode unicode unicode bool bool unicode)],
+    );
 }
 
 
@@ -20052,8 +14864,7 @@ Delete a RADIUS proxy server.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -20061,48 +14872,26 @@ Delete a RADIUS proxy server.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_radiusproxy_del
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_radiusproxy_del: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(continue version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_radiusproxy_del: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('radiusproxy_del', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('radiusproxy_del',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(continue version)],
+        [qw(bool unicode)],
+    );
 }
 
 
@@ -20124,8 +14913,7 @@ Search for RADIUS proxy servers.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -20155,48 +14943,26 @@ Search for RADIUS proxy servers.
 
 =item pkey_only: Results should contain primary key attribute only ("name") (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_radiusproxy_find
-{
-    
+{    
     my ($self, $criteria, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(criteria);
-    my $aidx = 0;
-    foreach my $arg ($criteria) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_radiusproxy_find: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(cn description ipatokenradiusserver ipatokenradiussecret ipatokenradiustimeout ipatokenradiusretries ipatokenusermapattribute timelimit sizelimit all raw version pkey_only);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_radiusproxy_find: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode int int unicode int int bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('radiusproxy_find', [$criteria], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('radiusproxy_find',    
+        [$criteria],
+        [qw(criteria)],
+        [qw(unicode)],
+        \%opts,
+        [qw(cn description ipatokenradiusserver ipatokenradiussecret ipatokenradiustimeout ipatokenradiusretries ipatokenusermapattribute timelimit sizelimit all raw version pkey_only)],
+        [qw(unicode unicode unicode unicode int int unicode int int bool bool unicode bool)],
+    );
 }
 
 
@@ -20218,8 +14984,7 @@ Modify a RADIUS proxy server.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -20254,48 +15019,26 @@ last, after all sets and adds. (type unicode class Str)
 
 =item rename: Rename the RADIUS proxy server object (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_radiusproxy_mod
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_radiusproxy_mod: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(description ipatokenradiusserver ipatokenradiussecret ipatokenradiustimeout ipatokenradiusretries ipatokenusermapattribute setattr addattr delattr rights all raw version rename);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_radiusproxy_mod: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode int int unicode unicode unicode unicode bool bool bool unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('radiusproxy_mod', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('radiusproxy_mod',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(description ipatokenradiusserver ipatokenradiussecret ipatokenradiustimeout ipatokenradiusretries ipatokenusermapattribute setattr addattr delattr rights all raw version rename)],
+        [qw(unicode unicode unicode int int unicode unicode unicode unicode bool bool bool unicode unicode)],
+    );
 }
 
 
@@ -20317,8 +15060,7 @@ Display information about a RADIUS proxy server.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -20330,48 +15072,26 @@ Display information about a RADIUS proxy server.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_radiusproxy_show
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_radiusproxy_show: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(rights all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_radiusproxy_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('radiusproxy_show', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('radiusproxy_show',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(rights all raw version)],
+        [qw(bool bool bool unicode)],
+    );
 }
 
 
@@ -20386,7 +15106,7 @@ Modify realm domains.
 
 =item No required arguments
 
-=item Options
+=item  Options
 
 =over
 
@@ -20415,36 +15135,26 @@ last, after all sets and adds. (type unicode class Str)
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_realmdomains_mod
-{
-    
+{    
     my ($self, %opts) = @_;
     
-    
-    # Check options
-    my @opt_keys = qw(associateddomain add_domain del_domain setattr addattr delattr rights force all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_realmdomains_mod: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode unicode unicode bool bool bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('realmdomains_mod', [], [qw()], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('realmdomains_mod',    
+        [],
+        [qw()],
+        [qw()],
+        \%opts,
+        [qw(associateddomain add_domain del_domain setattr addattr delattr rights force all raw version)],
+        [qw(unicode unicode unicode unicode unicode unicode bool bool bool bool unicode)],
+    );
 }
 
 
@@ -20459,7 +15169,7 @@ Display the list of realm domains.
 
 =item No required arguments
 
-=item Options
+=item  Options
 
 =over
 
@@ -20471,36 +15181,26 @@ Display the list of realm domains.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_realmdomains_show
-{
-    
+{    
     my ($self, %opts) = @_;
     
-    
-    # Check options
-    my @opt_keys = qw(rights all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_realmdomains_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('realmdomains_show', [], [qw()], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('realmdomains_show',    
+        [],
+        [qw()],
+        [qw()],
+        \%opts,
+        [qw(rights all raw version)],
+        [qw(bool bool bool unicode)],
+    );
 }
 
 
@@ -20522,8 +15222,7 @@ Add a new role.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -20543,48 +15242,26 @@ must be part of the schema. (type unicode class Str)
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_role_add
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_role_add: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(description setattr addattr all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_role_add: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('role_add', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('role_add',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(description setattr addattr all raw version no_members)],
+        [qw(unicode unicode unicode bool bool unicode bool)],
+    );
 }
 
 
@@ -20606,8 +15283,7 @@ Add members to a role.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -20629,48 +15305,26 @@ Add members to a role.
 
 =item service: services to add (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_role_add_member
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_role_add_member: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members user group host hostgroup service);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_role_add_member: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode unicode unicode unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('role_add_member', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('role_add_member',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members user group host hostgroup service)],
+        [qw(bool bool unicode bool unicode unicode unicode unicode unicode)],
+    );
 }
 
 
@@ -20692,8 +15346,7 @@ Add privileges to a role.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -20707,48 +15360,26 @@ Add privileges to a role.
 
 =item privilege: privileges (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_role_add_privilege
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_role_add_privilege: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members privilege);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_role_add_privilege: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('role_add_privilege', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('role_add_privilege',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members privilege)],
+        [qw(bool bool unicode bool unicode)],
+    );
 }
 
 
@@ -20770,8 +15401,7 @@ Delete a role.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -20779,48 +15409,26 @@ Delete a role.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_role_del
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_role_del: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(continue version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_role_del: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('role_del', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('role_del',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(continue version)],
+        [qw(bool unicode)],
+    );
 }
 
 
@@ -20842,8 +15450,7 @@ Search for roles.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -20865,48 +15472,26 @@ Search for roles.
 
 =item pkey_only: Results should contain primary key attribute only ("name") (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_role_find
-{
-    
+{    
     my ($self, $criteria, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(criteria);
-    my $aidx = 0;
-    foreach my $arg ($criteria) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_role_find: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(cn description timelimit sizelimit all raw version no_members pkey_only);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_role_find: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode int int bool bool unicode bool bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('role_find', [$criteria], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('role_find',    
+        [$criteria],
+        [qw(criteria)],
+        [qw(unicode)],
+        \%opts,
+        [qw(cn description timelimit sizelimit all raw version no_members pkey_only)],
+        [qw(unicode unicode int int bool bool unicode bool bool)],
+    );
 }
 
 
@@ -20928,8 +15513,7 @@ Modify a role.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -20956,48 +15540,26 @@ last, after all sets and adds. (type unicode class Str)
 
 =item rename: Rename the role object (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_role_mod
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_role_mod: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(description setattr addattr delattr rights all raw version no_members rename);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_role_mod: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode bool bool bool unicode bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('role_mod', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('role_mod',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(description setattr addattr delattr rights all raw version no_members rename)],
+        [qw(unicode unicode unicode unicode bool bool bool unicode bool unicode)],
+    );
 }
 
 
@@ -21019,8 +15581,7 @@ Remove members from a role.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -21042,48 +15603,26 @@ Remove members from a role.
 
 =item service: services to remove (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_role_remove_member
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_role_remove_member: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members user group host hostgroup service);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_role_remove_member: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode unicode unicode unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('role_remove_member', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('role_remove_member',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members user group host hostgroup service)],
+        [qw(bool bool unicode bool unicode unicode unicode unicode unicode)],
+    );
 }
 
 
@@ -21105,8 +15644,7 @@ Remove privileges from a role.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -21120,48 +15658,26 @@ Remove privileges from a role.
 
 =item privilege: privileges (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_role_remove_privilege
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_role_remove_privilege: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members privilege);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_role_remove_privilege: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('role_remove_privilege', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('role_remove_privilege',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members privilege)],
+        [qw(bool bool unicode bool unicode)],
+    );
 }
 
 
@@ -21183,8 +15699,7 @@ Display information about a role.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -21198,48 +15713,26 @@ Display information about a role.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_role_show
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_role_show: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(rights all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_role_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('role_show', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('role_show',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(rights all raw version no_members)],
+        [qw(bool bool bool unicode bool)],
+    );
 }
 
 
@@ -21261,8 +15754,7 @@ Add a new self-service permission.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -21276,48 +15768,26 @@ Add a new self-service permission.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_selfservice_add
-{
-    
+{    
     my ($self, $aciname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(aciname);
-    my $aidx = 0;
-    foreach my $arg ($aciname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_selfservice_add: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(permissions attrs all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_selfservice_add: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('selfservice_add', [$aciname], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('selfservice_add',    
+        [$aciname],
+        [qw(aciname)],
+        [qw(unicode)],
+        \%opts,
+        [qw(permissions attrs all raw version)],
+        [qw(unicode unicode bool bool unicode)],
+    );
 }
 
 
@@ -21339,55 +15809,32 @@ Delete a self-service permission.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_selfservice_del
-{
-    
+{    
     my ($self, $aciname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(aciname);
-    my $aidx = 0;
-    foreach my $arg ($aciname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_selfservice_del: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_selfservice_del: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('selfservice_del', [$aciname], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('selfservice_del',    
+        [$aciname],
+        [qw(aciname)],
+        [qw(unicode)],
+        \%opts,
+        [qw(version)],
+        [qw(unicode)],
+    );
 }
 
 
@@ -21409,8 +15856,7 @@ Search for a self-service permission.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -21428,48 +15874,26 @@ Search for a self-service permission.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_selfservice_find
-{
-    
+{    
     my ($self, $criteria, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(criteria);
-    my $aidx = 0;
-    foreach my $arg ($criteria) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_selfservice_find: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(aciname permissions attrs pkey_only all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_selfservice_find: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode bool bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('selfservice_find', [$criteria], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('selfservice_find',    
+        [$criteria],
+        [qw(criteria)],
+        [qw(unicode)],
+        \%opts,
+        [qw(aciname permissions attrs pkey_only all raw version)],
+        [qw(unicode unicode unicode bool bool bool unicode)],
+    );
 }
 
 
@@ -21491,8 +15915,7 @@ Modify a self-service permission.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -21506,48 +15929,26 @@ Modify a self-service permission.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_selfservice_mod
-{
-    
+{    
     my ($self, $aciname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(aciname);
-    my $aidx = 0;
-    foreach my $arg ($aciname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_selfservice_mod: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(permissions attrs all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_selfservice_mod: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('selfservice_mod', [$aciname], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('selfservice_mod',    
+        [$aciname],
+        [qw(aciname)],
+        [qw(unicode)],
+        \%opts,
+        [qw(permissions attrs all raw version)],
+        [qw(unicode unicode bool bool unicode)],
+    );
 }
 
 
@@ -21569,8 +15970,7 @@ Display information about a self-service permission.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -21580,48 +15980,26 @@ Display information about a self-service permission.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_selfservice_show
-{
-    
+{    
     my ($self, $aciname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(aciname);
-    my $aidx = 0;
-    foreach my $arg ($aciname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_selfservice_show: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_selfservice_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('selfservice_show', [$aciname], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('selfservice_show',    
+        [$aciname],
+        [qw(aciname)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version)],
+        [qw(bool bool unicode)],
+    );
 }
 
 
@@ -21643,8 +16021,7 @@ Create a new SELinux User Map.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -21674,48 +16051,26 @@ must be part of the schema. (type unicode class Str)
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_selinuxusermap_add
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_selinuxusermap_add: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(ipaselinuxuser seealso usercategory hostcategory description ipaenabledflag setattr addattr all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_selinuxusermap_add: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode unicode bool unicode unicode bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('selinuxusermap_add', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('selinuxusermap_add',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(ipaselinuxuser seealso usercategory hostcategory description ipaenabledflag setattr addattr all raw version no_members)],
+        [qw(unicode unicode unicode unicode unicode bool unicode unicode bool bool unicode bool)],
+    );
 }
 
 
@@ -21737,8 +16092,7 @@ Add target hosts and hostgroups to an SELinux User Map rule.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -21754,48 +16108,26 @@ Add target hosts and hostgroups to an SELinux User Map rule.
 
 =item hostgroup: host groups to add (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_selinuxusermap_add_host
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_selinuxusermap_add_host: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members host hostgroup);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_selinuxusermap_add_host: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('selinuxusermap_add_host', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('selinuxusermap_add_host',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members host hostgroup)],
+        [qw(bool bool unicode bool unicode unicode)],
+    );
 }
 
 
@@ -21817,8 +16149,7 @@ Add users and groups to an SELinux User Map rule.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -21834,48 +16165,26 @@ Add users and groups to an SELinux User Map rule.
 
 =item group: groups to add (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_selinuxusermap_add_user
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_selinuxusermap_add_user: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members user group);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_selinuxusermap_add_user: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('selinuxusermap_add_user', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('selinuxusermap_add_user',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members user group)],
+        [qw(bool bool unicode bool unicode unicode)],
+    );
 }
 
 
@@ -21897,8 +16206,7 @@ Delete a SELinux User Map.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -21906,48 +16214,26 @@ Delete a SELinux User Map.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_selinuxusermap_del
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_selinuxusermap_del: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(continue version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_selinuxusermap_del: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('selinuxusermap_del', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('selinuxusermap_del',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(continue version)],
+        [qw(bool unicode)],
+    );
 }
 
 
@@ -21969,55 +16255,32 @@ Disable an SELinux User Map rule.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_selinuxusermap_disable
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_selinuxusermap_disable: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_selinuxusermap_disable: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('selinuxusermap_disable', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('selinuxusermap_disable',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(version)],
+        [qw(unicode)],
+    );
 }
 
 
@@ -22039,55 +16302,32 @@ Enable an SELinux User Map rule.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_selinuxusermap_enable
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_selinuxusermap_enable: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_selinuxusermap_enable: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('selinuxusermap_enable', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('selinuxusermap_enable',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(version)],
+        [qw(unicode)],
+    );
 }
 
 
@@ -22109,8 +16349,7 @@ Search for SELinux User Maps.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -22142,48 +16381,26 @@ Search for SELinux User Maps.
 
 =item pkey_only: Results should contain primary key attribute only ("name") (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_selinuxusermap_find
-{
-    
+{    
     my ($self, $criteria, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(criteria);
-    my $aidx = 0;
-    foreach my $arg ($criteria) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_selinuxusermap_find: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(cn ipaselinuxuser seealso usercategory hostcategory description ipaenabledflag timelimit sizelimit all raw version no_members pkey_only);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_selinuxusermap_find: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode unicode unicode bool int int bool bool unicode bool bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('selinuxusermap_find', [$criteria], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('selinuxusermap_find',    
+        [$criteria],
+        [qw(criteria)],
+        [qw(unicode)],
+        \%opts,
+        [qw(cn ipaselinuxuser seealso usercategory hostcategory description ipaenabledflag timelimit sizelimit all raw version no_members pkey_only)],
+        [qw(unicode unicode unicode unicode unicode unicode bool int int bool bool unicode bool bool)],
+    );
 }
 
 
@@ -22205,8 +16422,7 @@ Modify a SELinux User Map.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -22241,48 +16457,26 @@ last, after all sets and adds. (type unicode class Str)
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_selinuxusermap_mod
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_selinuxusermap_mod: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(ipaselinuxuser seealso usercategory hostcategory description ipaenabledflag setattr addattr delattr rights all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_selinuxusermap_mod: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode unicode bool unicode unicode unicode bool bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('selinuxusermap_mod', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('selinuxusermap_mod',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(ipaselinuxuser seealso usercategory hostcategory description ipaenabledflag setattr addattr delattr rights all raw version no_members)],
+        [qw(unicode unicode unicode unicode unicode bool unicode unicode unicode bool bool bool unicode bool)],
+    );
 }
 
 
@@ -22304,8 +16498,7 @@ Remove target hosts and hostgroups from an SELinux User Map rule.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -22321,48 +16514,26 @@ Remove target hosts and hostgroups from an SELinux User Map rule.
 
 =item hostgroup: host groups to remove (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_selinuxusermap_remove_host
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_selinuxusermap_remove_host: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members host hostgroup);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_selinuxusermap_remove_host: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('selinuxusermap_remove_host', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('selinuxusermap_remove_host',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members host hostgroup)],
+        [qw(bool bool unicode bool unicode unicode)],
+    );
 }
 
 
@@ -22384,8 +16555,7 @@ Remove users and groups from an SELinux User Map rule.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -22401,48 +16571,26 @@ Remove users and groups from an SELinux User Map rule.
 
 =item group: groups to remove (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_selinuxusermap_remove_user
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_selinuxusermap_remove_user: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members user group);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_selinuxusermap_remove_user: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('selinuxusermap_remove_user', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('selinuxusermap_remove_user',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members user group)],
+        [qw(bool bool unicode bool unicode unicode)],
+    );
 }
 
 
@@ -22464,8 +16612,7 @@ Display the properties of a SELinux User Map rule.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -22479,48 +16626,26 @@ Display the properties of a SELinux User Map rule.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_selinuxusermap_show
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_selinuxusermap_show: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(rights all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_selinuxusermap_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('selinuxusermap_show', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('selinuxusermap_show',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(rights all raw version no_members)],
+        [qw(bool bool bool unicode bool)],
+    );
 }
 
 
@@ -22542,8 +16667,7 @@ Delete IPA server.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -22551,48 +16675,26 @@ Delete IPA server.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_server_del
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_server_del: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(continue version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_server_del: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('server_del', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('server_del',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(continue version)],
+        [qw(bool unicode)],
+    );
 }
 
 
@@ -22614,8 +16716,7 @@ Search for IPA servers.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -22639,48 +16740,26 @@ Search for IPA servers.
 
 =item pkey_only: Results should contain primary key attribute only ("name") (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_server_find
-{
-    
+{    
     my ($self, $criteria, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(criteria);
-    my $aidx = 0;
-    foreach my $arg ($criteria) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_server_find: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(cn iparepltopomanagedsuffix ipamindomainlevel ipamaxdomainlevel timelimit sizelimit all raw version pkey_only);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_server_find: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode int int int int bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('server_find', [$criteria], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('server_find',    
+        [$criteria],
+        [qw(criteria)],
+        [qw(unicode)],
+        \%opts,
+        [qw(cn iparepltopomanagedsuffix ipamindomainlevel ipamaxdomainlevel timelimit sizelimit all raw version pkey_only)],
+        [qw(unicode unicode int int int int bool bool unicode bool)],
+    );
 }
 
 
@@ -22702,8 +16781,7 @@ Show IPA server.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -22715,48 +16793,26 @@ Show IPA server.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_server_show
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_server_show: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(rights all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_server_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('server_show', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('server_show',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(rights all raw version)],
+        [qw(bool bool bool unicode)],
+    );
 }
 
 
@@ -22778,8 +16834,7 @@ Add a new IPA new service.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -22807,48 +16862,26 @@ must be part of the schema. (type unicode class Str)
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_service_add
-{
-    
+{    
     my ($self, $krbprincipalname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(krbprincipalname);
-    my $aidx = 0;
-    foreach my $arg ($krbprincipalname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_service_add: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(usercertificate ipakrbauthzdata ipakrbrequirespreauth ipakrbokasdelegate setattr addattr force all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_service_add: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(str unicode bool bool unicode unicode bool bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('service_add', [$krbprincipalname], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('service_add',    
+        [$krbprincipalname],
+        [qw(krbprincipalname)],
+        [qw(unicode)],
+        \%opts,
+        [qw(usercertificate ipakrbauthzdata ipakrbrequirespreauth ipakrbokasdelegate setattr addattr force all raw version no_members)],
+        [qw(str unicode bool bool unicode unicode bool bool bool unicode bool)],
+    );
 }
 
 
@@ -22870,8 +16903,7 @@ Add new certificates to a service
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -22885,48 +16917,26 @@ Add new certificates to a service
 
 =item usercertificate: Base-64 encoded server certificate (type str class Bytes)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_service_add_cert
-{
-    
+{    
     my ($self, $krbprincipalname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(krbprincipalname);
-    my $aidx = 0;
-    foreach my $arg ($krbprincipalname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_service_add_cert: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members usercertificate);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_service_add_cert: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool str);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('service_add_cert', [$krbprincipalname], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('service_add_cert',    
+        [$krbprincipalname],
+        [qw(krbprincipalname)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members usercertificate)],
+        [qw(bool bool unicode bool str)],
+    );
 }
 
 
@@ -22948,8 +16958,7 @@ Add hosts that can manage this service.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -22963,48 +16972,26 @@ Add hosts that can manage this service.
 
 =item host: hosts to add (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_service_add_host
-{
-    
+{    
     my ($self, $krbprincipalname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(krbprincipalname);
-    my $aidx = 0;
-    foreach my $arg ($krbprincipalname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_service_add_host: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members host);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_service_add_host: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('service_add_host', [$krbprincipalname], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('service_add_host',    
+        [$krbprincipalname],
+        [qw(krbprincipalname)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members host)],
+        [qw(bool bool unicode bool unicode)],
+    );
 }
 
 
@@ -23026,8 +17013,7 @@ Allow users, groups, hosts or host groups to create a keytab of this service.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -23047,48 +17033,26 @@ Allow users, groups, hosts or host groups to create a keytab of this service.
 
 =item hostgroup: host groups to add (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_service_allow_create_keytab
-{
-    
+{    
     my ($self, $krbprincipalname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(krbprincipalname);
-    my $aidx = 0;
-    foreach my $arg ($krbprincipalname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_service_allow_create_keytab: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members user group host hostgroup);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_service_allow_create_keytab: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode unicode unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('service_allow_create_keytab', [$krbprincipalname], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('service_allow_create_keytab',    
+        [$krbprincipalname],
+        [qw(krbprincipalname)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members user group host hostgroup)],
+        [qw(bool bool unicode bool unicode unicode unicode unicode)],
+    );
 }
 
 
@@ -23110,8 +17074,7 @@ Allow users, groups, hosts or host groups to retrieve a keytab of this service.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -23131,48 +17094,26 @@ Allow users, groups, hosts or host groups to retrieve a keytab of this service.
 
 =item hostgroup: host groups to add (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_service_allow_retrieve_keytab
-{
-    
+{    
     my ($self, $krbprincipalname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(krbprincipalname);
-    my $aidx = 0;
-    foreach my $arg ($krbprincipalname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_service_allow_retrieve_keytab: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members user group host hostgroup);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_service_allow_retrieve_keytab: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode unicode unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('service_allow_retrieve_keytab', [$krbprincipalname], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('service_allow_retrieve_keytab',    
+        [$krbprincipalname],
+        [qw(krbprincipalname)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members user group host hostgroup)],
+        [qw(bool bool unicode bool unicode unicode unicode unicode)],
+    );
 }
 
 
@@ -23194,8 +17135,7 @@ Delete an IPA service.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -23203,48 +17143,26 @@ Delete an IPA service.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_service_del
-{
-    
+{    
     my ($self, $krbprincipalname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(krbprincipalname);
-    my $aidx = 0;
-    foreach my $arg ($krbprincipalname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_service_del: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(continue version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_service_del: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('service_del', [$krbprincipalname], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('service_del',    
+        [$krbprincipalname],
+        [qw(krbprincipalname)],
+        [qw(unicode)],
+        \%opts,
+        [qw(continue version)],
+        [qw(bool unicode)],
+    );
 }
 
 
@@ -23266,55 +17184,32 @@ Disable the Kerberos key and SSL certificate of a service.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_service_disable
-{
-    
+{    
     my ($self, $krbprincipalname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(krbprincipalname);
-    my $aidx = 0;
-    foreach my $arg ($krbprincipalname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_service_disable: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_service_disable: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('service_disable', [$krbprincipalname], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('service_disable',    
+        [$krbprincipalname],
+        [qw(krbprincipalname)],
+        [qw(unicode)],
+        \%opts,
+        [qw(version)],
+        [qw(unicode)],
+    );
 }
 
 
@@ -23336,8 +17231,7 @@ Disallow users, groups, hosts or host groups to create a keytab of this service.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -23357,48 +17251,26 @@ Disallow users, groups, hosts or host groups to create a keytab of this service.
 
 =item hostgroup: host groups to remove (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_service_disallow_create_keytab
-{
-    
+{    
     my ($self, $krbprincipalname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(krbprincipalname);
-    my $aidx = 0;
-    foreach my $arg ($krbprincipalname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_service_disallow_create_keytab: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members user group host hostgroup);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_service_disallow_create_keytab: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode unicode unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('service_disallow_create_keytab', [$krbprincipalname], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('service_disallow_create_keytab',    
+        [$krbprincipalname],
+        [qw(krbprincipalname)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members user group host hostgroup)],
+        [qw(bool bool unicode bool unicode unicode unicode unicode)],
+    );
 }
 
 
@@ -23420,8 +17292,7 @@ Disallow users, groups, hosts or host groups to retrieve a keytab of this servic
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -23441,48 +17312,26 @@ Disallow users, groups, hosts or host groups to retrieve a keytab of this servic
 
 =item hostgroup: host groups to remove (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_service_disallow_retrieve_keytab
-{
-    
+{    
     my ($self, $krbprincipalname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(krbprincipalname);
-    my $aidx = 0;
-    foreach my $arg ($krbprincipalname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_service_disallow_retrieve_keytab: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members user group host hostgroup);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_service_disallow_retrieve_keytab: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode unicode unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('service_disallow_retrieve_keytab', [$krbprincipalname], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('service_disallow_retrieve_keytab',    
+        [$krbprincipalname],
+        [qw(krbprincipalname)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members user group host hostgroup)],
+        [qw(bool bool unicode bool unicode unicode unicode unicode)],
+    );
 }
 
 
@@ -23504,8 +17353,7 @@ Search for IPA services.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -23531,48 +17379,26 @@ Search for IPA services.
 
 =item not_man_by_host: Search for services without these managed by hosts. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_service_find
-{
-    
+{    
     my ($self, $criteria, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(criteria);
-    my $aidx = 0;
-    foreach my $arg ($criteria) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_service_find: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(krbprincipalname ipakrbauthzdata timelimit sizelimit all raw version no_members pkey_only man_by_host not_man_by_host);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_service_find: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode int int bool bool unicode bool bool unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('service_find', [$criteria], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('service_find',    
+        [$criteria],
+        [qw(criteria)],
+        [qw(unicode)],
+        \%opts,
+        [qw(krbprincipalname ipakrbauthzdata timelimit sizelimit all raw version no_members pkey_only man_by_host not_man_by_host)],
+        [qw(unicode unicode int int bool bool unicode bool bool unicode unicode)],
+    );
 }
 
 
@@ -23594,8 +17420,7 @@ Modify an existing IPA service.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -23626,48 +17451,26 @@ last, after all sets and adds. (type unicode class Str)
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_service_mod
-{
-    
+{    
     my ($self, $krbprincipalname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(krbprincipalname);
-    my $aidx = 0;
-    foreach my $arg ($krbprincipalname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_service_mod: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(usercertificate ipakrbauthzdata ipakrbrequirespreauth ipakrbokasdelegate setattr addattr delattr rights all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_service_mod: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(str unicode bool bool unicode unicode unicode bool bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('service_mod', [$krbprincipalname], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('service_mod',    
+        [$krbprincipalname],
+        [qw(krbprincipalname)],
+        [qw(unicode)],
+        \%opts,
+        [qw(usercertificate ipakrbauthzdata ipakrbrequirespreauth ipakrbokasdelegate setattr addattr delattr rights all raw version no_members)],
+        [qw(str unicode bool bool unicode unicode unicode bool bool bool unicode bool)],
+    );
 }
 
 
@@ -23689,8 +17492,7 @@ Remove certificates from a service
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -23704,48 +17506,26 @@ Remove certificates from a service
 
 =item usercertificate: Base-64 encoded server certificate (type str class Bytes)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_service_remove_cert
-{
-    
+{    
     my ($self, $krbprincipalname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(krbprincipalname);
-    my $aidx = 0;
-    foreach my $arg ($krbprincipalname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_service_remove_cert: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members usercertificate);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_service_remove_cert: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool str);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('service_remove_cert', [$krbprincipalname], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('service_remove_cert',    
+        [$krbprincipalname],
+        [qw(krbprincipalname)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members usercertificate)],
+        [qw(bool bool unicode bool str)],
+    );
 }
 
 
@@ -23767,8 +17547,7 @@ Remove hosts that can manage this service.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -23782,48 +17561,26 @@ Remove hosts that can manage this service.
 
 =item host: hosts to remove (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_service_remove_host
-{
-    
+{    
     my ($self, $krbprincipalname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(krbprincipalname);
-    my $aidx = 0;
-    foreach my $arg ($krbprincipalname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_service_remove_host: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members host);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_service_remove_host: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('service_remove_host', [$krbprincipalname], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('service_remove_host',    
+        [$krbprincipalname],
+        [qw(krbprincipalname)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members host)],
+        [qw(bool bool unicode bool unicode)],
+    );
 }
 
 
@@ -23845,8 +17602,7 @@ Display information about an IPA service.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -23862,48 +17618,26 @@ Display information about an IPA service.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_service_show
-{
-    
+{    
     my ($self, $krbprincipalname, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(krbprincipalname);
-    my $aidx = 0;
-    foreach my $arg ($krbprincipalname) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_service_show: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(rights out all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_service_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('service_show', [$krbprincipalname], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('service_show',    
+        [$krbprincipalname],
+        [qw(krbprincipalname)],
+        [qw(unicode)],
+        \%opts,
+        [qw(rights out all raw version no_members)],
+        [qw(bool unicode bool bool unicode bool)],
+    );
 }
 
 
@@ -23925,8 +17659,7 @@ Create a new service delegation rule.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -23944,48 +17677,26 @@ must be part of the schema. (type unicode class Str)
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_servicedelegationrule_add
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_servicedelegationrule_add: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(setattr addattr all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_servicedelegationrule_add: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('servicedelegationrule_add', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('servicedelegationrule_add',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(setattr addattr all raw version no_members)],
+        [qw(unicode unicode bool bool unicode bool)],
+    );
 }
 
 
@@ -24007,8 +17718,7 @@ Add member to a named service delegation rule.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -24022,48 +17732,26 @@ Add member to a named service delegation rule.
 
 =item principal: principal to add (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_servicedelegationrule_add_member
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_servicedelegationrule_add_member: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members principal);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_servicedelegationrule_add_member: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('servicedelegationrule_add_member', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('servicedelegationrule_add_member',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members principal)],
+        [qw(bool bool unicode bool unicode)],
+    );
 }
 
 
@@ -24085,8 +17773,7 @@ Add target to a named service delegation rule.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -24100,48 +17787,26 @@ Add target to a named service delegation rule.
 
 =item servicedelegationtarget: service delegation targets to add (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_servicedelegationrule_add_target
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_servicedelegationrule_add_target: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members servicedelegationtarget);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_servicedelegationrule_add_target: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('servicedelegationrule_add_target', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('servicedelegationrule_add_target',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members servicedelegationtarget)],
+        [qw(bool bool unicode bool unicode)],
+    );
 }
 
 
@@ -24163,8 +17828,7 @@ Delete service delegation.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -24172,48 +17836,26 @@ Delete service delegation.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_servicedelegationrule_del
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_servicedelegationrule_del: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(continue version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_servicedelegationrule_del: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('servicedelegationrule_del', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('servicedelegationrule_del',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(continue version)],
+        [qw(bool unicode)],
+    );
 }
 
 
@@ -24235,8 +17877,7 @@ Search for service delegations rule.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -24256,48 +17897,26 @@ Search for service delegations rule.
 
 =item pkey_only: Results should contain primary key attribute only ("delegation-name") (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_servicedelegationrule_find
-{
-    
+{    
     my ($self, $criteria, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(criteria);
-    my $aidx = 0;
-    foreach my $arg ($criteria) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_servicedelegationrule_find: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(cn timelimit sizelimit all raw version no_members pkey_only);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_servicedelegationrule_find: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode int int bool bool unicode bool bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('servicedelegationrule_find', [$criteria], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('servicedelegationrule_find',    
+        [$criteria],
+        [qw(criteria)],
+        [qw(unicode)],
+        \%opts,
+        [qw(cn timelimit sizelimit all raw version no_members pkey_only)],
+        [qw(unicode int int bool bool unicode bool bool)],
+    );
 }
 
 
@@ -24319,8 +17938,7 @@ Remove member from a named service delegation rule.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -24334,48 +17952,26 @@ Remove member from a named service delegation rule.
 
 =item principal: principal to remove (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_servicedelegationrule_remove_member
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_servicedelegationrule_remove_member: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members principal);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_servicedelegationrule_remove_member: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('servicedelegationrule_remove_member', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('servicedelegationrule_remove_member',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members principal)],
+        [qw(bool bool unicode bool unicode)],
+    );
 }
 
 
@@ -24397,8 +17993,7 @@ Remove target from a named service delegation rule.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -24412,48 +18007,26 @@ Remove target from a named service delegation rule.
 
 =item servicedelegationtarget: service delegation targets to remove (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_servicedelegationrule_remove_target
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_servicedelegationrule_remove_target: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members servicedelegationtarget);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_servicedelegationrule_remove_target: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('servicedelegationrule_remove_target', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('servicedelegationrule_remove_target',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members servicedelegationtarget)],
+        [qw(bool bool unicode bool unicode)],
+    );
 }
 
 
@@ -24475,8 +18048,7 @@ Display information about a named service delegation rule.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -24490,48 +18062,26 @@ Display information about a named service delegation rule.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_servicedelegationrule_show
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_servicedelegationrule_show: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(rights all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_servicedelegationrule_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('servicedelegationrule_show', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('servicedelegationrule_show',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(rights all raw version no_members)],
+        [qw(bool bool bool unicode bool)],
+    );
 }
 
 
@@ -24553,8 +18103,7 @@ Create a new service delegation target.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -24570,48 +18119,26 @@ must be part of the schema. (type unicode class Str)
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_servicedelegationtarget_add
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_servicedelegationtarget_add: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(setattr addattr all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_servicedelegationtarget_add: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('servicedelegationtarget_add', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('servicedelegationtarget_add',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(setattr addattr all raw version)],
+        [qw(unicode unicode bool bool unicode)],
+    );
 }
 
 
@@ -24633,8 +18160,7 @@ Add member to a named service delegation target.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -24646,48 +18172,26 @@ Add member to a named service delegation target.
 
 =item principal: principal to add (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_servicedelegationtarget_add_member
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_servicedelegationtarget_add_member: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version principal);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_servicedelegationtarget_add_member: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('servicedelegationtarget_add_member', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('servicedelegationtarget_add_member',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version principal)],
+        [qw(bool bool unicode unicode)],
+    );
 }
 
 
@@ -24709,8 +18213,7 @@ Delete service delegation target.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -24718,48 +18221,26 @@ Delete service delegation target.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_servicedelegationtarget_del
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_servicedelegationtarget_del: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(continue version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_servicedelegationtarget_del: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('servicedelegationtarget_del', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('servicedelegationtarget_del',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(continue version)],
+        [qw(bool unicode)],
+    );
 }
 
 
@@ -24781,8 +18262,7 @@ Search for service delegation target.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -24800,48 +18280,26 @@ Search for service delegation target.
 
 =item pkey_only: Results should contain primary key attribute only ("delegation-name") (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_servicedelegationtarget_find
-{
-    
+{    
     my ($self, $criteria, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(criteria);
-    my $aidx = 0;
-    foreach my $arg ($criteria) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_servicedelegationtarget_find: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(cn timelimit sizelimit all raw version pkey_only);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_servicedelegationtarget_find: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode int int bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('servicedelegationtarget_find', [$criteria], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('servicedelegationtarget_find',    
+        [$criteria],
+        [qw(criteria)],
+        [qw(unicode)],
+        \%opts,
+        [qw(cn timelimit sizelimit all raw version pkey_only)],
+        [qw(unicode int int bool bool unicode bool)],
+    );
 }
 
 
@@ -24863,8 +18321,7 @@ Remove member from a named service delegation target.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -24876,48 +18333,26 @@ Remove member from a named service delegation target.
 
 =item principal: principal to remove (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_servicedelegationtarget_remove_member
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_servicedelegationtarget_remove_member: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version principal);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_servicedelegationtarget_remove_member: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('servicedelegationtarget_remove_member', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('servicedelegationtarget_remove_member',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version principal)],
+        [qw(bool bool unicode unicode)],
+    );
 }
 
 
@@ -24939,8 +18374,7 @@ Display information about a named service delegation target.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -24952,48 +18386,26 @@ Display information about a named service delegation target.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_servicedelegationtarget_show
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_servicedelegationtarget_show: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(rights all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_servicedelegationtarget_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('servicedelegationtarget_show', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('servicedelegationtarget_show',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(rights all raw version)],
+        [qw(bool bool bool unicode)],
+    );
 }
 
 
@@ -25010,42 +18422,32 @@ Wrapper method for session_logout API
 
 =item No required arguments
 
-=item Options
+=item  Options
 
 =over
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_session_logout
-{
-    
+{    
     my ($self, %opts) = @_;
     
-    
-    # Check options
-    my @opt_keys = qw(version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_session_logout: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('session_logout', [], [qw()], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('session_logout',    
+        [],
+        [qw()],
+        [qw()],
+        \%opts,
+        [qw(version)],
+        [qw(unicode)],
+    );
 }
 
 
@@ -25060,42 +18462,32 @@ Determine whether ipa-adtrust-install has been run with sidgen task
 
 =item No required arguments
 
-=item Options
+=item  Options
 
 =over
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_sidgen_was_run
-{
-    
+{    
     my ($self, %opts) = @_;
     
-    
-    # Check options
-    my @opt_keys = qw(version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_sidgen_was_run: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('sidgen_was_run', [], [qw()], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('sidgen_was_run',    
+        [],
+        [qw()],
+        [qw()],
+        \%opts,
+        [qw(version)],
+        [qw(unicode)],
+    );
 }
 
 
@@ -25117,8 +18509,7 @@ Activate a stage user.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -25130,48 +18521,26 @@ Activate a stage user.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_stageuser_activate
-{
-    
+{    
     my ($self, $uid, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(uid);
-    my $aidx = 0;
-    foreach my $arg ($uid) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_stageuser_activate: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_stageuser_activate: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('stageuser_activate', [$uid], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('stageuser_activate',    
+        [$uid],
+        [qw(uid)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members)],
+        [qw(bool bool unicode bool)],
+    );
 }
 
 
@@ -25193,8 +18562,7 @@ Add a new stage user.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -25288,48 +18656,26 @@ must be part of the schema. (type unicode class Str)
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_stageuser_add
-{
-    
+{    
     my ($self, $uid, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(uid);
-    my $aidx = 0;
-    foreach my $arg ($uid) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_stageuser_add: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(givenname sn cn displayname initials homedirectory gecos loginshell krbprincipalname krbprincipalexpiration mail userpassword random uidnumber gidnumber street l st postalcode telephonenumber mobile pager facsimiletelephonenumber ou title manager carlicense ipasshpubkey ipauserauthtype userclass ipatokenradiusconfiglink ipatokenradiususername departmentnumber employeenumber employeetype preferredlanguage usercertificate setattr addattr from_delete all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_stageuser_add: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode unicode unicode unicode unicode unicode datetime unicode unicode bool int int unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode str unicode unicode object bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('stageuser_add', [$uid], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('stageuser_add',    
+        [$uid],
+        [qw(uid)],
+        [qw(unicode)],
+        \%opts,
+        [qw(givenname sn cn displayname initials homedirectory gecos loginshell krbprincipalname krbprincipalexpiration mail userpassword random uidnumber gidnumber street l st postalcode telephonenumber mobile pager facsimiletelephonenumber ou title manager carlicense ipasshpubkey ipauserauthtype userclass ipatokenradiusconfiglink ipatokenradiususername departmentnumber employeenumber employeetype preferredlanguage usercertificate setattr addattr from_delete all raw version no_members)],
+        [qw(unicode unicode unicode unicode unicode unicode unicode unicode unicode datetime unicode unicode bool int int unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode str unicode unicode object bool bool unicode bool)],
+    );
 }
 
 
@@ -25351,8 +18697,7 @@ Delete a stage user.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -25360,48 +18705,26 @@ Delete a stage user.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_stageuser_del
-{
-    
+{    
     my ($self, $uid, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(uid);
-    my $aidx = 0;
-    foreach my $arg ($uid) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_stageuser_del: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(continue version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_stageuser_del: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('stageuser_del', [$uid], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('stageuser_del',    
+        [$uid],
+        [qw(uid)],
+        [qw(unicode)],
+        \%opts,
+        [qw(continue version)],
+        [qw(bool unicode)],
+    );
 }
 
 
@@ -25423,8 +18746,7 @@ Search for stage users.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -25534,48 +18856,26 @@ Search for stage users.
 
 =item not_in_sudorule: Search for stage users without these member of sudo rules. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_stageuser_find
-{
-    
+{    
     my ($self, $criteria, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(criteria);
-    my $aidx = 0;
-    foreach my $arg ($criteria) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_stageuser_find: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(uid givenname sn cn displayname initials homedirectory gecos loginshell krbprincipalname krbprincipalexpiration mail userpassword uidnumber gidnumber street l st postalcode telephonenumber mobile pager facsimiletelephonenumber ou title manager carlicense ipauserauthtype userclass ipatokenradiusconfiglink ipatokenradiususername departmentnumber employeenumber employeetype preferredlanguage usercertificate timelimit sizelimit all raw version no_members pkey_only in_group not_in_group in_netgroup not_in_netgroup in_role not_in_role in_hbacrule not_in_hbacrule in_sudorule not_in_sudorule);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_stageuser_find: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode datetime unicode unicode int int unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode str int int bool bool unicode bool bool unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('stageuser_find', [$criteria], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('stageuser_find',    
+        [$criteria],
+        [qw(criteria)],
+        [qw(unicode)],
+        \%opts,
+        [qw(uid givenname sn cn displayname initials homedirectory gecos loginshell krbprincipalname krbprincipalexpiration mail userpassword uidnumber gidnumber street l st postalcode telephonenumber mobile pager facsimiletelephonenumber ou title manager carlicense ipauserauthtype userclass ipatokenradiusconfiglink ipatokenradiususername departmentnumber employeenumber employeetype preferredlanguage usercertificate timelimit sizelimit all raw version no_members pkey_only in_group not_in_group in_netgroup not_in_netgroup in_role not_in_role in_hbacrule not_in_hbacrule in_sudorule not_in_sudorule)],
+        [qw(unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode datetime unicode unicode int int unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode str int int bool bool unicode bool bool unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode)],
+    );
 }
 
 
@@ -25597,8 +18897,7 @@ Modify a stage user.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -25695,48 +18994,26 @@ last, after all sets and adds. (type unicode class Str)
 
 =item rename: Rename the stage user object (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_stageuser_mod
-{
-    
+{    
     my ($self, $uid, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(uid);
-    my $aidx = 0;
-    foreach my $arg ($uid) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_stageuser_mod: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(givenname sn cn displayname initials homedirectory gecos loginshell krbprincipalexpiration mail userpassword random uidnumber gidnumber street l st postalcode telephonenumber mobile pager facsimiletelephonenumber ou title manager carlicense ipasshpubkey ipauserauthtype userclass ipatokenradiusconfiglink ipatokenradiususername departmentnumber employeenumber employeetype preferredlanguage usercertificate setattr addattr delattr rights all raw version no_members rename);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_stageuser_mod: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode unicode unicode unicode unicode datetime unicode unicode bool int int unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode str unicode unicode unicode bool bool bool unicode bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('stageuser_mod', [$uid], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('stageuser_mod',    
+        [$uid],
+        [qw(uid)],
+        [qw(unicode)],
+        \%opts,
+        [qw(givenname sn cn displayname initials homedirectory gecos loginshell krbprincipalexpiration mail userpassword random uidnumber gidnumber street l st postalcode telephonenumber mobile pager facsimiletelephonenumber ou title manager carlicense ipasshpubkey ipauserauthtype userclass ipatokenradiusconfiglink ipatokenradiususername departmentnumber employeenumber employeetype preferredlanguage usercertificate setattr addattr delattr rights all raw version no_members rename)],
+        [qw(unicode unicode unicode unicode unicode unicode unicode unicode datetime unicode unicode bool int int unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode str unicode unicode unicode bool bool bool unicode bool unicode)],
+    );
 }
 
 
@@ -25758,8 +19035,7 @@ Display information about a stage user.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -25773,48 +19049,26 @@ Display information about a stage user.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_stageuser_show
-{
-    
+{    
     my ($self, $uid, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(uid);
-    my $aidx = 0;
-    foreach my $arg ($uid) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_stageuser_show: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(rights all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_stageuser_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('stageuser_show', [$uid], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('stageuser_show',    
+        [$uid],
+        [qw(uid)],
+        [qw(unicode)],
+        \%opts,
+        [qw(rights all raw version no_members)],
+        [qw(bool bool bool unicode bool)],
+    );
 }
 
 
@@ -25836,8 +19090,7 @@ Create new Sudo Command.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -25857,48 +19110,26 @@ must be part of the schema. (type unicode class Str)
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_sudocmd_add
-{
-    
+{    
     my ($self, $sudocmd, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(sudocmd);
-    my $aidx = 0;
-    foreach my $arg ($sudocmd) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_sudocmd_add: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(description setattr addattr all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_sudocmd_add: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('sudocmd_add', [$sudocmd], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('sudocmd_add',    
+        [$sudocmd],
+        [qw(sudocmd)],
+        [qw(unicode)],
+        \%opts,
+        [qw(description setattr addattr all raw version no_members)],
+        [qw(unicode unicode unicode bool bool unicode bool)],
+    );
 }
 
 
@@ -25920,8 +19151,7 @@ Delete Sudo Command.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -25929,48 +19159,26 @@ Delete Sudo Command.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_sudocmd_del
-{
-    
+{    
     my ($self, $sudocmd, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(sudocmd);
-    my $aidx = 0;
-    foreach my $arg ($sudocmd) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_sudocmd_del: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(continue version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_sudocmd_del: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('sudocmd_del', [$sudocmd], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('sudocmd_del',    
+        [$sudocmd],
+        [qw(sudocmd)],
+        [qw(unicode)],
+        \%opts,
+        [qw(continue version)],
+        [qw(bool unicode)],
+    );
 }
 
 
@@ -25992,8 +19200,7 @@ Search for Sudo Commands.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -26015,48 +19222,26 @@ Search for Sudo Commands.
 
 =item pkey_only: Results should contain primary key attribute only ("command") (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_sudocmd_find
-{
-    
+{    
     my ($self, $criteria, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(criteria);
-    my $aidx = 0;
-    foreach my $arg ($criteria) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_sudocmd_find: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(sudocmd description timelimit sizelimit all raw version no_members pkey_only);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_sudocmd_find: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode int int bool bool unicode bool bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('sudocmd_find', [$criteria], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('sudocmd_find',    
+        [$criteria],
+        [qw(criteria)],
+        [qw(unicode)],
+        \%opts,
+        [qw(sudocmd description timelimit sizelimit all raw version no_members pkey_only)],
+        [qw(unicode unicode int int bool bool unicode bool bool)],
+    );
 }
 
 
@@ -26078,8 +19263,7 @@ Modify Sudo Command.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -26104,48 +19288,26 @@ last, after all sets and adds. (type unicode class Str)
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_sudocmd_mod
-{
-    
+{    
     my ($self, $sudocmd, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(sudocmd);
-    my $aidx = 0;
-    foreach my $arg ($sudocmd) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_sudocmd_mod: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(description setattr addattr delattr rights all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_sudocmd_mod: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode bool bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('sudocmd_mod', [$sudocmd], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('sudocmd_mod',    
+        [$sudocmd],
+        [qw(sudocmd)],
+        [qw(unicode)],
+        \%opts,
+        [qw(description setattr addattr delattr rights all raw version no_members)],
+        [qw(unicode unicode unicode unicode bool bool bool unicode bool)],
+    );
 }
 
 
@@ -26167,8 +19329,7 @@ Display Sudo Command.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -26182,48 +19343,26 @@ Display Sudo Command.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_sudocmd_show
-{
-    
+{    
     my ($self, $sudocmd, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(sudocmd);
-    my $aidx = 0;
-    foreach my $arg ($sudocmd) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_sudocmd_show: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(rights all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_sudocmd_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('sudocmd_show', [$sudocmd], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('sudocmd_show',    
+        [$sudocmd],
+        [qw(sudocmd)],
+        [qw(unicode)],
+        \%opts,
+        [qw(rights all raw version no_members)],
+        [qw(bool bool bool unicode bool)],
+    );
 }
 
 
@@ -26245,8 +19384,7 @@ Create new Sudo Command Group.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -26266,48 +19404,26 @@ must be part of the schema. (type unicode class Str)
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_sudocmdgroup_add
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_sudocmdgroup_add: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(description setattr addattr all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_sudocmdgroup_add: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('sudocmdgroup_add', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('sudocmdgroup_add',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(description setattr addattr all raw version no_members)],
+        [qw(unicode unicode unicode bool bool unicode bool)],
+    );
 }
 
 
@@ -26329,8 +19445,7 @@ Add members to Sudo Command Group.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -26344,48 +19459,26 @@ Add members to Sudo Command Group.
 
 =item sudocmd: sudo commands to add (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_sudocmdgroup_add_member
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_sudocmdgroup_add_member: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members sudocmd);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_sudocmdgroup_add_member: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('sudocmdgroup_add_member', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('sudocmdgroup_add_member',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members sudocmd)],
+        [qw(bool bool unicode bool unicode)],
+    );
 }
 
 
@@ -26407,8 +19500,7 @@ Delete Sudo Command Group.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -26416,48 +19508,26 @@ Delete Sudo Command Group.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_sudocmdgroup_del
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_sudocmdgroup_del: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(continue version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_sudocmdgroup_del: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('sudocmdgroup_del', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('sudocmdgroup_del',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(continue version)],
+        [qw(bool unicode)],
+    );
 }
 
 
@@ -26479,8 +19549,7 @@ Search for Sudo Command Groups.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -26502,48 +19571,26 @@ Search for Sudo Command Groups.
 
 =item pkey_only: Results should contain primary key attribute only ("sudocmdgroup-name") (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_sudocmdgroup_find
-{
-    
+{    
     my ($self, $criteria, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(criteria);
-    my $aidx = 0;
-    foreach my $arg ($criteria) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_sudocmdgroup_find: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(cn description timelimit sizelimit all raw version no_members pkey_only);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_sudocmdgroup_find: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode int int bool bool unicode bool bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('sudocmdgroup_find', [$criteria], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('sudocmdgroup_find',    
+        [$criteria],
+        [qw(criteria)],
+        [qw(unicode)],
+        \%opts,
+        [qw(cn description timelimit sizelimit all raw version no_members pkey_only)],
+        [qw(unicode unicode int int bool bool unicode bool bool)],
+    );
 }
 
 
@@ -26565,8 +19612,7 @@ Modify Sudo Command Group.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -26591,48 +19637,26 @@ last, after all sets and adds. (type unicode class Str)
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_sudocmdgroup_mod
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_sudocmdgroup_mod: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(description setattr addattr delattr rights all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_sudocmdgroup_mod: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode bool bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('sudocmdgroup_mod', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('sudocmdgroup_mod',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(description setattr addattr delattr rights all raw version no_members)],
+        [qw(unicode unicode unicode unicode bool bool bool unicode bool)],
+    );
 }
 
 
@@ -26654,8 +19678,7 @@ Remove members from Sudo Command Group.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -26669,48 +19692,26 @@ Remove members from Sudo Command Group.
 
 =item sudocmd: sudo commands to remove (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_sudocmdgroup_remove_member
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_sudocmdgroup_remove_member: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members sudocmd);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_sudocmdgroup_remove_member: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('sudocmdgroup_remove_member', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('sudocmdgroup_remove_member',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members sudocmd)],
+        [qw(bool bool unicode bool unicode)],
+    );
 }
 
 
@@ -26732,8 +19733,7 @@ Display Sudo Command Group.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -26747,48 +19747,26 @@ Display Sudo Command Group.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_sudocmdgroup_show
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_sudocmdgroup_show: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(rights all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_sudocmdgroup_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('sudocmdgroup_show', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('sudocmdgroup_show',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(rights all raw version no_members)],
+        [qw(bool bool bool unicode bool)],
+    );
 }
 
 
@@ -26810,8 +19788,7 @@ Create new Sudo Rule.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -26853,48 +19830,26 @@ must be part of the schema. (type unicode class Str)
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_sudorule_add
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_sudorule_add: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(description ipaenabledflag usercategory hostcategory cmdcategory ipasudorunasusercategory ipasudorunasgroupcategory sudoorder externaluser externalhost ipasudorunasextuser ipasudorunasextgroup setattr addattr all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_sudorule_add: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode bool unicode unicode unicode unicode unicode int unicode unicode unicode unicode unicode unicode bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('sudorule_add', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('sudorule_add',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(description ipaenabledflag usercategory hostcategory cmdcategory ipasudorunasusercategory ipasudorunasgroupcategory sudoorder externaluser externalhost ipasudorunasextuser ipasudorunasextgroup setattr addattr all raw version no_members)],
+        [qw(unicode bool unicode unicode unicode unicode unicode int unicode unicode unicode unicode unicode unicode bool bool unicode bool)],
+    );
 }
 
 
@@ -26916,8 +19871,7 @@ Add commands and sudo command groups affected by Sudo Rule.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -26933,48 +19887,26 @@ Add commands and sudo command groups affected by Sudo Rule.
 
 =item sudocmdgroup: sudo command groups to add (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_sudorule_add_allow_command
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_sudorule_add_allow_command: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members sudocmd sudocmdgroup);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_sudorule_add_allow_command: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('sudorule_add_allow_command', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('sudorule_add_allow_command',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members sudocmd sudocmdgroup)],
+        [qw(bool bool unicode bool unicode unicode)],
+    );
 }
 
 
@@ -26996,8 +19928,7 @@ Add commands and sudo command groups affected by Sudo Rule.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -27013,48 +19944,26 @@ Add commands and sudo command groups affected by Sudo Rule.
 
 =item sudocmdgroup: sudo command groups to add (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_sudorule_add_deny_command
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_sudorule_add_deny_command: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members sudocmd sudocmdgroup);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_sudorule_add_deny_command: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('sudorule_add_deny_command', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('sudorule_add_deny_command',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members sudocmd sudocmdgroup)],
+        [qw(bool bool unicode bool unicode unicode)],
+    );
 }
 
 
@@ -27076,8 +19985,7 @@ Add hosts and hostgroups affected by Sudo Rule.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -27095,48 +20003,26 @@ Add hosts and hostgroups affected by Sudo Rule.
 
 =item hostmask: host masks of allowed hosts (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_sudorule_add_host
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_sudorule_add_host: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members host hostgroup hostmask);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_sudorule_add_host: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('sudorule_add_host', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('sudorule_add_host',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members host hostgroup hostmask)],
+        [qw(bool bool unicode bool unicode unicode unicode)],
+    );
 }
 
 
@@ -27158,8 +20044,7 @@ Add an option to the Sudo Rule.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -27173,48 +20058,26 @@ Add an option to the Sudo Rule.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_sudorule_add_option
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_sudorule_add_option: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(ipasudoopt all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_sudorule_add_option: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('sudorule_add_option', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('sudorule_add_option',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(ipasudoopt all raw version no_members)],
+        [qw(unicode bool bool unicode bool)],
+    );
 }
 
 
@@ -27236,8 +20099,7 @@ Add group for Sudo to execute as.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -27251,48 +20113,26 @@ Add group for Sudo to execute as.
 
 =item group: groups to add (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_sudorule_add_runasgroup
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_sudorule_add_runasgroup: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members group);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_sudorule_add_runasgroup: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('sudorule_add_runasgroup', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('sudorule_add_runasgroup',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members group)],
+        [qw(bool bool unicode bool unicode)],
+    );
 }
 
 
@@ -27314,8 +20154,7 @@ Add users and groups for Sudo to execute as.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -27331,48 +20170,26 @@ Add users and groups for Sudo to execute as.
 
 =item group: groups to add (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_sudorule_add_runasuser
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_sudorule_add_runasuser: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members user group);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_sudorule_add_runasuser: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('sudorule_add_runasuser', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('sudorule_add_runasuser',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members user group)],
+        [qw(bool bool unicode bool unicode unicode)],
+    );
 }
 
 
@@ -27394,8 +20211,7 @@ Add users and groups affected by Sudo Rule.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -27411,48 +20227,26 @@ Add users and groups affected by Sudo Rule.
 
 =item group: groups to add (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_sudorule_add_user
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_sudorule_add_user: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members user group);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_sudorule_add_user: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('sudorule_add_user', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('sudorule_add_user',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members user group)],
+        [qw(bool bool unicode bool unicode unicode)],
+    );
 }
 
 
@@ -27474,8 +20268,7 @@ Delete Sudo Rule.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -27483,48 +20276,26 @@ Delete Sudo Rule.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_sudorule_del
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_sudorule_del: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(continue version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_sudorule_del: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('sudorule_del', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('sudorule_del',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(continue version)],
+        [qw(bool unicode)],
+    );
 }
 
 
@@ -27546,55 +20317,32 @@ Disable a Sudo Rule.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_sudorule_disable
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_sudorule_disable: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_sudorule_disable: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('sudorule_disable', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('sudorule_disable',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(version)],
+        [qw(unicode)],
+    );
 }
 
 
@@ -27616,55 +20364,32 @@ Enable a Sudo Rule.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_sudorule_enable
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_sudorule_enable: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_sudorule_enable: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('sudorule_enable', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('sudorule_enable',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(version)],
+        [qw(unicode)],
+    );
 }
 
 
@@ -27686,8 +20411,7 @@ Search for Sudo Rule.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -27731,48 +20455,26 @@ Search for Sudo Rule.
 
 =item pkey_only: Results should contain primary key attribute only ("sudorule-name") (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_sudorule_find
-{
-    
+{    
     my ($self, $criteria, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(criteria);
-    my $aidx = 0;
-    foreach my $arg ($criteria) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_sudorule_find: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(cn description ipaenabledflag usercategory hostcategory cmdcategory ipasudorunasusercategory ipasudorunasgroupcategory sudoorder externaluser externalhost ipasudorunasextuser ipasudorunasextgroup timelimit sizelimit all raw version no_members pkey_only);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_sudorule_find: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode bool unicode unicode unicode unicode unicode int unicode unicode unicode unicode int int bool bool unicode bool bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('sudorule_find', [$criteria], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('sudorule_find',    
+        [$criteria],
+        [qw(criteria)],
+        [qw(unicode)],
+        \%opts,
+        [qw(cn description ipaenabledflag usercategory hostcategory cmdcategory ipasudorunasusercategory ipasudorunasgroupcategory sudoorder externaluser externalhost ipasudorunasextuser ipasudorunasextgroup timelimit sizelimit all raw version no_members pkey_only)],
+        [qw(unicode unicode bool unicode unicode unicode unicode unicode int unicode unicode unicode unicode int int bool bool unicode bool bool)],
+    );
 }
 
 
@@ -27794,8 +20496,7 @@ Modify Sudo Rule.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -27842,48 +20543,26 @@ last, after all sets and adds. (type unicode class Str)
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_sudorule_mod
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_sudorule_mod: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(description ipaenabledflag usercategory hostcategory cmdcategory ipasudorunasusercategory ipasudorunasgroupcategory sudoorder externaluser externalhost ipasudorunasextuser ipasudorunasextgroup setattr addattr delattr rights all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_sudorule_mod: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode bool unicode unicode unicode unicode unicode int unicode unicode unicode unicode unicode unicode unicode bool bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('sudorule_mod', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('sudorule_mod',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(description ipaenabledflag usercategory hostcategory cmdcategory ipasudorunasusercategory ipasudorunasgroupcategory sudoorder externaluser externalhost ipasudorunasextuser ipasudorunasextgroup setattr addattr delattr rights all raw version no_members)],
+        [qw(unicode bool unicode unicode unicode unicode unicode int unicode unicode unicode unicode unicode unicode unicode bool bool bool unicode bool)],
+    );
 }
 
 
@@ -27905,8 +20584,7 @@ Remove commands and sudo command groups affected by Sudo Rule.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -27922,48 +20600,26 @@ Remove commands and sudo command groups affected by Sudo Rule.
 
 =item sudocmdgroup: sudo command groups to remove (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_sudorule_remove_allow_command
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_sudorule_remove_allow_command: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members sudocmd sudocmdgroup);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_sudorule_remove_allow_command: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('sudorule_remove_allow_command', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('sudorule_remove_allow_command',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members sudocmd sudocmdgroup)],
+        [qw(bool bool unicode bool unicode unicode)],
+    );
 }
 
 
@@ -27985,8 +20641,7 @@ Remove commands and sudo command groups affected by Sudo Rule.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -28002,48 +20657,26 @@ Remove commands and sudo command groups affected by Sudo Rule.
 
 =item sudocmdgroup: sudo command groups to remove (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_sudorule_remove_deny_command
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_sudorule_remove_deny_command: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members sudocmd sudocmdgroup);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_sudorule_remove_deny_command: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('sudorule_remove_deny_command', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('sudorule_remove_deny_command',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members sudocmd sudocmdgroup)],
+        [qw(bool bool unicode bool unicode unicode)],
+    );
 }
 
 
@@ -28065,8 +20698,7 @@ Remove hosts and hostgroups affected by Sudo Rule.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -28084,48 +20716,26 @@ Remove hosts and hostgroups affected by Sudo Rule.
 
 =item hostmask: host masks of allowed hosts (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_sudorule_remove_host
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_sudorule_remove_host: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members host hostgroup hostmask);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_sudorule_remove_host: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('sudorule_remove_host', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('sudorule_remove_host',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members host hostgroup hostmask)],
+        [qw(bool bool unicode bool unicode unicode unicode)],
+    );
 }
 
 
@@ -28147,8 +20757,7 @@ Remove an option from Sudo Rule.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -28162,48 +20771,26 @@ Remove an option from Sudo Rule.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_sudorule_remove_option
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_sudorule_remove_option: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(ipasudoopt all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_sudorule_remove_option: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('sudorule_remove_option', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('sudorule_remove_option',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(ipasudoopt all raw version no_members)],
+        [qw(unicode bool bool unicode bool)],
+    );
 }
 
 
@@ -28225,8 +20812,7 @@ Remove group for Sudo to execute as.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -28240,48 +20826,26 @@ Remove group for Sudo to execute as.
 
 =item group: groups to remove (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_sudorule_remove_runasgroup
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_sudorule_remove_runasgroup: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members group);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_sudorule_remove_runasgroup: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('sudorule_remove_runasgroup', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('sudorule_remove_runasgroup',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members group)],
+        [qw(bool bool unicode bool unicode)],
+    );
 }
 
 
@@ -28303,8 +20867,7 @@ Remove users and groups for Sudo to execute as.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -28320,48 +20883,26 @@ Remove users and groups for Sudo to execute as.
 
 =item group: groups to remove (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_sudorule_remove_runasuser
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_sudorule_remove_runasuser: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members user group);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_sudorule_remove_runasuser: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('sudorule_remove_runasuser', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('sudorule_remove_runasuser',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members user group)],
+        [qw(bool bool unicode bool unicode unicode)],
+    );
 }
 
 
@@ -28383,8 +20924,7 @@ Remove users and groups affected by Sudo Rule.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -28400,48 +20940,26 @@ Remove users and groups affected by Sudo Rule.
 
 =item group: groups to remove (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_sudorule_remove_user
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_sudorule_remove_user: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members user group);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_sudorule_remove_user: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('sudorule_remove_user', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('sudorule_remove_user',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members user group)],
+        [qw(bool bool unicode bool unicode unicode)],
+    );
 }
 
 
@@ -28463,8 +20981,7 @@ Display Sudo Rule.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -28478,48 +20995,26 @@ Display Sudo Rule.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_sudorule_show
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_sudorule_show: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(rights all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_sudorule_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('sudorule_show', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('sudorule_show',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(rights all raw version no_members)],
+        [qw(bool bool bool unicode bool)],
+    );
 }
 
 
@@ -28543,8 +21038,7 @@ Add a new segment.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -28576,48 +21070,26 @@ must be part of the schema. (type unicode class Str)
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_topologysegment_add
-{
-    
+{    
     my ($self, $topologysuffixcn, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(topologysuffixcn cn);
-    my $aidx = 0;
-    foreach my $arg ($topologysuffixcn, $cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_topologysegment_add: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(iparepltoposegmentleftnode iparepltoposegmentrightnode iparepltoposegmentdirection nsds5replicastripattrs nsds5replicatedattributelist nsds5replicatedattributelisttotal nsds5replicatimeout nsds5replicaenabled setattr addattr all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_topologysegment_add: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode unicode unicode int unicode unicode unicode bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('topologysegment_add', [$topologysuffixcn, $cn], [qw(unicode unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('topologysegment_add',    
+        [$topologysuffixcn, $cn],
+        [qw(topologysuffixcn cn)],
+        [qw(unicode unicode)],
+        \%opts,
+        [qw(iparepltoposegmentleftnode iparepltoposegmentrightnode iparepltoposegmentdirection nsds5replicastripattrs nsds5replicatedattributelist nsds5replicatedattributelisttotal nsds5replicatimeout nsds5replicaenabled setattr addattr all raw version)],
+        [qw(unicode unicode unicode unicode unicode unicode int unicode unicode unicode bool bool unicode)],
+    );
 }
 
 
@@ -28641,8 +21113,7 @@ Delete a segment.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -28650,48 +21121,26 @@ Delete a segment.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_topologysegment_del
-{
-    
+{    
     my ($self, $topologysuffixcn, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(topologysuffixcn cn);
-    my $aidx = 0;
-    foreach my $arg ($topologysuffixcn, $cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_topologysegment_del: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(continue version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_topologysegment_del: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('topologysegment_del', [$topologysuffixcn, $cn], [qw(unicode unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('topologysegment_del',    
+        [$topologysuffixcn, $cn],
+        [qw(topologysuffixcn cn)],
+        [qw(unicode unicode)],
+        \%opts,
+        [qw(continue version)],
+        [qw(bool unicode)],
+    );
 }
 
 
@@ -28715,8 +21164,7 @@ Search for topology segments.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -28750,48 +21198,26 @@ Search for topology segments.
 
 =item pkey_only: Results should contain primary key attribute only ("name") (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_topologysegment_find
-{
-    
+{    
     my ($self, $topologysuffixcn, $criteria, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(topologysuffixcn criteria);
-    my $aidx = 0;
-    foreach my $arg ($topologysuffixcn, $criteria) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_topologysegment_find: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(cn iparepltoposegmentleftnode iparepltoposegmentrightnode iparepltoposegmentdirection nsds5replicastripattrs nsds5replicatedattributelist nsds5replicatedattributelisttotal nsds5replicatimeout nsds5replicaenabled timelimit sizelimit all raw version pkey_only);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_topologysegment_find: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode unicode unicode unicode int unicode int int bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('topologysegment_find', [$topologysuffixcn, $criteria], [qw(unicode unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('topologysegment_find',    
+        [$topologysuffixcn, $criteria],
+        [qw(topologysuffixcn criteria)],
+        [qw(unicode unicode)],
+        \%opts,
+        [qw(cn iparepltoposegmentleftnode iparepltoposegmentrightnode iparepltoposegmentdirection nsds5replicastripattrs nsds5replicatedattributelist nsds5replicatedattributelisttotal nsds5replicatimeout nsds5replicaenabled timelimit sizelimit all raw version pkey_only)],
+        [qw(unicode unicode unicode unicode unicode unicode unicode int unicode int int bool bool unicode bool)],
+    );
 }
 
 
@@ -28815,8 +21241,7 @@ Modify a segment.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -28847,48 +21272,26 @@ last, after all sets and adds. (type unicode class Str)
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_topologysegment_mod
-{
-    
+{    
     my ($self, $topologysuffixcn, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(topologysuffixcn cn);
-    my $aidx = 0;
-    foreach my $arg ($topologysuffixcn, $cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_topologysegment_mod: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(nsds5replicastripattrs nsds5replicatedattributelist nsds5replicatedattributelisttotal nsds5replicatimeout nsds5replicaenabled setattr addattr delattr rights all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_topologysegment_mod: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode int unicode unicode unicode unicode bool bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('topologysegment_mod', [$topologysuffixcn, $cn], [qw(unicode unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('topologysegment_mod',    
+        [$topologysuffixcn, $cn],
+        [qw(topologysuffixcn cn)],
+        [qw(unicode unicode)],
+        \%opts,
+        [qw(nsds5replicastripattrs nsds5replicatedattributelist nsds5replicatedattributelisttotal nsds5replicatimeout nsds5replicaenabled setattr addattr delattr rights all raw version)],
+        [qw(unicode unicode unicode int unicode unicode unicode unicode bool bool bool unicode)],
+    );
 }
 
 
@@ -28912,8 +21315,7 @@ Request a full re-initialization of the node retrieving data from the other node
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -28925,48 +21327,26 @@ Request a full re-initialization of the node retrieving data from the other node
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_topologysegment_reinitialize
-{
-    
+{    
     my ($self, $topologysuffixcn, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(topologysuffixcn cn);
-    my $aidx = 0;
-    foreach my $arg ($topologysuffixcn, $cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_topologysegment_reinitialize: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(left right stop version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_topologysegment_reinitialize: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('topologysegment_reinitialize', [$topologysuffixcn, $cn], [qw(unicode unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('topologysegment_reinitialize',    
+        [$topologysuffixcn, $cn],
+        [qw(topologysuffixcn cn)],
+        [qw(unicode unicode)],
+        \%opts,
+        [qw(left right stop version)],
+        [qw(bool bool bool unicode)],
+    );
 }
 
 
@@ -28990,8 +21370,7 @@ Display a segment.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -29003,48 +21382,26 @@ Display a segment.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_topologysegment_show
-{
-    
+{    
     my ($self, $topologysuffixcn, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(topologysuffixcn cn);
-    my $aidx = 0;
-    foreach my $arg ($topologysuffixcn, $cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_topologysegment_show: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(rights all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_topologysegment_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('topologysegment_show', [$topologysuffixcn, $cn], [qw(unicode unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('topologysegment_show',    
+        [$topologysuffixcn, $cn],
+        [qw(topologysuffixcn cn)],
+        [qw(unicode unicode)],
+        \%opts,
+        [qw(rights all raw version)],
+        [qw(bool bool bool unicode)],
+    );
 }
 
 
@@ -29066,8 +21423,7 @@ Add a new topology suffix to be managed.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -29085,48 +21441,26 @@ must be part of the schema. (type unicode class Str)
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_topologysuffix_add
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_topologysuffix_add: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(iparepltopoconfroot setattr addattr all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_topologysuffix_add: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('topologysuffix_add', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('topologysuffix_add',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(iparepltopoconfroot setattr addattr all raw version)],
+        [qw(unicode unicode unicode bool bool unicode)],
+    );
 }
 
 
@@ -29148,8 +21482,7 @@ Delete a topology suffix.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -29157,48 +21490,26 @@ Delete a topology suffix.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_topologysuffix_del
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_topologysuffix_del: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(continue version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_topologysuffix_del: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('topologysuffix_del', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('topologysuffix_del',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(continue version)],
+        [qw(bool unicode)],
+    );
 }
 
 
@@ -29220,8 +21531,7 @@ Search for topology suffices.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -29241,48 +21551,26 @@ Search for topology suffices.
 
 =item pkey_only: Results should contain primary key attribute only ("name") (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_topologysuffix_find
-{
-    
+{    
     my ($self, $criteria, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(criteria);
-    my $aidx = 0;
-    foreach my $arg ($criteria) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_topologysuffix_find: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(cn iparepltopoconfroot timelimit sizelimit all raw version pkey_only);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_topologysuffix_find: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode int int bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('topologysuffix_find', [$criteria], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('topologysuffix_find',    
+        [$criteria],
+        [qw(criteria)],
+        [qw(unicode)],
+        \%opts,
+        [qw(cn iparepltopoconfroot timelimit sizelimit all raw version pkey_only)],
+        [qw(unicode unicode int int bool bool unicode bool)],
+    );
 }
 
 
@@ -29304,8 +21592,7 @@ Modify a topology suffix.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -29328,48 +21615,26 @@ last, after all sets and adds. (type unicode class Str)
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_topologysuffix_mod
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_topologysuffix_mod: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(iparepltopoconfroot setattr addattr delattr rights all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_topologysuffix_mod: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode bool bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('topologysuffix_mod', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('topologysuffix_mod',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(iparepltopoconfroot setattr addattr delattr rights all raw version)],
+        [qw(unicode unicode unicode unicode bool bool bool unicode)],
+    );
 }
 
 
@@ -29391,8 +21656,7 @@ Show managed suffix.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -29404,48 +21668,26 @@ Show managed suffix.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_topologysuffix_show
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_topologysuffix_show: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(rights all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_topologysuffix_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('topologysuffix_show', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('topologysuffix_show',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(rights all raw version)],
+        [qw(bool bool bool unicode)],
+    );
 }
 
 
@@ -29475,55 +21717,32 @@ Checks done:
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_topologysuffix_verify
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_topologysuffix_verify: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_topologysuffix_verify: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('topologysuffix_verify', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('topologysuffix_verify',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(version)],
+        [qw(unicode)],
+    );
 }
 
 
@@ -29557,8 +21776,7 @@ sides.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -29592,48 +21810,26 @@ must be part of the schema. (type unicode class Str)
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_trust_add
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_trust_add: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(setattr addattr trust_type realm_admin realm_passwd realm_server trust_secret base_id range_size range_type bidirectional all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_trust_add: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode unicode unicode unicode int int unicode bool bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('trust_add', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('trust_add',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(setattr addattr trust_type realm_admin realm_passwd realm_server trust_secret base_id range_size range_type bidirectional all raw version)],
+        [qw(unicode unicode unicode unicode unicode unicode unicode int int unicode bool bool bool unicode)],
+    );
 }
 
 
@@ -29655,8 +21851,7 @@ Delete a trust.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -29664,48 +21859,26 @@ Delete a trust.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_trust_del
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_trust_del: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(continue version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_trust_del: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('trust_del', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('trust_del',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(continue version)],
+        [qw(bool unicode)],
+    );
 }
 
 
@@ -29727,8 +21900,7 @@ Refresh list of the domains associated with the trust
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -29742,48 +21914,26 @@ Refresh list of the domains associated with the trust
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_trust_fetch_domains
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_trust_fetch_domains: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(rights realm_server all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_trust_fetch_domains: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('trust_fetch_domains', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('trust_fetch_domains',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(rights realm_server all raw version)],
+        [qw(bool unicode bool bool unicode)],
+    );
 }
 
 
@@ -29805,8 +21955,7 @@ Search for trusts.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -29832,48 +21981,26 @@ Search for trusts.
 
 =item pkey_only: Results should contain primary key attribute only ("realm") (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_trust_find
-{
-    
+{    
     my ($self, $criteria, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(criteria);
-    my $aidx = 0;
-    foreach my $arg ($criteria) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_trust_find: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(cn ipantflatname ipanttrusteddomainsid ipantsidblacklistincoming ipantsidblacklistoutgoing timelimit sizelimit all raw version pkey_only);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_trust_find: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode unicode int int bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('trust_find', [$criteria], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('trust_find',    
+        [$criteria],
+        [qw(criteria)],
+        [qw(unicode)],
+        \%opts,
+        [qw(cn ipantflatname ipanttrusteddomainsid ipantsidblacklistincoming ipantsidblacklistoutgoing timelimit sizelimit all raw version pkey_only)],
+        [qw(unicode unicode unicode unicode unicode int int bool bool unicode bool)],
+    );
 }
 
 
@@ -29900,8 +22027,7 @@ Wrapper method for trust_mod API
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -29926,48 +22052,26 @@ last, after all sets and adds. (type unicode class Str)
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_trust_mod
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_trust_mod: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(ipantsidblacklistincoming ipantsidblacklistoutgoing setattr addattr delattr rights all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_trust_mod: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode unicode bool bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('trust_mod', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('trust_mod',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(ipantsidblacklistincoming ipantsidblacklistoutgoing setattr addattr delattr rights all raw version)],
+        [qw(unicode unicode unicode unicode unicode bool bool bool unicode)],
+    );
 }
 
 
@@ -29982,7 +22086,7 @@ Resolve security identifiers of users and groups in trusted domains
 
 =item No required arguments
 
-=item Options
+=item  Options
 
 =over
 
@@ -29994,36 +22098,26 @@ Resolve security identifiers of users and groups in trusted domains
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_trust_resolve
-{
-    
+{    
     my ($self, %opts) = @_;
     
-    
-    # Check options
-    my @opt_keys = qw(sids all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_trust_resolve: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('trust_resolve', [], [qw()], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('trust_resolve',    
+        [],
+        [qw()],
+        [qw()],
+        \%opts,
+        [qw(sids all raw version)],
+        [qw(unicode bool bool unicode)],
+    );
 }
 
 
@@ -30045,8 +22139,7 @@ Display information about a trust.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -30058,48 +22151,26 @@ Display information about a trust.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_trust_show
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_trust_show: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(rights all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_trust_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('trust_show', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('trust_show',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(rights all raw version)],
+        [qw(bool bool bool unicode)],
+    );
 }
 
 
@@ -30114,7 +22185,7 @@ Modify global trust configuration.
 
 =item No required arguments
 
-=item Options
+=item  Options
 
 =over
 
@@ -30139,36 +22210,26 @@ last, after all sets and adds. (type unicode class Str)
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_trustconfig_mod
-{
-    
+{    
     my ($self, %opts) = @_;
     
-    
-    # Check options
-    my @opt_keys = qw(ipantfallbackprimarygroup setattr addattr delattr rights trust_type all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_trustconfig_mod: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode bool unicode bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('trustconfig_mod', [], [qw()], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('trustconfig_mod',    
+        [],
+        [qw()],
+        [qw()],
+        \%opts,
+        [qw(ipantfallbackprimarygroup setattr addattr delattr rights trust_type all raw version)],
+        [qw(unicode unicode unicode unicode bool unicode bool bool unicode)],
+    );
 }
 
 
@@ -30183,7 +22244,7 @@ Show global trust configuration.
 
 =item No required arguments
 
-=item Options
+=item  Options
 
 =over
 
@@ -30197,36 +22258,26 @@ Show global trust configuration.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_trustconfig_show
-{
-    
+{    
     my ($self, %opts) = @_;
     
-    
-    # Check options
-    my @opt_keys = qw(rights trust_type all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_trustconfig_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('trustconfig_show', [], [qw()], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('trustconfig_show',    
+        [],
+        [qw()],
+        [qw()],
+        \%opts,
+        [qw(rights trust_type all raw version)],
+        [qw(bool unicode bool bool unicode)],
+    );
 }
 
 
@@ -30250,8 +22301,7 @@ Allow access from the trusted domain
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -30275,48 +22325,26 @@ must be part of the schema. (type unicode class Str)
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_trustdomain_add
-{
-    
+{    
     my ($self, $trustcn, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(trustcn cn);
-    my $aidx = 0;
-    foreach my $arg ($trustcn, $cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_trustdomain_add: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(ipantflatname ipanttrusteddomainsid ipanttrustpartner setattr addattr trust_type all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_trustdomain_add: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode unicode unicode bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('trustdomain_add', [$trustcn, $cn], [qw(unicode unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('trustdomain_add',    
+        [$trustcn, $cn],
+        [qw(trustcn cn)],
+        [qw(unicode unicode)],
+        \%opts,
+        [qw(ipantflatname ipanttrusteddomainsid ipanttrustpartner setattr addattr trust_type all raw version)],
+        [qw(unicode unicode unicode unicode unicode unicode bool bool unicode)],
+    );
 }
 
 
@@ -30340,8 +22368,7 @@ Remove infromation about the domain associated with the trust.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -30349,48 +22376,26 @@ Remove infromation about the domain associated with the trust.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_trustdomain_del
-{
-    
+{    
     my ($self, $trustcn, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(trustcn cn);
-    my $aidx = 0;
-    foreach my $arg ($trustcn, $cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_trustdomain_del: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(continue version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_trustdomain_del: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('trustdomain_del', [$trustcn, $cn], [qw(unicode unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('trustdomain_del',    
+        [$trustcn, $cn],
+        [qw(trustcn cn)],
+        [qw(unicode unicode)],
+        \%opts,
+        [qw(continue version)],
+        [qw(bool unicode)],
+    );
 }
 
 
@@ -30414,55 +22419,32 @@ Disable use of IPA resources by the domain of the trust
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_trustdomain_disable
-{
-    
+{    
     my ($self, $trustcn, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(trustcn cn);
-    my $aidx = 0;
-    foreach my $arg ($trustcn, $cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_trustdomain_disable: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_trustdomain_disable: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('trustdomain_disable', [$trustcn, $cn], [qw(unicode unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('trustdomain_disable',    
+        [$trustcn, $cn],
+        [qw(trustcn cn)],
+        [qw(unicode unicode)],
+        \%opts,
+        [qw(version)],
+        [qw(unicode)],
+    );
 }
 
 
@@ -30486,55 +22468,32 @@ Allow use of IPA resources by the domain of the trust
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_trustdomain_enable
-{
-    
+{    
     my ($self, $trustcn, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(trustcn cn);
-    my $aidx = 0;
-    foreach my $arg ($trustcn, $cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_trustdomain_enable: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_trustdomain_enable: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('trustdomain_enable', [$trustcn, $cn], [qw(unicode unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('trustdomain_enable',    
+        [$trustcn, $cn],
+        [qw(trustcn cn)],
+        [qw(unicode unicode)],
+        \%opts,
+        [qw(version)],
+        [qw(unicode)],
+    );
 }
 
 
@@ -30558,8 +22517,7 @@ Search domains of the trust
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -30583,48 +22541,26 @@ Search domains of the trust
 
 =item pkey_only: Results should contain primary key attribute only ("domain") (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_trustdomain_find
-{
-    
+{    
     my ($self, $trustcn, $criteria, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(trustcn criteria);
-    my $aidx = 0;
-    foreach my $arg ($trustcn, $criteria) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_trustdomain_find: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(cn ipantflatname ipanttrusteddomainsid ipanttrustpartner timelimit sizelimit all raw version pkey_only);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_trustdomain_find: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode int int bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('trustdomain_find', [$trustcn, $criteria], [qw(unicode unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('trustdomain_find',    
+        [$trustcn, $criteria],
+        [qw(trustcn criteria)],
+        [qw(unicode unicode)],
+        \%opts,
+        [qw(cn ipantflatname ipanttrusteddomainsid ipanttrustpartner timelimit sizelimit all raw version pkey_only)],
+        [qw(unicode unicode unicode unicode int int bool bool unicode bool)],
+    );
 }
 
 
@@ -30648,8 +22584,7 @@ Modify trustdomain of the trust
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -30678,48 +22613,26 @@ last, after all sets and adds. (type unicode class Str)
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_trustdomain_mod
-{
-    
+{    
     my ($self, $trustcn, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(trustcn cn);
-    my $aidx = 0;
-    foreach my $arg ($trustcn, $cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_trustdomain_mod: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(ipantflatname ipanttrusteddomainsid ipanttrustpartner setattr addattr delattr rights trust_type all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_trustdomain_mod: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode unicode unicode bool unicode bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('trustdomain_mod', [$trustcn, $cn], [qw(unicode unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('trustdomain_mod',    
+        [$trustcn, $cn],
+        [qw(trustcn cn)],
+        [qw(unicode unicode)],
+        \%opts,
+        [qw(ipantflatname ipanttrusteddomainsid ipanttrustpartner setattr addattr delattr rights trust_type all raw version)],
+        [qw(unicode unicode unicode unicode unicode unicode bool unicode bool bool unicode)],
+    );
 }
 
 
@@ -30741,8 +22654,7 @@ Add a new user.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -30838,48 +22750,26 @@ must be part of the schema. (type unicode class Str)
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_user_add
-{
-    
+{    
     my ($self, $uid, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(uid);
-    my $aidx = 0;
-    foreach my $arg ($uid) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_user_add: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(givenname sn cn displayname initials homedirectory gecos loginshell krbprincipalname krbprincipalexpiration mail userpassword random uidnumber gidnumber street l st postalcode telephonenumber mobile pager facsimiletelephonenumber ou title manager carlicense ipasshpubkey ipauserauthtype userclass ipatokenradiusconfiglink ipatokenradiususername departmentnumber employeenumber employeetype preferredlanguage usercertificate nsaccountlock setattr addattr noprivate all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_user_add: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode unicode unicode unicode unicode unicode datetime unicode unicode bool int int unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode str bool unicode unicode bool bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('user_add', [$uid], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('user_add',    
+        [$uid],
+        [qw(uid)],
+        [qw(unicode)],
+        \%opts,
+        [qw(givenname sn cn displayname initials homedirectory gecos loginshell krbprincipalname krbprincipalexpiration mail userpassword random uidnumber gidnumber street l st postalcode telephonenumber mobile pager facsimiletelephonenumber ou title manager carlicense ipasshpubkey ipauserauthtype userclass ipatokenradiusconfiglink ipatokenradiususername departmentnumber employeenumber employeetype preferredlanguage usercertificate nsaccountlock setattr addattr noprivate all raw version no_members)],
+        [qw(unicode unicode unicode unicode unicode unicode unicode unicode unicode datetime unicode unicode bool int int unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode str bool unicode unicode bool bool bool unicode bool)],
+    );
 }
 
 
@@ -30901,8 +22791,7 @@ Add one or more certificates to the user entry
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -30916,48 +22805,26 @@ Add one or more certificates to the user entry
 
 =item usercertificate: Base-64 encoded server certificate (type str class Bytes)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_user_add_cert
-{
-    
+{    
     my ($self, $uid, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(uid);
-    my $aidx = 0;
-    foreach my $arg ($uid) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_user_add_cert: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members usercertificate);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_user_add_cert: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool str);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('user_add_cert', [$uid], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('user_add_cert',    
+        [$uid],
+        [qw(uid)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members usercertificate)],
+        [qw(bool bool unicode bool str)],
+    );
 }
 
 
@@ -30979,8 +22846,7 @@ Delete a user.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -30994,48 +22860,26 @@ Delete a user.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_user_del
-{
-    
+{    
     my ($self, $uid, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(uid);
-    my $aidx = 0;
-    foreach my $arg ($uid) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_user_del: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(continue preserve preserve no_preserve version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_user_del: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('user_del', [$uid], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('user_del',    
+        [$uid],
+        [qw(uid)],
+        [qw(unicode)],
+        \%opts,
+        [qw(continue preserve preserve no_preserve version)],
+        [qw(bool bool bool bool unicode)],
+    );
 }
 
 
@@ -31057,55 +22901,32 @@ Disable a user account.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_user_disable
-{
-    
+{    
     my ($self, $uid, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(uid);
-    my $aidx = 0;
-    foreach my $arg ($uid) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_user_disable: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_user_disable: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('user_disable', [$uid], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('user_disable',    
+        [$uid],
+        [qw(uid)],
+        [qw(unicode)],
+        \%opts,
+        [qw(version)],
+        [qw(unicode)],
+    );
 }
 
 
@@ -31127,55 +22948,32 @@ Enable a user account.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_user_enable
-{
-    
+{    
     my ($self, $uid, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(uid);
-    my $aidx = 0;
-    foreach my $arg ($uid) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_user_enable: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_user_enable: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('user_enable', [$uid], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('user_enable',    
+        [$uid],
+        [qw(uid)],
+        [qw(unicode)],
+        \%opts,
+        [qw(version)],
+        [qw(unicode)],
+    );
 }
 
 
@@ -31197,8 +22995,7 @@ Search for users.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -31314,48 +23111,26 @@ Search for users.
 
 =item not_in_sudorule: Search for users without these member of sudo rules. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_user_find
-{
-    
+{    
     my ($self, $criteria, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(criteria);
-    my $aidx = 0;
-    foreach my $arg ($criteria) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_user_find: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(uid givenname sn cn displayname initials homedirectory gecos loginshell krbprincipalname krbprincipalexpiration mail userpassword uidnumber gidnumber street l st postalcode telephonenumber mobile pager facsimiletelephonenumber ou title manager carlicense ipauserauthtype userclass ipatokenradiusconfiglink ipatokenradiususername departmentnumber employeenumber employeetype preferredlanguage usercertificate nsaccountlock preserved timelimit sizelimit whoami all raw version no_members pkey_only in_group not_in_group in_netgroup not_in_netgroup in_role not_in_role in_hbacrule not_in_hbacrule in_sudorule not_in_sudorule);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_user_find: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode datetime unicode unicode int int unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode str bool bool int int bool bool bool unicode bool bool unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('user_find', [$criteria], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('user_find',    
+        [$criteria],
+        [qw(criteria)],
+        [qw(unicode)],
+        \%opts,
+        [qw(uid givenname sn cn displayname initials homedirectory gecos loginshell krbprincipalname krbprincipalexpiration mail userpassword uidnumber gidnumber street l st postalcode telephonenumber mobile pager facsimiletelephonenumber ou title manager carlicense ipauserauthtype userclass ipatokenradiusconfiglink ipatokenradiususername departmentnumber employeenumber employeetype preferredlanguage usercertificate nsaccountlock preserved timelimit sizelimit whoami all raw version no_members pkey_only in_group not_in_group in_netgroup not_in_netgroup in_role not_in_role in_hbacrule not_in_hbacrule in_sudorule not_in_sudorule)],
+        [qw(unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode datetime unicode unicode int int unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode str bool bool int int bool bool bool unicode bool bool unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode)],
+    );
 }
 
 
@@ -31377,8 +23152,7 @@ Modify a user.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -31477,48 +23251,26 @@ last, after all sets and adds. (type unicode class Str)
 
 =item rename: Rename the user object (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_user_mod
-{
-    
+{    
     my ($self, $uid, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(uid);
-    my $aidx = 0;
-    foreach my $arg ($uid) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_user_mod: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(givenname sn cn displayname initials homedirectory gecos loginshell krbprincipalexpiration mail userpassword random uidnumber gidnumber street l st postalcode telephonenumber mobile pager facsimiletelephonenumber ou title manager carlicense ipasshpubkey ipauserauthtype userclass ipatokenradiusconfiglink ipatokenradiususername departmentnumber employeenumber employeetype preferredlanguage usercertificate nsaccountlock setattr addattr delattr rights all raw version no_members rename);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_user_mod: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode unicode unicode unicode unicode unicode datetime unicode unicode bool int int unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode str bool unicode unicode unicode bool bool bool unicode bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('user_mod', [$uid], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('user_mod',    
+        [$uid],
+        [qw(uid)],
+        [qw(unicode)],
+        \%opts,
+        [qw(givenname sn cn displayname initials homedirectory gecos loginshell krbprincipalexpiration mail userpassword random uidnumber gidnumber street l st postalcode telephonenumber mobile pager facsimiletelephonenumber ou title manager carlicense ipasshpubkey ipauserauthtype userclass ipatokenradiusconfiglink ipatokenradiususername departmentnumber employeenumber employeetype preferredlanguage usercertificate nsaccountlock setattr addattr delattr rights all raw version no_members rename)],
+        [qw(unicode unicode unicode unicode unicode unicode unicode unicode datetime unicode unicode bool int int unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode str bool unicode unicode unicode bool bool bool unicode bool unicode)],
+    );
 }
 
 
@@ -31540,8 +23292,7 @@ Remove one or more certificates to the user entry
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -31555,48 +23306,26 @@ Remove one or more certificates to the user entry
 
 =item usercertificate: Base-64 encoded server certificate (type str class Bytes)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_user_remove_cert
-{
-    
+{    
     my ($self, $uid, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(uid);
-    my $aidx = 0;
-    foreach my $arg ($uid) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_user_remove_cert: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members usercertificate);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_user_remove_cert: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool str);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('user_remove_cert', [$uid], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('user_remove_cert',    
+        [$uid],
+        [qw(uid)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members usercertificate)],
+        [qw(bool bool unicode bool str)],
+    );
 }
 
 
@@ -31618,8 +23347,7 @@ Display information about a user.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -31635,48 +23363,26 @@ Display information about a user.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_user_show
-{
-    
+{    
     my ($self, $uid, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(uid);
-    my $aidx = 0;
-    foreach my $arg ($uid) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_user_show: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(rights out all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_user_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('user_show', [$uid], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('user_show',    
+        [$uid],
+        [qw(uid)],
+        [qw(unicode)],
+        \%opts,
+        [qw(rights out all raw version no_members)],
+        [qw(bool unicode bool bool unicode bool)],
+    );
 }
 
 
@@ -31698,8 +23404,7 @@ Move deleted user into staged area
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -31707,48 +23412,26 @@ Move deleted user into staged area
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_user_stage
-{
-    
+{    
     my ($self, $uid, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(uid);
-    my $aidx = 0;
-    foreach my $arg ($uid) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_user_stage: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(continue version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_user_stage: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('user_stage', [$uid], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('user_stage',    
+        [$uid],
+        [qw(uid)],
+        [qw(unicode)],
+        \%opts,
+        [qw(continue version)],
+        [qw(bool unicode)],
+    );
 }
 
 
@@ -31790,8 +23473,7 @@ Wrapper method for user_status API
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -31803,48 +23485,26 @@ Wrapper method for user_status API
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_user_status
-{
-    
+{    
     my ($self, $uid, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(uid);
-    my $aidx = 0;
-    foreach my $arg ($uid) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_user_status: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_user_status: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('user_status', [$uid], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('user_status',    
+        [$uid],
+        [qw(uid)],
+        [qw(unicode)],
+        \%opts,
+        [qw(all raw version no_members)],
+        [qw(bool bool unicode bool)],
+    );
 }
 
 
@@ -31866,55 +23526,32 @@ Undelete a delete user account.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_user_undel
-{
-    
+{    
     my ($self, $uid, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(uid);
-    my $aidx = 0;
-    foreach my $arg ($uid) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_user_undel: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_user_undel: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('user_undel', [$uid], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('user_undel',    
+        [$uid],
+        [qw(uid)],
+        [qw(unicode)],
+        \%opts,
+        [qw(version)],
+        [qw(unicode)],
+    );
 }
 
 
@@ -31942,55 +23579,32 @@ Wrapper method for user_unlock API
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_user_unlock
-{
-    
+{    
     my ($self, $uid, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(uid);
-    my $aidx = 0;
-    foreach my $arg ($uid) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_user_unlock: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_user_unlock: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('user_unlock', [$uid], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('user_unlock',    
+        [$uid],
+        [qw(uid)],
+        [qw(unicode)],
+        \%opts,
+        [qw(version)],
+        [qw(unicode)],
+    );
 }
 
 
@@ -32012,8 +23626,7 @@ Create a new vault.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -32047,48 +23660,26 @@ must be part of the schema. (type unicode class Str)
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_vault_add
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_vault_add: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(setattr addattr service shared username description ipavaulttype password password_file ipavaultpublickey public_key_file all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_vault_add: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode bool unicode unicode unicode unicode unicode str unicode bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('vault_add', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('vault_add',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(setattr addattr service shared username description ipavaulttype password password_file ipavaultpublickey public_key_file all raw version)],
+        [qw(unicode unicode unicode bool unicode unicode unicode unicode unicode str unicode bool bool unicode)],
+    );
 }
 
 
@@ -32110,8 +23701,7 @@ None
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -32137,48 +23727,26 @@ None
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_vault_add_internal
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_vault_add_internal: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(description ipavaulttype ipavaultsalt ipavaultpublickey service shared username all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_vault_add_internal: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode str str unicode bool unicode bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('vault_add_internal', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('vault_add_internal',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(description ipavaulttype ipavaultsalt ipavaultpublickey service shared username all raw version no_members)],
+        [qw(unicode unicode str str unicode bool unicode bool bool unicode bool)],
+    );
 }
 
 
@@ -32200,8 +23768,7 @@ Add members to a vault.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -32225,48 +23792,26 @@ Add members to a vault.
 
 =item services: services to add (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_vault_add_member
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_vault_add_member: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(service shared username all raw version no_members user group services);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_vault_add_member: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode bool unicode bool bool unicode bool unicode unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('vault_add_member', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('vault_add_member',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(service shared username all raw version no_members user group services)],
+        [qw(unicode bool unicode bool bool unicode bool unicode unicode unicode)],
+    );
 }
 
 
@@ -32288,8 +23833,7 @@ Add owners to a vault.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -32313,48 +23857,26 @@ Add owners to a vault.
 
 =item services: services to add (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_vault_add_owner
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_vault_add_owner: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(service shared username all raw version no_members user group services);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_vault_add_owner: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode bool unicode bool bool unicode bool unicode unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('vault_add_owner', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('vault_add_owner',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(service shared username all raw version no_members user group services)],
+        [qw(unicode bool unicode bool bool unicode bool unicode unicode unicode)],
+    );
 }
 
 
@@ -32376,8 +23898,7 @@ Archive data into a vault.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -32403,48 +23924,26 @@ Archive data into a vault.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_vault_archive
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_vault_archive: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(service shared username data in password password_file override_password all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_vault_archive: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode bool unicode str unicode unicode unicode bool bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('vault_archive', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('vault_archive',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(service shared username data in password password_file override_password all raw version)],
+        [qw(unicode bool unicode str unicode unicode unicode bool bool bool unicode)],
+    );
 }
 
 
@@ -32466,8 +23965,7 @@ None
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -32489,48 +23987,26 @@ None
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_vault_archive_internal
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_vault_archive_internal: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(service shared username session_key vault_data nonce all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_vault_archive_internal: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode bool unicode str str str bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('vault_archive_internal', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('vault_archive_internal',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(service shared username session_key vault_data nonce all raw version)],
+        [qw(unicode bool unicode str str str bool bool unicode)],
+    );
 }
 
 
@@ -32552,8 +24028,7 @@ Delete a vault.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -32567,48 +24042,26 @@ Delete a vault.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_vault_del
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_vault_del: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(continue service shared username version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_vault_del: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode bool unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('vault_del', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('vault_del',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(continue service shared username version)],
+        [qw(bool unicode bool unicode unicode)],
+    );
 }
 
 
@@ -32630,8 +24083,7 @@ Search for vaults.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -32665,48 +24117,26 @@ Search for vaults.
 
 =item pkey_only: Results should contain primary key attribute only ("name") (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_vault_find
-{
-    
+{    
     my ($self, $criteria, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(criteria);
-    my $aidx = 0;
-    foreach my $arg ($criteria) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_vault_find: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(cn description ipavaulttype timelimit sizelimit service shared username services users all raw version no_members pkey_only);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_vault_find: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode unicode int int unicode bool unicode bool bool bool bool unicode bool bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('vault_find', [$criteria], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('vault_find',    
+        [$criteria],
+        [qw(criteria)],
+        [qw(unicode)],
+        \%opts,
+        [qw(cn description ipavaulttype timelimit sizelimit service shared username services users all raw version no_members pkey_only)],
+        [qw(unicode unicode unicode int int unicode bool unicode bool bool bool bool unicode bool bool)],
+    );
 }
 
 
@@ -32728,8 +24158,7 @@ Modify a vault.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -32769,48 +24198,26 @@ Modify a vault.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_vault_mod
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_vault_mod: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(service shared username description ipavaulttype ipavaultsalt change_password old_password old_password_file new_password new_password_file private_key private_key_file ipavaultpublickey public_key_file all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_vault_mod: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode bool unicode unicode unicode str bool unicode unicode unicode unicode str unicode str unicode bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('vault_mod', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('vault_mod',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(service shared username description ipavaulttype ipavaultsalt change_password old_password old_password_file new_password new_password_file private_key private_key_file ipavaultpublickey public_key_file all raw version)],
+        [qw(unicode bool unicode unicode unicode str bool unicode unicode unicode unicode str unicode str unicode bool bool unicode)],
+    );
 }
 
 
@@ -32832,8 +24239,7 @@ None
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -32870,48 +24276,26 @@ last, after all sets and adds. (type unicode class Str)
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_vault_mod_internal
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_vault_mod_internal: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(description ipavaulttype ipavaultsalt ipavaultpublickey setattr addattr delattr rights service shared username all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_vault_mod_internal: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode unicode str str unicode unicode unicode bool unicode bool unicode bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('vault_mod_internal', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('vault_mod_internal',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(description ipavaulttype ipavaultsalt ipavaultpublickey setattr addattr delattr rights service shared username all raw version no_members)],
+        [qw(unicode unicode str str unicode unicode unicode bool unicode bool unicode bool bool unicode bool)],
+    );
 }
 
 
@@ -32933,8 +24317,7 @@ Remove members from a vault.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -32958,48 +24341,26 @@ Remove members from a vault.
 
 =item services: services to remove (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_vault_remove_member
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_vault_remove_member: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(service shared username all raw version no_members user group services);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_vault_remove_member: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode bool unicode bool bool unicode bool unicode unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('vault_remove_member', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('vault_remove_member',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(service shared username all raw version no_members user group services)],
+        [qw(unicode bool unicode bool bool unicode bool unicode unicode unicode)],
+    );
 }
 
 
@@ -33021,8 +24382,7 @@ Remove owners from a vault.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -33046,48 +24406,26 @@ Remove owners from a vault.
 
 =item services: services to remove (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_vault_remove_owner
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_vault_remove_owner: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(service shared username all raw version no_members user group services);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_vault_remove_owner: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode bool unicode bool bool unicode bool unicode unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('vault_remove_owner', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('vault_remove_owner',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(service shared username all raw version no_members user group services)],
+        [qw(unicode bool unicode bool bool unicode bool unicode unicode unicode)],
+    );
 }
 
 
@@ -33109,8 +24447,7 @@ Retrieve a data from a vault.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -33136,48 +24473,26 @@ Retrieve a data from a vault.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_vault_retrieve
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_vault_retrieve: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(service shared username out password password_file private_key private_key_file all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_vault_retrieve: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode bool unicode unicode unicode unicode str unicode bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('vault_retrieve', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('vault_retrieve',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(service shared username out password password_file private_key private_key_file all raw version)],
+        [qw(unicode bool unicode unicode unicode unicode str unicode bool bool unicode)],
+    );
 }
 
 
@@ -33199,8 +24514,7 @@ None
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -33218,48 +24532,26 @@ None
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_vault_retrieve_internal
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_vault_retrieve_internal: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(service shared username session_key all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_vault_retrieve_internal: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode bool unicode str bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('vault_retrieve_internal', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('vault_retrieve_internal',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(service shared username session_key all raw version)],
+        [qw(unicode bool unicode str bool bool unicode)],
+    );
 }
 
 
@@ -33281,8 +24573,7 @@ Display information about a vault.
 =back
 
 
-
-=item Options
+=item  Options
 
 =over
 
@@ -33302,48 +24593,26 @@ Display information about a vault.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_vault_show
-{
-    
+{    
     my ($self, $cn, %opts) = @_;
     
-    # Check arguments
-    my @args_names = qw(cn);
-    my $aidx = 0;
-    foreach my $arg ($cn) {
-        $aidx += 1;
-        my $args_name = shift(@args_names);
-        if (! defined($arg)) {
-            $self->error("api_vault_show: undefined mandatory $aidx-th argument $args_name");
-            return;
-        };
-    };
-    
-    
-    # Check options
-    my @opt_keys = qw(rights service shared username all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_vault_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode bool unicode bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('vault_show', [$cn], [qw(unicode)], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('vault_show',    
+        [$cn],
+        [qw(cn)],
+        [qw(unicode)],
+        \%opts,
+        [qw(rights service shared username all raw version no_members)],
+        [qw(bool unicode bool unicode bool bool unicode bool)],
+    );
 }
 
 
@@ -33358,7 +24627,7 @@ Show vault configuration.
 
 =item No required arguments
 
-=item Options
+=item  Options
 
 =over
 
@@ -33370,36 +24639,26 @@ Show vault configuration.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_vaultconfig_show
-{
-    
+{    
     my ($self, %opts) = @_;
     
-    
-    # Check options
-    my @opt_keys = qw(transport_out all raw version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_vaultconfig_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode bool bool unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('vaultconfig_show', [], [qw()], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('vaultconfig_show',    
+        [],
+        [qw()],
+        [qw()],
+        \%opts,
+        [qw(transport_out all raw version)],
+        [qw(unicode bool bool unicode)],
+    );
 }
 
 
@@ -33414,7 +24673,7 @@ Add owners to a vault container.
 
 =item No required arguments
 
-=item Options
+=item  Options
 
 =over
 
@@ -33438,36 +24697,26 @@ Add owners to a vault container.
 
 =item services: services to add (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_vaultcontainer_add_owner
-{
-    
+{    
     my ($self, %opts) = @_;
     
-    
-    # Check options
-    my @opt_keys = qw(service shared username all raw version no_members user group services);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_vaultcontainer_add_owner: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode bool unicode bool bool unicode bool unicode unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('vaultcontainer_add_owner', [], [qw()], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('vaultcontainer_add_owner',    
+        [],
+        [qw()],
+        [qw()],
+        \%opts,
+        [qw(service shared username all raw version no_members user group services)],
+        [qw(unicode bool unicode bool bool unicode bool unicode unicode unicode)],
+    );
 }
 
 
@@ -33482,7 +24731,7 @@ Delete a vault container.
 
 =item No required arguments
 
-=item Options
+=item  Options
 
 =over
 
@@ -33496,36 +24745,26 @@ Delete a vault container.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_vaultcontainer_del
-{
-    
+{    
     my ($self, %opts) = @_;
     
-    
-    # Check options
-    my @opt_keys = qw(continue service shared username version);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_vaultcontainer_del: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode bool unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('vaultcontainer_del', [], [qw()], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('vaultcontainer_del',    
+        [],
+        [qw()],
+        [qw()],
+        \%opts,
+        [qw(continue service shared username version)],
+        [qw(bool unicode bool unicode unicode)],
+    );
 }
 
 
@@ -33540,7 +24779,7 @@ Remove owners from a vault container.
 
 =item No required arguments
 
-=item Options
+=item  Options
 
 =over
 
@@ -33564,36 +24803,26 @@ Remove owners from a vault container.
 
 =item services: services to remove (type unicode class Str)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_vaultcontainer_remove_owner
-{
-    
+{    
     my ($self, %opts) = @_;
     
-    
-    # Check options
-    my @opt_keys = qw(service shared username all raw version no_members user group services);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_vaultcontainer_remove_owner: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(unicode bool unicode bool bool unicode bool unicode unicode unicode);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('vaultcontainer_remove_owner', [], [qw()], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('vaultcontainer_remove_owner',    
+        [],
+        [qw()],
+        [qw()],
+        \%opts,
+        [qw(service shared username all raw version no_members user group services)],
+        [qw(unicode bool unicode bool bool unicode bool unicode unicode unicode)],
+    );
 }
 
 
@@ -33608,7 +24837,7 @@ Display information about a vault container.
 
 =item No required arguments
 
-=item Options
+=item  Options
 
 =over
 
@@ -33628,36 +24857,26 @@ Display information about a vault container.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
 =back
-
-
 
 =back
 
 =cut
 
 sub api_vaultcontainer_show
-{
-    
+{    
     my ($self, %opts) = @_;
     
-    
-    # Check options
-    my @opt_keys = qw(rights service shared username all raw version no_members);
-    foreach my $key (keys %opts) {
-        if (! grep {$key eq $_} @opt_keys) {
-            $self->error("api_vaultcontainer_show: not a valid option key: $key (allowed @opt_keys)");
-            return;
-        };
-    };
-    my @opt_types = qw(bool unicode bool unicode bool bool unicode bool);
-    my %opt_type_map;
-    # Hash slice to create the map
-    @opt_type_map{@opt_keys} = @opt_types;
-    
-    
-    return $self->rpc_api('vaultcontainer_show', [], [qw()], \%opts, \%opt_type_map);
-
+    return $self->rpc_api('vaultcontainer_show',    
+        [],
+        [qw()],
+        [qw()],
+        \%opts,
+        [qw(rights service shared username all raw version no_members)],
+        [qw(bool unicode bool unicode bool bool unicode bool)],
+    );
 }
 
 

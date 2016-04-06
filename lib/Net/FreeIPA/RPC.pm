@@ -253,6 +253,11 @@ Options
 A path-like string, indicating which subtree of the decoided JSON response
 should be set as result attribute (default C<result/result>).
 
+=item noerror
+
+An array ref with errorcodes or errornames that are not reported as an error.
+(Still return C<undef>).
+
 =back
 
 Processed result is stored in the result attribute.
@@ -261,9 +266,9 @@ Processed result is stored in the result attribute.
 
 sub rpc
 {
-    my ($self, $command, $args, $opts, $result_path) = @_;
+    my ($self, $command, $args, $opts, %opts) = @_;
 
-    $result_path = 'result/result' if (! defined($result_path));
+    my $result_path = $opts{result_path} || 'result/result';
 
     # Reset any previous result
     $self->{result} = undef;
@@ -274,11 +279,15 @@ sub rpc
 
     my $error = $self->{answer}->{error};
     if ($error) {
-        $self->error("post got error (".$self->{json}->encode($error).")");
+        my @noerrors = grep {$_ =~ m/^\d+$/ ? $error->{code} == $_ : $error->{name} eq $_} @{$opts{noerror} || []};
+
+        my $error_method = @noerrors ? 'debug' : 'error';
+
+        $self->$error_method("$command got error (".$self->{json}->encode($error).")");
     } else {
         $ret = 1;
 
-        $self->warn("rpc got truncated result") if $self->{answer}->{result}->{truncated};
+        $self->warn("$command got truncated result") if $self->{answer}->{result}->{truncated};
 
         my $res = $self->{answer};
         # remove any "empty" paths
@@ -306,7 +315,7 @@ sub get_api_commands
 {
     my ($self) = @_;
 
-    return $self->rpc('json_metadata', [], {command => "all"}, 'result/commands') ? $self->{result} : undef;
+    return $self->rpc('json_metadata', [], {command => "all"}, result_path => 'result/commands') ? $self->{result} : undef;
 }
 
 
@@ -329,7 +338,7 @@ sub get_api_version
 {
     my ($self) = @_;
 
-    return $self->rpc('env', ['api_version'], {}, 'result/result/api_version') ? $self->{result} : undef;
+    return $self->rpc('env', ['api_version'], {}, result_path => 'result/result/api_version') ? $self->{result} : undef;
 }
 
 =pod
