@@ -131,7 +131,14 @@ sub convert
     };
 
     if (defined($funcref)) {
-        return $funcref->($value);
+        my $vref = ref($value);
+        if ($vref eq 'ARRAY') {
+            return [map {$funcref->($_)} @$value];
+        } elsif ($vref eq 'HASH') {
+            return {map {$_ => $funcref->($value->{$_})} sort keys %$value};
+        } else {
+            return $funcref->($value);
+        };
     } else {
         $self->warn("No conversion for type $type");
         return $value;
