@@ -48,11 +48,6 @@ is_deeply(\%Net::FreeIPA::Common::FIND_ONE, {
     vault => 'cn',
 }, "FIND_ONE as expected");
 
-is_deeply(\%Net::FreeIPA::Common::ERROR_CODES, {
-    DuplicateEntry => 4002,
-    NotFound => 4001,
-}, "ERROR_CODES as expected");
-
 my $f = Net::FreeIPA->new("myhost");
 
 =head2 unknown method
@@ -83,7 +78,7 @@ $error = undef;
 reset_POST_history();
 ok(! defined($f->find_one('host', 'my.host')), "failed method returns undef");
 ok(POST_history_ok(["0 host_find  all=1,fqdn=my.host,"]), "api_host_find called with correct args/opts id=0");
-is_deeply($f->{answer}->{error}, {unittest => 1}, "answer with error result");
+ok($f->{error} == 'unittest error', "answer with error result");
 like($error->[0], qr{^host_find got error}, "failed method reports error");
 
 =head2 find_one: method finds no answers
@@ -136,7 +131,7 @@ ok(! defined($error), "no error reported");
 $error = undef;
 reset_POST_history();
 $f->{id} = 0;
-ok(! defined($f->do_one('host', 'add', 'my.host')), 
+ok(! defined($f->do_one('host', 'add', 'my.host')),
    "do_one host add fails id=0");
 ok(POST_history_ok(["0 host_add my.host "]), "api_host_add called with correct args/opts id=1");
 like($error->[0], qr{^host_add got error}, "error reported");
@@ -149,31 +144,31 @@ like($error->[0], qr{^host_add got error}, "error reported");
 $error = undef;
 reset_POST_history();
 $f->{id} = 1;
-ok(! defined($f->do_one('host', 'add', 'my.host')), 
+ok(! defined($f->do_one('host', 'add', 'my.host')),
    "do_one host add fails id=1");
 ok(POST_history_ok(["1 host_add my.host "]), "api_host_add called with correct args/opts id=1");
-is($f->{answer}->{error}->{name}, 'DuplicateEntry', 'DuplicateEntry error');
+ok($f->{error}->is_duplicate(), 'DuplicateEntry error');
 ok(! defined($error), "no error reported with add and DuplicateEntry");
 
 # mod
 $error = undef;
 reset_POST_history();
 $f->{id} = 1;
-ok(! defined($f->do_one('host', 'mod', 'my.host')), 
+ok(! defined($f->do_one('host', 'mod', 'my.host')),
    "do_one host mod fails id=1");
 ok(POST_history_ok(["1 host_mod my.host "]), "api_host_mod called with correct args/opts id=1");
-is($f->{answer}->{error}->{name}, 'NotFound', 'NotFound error');
+ok($f->{error}->is_not_found(), 'NotFound error');
 ok(! defined($error), "no error reported with mod and NotFound");
 
 =head2 do_one: success, no error
 
 =cut
-    
+
 # test result_path
 $error = undef;
 reset_POST_history();
 $f->{id} = 2;
-is_deeply($f->do_one('host', 'add', 'my.host', __result_path => 'result/result/unittest'), 
+is_deeply($f->do_one('host', 'add', 'my.host', __result_path => 'result/result/unittest'),
           {woohoo => 1}, "return result with custom result_path");
 ok(POST_history_ok(["2 host_add my.host "]), "api_host_add called with correct args/opts id=2");
 ok(! defined($error), "no error reported");

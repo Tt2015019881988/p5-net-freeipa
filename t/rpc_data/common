@@ -1,5 +1,5 @@
 $cmds{fail_find}{cmd}="0 host_find";
-$cmds{fail_find}{error}={unittest => 1};
+$cmds{fail_find}{error}={message => 'unittest error'};
 
 $cmds{no_find}{cmd}="1 host_find";
 $cmds{no_find}{count}=0;
