@@ -43,23 +43,23 @@ foreach my $key (keys %$data) {
 =cut
 
 $error = undef;
-is_deeply($f->check_type("a string", "str:0", "errorprefix"), ["a string", "str"],
+is_deeply($f->check_type("a string", "str", 0, "errorprefix"), ["a string", "str"],
           "check_type succesful with scalar");
 ok(! defined($error), "No error logged on success checktype scalar");
 
 $error = undef;
-is_deeply($f->check_type(["a string"], "str:1", "errorprefix"), [["a string"], "str"],
+is_deeply($f->check_type(["a string"], "str", 1, "errorprefix"), [["a string"], "str"],
           "check_type succesful with multvalue/arrayref");
 ok(! defined($error), "No error logged on success checktype multivalue/arrayref");
 
 $error = undef;
-ok(! defined($f->check_type(["a string"], "str:0", "errorprefix")),
+ok(! defined($f->check_type(["a string"], "str", 0, "errorprefix")),
    "check_type returns undef on failure with scalar (got arrayref)");
 is($error->[0], "errorprefix has to be a scalar (is not multivalued)",
    "error logged on failure checktype scalar with array value");
 
 $error = undef;
-ok(! defined($f->check_type("a string", "str:1", "errorprefix")),
+ok(! defined($f->check_type("a string", "str", 1, "errorprefix")),
    "check_type returns undef on failure with arrayref (got scalar)");
 is($error->[0], "errorprefix has to be an arrayref (is multivalued)",
    "error logged on failure checktype arrayref with scalar value");

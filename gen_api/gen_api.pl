@@ -123,7 +123,15 @@ sub main
         script_name => $SCRIPT_NAME,
         join_name => sub {my $args = shift; return join(' ', map {$_->{name}} @$args); },
         join_name_vars => sub {my $args = shift; return join(', ', map {'$'.$_->{name}} @$args)},
-        join_type => sub {my $args = shift; return join(' ', map {join(':', $_->{type}, ($_->{multivalue} ? 1 : 0))} @$args) },
+        join_type => sub {
+            my $args = shift;
+            return join(' ',
+                        map {join(':',
+                                  $_->{type},
+                                  ($_->{multivalue} ? 1 : 0),
+                                  (($_->{required} && (! $_->{autofill})) ? 1 : 0), # only mandatory if required and no autofill/default
+                                 )} @$args);
+        },
         ref => sub {return ref(shift) },
         check_hash => sub {
             my $array = shift;

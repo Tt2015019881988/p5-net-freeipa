@@ -89,10 +89,10 @@ sub api_aci_add
     return $self->rpc_api('aci_add',    
         [$aciname],
         [qw(aciname)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(permission group permissions attrs type memberof filter subtree targetgroup selfaci aciprefix test all raw version)],
-        [qw(unicode:0 unicode:0 unicode:1 unicode:1 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 bool:0 unicode:0 bool:0 bool:0 bool:0 unicode:0)],
+        [qw(unicode:0:0 unicode:0:0 unicode:1:1 unicode:1:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 bool:0:0 unicode:0:1 bool:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -140,10 +140,10 @@ sub api_aci_del
     return $self->rpc_api('aci_del',    
         [$aciname],
         [qw(aciname)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(aciprefix version)],
-        [qw(unicode:0 unicode:0)],
+        [qw(unicode:0:1 unicode:0:0)],
     );
 }
 
@@ -235,10 +235,10 @@ sub api_aci_find
     return $self->rpc_api('aci_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
         \%opts,
         [qw(aciname permission group permissions attrs type memberof filter subtree targetgroup selfaci aciprefix pkey_only all raw version)],
-        [qw(unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 bool:0 unicode:0 bool:0 bool:0 bool:0 unicode:0)],
+        [qw(unicode:0:0 unicode:0:0 unicode:0:0 unicode:1:0 unicode:1:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 bool:0:0 unicode:0:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -310,10 +310,10 @@ sub api_aci_mod
     return $self->rpc_api('aci_mod',    
         [$aciname],
         [qw(aciname)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(permission group permissions attrs type memberof filter subtree targetgroup selfaci aciprefix all raw version)],
-        [qw(unicode:0 unicode:0 unicode:1 unicode:1 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 bool:0 unicode:0 bool:0 bool:0 unicode:0)],
+        [qw(unicode:0:0 unicode:0:0 unicode:1:0 unicode:1:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 bool:0:0 unicode:0:1 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -387,10 +387,10 @@ sub api_aci_rename
     return $self->rpc_api('aci_rename',    
         [$aciname],
         [qw(aciname)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(permission group permissions attrs type memberof filter subtree targetgroup selfaci aciprefix newname all raw version)],
-        [qw(unicode:0 unicode:0 unicode:1 unicode:1 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 bool:0 unicode:0 unicode:0 bool:0 bool:0 unicode:0)],
+        [qw(unicode:0:0 unicode:0:0 unicode:1:0 unicode:1:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 bool:0:0 unicode:0:1 unicode:0:1 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -444,10 +444,10 @@ sub api_aci_show
     return $self->rpc_api('aci_show',    
         [$aciname],
         [qw(aciname)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(aciprefix location all raw version)],
-        [qw(unicode:0 DN:0 bool:0 bool:0 unicode:0)],
+        [qw(unicode:0:1 DN:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -487,7 +487,7 @@ sub api_adtrust_is_enabled
         [qw()],
         \%opts,
         [qw(version)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
     );
 }
 
@@ -547,10 +547,10 @@ sub api_automember_add
     return $self->rpc_api('automember_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(description setattr addattr type all raw version)],
-        [qw(unicode:0 unicode:1 unicode:1 unicode:0 bool:0 bool:0 unicode:0)],
+        [qw(unicode:0:0 unicode:1:0 unicode:1:0 unicode:0:1 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -610,10 +610,10 @@ sub api_automember_add_condition
     return $self->rpc_api('automember_add_condition',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(description automemberinclusiveregex automemberexclusiveregex key type all raw version)],
-        [qw(unicode:0 unicode:1 unicode:1 unicode:0 unicode:0 bool:0 bool:0 unicode:0)],
+        [qw(unicode:0:0 unicode:1:0 unicode:1:0 unicode:0:1 unicode:0:1 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -663,7 +663,7 @@ sub api_automember_default_group_remove
         [qw()],
         \%opts,
         [qw(description type all raw version)],
-        [qw(unicode:0 unicode:0 bool:0 bool:0 unicode:0)],
+        [qw(unicode:0:0 unicode:0:1 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -715,7 +715,7 @@ sub api_automember_default_group_set
         [qw()],
         \%opts,
         [qw(description automemberdefaultgroup type all raw version)],
-        [qw(unicode:0 unicode:0 unicode:0 bool:0 bool:0 unicode:0)],
+        [qw(unicode:0:0 unicode:0:1 unicode:0:1 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -763,7 +763,7 @@ sub api_automember_default_group_show
         [qw()],
         \%opts,
         [qw(type all raw version)],
-        [qw(unicode:0 bool:0 bool:0 unicode:0)],
+        [qw(unicode:0:1 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -811,10 +811,10 @@ sub api_automember_del
     return $self->rpc_api('automember_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(type version)],
-        [qw(unicode:0 unicode:0)],
+        [qw(unicode:0:1 unicode:0:0)],
     );
 }
 
@@ -868,10 +868,10 @@ sub api_automember_find
     return $self->rpc_api('automember_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
         \%opts,
         [qw(description type all raw version)],
-        [qw(unicode:0 unicode:0 bool:0 bool:0 unicode:0)],
+        [qw(unicode:0:0 unicode:0:1 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -936,10 +936,10 @@ sub api_automember_mod
     return $self->rpc_api('automember_mod',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(description setattr addattr delattr rights type all raw version)],
-        [qw(unicode:0 unicode:1 unicode:1 unicode:1 bool:0 unicode:0 bool:0 bool:0 unicode:0)],
+        [qw(unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 unicode:0:1 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -991,7 +991,7 @@ sub api_automember_rebuild
         [qw()],
         \%opts,
         [qw(type users hosts no_wait all raw version)],
-        [qw(unicode:0 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0)],
+        [qw(unicode:0:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -1051,10 +1051,10 @@ sub api_automember_remove_condition
     return $self->rpc_api('automember_remove_condition',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(description automemberinclusiveregex automemberexclusiveregex key type all raw version)],
-        [qw(unicode:0 unicode:1 unicode:1 unicode:0 unicode:0 bool:0 bool:0 unicode:0)],
+        [qw(unicode:0:0 unicode:1:0 unicode:1:0 unicode:0:1 unicode:0:1 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -1106,10 +1106,10 @@ sub api_automember_show
     return $self->rpc_api('automember_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(type all raw version)],
-        [qw(unicode:0 bool:0 bool:0 unicode:0)],
+        [qw(unicode:0:1 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -1169,10 +1169,10 @@ sub api_automountkey_add
     return $self->rpc_api('automountkey_add',    
         [$automountlocationcn, $automountmapautomountmapname],
         [qw(automountlocationcn automountmapautomountmapname)],
-        [qw(unicode:0 unicode:0)],
+        [qw(unicode:0:1 unicode:0:1)],
         \%opts,
         [qw(automountkey automountinformation setattr addattr all raw version)],
-        [qw(unicode:0 unicode:0 unicode:1 unicode:1 bool:0 bool:0 unicode:0)],
+        [qw(unicode:0:1 unicode:0:1 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -1224,10 +1224,10 @@ sub api_automountkey_del
     return $self->rpc_api('automountkey_del',    
         [$automountlocationcn, $automountmapautomountmapname],
         [qw(automountlocationcn automountmapautomountmapname)],
-        [qw(unicode:0 unicode:0)],
+        [qw(unicode:0:1 unicode:0:1)],
         \%opts,
         [qw(continue automountkey automountinformation version)],
-        [qw(bool:0 unicode:0 unicode:0 unicode:0)],
+        [qw(bool:0:0 unicode:0:1 unicode:0:0 unicode:0:0)],
     );
 }
 
@@ -1287,10 +1287,10 @@ sub api_automountkey_find
     return $self->rpc_api('automountkey_find',    
         [$automountlocationcn, $automountmapautomountmapname, $criteria],
         [qw(automountlocationcn automountmapautomountmapname criteria)],
-        [qw(unicode:0 unicode:0 unicode:0)],
+        [qw(unicode:0:1 unicode:0:1 unicode:0:0)],
         \%opts,
         [qw(automountkey automountinformation timelimit sizelimit all raw version)],
-        [qw(unicode:0 unicode:0 int:0 int:0 bool:0 bool:0 unicode:0)],
+        [qw(unicode:0:0 unicode:0:0 int:0:0 int:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -1359,10 +1359,10 @@ sub api_automountkey_mod
     return $self->rpc_api('automountkey_mod',    
         [$automountlocationcn, $automountmapautomountmapname],
         [qw(automountlocationcn automountmapautomountmapname)],
-        [qw(unicode:0 unicode:0)],
+        [qw(unicode:0:1 unicode:0:1)],
         \%opts,
         [qw(automountkey automountinformation setattr addattr delattr rights newautomountinformation all raw version rename)],
-        [qw(unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 bool:0 unicode:0 bool:0 bool:0 unicode:0 unicode:0)],
+        [qw(unicode:0:1 unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 unicode:0:0 bool:0:0 bool:0:0 unicode:0:0 unicode:0:0)],
     );
 }
 
@@ -1418,10 +1418,10 @@ sub api_automountkey_show
     return $self->rpc_api('automountkey_show',    
         [$automountlocationcn, $automountmapautomountmapname],
         [qw(automountlocationcn automountmapautomountmapname)],
-        [qw(unicode:0 unicode:0)],
+        [qw(unicode:0:1 unicode:0:1)],
         \%opts,
         [qw(rights automountkey automountinformation all raw version)],
-        [qw(bool:0 unicode:0 unicode:0 bool:0 bool:0 unicode:0)],
+        [qw(bool:0:0 unicode:0:1 unicode:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -1475,10 +1475,10 @@ sub api_automountlocation_add
     return $self->rpc_api('automountlocation_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(setattr addattr all raw version)],
-        [qw(unicode:1 unicode:1 bool:0 bool:0 unicode:0)],
+        [qw(unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -1524,10 +1524,10 @@ sub api_automountlocation_del
     return $self->rpc_api('automountlocation_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:1)],
+        [qw(unicode:1:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool:0 unicode:0)],
+        [qw(bool:0:0 unicode:0:0)],
     );
 }
 
@@ -1583,10 +1583,10 @@ sub api_automountlocation_find
     return $self->rpc_api('automountlocation_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
         \%opts,
         [qw(cn timelimit sizelimit all raw version pkey_only)],
-        [qw(unicode:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:0 int:0:0 int:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -1634,10 +1634,10 @@ sub api_automountlocation_import
     return $self->rpc_api('automountlocation_import',    
         [$cn, $masterfile],
         [qw(cn masterfile)],
-        [qw(unicode:0 unicode:0)],
+        [qw(unicode:0:1 unicode:0:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool:0 unicode:0)],
+        [qw(bool:0:0 unicode:0:0)],
     );
 }
 
@@ -1687,10 +1687,10 @@ sub api_automountlocation_show
     return $self->rpc_api('automountlocation_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(rights all raw version)],
-        [qw(bool:0 bool:0 bool:0 unicode:0)],
+        [qw(bool:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -1734,10 +1734,10 @@ sub api_automountlocation_tofiles
     return $self->rpc_api('automountlocation_tofiles',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(version)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
     );
 }
 
@@ -1795,10 +1795,10 @@ sub api_automountmap_add
     return $self->rpc_api('automountmap_add',    
         [$automountlocationcn, $automountmapname],
         [qw(automountlocationcn automountmapname)],
-        [qw(unicode:0 unicode:0)],
+        [qw(unicode:0:1 unicode:0:1)],
         \%opts,
         [qw(description setattr addattr all raw version)],
-        [qw(unicode:0 unicode:1 unicode:1 bool:0 bool:0 unicode:0)],
+        [qw(unicode:0:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -1860,10 +1860,10 @@ sub api_automountmap_add_indirect
     return $self->rpc_api('automountmap_add_indirect',    
         [$automountlocationcn, $automountmapname],
         [qw(automountlocationcn automountmapname)],
-        [qw(unicode:0 unicode:0)],
+        [qw(unicode:0:1 unicode:0:1)],
         \%opts,
         [qw(description setattr addattr key parentmap all raw version)],
-        [qw(unicode:0 unicode:1 unicode:1 unicode:0 unicode:0 bool:0 bool:0 unicode:0)],
+        [qw(unicode:0:0 unicode:1:0 unicode:1:0 unicode:0:1 unicode:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -1911,10 +1911,10 @@ sub api_automountmap_del
     return $self->rpc_api('automountmap_del',    
         [$automountlocationcn, $automountmapname],
         [qw(automountlocationcn automountmapname)],
-        [qw(unicode:0 unicode:1)],
+        [qw(unicode:0:1 unicode:1:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool:0 unicode:0)],
+        [qw(bool:0:0 unicode:0:0)],
     );
 }
 
@@ -1974,10 +1974,10 @@ sub api_automountmap_find
     return $self->rpc_api('automountmap_find',    
         [$automountlocationcn, $criteria],
         [qw(automountlocationcn criteria)],
-        [qw(unicode:0 unicode:0)],
+        [qw(unicode:0:1 unicode:0:0)],
         \%opts,
         [qw(automountmapname description timelimit sizelimit all raw version pkey_only)],
-        [qw(unicode:0 unicode:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:0 unicode:0:0 int:0:0 int:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -2040,10 +2040,10 @@ sub api_automountmap_mod
     return $self->rpc_api('automountmap_mod',    
         [$automountlocationcn, $automountmapname],
         [qw(automountlocationcn automountmapname)],
-        [qw(unicode:0 unicode:0)],
+        [qw(unicode:0:1 unicode:0:1)],
         \%opts,
         [qw(description setattr addattr delattr rights all raw version)],
-        [qw(unicode:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0)],
+        [qw(unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -2095,10 +2095,10 @@ sub api_automountmap_show
     return $self->rpc_api('automountmap_show',    
         [$automountlocationcn, $automountmapname],
         [qw(automountlocationcn automountmapname)],
-        [qw(unicode:0 unicode:0)],
+        [qw(unicode:0:1 unicode:0:1)],
         \%opts,
         [qw(rights all raw version)],
-        [qw(bool:0 bool:0 bool:0 unicode:0)],
+        [qw(bool:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -2142,10 +2142,10 @@ sub api_batch
     return $self->rpc_api('batch',    
         [$methods],
         [qw(methods)],
-        [qw(object:1)],
+        [qw(object:1:0)],
         \%opts,
         [qw(version)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
     );
 }
 
@@ -2187,7 +2187,7 @@ sub api_ca_is_enabled
         [qw()],
         \%opts,
         [qw(version)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
     );
 }
 
@@ -2255,10 +2255,10 @@ sub api_caacl_add
     return $self->rpc_api('caacl_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(description ipaenabledflag ipacertprofilecategory usercategory hostcategory servicecategory setattr addattr all raw version no_members)],
-        [qw(unicode:0 bool:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:0 bool:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -2312,10 +2312,10 @@ sub api_caacl_add_host
     return $self->rpc_api('caacl_add_host',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members host hostgroup)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -2367,10 +2367,10 @@ sub api_caacl_add_profile
     return $self->rpc_api('caacl_add_profile',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members certprofile)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0)],
     );
 }
 
@@ -2422,10 +2422,10 @@ sub api_caacl_add_service
     return $self->rpc_api('caacl_add_service',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members service)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0)],
     );
 }
 
@@ -2479,10 +2479,10 @@ sub api_caacl_add_user
     return $self->rpc_api('caacl_add_user',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members user group)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -2528,10 +2528,10 @@ sub api_caacl_del
     return $self->rpc_api('caacl_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:1)],
+        [qw(unicode:1:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool:0 unicode:0)],
+        [qw(bool:0:0 unicode:0:0)],
     );
 }
 
@@ -2575,10 +2575,10 @@ sub api_caacl_disable
     return $self->rpc_api('caacl_disable',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(version)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
     );
 }
 
@@ -2622,10 +2622,10 @@ sub api_caacl_enable
     return $self->rpc_api('caacl_enable',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(version)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
     );
 }
 
@@ -2695,10 +2695,10 @@ sub api_caacl_find
     return $self->rpc_api('caacl_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
         \%opts,
         [qw(cn description ipaenabledflag ipacertprofilecategory usercategory hostcategory servicecategory timelimit sizelimit all raw version no_members pkey_only)],
-        [qw(unicode:0 unicode:0 bool:0 unicode:0 unicode:0 unicode:0 unicode:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0 bool:0)],
+        [qw(unicode:0:0 unicode:0:0 bool:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 int:0:0 int:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0 bool:0:0)],
     );
 }
 
@@ -2771,10 +2771,10 @@ sub api_caacl_mod
     return $self->rpc_api('caacl_mod',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(description ipaenabledflag ipacertprofilecategory usercategory hostcategory servicecategory setattr addattr delattr rights all raw version no_members)],
-        [qw(unicode:0 bool:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:0 bool:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -2828,10 +2828,10 @@ sub api_caacl_remove_host
     return $self->rpc_api('caacl_remove_host',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members host hostgroup)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -2883,10 +2883,10 @@ sub api_caacl_remove_profile
     return $self->rpc_api('caacl_remove_profile',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members certprofile)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0)],
     );
 }
 
@@ -2938,10 +2938,10 @@ sub api_caacl_remove_service
     return $self->rpc_api('caacl_remove_service',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members service)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0)],
     );
 }
 
@@ -2995,10 +2995,10 @@ sub api_caacl_remove_user
     return $self->rpc_api('caacl_remove_user',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members user group)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -3050,10 +3050,10 @@ sub api_caacl_show
     return $self->rpc_api('caacl_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(rights all raw version no_members)],
-        [qw(bool:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -3125,7 +3125,7 @@ sub api_cert_find
         [qw()],
         \%opts,
         [qw(subject revocation_reason min_serial_number max_serial_number exactly validnotafter_from validnotafter_to validnotbefore_from validnotbefore_to issuedon_from issuedon_to revokedon_from revokedon_to sizelimit all raw version)],
-        [qw(unicode:0 int:0 int:0 int:0 bool:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 int:0 bool:0 bool:0 unicode:0)],
+        [qw(unicode:0:0 int:0:0 int:0:0 int:0:0 bool:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 int:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -3169,10 +3169,10 @@ sub api_cert_remove_hold
     return $self->rpc_api('cert_remove_hold',    
         [$serial_number],
         [qw(serial_number)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(version)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
     );
 }
 
@@ -3224,10 +3224,10 @@ sub api_cert_request
     return $self->rpc_api('cert_request',    
         [$csr],
         [qw(csr)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(principal request_type add profile_id version)],
-        [qw(unicode:0 unicode:0 bool:0 unicode:0 unicode:0)],
+        [qw(unicode:0:1 unicode:0:0 bool:0:0 unicode:0:0 unicode:0:0)],
     );
 }
 
@@ -3273,10 +3273,10 @@ sub api_cert_revoke
     return $self->rpc_api('cert_revoke',    
         [$serial_number],
         [qw(serial_number)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(revocation_reason version)],
-        [qw(int:0 unicode:0)],
+        [qw(int:0:0 unicode:0:0)],
     );
 }
 
@@ -3322,10 +3322,10 @@ sub api_cert_show
     return $self->rpc_api('cert_show',    
         [$serial_number],
         [qw(serial_number)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(out version)],
-        [qw(unicode:0 unicode:0)],
+        [qw(unicode:0:0 unicode:0:0)],
     );
 }
 
@@ -3369,10 +3369,10 @@ sub api_cert_status
     return $self->rpc_api('cert_status',    
         [$request_id],
         [qw(request_id)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(version)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
     );
 }
 
@@ -3418,10 +3418,10 @@ sub api_certprofile_del
     return $self->rpc_api('certprofile_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:1)],
+        [qw(unicode:1:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool:0 unicode:0)],
+        [qw(bool:0:0 unicode:0:0)],
     );
 }
 
@@ -3481,10 +3481,10 @@ sub api_certprofile_find
     return $self->rpc_api('certprofile_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
         \%opts,
         [qw(cn description ipacertprofilestoreissued timelimit sizelimit all raw version pkey_only)],
-        [qw(unicode:0 unicode:0 bool:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:0 unicode:0:0 bool:0:0 int:0:0 int:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -3538,10 +3538,10 @@ sub api_certprofile_import
     return $self->rpc_api('certprofile_import',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(description ipacertprofilestoreissued file all raw version)],
-        [qw(unicode:0 bool:0 unicode:0 bool:0 bool:0 unicode:0)],
+        [qw(unicode:0:1 bool:0:1 unicode:0:1 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -3606,10 +3606,10 @@ sub api_certprofile_mod
     return $self->rpc_api('certprofile_mod',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(description ipacertprofilestoreissued setattr addattr delattr rights file all raw version)],
-        [qw(unicode:0 bool:0 unicode:1 unicode:1 unicode:1 bool:0 unicode:0 bool:0 bool:0 unicode:0)],
+        [qw(unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 unicode:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -3661,10 +3661,10 @@ sub api_certprofile_show
     return $self->rpc_api('certprofile_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(rights out all raw version)],
-        [qw(bool:0 unicode:0 bool:0 bool:0 unicode:0)],
+        [qw(bool:0:0 unicode:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -3704,7 +3704,7 @@ sub api_compat_is_enabled
         [qw()],
         \%opts,
         [qw(version)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
     );
 }
 
@@ -3795,7 +3795,7 @@ sub api_config_mod
         [qw()],
         \%opts,
         [qw(ipamaxusernamelength ipahomesrootdir ipadefaultloginshell ipadefaultprimarygroup ipadefaultemaildomain ipasearchtimelimit ipasearchrecordslimit ipausersearchfields ipagroupsearchfields ipamigrationenabled ipagroupobjectclasses ipauserobjectclasses ipapwdexpadvnotify ipaconfigstring ipaselinuxusermaporder ipaselinuxusermapdefault ipakrbauthzdata ipauserauthtype setattr addattr delattr rights all raw version)],
-        [qw(int:0 unicode:0 unicode:0 unicode:0 unicode:0 int:0 int:0 unicode:0 unicode:0 bool:0 unicode:1 unicode:1 int:0 unicode:1 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0)],
+        [qw(int:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 int:0:0 int:0:0 unicode:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0 int:0:0 unicode:1:0 unicode:0:0 unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -3841,7 +3841,7 @@ sub api_config_show
         [qw()],
         \%opts,
         [qw(rights all raw version)],
-        [qw(bool:0 bool:0 bool:0 unicode:0)],
+        [qw(bool:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -3899,10 +3899,10 @@ sub api_cosentry_add
     return $self->rpc_api('cosentry_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(krbpwdpolicyreference cospriority setattr addattr all raw version)],
-        [qw(DN:0 int:0 unicode:1 unicode:1 bool:0 bool:0 unicode:0)],
+        [qw(DN:0:1 int:0:1 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -3948,10 +3948,10 @@ sub api_cosentry_del
     return $self->rpc_api('cosentry_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:1)],
+        [qw(unicode:1:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool:0 unicode:0)],
+        [qw(bool:0:0 unicode:0:0)],
     );
 }
 
@@ -4011,10 +4011,10 @@ sub api_cosentry_find
     return $self->rpc_api('cosentry_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
         \%opts,
         [qw(cn krbpwdpolicyreference cospriority timelimit sizelimit all raw version pkey_only)],
-        [qw(unicode:0 DN:0 int:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:0 DN:0:0 int:0:0 int:0:0 int:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -4077,10 +4077,10 @@ sub api_cosentry_mod
     return $self->rpc_api('cosentry_mod',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(krbpwdpolicyreference cospriority setattr addattr delattr rights all raw version)],
-        [qw(DN:0 int:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0)],
+        [qw(DN:0:0 int:0:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -4130,10 +4130,10 @@ sub api_cosentry_show
     return $self->rpc_api('cosentry_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(rights all raw version)],
-        [qw(bool:0 bool:0 bool:0 unicode:0)],
+        [qw(bool:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -4189,10 +4189,10 @@ sub api_delegation_add
     return $self->rpc_api('delegation_add',    
         [$aciname],
         [qw(aciname)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(permissions attrs memberof group all raw version)],
-        [qw(unicode:1 unicode:1 unicode:0 unicode:0 bool:0 bool:0 unicode:0)],
+        [qw(unicode:1:0 unicode:1:1 unicode:0:1 unicode:0:1 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -4236,10 +4236,10 @@ sub api_delegation_del
     return $self->rpc_api('delegation_del',    
         [$aciname],
         [qw(aciname)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(version)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
     );
 }
 
@@ -4299,10 +4299,10 @@ sub api_delegation_find
     return $self->rpc_api('delegation_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
         \%opts,
         [qw(aciname permissions attrs memberof group pkey_only all raw version)],
-        [qw(unicode:0 unicode:1 unicode:1 unicode:0 unicode:0 bool:0 bool:0 bool:0 unicode:0)],
+        [qw(unicode:0:0 unicode:1:0 unicode:1:0 unicode:0:0 unicode:0:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -4358,10 +4358,10 @@ sub api_delegation_mod
     return $self->rpc_api('delegation_mod',    
         [$aciname],
         [qw(aciname)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(permissions attrs memberof group all raw version)],
-        [qw(unicode:1 unicode:1 unicode:0 unicode:0 bool:0 bool:0 unicode:0)],
+        [qw(unicode:1:0 unicode:1:0 unicode:0:0 unicode:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -4409,10 +4409,10 @@ sub api_delegation_show
     return $self->rpc_api('delegation_show',    
         [$aciname],
         [qw(aciname)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version)],
-        [qw(bool:0 bool:0 unicode:0)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -4454,7 +4454,7 @@ sub api_dns_is_enabled
         [qw()],
         \%opts,
         [qw(version)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
     );
 }
 
@@ -4498,10 +4498,10 @@ sub api_dns_resolve
     return $self->rpc_api('dns_resolve',    
         [$hostname],
         [qw(hostname)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(version)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
     );
 }
 
@@ -4564,7 +4564,7 @@ sub api_dnsconfig_mod
         [qw()],
         \%opts,
         [qw(idnsforwarders idnsforwardpolicy idnsallowsyncptr idnszonerefresh setattr addattr delattr rights all raw version)],
-        [qw(unicode:1 unicode:0 bool:0 object:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0)],
+        [qw(unicode:1:0 unicode:0:0 bool:0:0 object:0:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -4610,7 +4610,7 @@ sub api_dnsconfig_show
         [qw()],
         \%opts,
         [qw(rights all raw version)],
-        [qw(bool:0 bool:0 bool:0 unicode:0)],
+        [qw(bool:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -4670,10 +4670,10 @@ sub api_dnsforwardzone_add
     return $self->rpc_api('dnsforwardzone_add',    
         [$idnsname],
         [qw(idnsname)],
-        [qw(DNSName:0)],
+        [qw(DNSName:0:1)],
         \%opts,
         [qw(name_from_ip idnsforwarders idnsforwardpolicy setattr addattr all raw version)],
-        [qw(unicode:0 unicode:1 unicode:0 unicode:1 unicode:1 bool:0 bool:0 unicode:0)],
+        [qw(unicode:0:0 unicode:1:0 unicode:0:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -4717,10 +4717,10 @@ sub api_dnsforwardzone_add_permission
     return $self->rpc_api('dnsforwardzone_add_permission',    
         [$idnsname],
         [qw(idnsname)],
-        [qw(DNSName:0)],
+        [qw(DNSName:0:1)],
         \%opts,
         [qw(version)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
     );
 }
 
@@ -4766,10 +4766,10 @@ sub api_dnsforwardzone_del
     return $self->rpc_api('dnsforwardzone_del',    
         [$idnsname],
         [qw(idnsname)],
-        [qw(DNSName:1)],
+        [qw(DNSName:1:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool:0 unicode:0)],
+        [qw(bool:0:0 unicode:0:0)],
     );
 }
 
@@ -4813,10 +4813,10 @@ sub api_dnsforwardzone_disable
     return $self->rpc_api('dnsforwardzone_disable',    
         [$idnsname],
         [qw(idnsname)],
-        [qw(DNSName:0)],
+        [qw(DNSName:0:1)],
         \%opts,
         [qw(version)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
     );
 }
 
@@ -4860,10 +4860,10 @@ sub api_dnsforwardzone_enable
     return $self->rpc_api('dnsforwardzone_enable',    
         [$idnsname],
         [qw(idnsname)],
-        [qw(DNSName:0)],
+        [qw(DNSName:0:1)],
         \%opts,
         [qw(version)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
     );
 }
 
@@ -4927,10 +4927,10 @@ sub api_dnsforwardzone_find
     return $self->rpc_api('dnsforwardzone_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
         \%opts,
         [qw(idnsname name_from_ip idnszoneactive idnsforwarders idnsforwardpolicy timelimit sizelimit all raw version pkey_only)],
-        [qw(DNSName:0 unicode:0 bool:0 unicode:1 unicode:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(DNSName:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:0:0 int:0:0 int:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -4995,10 +4995,10 @@ sub api_dnsforwardzone_mod
     return $self->rpc_api('dnsforwardzone_mod',    
         [$idnsname],
         [qw(idnsname)],
-        [qw(DNSName:0)],
+        [qw(DNSName:0:1)],
         \%opts,
         [qw(name_from_ip idnsforwarders idnsforwardpolicy setattr addattr delattr rights all raw version)],
-        [qw(unicode:0 unicode:1 unicode:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0)],
+        [qw(unicode:0:0 unicode:1:0 unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -5042,10 +5042,10 @@ sub api_dnsforwardzone_remove_permission
     return $self->rpc_api('dnsforwardzone_remove_permission',    
         [$idnsname],
         [qw(idnsname)],
-        [qw(DNSName:0)],
+        [qw(DNSName:0:1)],
         \%opts,
         [qw(version)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
     );
 }
 
@@ -5095,10 +5095,10 @@ sub api_dnsforwardzone_show
     return $self->rpc_api('dnsforwardzone_show',    
         [$idnsname],
         [qw(idnsname)],
-        [qw(DNSName:0)],
+        [qw(DNSName:0:1)],
         \%opts,
         [qw(rights all raw version)],
-        [qw(bool:0 bool:0 bool:0 unicode:0)],
+        [qw(bool:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -5334,10 +5334,10 @@ sub api_dnsrecord_add
     return $self->rpc_api('dnsrecord_add',    
         [$dnszoneidnsname, $idnsname],
         [qw(dnszoneidnsname idnsname)],
-        [qw(DNSName:0 DNSName:0)],
+        [qw(DNSName:0:1 DNSName:0:1)],
         \%opts,
         [qw(dnsttl dnsclass arecord a_part_ip_address a_extra_create_reverse aaaarecord aaaa_part_ip_address aaaa_extra_create_reverse a6record a6_part_data afsdbrecord afsdb_part_subtype afsdb_part_hostname aplrecord certrecord cert_part_type cert_part_key_tag cert_part_algorithm cert_part_certificate_or_crl cnamerecord cname_part_hostname dhcidrecord dlvrecord dlv_part_key_tag dlv_part_algorithm dlv_part_digest_type dlv_part_digest dnamerecord dname_part_target dsrecord ds_part_key_tag ds_part_algorithm ds_part_digest_type ds_part_digest hiprecord ipseckeyrecord keyrecord kxrecord kx_part_preference kx_part_exchanger locrecord loc_part_lat_deg loc_part_lat_min loc_part_lat_sec loc_part_lat_dir loc_part_lon_deg loc_part_lon_min loc_part_lon_sec loc_part_lon_dir loc_part_altitude loc_part_size loc_part_h_precision loc_part_v_precision mxrecord mx_part_preference mx_part_exchanger naptrrecord naptr_part_order naptr_part_preference naptr_part_flags naptr_part_service naptr_part_regexp naptr_part_replacement nsrecord ns_part_hostname nsecrecord ptrrecord ptr_part_hostname rrsigrecord rprecord sigrecord spfrecord srvrecord srv_part_priority srv_part_weight srv_part_port srv_part_target sshfprecord sshfp_part_algorithm sshfp_part_fp_type sshfp_part_fingerprint tlsarecord tlsa_part_cert_usage tlsa_part_selector tlsa_part_matching_type tlsa_part_cert_association_data txtrecord txt_part_data setattr addattr force structured all raw version)],
-        [qw(int:0 unicode:0 unicode:1 unicode:0 bool:0 unicode:1 unicode:0 bool:0 unicode:1 unicode:0 unicode:1 int:0 DNSName:0 unicode:1 unicode:1 int:0 int:0 int:0 unicode:0 unicode:1 DNSName:0 unicode:1 unicode:1 int:0 int:0 int:0 unicode:0 unicode:1 DNSName:0 unicode:1 int:0 int:0 int:0 unicode:0 unicode:1 unicode:1 unicode:1 unicode:1 int:0 DNSName:0 unicode:1 int:0 int:0 Decimal:0 unicode:0 int:0 int:0 Decimal:0 unicode:0 Decimal:0 Decimal:0 Decimal:0 Decimal:0 unicode:1 int:0 DNSName:0 unicode:1 int:0 int:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:1 DNSName:0 unicode:1 unicode:1 DNSName:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 int:0 int:0 int:0 DNSName:0 unicode:1 int:0 int:0 unicode:0 unicode:1 int:0 int:0 int:0 unicode:0 unicode:1 unicode:0 unicode:1 unicode:1 bool:0 bool:0 bool:0 bool:0 unicode:0)],
+        [qw(int:0:0 unicode:0:0 unicode:1:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:0:0 unicode:1:0 int:0:0 DNSName:0:0 unicode:1:0 unicode:1:0 int:0:0 int:0:0 int:0:0 unicode:0:0 unicode:1:0 DNSName:0:0 unicode:1:0 unicode:1:0 int:0:0 int:0:0 int:0:0 unicode:0:0 unicode:1:0 DNSName:0:0 unicode:1:0 int:0:0 int:0:0 int:0:0 unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 int:0:0 DNSName:0:0 unicode:1:0 int:0:0 int:0:0 Decimal:0:0 unicode:0:0 int:0:0 int:0:0 Decimal:0:0 unicode:0:0 Decimal:0:0 Decimal:0:0 Decimal:0:0 Decimal:0:0 unicode:1:0 int:0:0 DNSName:0:0 unicode:1:0 int:0:0 int:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:1:0 DNSName:0:0 unicode:1:0 unicode:1:0 DNSName:0:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 int:0:0 int:0:0 int:0:0 DNSName:0:0 unicode:1:0 int:0:0 int:0:0 unicode:0:0 unicode:1:0 int:0:0 int:0:0 int:0:0 unicode:0:0 unicode:1:0 unicode:0:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -5449,10 +5449,10 @@ sub api_dnsrecord_del
     return $self->rpc_api('dnsrecord_del',    
         [$dnszoneidnsname, $idnsname],
         [qw(dnszoneidnsname idnsname)],
-        [qw(DNSName:0 DNSName:0)],
+        [qw(DNSName:0:1 DNSName:0:1)],
         \%opts,
         [qw(dnsttl dnsclass arecord aaaarecord a6record afsdbrecord aplrecord certrecord cnamerecord dhcidrecord dlvrecord dnamerecord dsrecord hiprecord ipseckeyrecord keyrecord kxrecord locrecord mxrecord naptrrecord nsrecord nsecrecord ptrrecord rrsigrecord rprecord sigrecord spfrecord srvrecord sshfprecord tlsarecord txtrecord del_all structured version)],
-        [qw(int:0 unicode:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 bool:0 bool:0 unicode:0)],
+        [qw(int:0:0 unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -5502,10 +5502,10 @@ sub api_dnsrecord_delentry
     return $self->rpc_api('dnsrecord_delentry',    
         [$dnszoneidnsname, $idnsname],
         [qw(dnszoneidnsname idnsname)],
-        [qw(DNSName:0 DNSName:1)],
+        [qw(DNSName:0:1 DNSName:1:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool:0 unicode:0)],
+        [qw(bool:0:0 unicode:0:0)],
     );
 }
 
@@ -5627,10 +5627,10 @@ sub api_dnsrecord_find
     return $self->rpc_api('dnsrecord_find',    
         [$dnszoneidnsname, $criteria],
         [qw(dnszoneidnsname criteria)],
-        [qw(DNSName:0 unicode:0)],
+        [qw(DNSName:0:1 unicode:0:0)],
         \%opts,
         [qw(idnsname dnsttl dnsclass arecord aaaarecord a6record afsdbrecord aplrecord certrecord cnamerecord dhcidrecord dlvrecord dnamerecord dsrecord hiprecord ipseckeyrecord keyrecord kxrecord locrecord mxrecord naptrrecord nsrecord nsecrecord ptrrecord rrsigrecord rprecord sigrecord spfrecord srvrecord sshfprecord tlsarecord txtrecord timelimit sizelimit structured all raw version pkey_only)],
-        [qw(DNSName:0 int:0 unicode:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 int:0 int:0 bool:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(DNSName:0:0 int:0:0 unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 int:0:0 int:0:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -5867,10 +5867,10 @@ sub api_dnsrecord_mod
     return $self->rpc_api('dnsrecord_mod',    
         [$dnszoneidnsname, $idnsname],
         [qw(dnszoneidnsname idnsname)],
-        [qw(DNSName:0 DNSName:0)],
+        [qw(DNSName:0:1 DNSName:0:1)],
         \%opts,
         [qw(dnsttl dnsclass arecord a_part_ip_address aaaarecord aaaa_part_ip_address a6record a6_part_data afsdbrecord afsdb_part_subtype afsdb_part_hostname aplrecord certrecord cert_part_type cert_part_key_tag cert_part_algorithm cert_part_certificate_or_crl cnamerecord cname_part_hostname dhcidrecord dlvrecord dlv_part_key_tag dlv_part_algorithm dlv_part_digest_type dlv_part_digest dnamerecord dname_part_target dsrecord ds_part_key_tag ds_part_algorithm ds_part_digest_type ds_part_digest hiprecord ipseckeyrecord keyrecord kxrecord kx_part_preference kx_part_exchanger locrecord loc_part_lat_deg loc_part_lat_min loc_part_lat_sec loc_part_lat_dir loc_part_lon_deg loc_part_lon_min loc_part_lon_sec loc_part_lon_dir loc_part_altitude loc_part_size loc_part_h_precision loc_part_v_precision mxrecord mx_part_preference mx_part_exchanger naptrrecord naptr_part_order naptr_part_preference naptr_part_flags naptr_part_service naptr_part_regexp naptr_part_replacement nsrecord ns_part_hostname nsecrecord ptrrecord ptr_part_hostname rrsigrecord rprecord sigrecord spfrecord srvrecord srv_part_priority srv_part_weight srv_part_port srv_part_target sshfprecord sshfp_part_algorithm sshfp_part_fp_type sshfp_part_fingerprint tlsarecord tlsa_part_cert_usage tlsa_part_selector tlsa_part_matching_type tlsa_part_cert_association_data txtrecord txt_part_data setattr addattr delattr rights structured all raw version rename)],
-        [qw(int:0 unicode:0 unicode:1 unicode:0 unicode:1 unicode:0 unicode:1 unicode:0 unicode:1 int:0 DNSName:0 unicode:1 unicode:1 int:0 int:0 int:0 unicode:0 unicode:1 DNSName:0 unicode:1 unicode:1 int:0 int:0 int:0 unicode:0 unicode:1 DNSName:0 unicode:1 int:0 int:0 int:0 unicode:0 unicode:1 unicode:1 unicode:1 unicode:1 int:0 DNSName:0 unicode:1 int:0 int:0 Decimal:0 unicode:0 int:0 int:0 Decimal:0 unicode:0 Decimal:0 Decimal:0 Decimal:0 Decimal:0 unicode:1 int:0 DNSName:0 unicode:1 int:0 int:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:1 DNSName:0 unicode:1 unicode:1 DNSName:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 int:0 int:0 int:0 DNSName:0 unicode:1 int:0 int:0 unicode:0 unicode:1 int:0 int:0 int:0 unicode:0 unicode:1 unicode:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 bool:0 unicode:0 DNSName:0)],
+        [qw(int:0:0 unicode:0:0 unicode:1:0 unicode:0:0 unicode:1:0 unicode:0:0 unicode:1:0 unicode:0:0 unicode:1:0 int:0:0 DNSName:0:0 unicode:1:0 unicode:1:0 int:0:0 int:0:0 int:0:0 unicode:0:0 unicode:1:0 DNSName:0:0 unicode:1:0 unicode:1:0 int:0:0 int:0:0 int:0:0 unicode:0:0 unicode:1:0 DNSName:0:0 unicode:1:0 int:0:0 int:0:0 int:0:0 unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 int:0:0 DNSName:0:0 unicode:1:0 int:0:0 int:0:0 Decimal:0:0 unicode:0:0 int:0:0 int:0:0 Decimal:0:0 unicode:0:0 Decimal:0:0 Decimal:0:0 Decimal:0:0 Decimal:0:0 unicode:1:0 int:0:0 DNSName:0:0 unicode:1:0 int:0:0 int:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:1:0 DNSName:0:0 unicode:1:0 unicode:1:0 DNSName:0:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 int:0:0 int:0:0 int:0:0 DNSName:0:0 unicode:1:0 int:0:0 int:0:0 unicode:0:0 unicode:1:0 int:0:0 int:0:0 int:0:0 unicode:0:0 unicode:1:0 unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0 DNSName:0:0)],
     );
 }
 
@@ -5924,10 +5924,10 @@ sub api_dnsrecord_show
     return $self->rpc_api('dnsrecord_show',    
         [$dnszoneidnsname, $idnsname],
         [qw(dnszoneidnsname idnsname)],
-        [qw(DNSName:0 DNSName:0)],
+        [qw(DNSName:0:1 DNSName:0:1)],
         \%opts,
         [qw(rights structured all raw version)],
-        [qw(bool:0 bool:0 bool:0 bool:0 unicode:0)],
+        [qw(bool:0:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -6023,10 +6023,10 @@ sub api_dnszone_add
     return $self->rpc_api('dnszone_add',    
         [$idnsname],
         [qw(idnsname)],
-        [qw(DNSName:0)],
+        [qw(DNSName:0:1)],
         \%opts,
         [qw(name_from_ip idnsforwarders idnsforwardpolicy idnssoamname idnssoarname idnssoaserial idnssoarefresh idnssoaretry idnssoaexpire idnssoaminimum dnsttl dnsclass idnsupdatepolicy idnsallowdynupdate idnsallowquery idnsallowtransfer idnsallowsyncptr idnssecinlinesigning nsec3paramrecord setattr addattr force ip_address all raw version)],
-        [qw(unicode:0 unicode:1 unicode:0 DNSName:0 DNSName:0 int:0 int:0 int:0 int:0 int:0 int:0 unicode:0 unicode:0 bool:0 unicode:0 unicode:0 bool:0 bool:0 unicode:0 unicode:1 unicode:1 bool:0 unicode:0 bool:0 bool:0 unicode:0)],
+        [qw(unicode:0:0 unicode:1:0 unicode:0:0 DNSName:0:0 DNSName:0:0 int:0:0 int:0:0 int:0:0 int:0:0 int:0:0 int:0:0 unicode:0:0 unicode:0:0 bool:0:0 unicode:0:0 unicode:0:0 bool:0:0 bool:0:0 unicode:0:0 unicode:1:0 unicode:1:0 bool:0:0 unicode:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -6070,10 +6070,10 @@ sub api_dnszone_add_permission
     return $self->rpc_api('dnszone_add_permission',    
         [$idnsname],
         [qw(idnsname)],
-        [qw(DNSName:0)],
+        [qw(DNSName:0:1)],
         \%opts,
         [qw(version)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
     );
 }
 
@@ -6119,10 +6119,10 @@ sub api_dnszone_del
     return $self->rpc_api('dnszone_del',    
         [$idnsname],
         [qw(idnsname)],
-        [qw(DNSName:1)],
+        [qw(DNSName:1:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool:0 unicode:0)],
+        [qw(bool:0:0 unicode:0:0)],
     );
 }
 
@@ -6166,10 +6166,10 @@ sub api_dnszone_disable
     return $self->rpc_api('dnszone_disable',    
         [$idnsname],
         [qw(idnsname)],
-        [qw(DNSName:0)],
+        [qw(DNSName:0:1)],
         \%opts,
         [qw(version)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
     );
 }
 
@@ -6213,10 +6213,10 @@ sub api_dnszone_enable
     return $self->rpc_api('dnszone_enable',    
         [$idnsname],
         [qw(idnsname)],
-        [qw(DNSName:0)],
+        [qw(DNSName:0:1)],
         \%opts,
         [qw(version)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
     );
 }
 
@@ -6314,10 +6314,10 @@ sub api_dnszone_find
     return $self->rpc_api('dnszone_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
         \%opts,
         [qw(idnsname name_from_ip idnszoneactive idnsforwarders idnsforwardpolicy idnssoamname idnssoarname idnssoaserial idnssoarefresh idnssoaretry idnssoaexpire idnssoaminimum dnsttl dnsclass idnsupdatepolicy idnsallowdynupdate idnsallowquery idnsallowtransfer idnsallowsyncptr idnssecinlinesigning nsec3paramrecord timelimit sizelimit forward_only all raw version pkey_only)],
-        [qw(DNSName:0 unicode:0 bool:0 unicode:1 unicode:0 DNSName:0 DNSName:0 int:0 int:0 int:0 int:0 int:0 int:0 unicode:0 unicode:0 bool:0 unicode:0 unicode:0 bool:0 bool:0 unicode:0 int:0 int:0 bool:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(DNSName:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:0:0 DNSName:0:0 DNSName:0:0 int:0:0 int:0:0 int:0:0 int:0:0 int:0:0 int:0:0 unicode:0:0 unicode:0:0 bool:0:0 unicode:0:0 unicode:0:0 bool:0:0 bool:0:0 unicode:0:0 int:0:0 int:0:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -6416,10 +6416,10 @@ sub api_dnszone_mod
     return $self->rpc_api('dnszone_mod',    
         [$idnsname],
         [qw(idnsname)],
-        [qw(DNSName:0)],
+        [qw(DNSName:0:1)],
         \%opts,
         [qw(name_from_ip idnsforwarders idnsforwardpolicy idnssoamname idnssoarname idnssoaserial idnssoarefresh idnssoaretry idnssoaexpire idnssoaminimum dnsttl dnsclass idnsupdatepolicy idnsallowdynupdate idnsallowquery idnsallowtransfer idnsallowsyncptr idnssecinlinesigning nsec3paramrecord setattr addattr delattr rights force all raw version)],
-        [qw(unicode:0 unicode:1 unicode:0 DNSName:0 DNSName:0 int:0 int:0 int:0 int:0 int:0 int:0 unicode:0 unicode:0 bool:0 unicode:0 unicode:0 bool:0 bool:0 unicode:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 bool:0 unicode:0)],
+        [qw(unicode:0:0 unicode:1:0 unicode:0:0 DNSName:0:0 DNSName:0:0 int:0:0 int:0:0 int:0:0 int:0:0 int:0:0 int:0:0 unicode:0:0 unicode:0:0 bool:0:0 unicode:0:0 unicode:0:0 bool:0:0 bool:0:0 unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -6463,10 +6463,10 @@ sub api_dnszone_remove_permission
     return $self->rpc_api('dnszone_remove_permission',    
         [$idnsname],
         [qw(idnsname)],
-        [qw(DNSName:0)],
+        [qw(DNSName:0:1)],
         \%opts,
         [qw(version)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
     );
 }
 
@@ -6516,10 +6516,10 @@ sub api_dnszone_show
     return $self->rpc_api('dnszone_show',    
         [$idnsname],
         [qw(idnsname)],
-        [qw(DNSName:0)],
+        [qw(DNSName:0:1)],
         \%opts,
         [qw(rights all raw version)],
-        [qw(bool:0 bool:0 bool:0 unicode:0)],
+        [qw(bool:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -6559,7 +6559,7 @@ sub api_domainlevel_get
         [qw()],
         \%opts,
         [qw(version)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
     );
 }
 
@@ -6603,10 +6603,10 @@ sub api_domainlevel_set
     return $self->rpc_api('domainlevel_set',    
         [$ipadomainlevel],
         [qw(ipadomainlevel)],
-        [qw(int:0)],
+        [qw(int:0:1)],
         \%opts,
         [qw(version)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
     );
 }
 
@@ -6654,10 +6654,10 @@ sub api_env
     return $self->rpc_api('env',    
         [$variables],
         [qw(variables)],
-        [qw(unknown:0)],
+        [qw(unknown:0:0)],
         \%opts,
         [qw(server all version)],
-        [qw(bool:0 bool:0 unicode:0)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -6721,10 +6721,10 @@ sub api_group_add
     return $self->rpc_api('group_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(description gidnumber setattr addattr nonposix external all raw version no_members)],
-        [qw(unicode:0 int:0 unicode:1 unicode:1 bool:0 bool:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:0 int:0:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -6780,10 +6780,10 @@ sub api_group_add_member
     return $self->rpc_api('group_add_member',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(ipaexternalmember all raw version no_members user group)],
-        [qw(unicode:1 bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
+        [qw(unicode:1:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -6829,10 +6829,10 @@ sub api_group_del
     return $self->rpc_api('group_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:1)],
+        [qw(unicode:1:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool:0 unicode:0)],
+        [qw(bool:0:0 unicode:0:0)],
     );
 }
 
@@ -6876,10 +6876,10 @@ sub api_group_detach
     return $self->rpc_api('group_detach',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(version)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
     );
 }
 
@@ -6977,10 +6977,10 @@ sub api_group_find
     return $self->rpc_api('group_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
         \%opts,
         [qw(cn description gidnumber timelimit sizelimit private posix external nonposix all raw version no_members pkey_only user no_user group no_group in_group not_in_group in_netgroup not_in_netgroup in_role not_in_role in_hbacrule not_in_hbacrule in_sudorule not_in_sudorule)],
-        [qw(unicode:0 unicode:0 int:0 int:0 int:0 bool:0 bool:0 bool:0 bool:0 bool:0 bool:0 unicode:0 bool:0 bool:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1)],
+        [qw(unicode:0:0 unicode:0:0 int:0:0 int:0:0 int:0:0 bool:0:0 bool:0:0 bool:0:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0 bool:0:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -7051,10 +7051,10 @@ sub api_group_mod
     return $self->rpc_api('group_mod',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(description gidnumber setattr addattr delattr rights posix external all raw version no_members rename)],
-        [qw(unicode:0 int:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 bool:0 bool:0 unicode:0 bool:0 unicode:0)],
+        [qw(unicode:0:0 int:0:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -7110,10 +7110,10 @@ sub api_group_remove_member
     return $self->rpc_api('group_remove_member',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(ipaexternalmember all raw version no_members user group)],
-        [qw(unicode:1 bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
+        [qw(unicode:1:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -7165,10 +7165,10 @@ sub api_group_show
     return $self->rpc_api('group_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(rights all raw version no_members)],
-        [qw(bool:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -7244,10 +7244,10 @@ sub api_hbacrule_add
     return $self->rpc_api('hbacrule_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(accessruletype usercategory hostcategory sourcehostcategory servicecategory description ipaenabledflag sourcehost_host sourcehost_hostgroup externalhost setattr addattr all raw version no_members)],
-        [qw(unicode:0 unicode:0 unicode:0 object:0 unicode:0 unicode:0 bool:0 object:0 object:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:0 unicode:0:0 unicode:0:0 object:0:0 unicode:0:0 unicode:0:0 bool:0:0 object:0:0 object:0:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -7301,10 +7301,10 @@ sub api_hbacrule_add_host
     return $self->rpc_api('hbacrule_add_host',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members host hostgroup)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -7358,10 +7358,10 @@ sub api_hbacrule_add_service
     return $self->rpc_api('hbacrule_add_service',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members hbacsvc hbacsvcgroup)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -7415,10 +7415,10 @@ sub api_hbacrule_add_sourcehost
     return $self->rpc_api('hbacrule_add_sourcehost',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members host hostgroup)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -7472,10 +7472,10 @@ sub api_hbacrule_add_user
     return $self->rpc_api('hbacrule_add_user',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members user group)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -7521,10 +7521,10 @@ sub api_hbacrule_del
     return $self->rpc_api('hbacrule_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:1)],
+        [qw(unicode:1:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool:0 unicode:0)],
+        [qw(bool:0:0 unicode:0:0)],
     );
 }
 
@@ -7568,10 +7568,10 @@ sub api_hbacrule_disable
     return $self->rpc_api('hbacrule_disable',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(version)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
     );
 }
 
@@ -7615,10 +7615,10 @@ sub api_hbacrule_enable
     return $self->rpc_api('hbacrule_enable',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(version)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
     );
 }
 
@@ -7696,10 +7696,10 @@ sub api_hbacrule_find
     return $self->rpc_api('hbacrule_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
         \%opts,
         [qw(cn accessruletype usercategory hostcategory sourcehostcategory servicecategory description ipaenabledflag sourcehost_host sourcehost_hostgroup externalhost timelimit sizelimit all raw version no_members pkey_only)],
-        [qw(unicode:0 unicode:0 unicode:0 unicode:0 object:0 unicode:0 unicode:0 bool:0 object:0 object:0 unicode:1 int:0 int:0 bool:0 bool:0 unicode:0 bool:0 bool:0)],
+        [qw(unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 object:0:0 unicode:0:0 unicode:0:0 bool:0:0 object:0:0 object:0:0 unicode:1:0 int:0:0 int:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0 bool:0:0)],
     );
 }
 
@@ -7780,10 +7780,10 @@ sub api_hbacrule_mod
     return $self->rpc_api('hbacrule_mod',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(accessruletype usercategory hostcategory sourcehostcategory servicecategory description ipaenabledflag sourcehost_host sourcehost_hostgroup externalhost setattr addattr delattr rights all raw version no_members)],
-        [qw(unicode:0 unicode:0 unicode:0 object:0 unicode:0 unicode:0 bool:0 object:0 object:0 unicode:1 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:0 unicode:0:0 unicode:0:0 object:0:0 unicode:0:0 unicode:0:0 bool:0:0 object:0:0 object:0:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -7837,10 +7837,10 @@ sub api_hbacrule_remove_host
     return $self->rpc_api('hbacrule_remove_host',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members host hostgroup)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -7894,10 +7894,10 @@ sub api_hbacrule_remove_service
     return $self->rpc_api('hbacrule_remove_service',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members hbacsvc hbacsvcgroup)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -7951,10 +7951,10 @@ sub api_hbacrule_remove_sourcehost
     return $self->rpc_api('hbacrule_remove_sourcehost',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members host hostgroup)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -8008,10 +8008,10 @@ sub api_hbacrule_remove_user
     return $self->rpc_api('hbacrule_remove_user',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members user group)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -8063,10 +8063,10 @@ sub api_hbacrule_show
     return $self->rpc_api('hbacrule_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(rights all raw version no_members)],
-        [qw(bool:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -8124,10 +8124,10 @@ sub api_hbacsvc_add
     return $self->rpc_api('hbacsvc_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(description setattr addattr all raw version no_members)],
-        [qw(unicode:0 unicode:1 unicode:1 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -8173,10 +8173,10 @@ sub api_hbacsvc_del
     return $self->rpc_api('hbacsvc_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:1)],
+        [qw(unicode:1:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool:0 unicode:0)],
+        [qw(bool:0:0 unicode:0:0)],
     );
 }
 
@@ -8236,10 +8236,10 @@ sub api_hbacsvc_find
     return $self->rpc_api('hbacsvc_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
         \%opts,
         [qw(cn description timelimit sizelimit all raw version no_members pkey_only)],
-        [qw(unicode:0 unicode:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0 bool:0)],
+        [qw(unicode:0:0 unicode:0:0 int:0:0 int:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0 bool:0:0)],
     );
 }
 
@@ -8302,10 +8302,10 @@ sub api_hbacsvc_mod
     return $self->rpc_api('hbacsvc_mod',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(description setattr addattr delattr rights all raw version no_members)],
-        [qw(unicode:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -8357,10 +8357,10 @@ sub api_hbacsvc_show
     return $self->rpc_api('hbacsvc_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(rights all raw version no_members)],
-        [qw(bool:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -8418,10 +8418,10 @@ sub api_hbacsvcgroup_add
     return $self->rpc_api('hbacsvcgroup_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(description setattr addattr all raw version no_members)],
-        [qw(unicode:0 unicode:1 unicode:1 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -8473,10 +8473,10 @@ sub api_hbacsvcgroup_add_member
     return $self->rpc_api('hbacsvcgroup_add_member',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members hbacsvc)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0)],
     );
 }
 
@@ -8522,10 +8522,10 @@ sub api_hbacsvcgroup_del
     return $self->rpc_api('hbacsvcgroup_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:1)],
+        [qw(unicode:1:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool:0 unicode:0)],
+        [qw(bool:0:0 unicode:0:0)],
     );
 }
 
@@ -8585,10 +8585,10 @@ sub api_hbacsvcgroup_find
     return $self->rpc_api('hbacsvcgroup_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
         \%opts,
         [qw(cn description timelimit sizelimit all raw version no_members pkey_only)],
-        [qw(unicode:0 unicode:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0 bool:0)],
+        [qw(unicode:0:0 unicode:0:0 int:0:0 int:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0 bool:0:0)],
     );
 }
 
@@ -8651,10 +8651,10 @@ sub api_hbacsvcgroup_mod
     return $self->rpc_api('hbacsvcgroup_mod',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(description setattr addattr delattr rights all raw version no_members)],
-        [qw(unicode:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -8706,10 +8706,10 @@ sub api_hbacsvcgroup_remove_member
     return $self->rpc_api('hbacsvcgroup_remove_member',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members hbacsvc)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0)],
     );
 }
 
@@ -8761,10 +8761,10 @@ sub api_hbacsvcgroup_show
     return $self->rpc_api('hbacsvcgroup_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(rights all raw version no_members)],
-        [qw(bool:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -8822,7 +8822,7 @@ sub api_hbactest
         [qw()],
         \%opts,
         [qw(user sourcehost targethost service rules nodetail enabled disabled sizelimit version)],
-        [qw(unicode:0 object:0 unicode:0 unicode:0 unicode:1 bool:0 bool:0 bool:0 int:0 unicode:0)],
+        [qw(unicode:0:1 object:0:0 unicode:0:1 unicode:0:1 unicode:1:0 bool:0:0 bool:0:0 bool:0:0 int:0:0 unicode:0:0)],
     );
 }
 
@@ -8912,10 +8912,10 @@ sub api_host_add
     return $self->rpc_api('host_add',    
         [$fqdn],
         [qw(fqdn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(description l nshostlocation nshardwareplatform nsosversion userpassword random usercertificate macaddress ipasshpubkey userclass ipaassignedidview ipakrbrequirespreauth ipakrbokasdelegate setattr addattr force no_reverse ip_address all raw version no_members)],
-        [qw(unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 bool:0 str:1 unicode:1 unicode:1 unicode:1 unicode:0 bool:0 bool:0 unicode:1 unicode:1 bool:0 bool:0 unicode:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 bool:0:0 str:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:0:0 bool:0:0 bool:0:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -8967,10 +8967,10 @@ sub api_host_add_cert
     return $self->rpc_api('host_add_cert',    
         [$fqdn],
         [qw(fqdn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members usercertificate)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 str:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 str:1:0)],
     );
 }
 
@@ -9022,10 +9022,10 @@ sub api_host_add_managedby
     return $self->rpc_api('host_add_managedby',    
         [$fqdn],
         [qw(fqdn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members host)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0)],
     );
 }
 
@@ -9083,10 +9083,10 @@ sub api_host_allow_create_keytab
     return $self->rpc_api('host_allow_create_keytab',    
         [$fqdn],
         [qw(fqdn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members user group host hostgroup)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1 unicode:1 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -9144,10 +9144,10 @@ sub api_host_allow_retrieve_keytab
     return $self->rpc_api('host_allow_retrieve_keytab',    
         [$fqdn],
         [qw(fqdn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members user group host hostgroup)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1 unicode:1 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -9195,10 +9195,10 @@ sub api_host_del
     return $self->rpc_api('host_del',    
         [$fqdn],
         [qw(fqdn)],
-        [qw(unicode:1)],
+        [qw(unicode:1:1)],
         \%opts,
         [qw(continue updatedns version)],
-        [qw(bool:0 bool:0 unicode:0)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -9242,10 +9242,10 @@ sub api_host_disable
     return $self->rpc_api('host_disable',    
         [$fqdn],
         [qw(fqdn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(version)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
     );
 }
 
@@ -9303,10 +9303,10 @@ sub api_host_disallow_create_keytab
     return $self->rpc_api('host_disallow_create_keytab',    
         [$fqdn],
         [qw(fqdn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members user group host hostgroup)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1 unicode:1 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -9364,10 +9364,10 @@ sub api_host_disallow_retrieve_keytab
     return $self->rpc_api('host_disallow_retrieve_keytab',    
         [$fqdn],
         [qw(fqdn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members user group host hostgroup)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1 unicode:1 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -9477,10 +9477,10 @@ sub api_host_find
     return $self->rpc_api('host_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
         \%opts,
         [qw(fqdn description l nshostlocation nshardwareplatform nsosversion userpassword usercertificate macaddress userclass ipaassignedidview timelimit sizelimit all raw version no_members pkey_only in_hostgroup not_in_hostgroup in_netgroup not_in_netgroup in_role not_in_role in_hbacrule not_in_hbacrule in_sudorule not_in_sudorule enroll_by_user not_enroll_by_user man_by_host not_man_by_host man_host not_man_host)],
-        [qw(unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 str:1 unicode:1 unicode:1 unicode:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0 bool:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1)],
+        [qw(unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 str:1:0 unicode:1:0 unicode:1:0 unicode:0:0 int:0:0 int:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0 bool:0:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -9573,10 +9573,10 @@ sub api_host_mod
     return $self->rpc_api('host_mod',    
         [$fqdn],
         [qw(fqdn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(description l nshostlocation nshardwareplatform nsosversion userpassword random usercertificate macaddress ipasshpubkey userclass ipaassignedidview ipakrbrequirespreauth ipakrbokasdelegate setattr addattr delattr rights krbprincipalname updatedns all raw version no_members)],
-        [qw(unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 bool:0 str:1 unicode:1 unicode:1 unicode:1 unicode:0 bool:0 bool:0 unicode:1 unicode:1 unicode:1 bool:0 unicode:0 bool:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 bool:0:0 str:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:0:0 bool:0:0 bool:0:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 unicode:0:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -9628,10 +9628,10 @@ sub api_host_remove_cert
     return $self->rpc_api('host_remove_cert',    
         [$fqdn],
         [qw(fqdn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members usercertificate)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 str:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 str:1:0)],
     );
 }
 
@@ -9683,10 +9683,10 @@ sub api_host_remove_managedby
     return $self->rpc_api('host_remove_managedby',    
         [$fqdn],
         [qw(fqdn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members host)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0)],
     );
 }
 
@@ -9740,10 +9740,10 @@ sub api_host_show
     return $self->rpc_api('host_show',    
         [$fqdn],
         [qw(fqdn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(rights out all raw version no_members)],
-        [qw(bool:0 unicode:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(bool:0:0 unicode:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -9801,10 +9801,10 @@ sub api_hostgroup_add
     return $self->rpc_api('hostgroup_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(description setattr addattr all raw version no_members)],
-        [qw(unicode:0 unicode:1 unicode:1 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -9858,10 +9858,10 @@ sub api_hostgroup_add_member
     return $self->rpc_api('hostgroup_add_member',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members host hostgroup)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -9907,10 +9907,10 @@ sub api_hostgroup_del
     return $self->rpc_api('hostgroup_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:1)],
+        [qw(unicode:1:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool:0 unicode:0)],
+        [qw(bool:0:0 unicode:0:0)],
     );
 }
 
@@ -9994,10 +9994,10 @@ sub api_hostgroup_find
     return $self->rpc_api('hostgroup_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
         \%opts,
         [qw(cn description timelimit sizelimit all raw version no_members pkey_only host no_host hostgroup no_hostgroup in_hostgroup not_in_hostgroup in_netgroup not_in_netgroup in_hbacrule not_in_hbacrule in_sudorule not_in_sudorule)],
-        [qw(unicode:0 unicode:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0 bool:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1)],
+        [qw(unicode:0:0 unicode:0:0 int:0:0 int:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0 bool:0:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -10060,10 +10060,10 @@ sub api_hostgroup_mod
     return $self->rpc_api('hostgroup_mod',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(description setattr addattr delattr rights all raw version no_members)],
-        [qw(unicode:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -10117,10 +10117,10 @@ sub api_hostgroup_remove_member
     return $self->rpc_api('hostgroup_remove_member',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members host hostgroup)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -10172,10 +10172,10 @@ sub api_hostgroup_show
     return $self->rpc_api('hostgroup_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(rights all raw version no_members)],
-        [qw(bool:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -10215,7 +10215,7 @@ sub api_i18n_messages
         [qw()],
         \%opts,
         [qw(version)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
     );
 }
 
@@ -10279,10 +10279,10 @@ sub api_idoverridegroup_add
     return $self->rpc_api('idoverridegroup_add',    
         [$idviewcn, $ipaanchoruuid],
         [qw(idviewcn ipaanchoruuid)],
-        [qw(unicode:0 unicode:0)],
+        [qw(unicode:0:1 unicode:0:1)],
         \%opts,
         [qw(description cn gidnumber setattr addattr fallback_to_ldap all raw version)],
-        [qw(unicode:0 unicode:0 int:0 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0)],
+        [qw(unicode:0:0 unicode:0:0 int:0:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -10332,10 +10332,10 @@ sub api_idoverridegroup_del
     return $self->rpc_api('idoverridegroup_del',    
         [$idviewcn, $ipaanchoruuid],
         [qw(idviewcn ipaanchoruuid)],
-        [qw(unicode:0 unicode:1)],
+        [qw(unicode:0:1 unicode:1:1)],
         \%opts,
         [qw(continue fallback_to_ldap version)],
-        [qw(bool:0 bool:0 unicode:0)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -10401,10 +10401,10 @@ sub api_idoverridegroup_find
     return $self->rpc_api('idoverridegroup_find',    
         [$idviewcn, $criteria],
         [qw(idviewcn criteria)],
-        [qw(unicode:0 unicode:0)],
+        [qw(unicode:0:1 unicode:0:0)],
         \%opts,
         [qw(ipaanchoruuid description cn gidnumber timelimit sizelimit fallback_to_ldap all raw version pkey_only)],
-        [qw(unicode:0 unicode:0 unicode:0 int:0 int:0 int:0 bool:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:0 unicode:0:0 unicode:0:0 int:0:0 int:0:0 int:0:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -10475,10 +10475,10 @@ sub api_idoverridegroup_mod
     return $self->rpc_api('idoverridegroup_mod',    
         [$idviewcn, $ipaanchoruuid],
         [qw(idviewcn ipaanchoruuid)],
-        [qw(unicode:0 unicode:0)],
+        [qw(unicode:0:1 unicode:0:1)],
         \%opts,
         [qw(description cn gidnumber setattr addattr delattr rights fallback_to_ldap all raw version rename)],
-        [qw(unicode:0 unicode:0 int:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 bool:0 unicode:0 unicode:0)],
+        [qw(unicode:0:0 unicode:0:0 int:0:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0 unicode:0:0)],
     );
 }
 
@@ -10532,10 +10532,10 @@ sub api_idoverridegroup_show
     return $self->rpc_api('idoverridegroup_show',    
         [$idviewcn, $ipaanchoruuid],
         [qw(idviewcn ipaanchoruuid)],
-        [qw(unicode:0 unicode:0)],
+        [qw(unicode:0:1 unicode:0:1)],
         \%opts,
         [qw(rights fallback_to_ldap all raw version)],
-        [qw(bool:0 bool:0 bool:0 bool:0 unicode:0)],
+        [qw(bool:0:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -10611,10 +10611,10 @@ sub api_idoverrideuser_add
     return $self->rpc_api('idoverrideuser_add',    
         [$idviewcn, $ipaanchoruuid],
         [qw(idviewcn ipaanchoruuid)],
-        [qw(unicode:0 unicode:0)],
+        [qw(unicode:0:1 unicode:0:1)],
         \%opts,
         [qw(description uid uidnumber gecos gidnumber homedirectory loginshell ipaoriginaluid ipasshpubkey setattr addattr fallback_to_ldap all raw version)],
-        [qw(unicode:0 unicode:0 int:0 unicode:0 int:0 unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0)],
+        [qw(unicode:0:0 unicode:0:0 int:0:0 unicode:0:0 int:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -10664,10 +10664,10 @@ sub api_idoverrideuser_del
     return $self->rpc_api('idoverrideuser_del',    
         [$idviewcn, $ipaanchoruuid],
         [qw(idviewcn ipaanchoruuid)],
-        [qw(unicode:0 unicode:1)],
+        [qw(unicode:0:1 unicode:1:1)],
         \%opts,
         [qw(continue fallback_to_ldap version)],
-        [qw(bool:0 bool:0 unicode:0)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -10743,10 +10743,10 @@ sub api_idoverrideuser_find
     return $self->rpc_api('idoverrideuser_find',    
         [$idviewcn, $criteria],
         [qw(idviewcn criteria)],
-        [qw(unicode:0 unicode:0)],
+        [qw(unicode:0:1 unicode:0:0)],
         \%opts,
         [qw(ipaanchoruuid description uid uidnumber gecos gidnumber homedirectory loginshell ipaoriginaluid timelimit sizelimit fallback_to_ldap all raw version pkey_only)],
-        [qw(unicode:0 unicode:0 unicode:0 int:0 unicode:0 int:0 unicode:0 unicode:0 unicode:0 int:0 int:0 bool:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:0 unicode:0:0 unicode:0:0 int:0:0 unicode:0:0 int:0:0 unicode:0:0 unicode:0:0 unicode:0:0 int:0:0 int:0:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -10829,10 +10829,10 @@ sub api_idoverrideuser_mod
     return $self->rpc_api('idoverrideuser_mod',    
         [$idviewcn, $ipaanchoruuid],
         [qw(idviewcn ipaanchoruuid)],
-        [qw(unicode:0 unicode:0)],
+        [qw(unicode:0:1 unicode:0:1)],
         \%opts,
         [qw(description uid uidnumber gecos gidnumber homedirectory loginshell ipaoriginaluid ipasshpubkey setattr addattr delattr rights fallback_to_ldap all raw version rename)],
-        [qw(unicode:0 unicode:0 int:0 unicode:0 int:0 unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 bool:0 unicode:0 unicode:0)],
+        [qw(unicode:0:0 unicode:0:0 int:0:0 unicode:0:0 int:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0 unicode:0:0)],
     );
 }
 
@@ -10886,10 +10886,10 @@ sub api_idoverrideuser_show
     return $self->rpc_api('idoverrideuser_show',    
         [$idviewcn, $ipaanchoruuid],
         [qw(idviewcn ipaanchoruuid)],
-        [qw(unicode:0 unicode:0)],
+        [qw(unicode:0:1 unicode:0:1)],
         \%opts,
         [qw(rights fallback_to_ldap all raw version)],
-        [qw(bool:0 bool:0 bool:0 bool:0 unicode:0)],
+        [qw(bool:0:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -10990,10 +10990,10 @@ sub api_idrange_add
     return $self->rpc_api('idrange_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(ipabaseid ipaidrangesize ipabaserid ipasecondarybaserid ipanttrusteddomainsid ipanttrusteddomainname iparangetype setattr addattr all raw version)],
-        [qw(int:0 int:0 int:0 int:0 unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 bool:0 bool:0 unicode:0)],
+        [qw(int:0:1 int:0:1 int:0:0 int:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -11039,10 +11039,10 @@ sub api_idrange_del
     return $self->rpc_api('idrange_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:1)],
+        [qw(unicode:1:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool:0 unicode:0)],
+        [qw(bool:0:0 unicode:0:0)],
     );
 }
 
@@ -11110,10 +11110,10 @@ sub api_idrange_find
     return $self->rpc_api('idrange_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
         \%opts,
         [qw(cn ipabaseid ipaidrangesize ipabaserid ipasecondarybaserid ipanttrusteddomainsid iparangetype timelimit sizelimit all raw version pkey_only)],
-        [qw(unicode:0 int:0 int:0 int:0 int:0 unicode:0 unicode:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:0 int:0:0 int:0:0 int:0:0 int:0:0 unicode:0:0 unicode:0:0 int:0:0 int:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -11199,10 +11199,10 @@ sub api_idrange_mod
     return $self->rpc_api('idrange_mod',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(ipabaseid ipaidrangesize ipabaserid ipasecondarybaserid setattr addattr delattr rights ipanttrusteddomainsid ipanttrusteddomainname all raw version)],
-        [qw(int:0 int:0 int:0 int:0 unicode:1 unicode:1 unicode:1 bool:0 object:0 object:0 bool:0 bool:0 unicode:0)],
+        [qw(int:0:0 int:0:0 int:0:0 int:0:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 object:0:0 object:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -11252,10 +11252,10 @@ sub api_idrange_show
     return $self->rpc_api('idrange_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(rights all raw version)],
-        [qw(bool:0 bool:0 bool:0 unicode:0)],
+        [qw(bool:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -11311,10 +11311,10 @@ sub api_idview_add
     return $self->rpc_api('idview_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(description setattr addattr all raw version)],
-        [qw(unicode:0 unicode:1 unicode:1 bool:0 bool:0 unicode:0)],
+        [qw(unicode:0:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -11362,10 +11362,10 @@ sub api_idview_apply
     return $self->rpc_api('idview_apply',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(host hostgroup version)],
-        [qw(unicode:1 unicode:1 unicode:0)],
+        [qw(unicode:1:0 unicode:1:0 unicode:0:0)],
     );
 }
 
@@ -11411,10 +11411,10 @@ sub api_idview_del
     return $self->rpc_api('idview_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:1)],
+        [qw(unicode:1:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool:0 unicode:0)],
+        [qw(bool:0:0 unicode:0:0)],
     );
 }
 
@@ -11472,10 +11472,10 @@ sub api_idview_find
     return $self->rpc_api('idview_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
         \%opts,
         [qw(cn description timelimit sizelimit all raw version pkey_only)],
-        [qw(unicode:0 unicode:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:0 unicode:0:0 int:0:0 int:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -11538,10 +11538,10 @@ sub api_idview_mod
     return $self->rpc_api('idview_mod',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(description setattr addattr delattr rights all raw version rename)],
-        [qw(unicode:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0 unicode:0)],
+        [qw(unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0 unicode:0:0)],
     );
 }
 
@@ -11593,10 +11593,10 @@ sub api_idview_show
     return $self->rpc_api('idview_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(rights show_hosts all raw version)],
-        [qw(bool:0 bool:0 bool:0 bool:0 unicode:0)],
+        [qw(bool:0:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -11640,7 +11640,7 @@ sub api_idview_unapply
         [qw()],
         \%opts,
         [qw(host hostgroup version)],
-        [qw(unicode:1 unicode:1 unicode:0)],
+        [qw(unicode:1:0 unicode:1:0 unicode:0:0)],
     );
 }
 
@@ -11690,10 +11690,10 @@ sub api_join
     return $self->rpc_api('join',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
         \%opts,
         [qw(realm nshardwareplatform nsosversion version)],
-        [qw(unicode:0 unicode:0 unicode:0 unicode:0)],
+        [qw(unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0)],
     );
 }
 
@@ -11747,10 +11747,10 @@ sub api_json_metadata
     return $self->rpc_api('json_metadata',    
         [$objname, $methodname],
         [qw(objname methodname)],
-        [qw(unicode:0 unicode:0)],
+        [qw(unicode:0:0 unicode:0:0)],
         \%opts,
         [qw(object method command version)],
-        [qw(unicode:0 unicode:0 unicode:0 unicode:0)],
+        [qw(unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0)],
     );
 }
 
@@ -11790,7 +11790,7 @@ sub api_kra_is_enabled
         [qw()],
         \%opts,
         [qw(version)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
     );
 }
 
@@ -11853,10 +11853,10 @@ sub api_krbtpolicy_mod
     return $self->rpc_api('krbtpolicy_mod',    
         [$uid],
         [qw(uid)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
         \%opts,
         [qw(krbmaxticketlife krbmaxrenewableage setattr addattr delattr rights all raw version)],
-        [qw(int:0 int:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0)],
+        [qw(int:0:0 int:0:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -11904,10 +11904,10 @@ sub api_krbtpolicy_reset
     return $self->rpc_api('krbtpolicy_reset',    
         [$uid],
         [qw(uid)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
         \%opts,
         [qw(all raw version)],
-        [qw(bool:0 bool:0 unicode:0)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -11957,10 +11957,10 @@ sub api_krbtpolicy_show
     return $self->rpc_api('krbtpolicy_show',    
         [$uid],
         [qw(uid)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
         \%opts,
         [qw(rights all raw version)],
-        [qw(bool:0 bool:0 bool:0 unicode:0)],
+        [qw(bool:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -12044,10 +12044,10 @@ sub api_migrate_ds
     return $self->rpc_api('migrate_ds',    
         [$ldapuri, $bindpw],
         [qw(ldapuri bindpw)],
-        [qw(unicode:0 unicode:0)],
+        [qw(unicode:0:1 unicode:0:1)],
         \%opts,
         [qw(binddn usercontainer groupcontainer userobjectclass groupobjectclass userignoreobjectclass userignoreattribute groupignoreobjectclass groupignoreattribute groupoverwritegid schema continue basedn compat cacertfile use_def_group scope version exclude_groups exclude_users)],
-        [qw(DN:0 DN:0 DN:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 bool:0 unicode:0 bool:0 DN:0 bool:0 unicode:0 bool:0 unicode:0 unicode:0 unicode:1 unicode:1)],
+        [qw(DN:0:0 DN:0:0 DN:0:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 unicode:0:0 bool:0:0 DN:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:0:0 unicode:0:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -12113,10 +12113,10 @@ sub api_netgroup_add
     return $self->rpc_api('netgroup_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(description nisdomainname usercategory hostcategory externalhost setattr addattr all raw version no_members)],
-        [qw(unicode:0 unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -12176,10 +12176,10 @@ sub api_netgroup_add_member
     return $self->rpc_api('netgroup_add_member',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members user group host hostgroup netgroup)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -12225,10 +12225,10 @@ sub api_netgroup_del
     return $self->rpc_api('netgroup_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:1)],
+        [qw(unicode:1:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool:0 unicode:0)],
+        [qw(bool:0:0 unicode:0:0)],
     );
 }
 
@@ -12326,10 +12326,10 @@ sub api_netgroup_find
     return $self->rpc_api('netgroup_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
         \%opts,
         [qw(cn description nisdomainname ipauniqueid usercategory hostcategory externalhost timelimit sizelimit private managed all raw version no_members pkey_only netgroup no_netgroup user no_user group no_group host no_host hostgroup no_hostgroup in_netgroup not_in_netgroup)],
-        [qw(unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:1 int:0 int:0 bool:0 bool:0 bool:0 bool:0 unicode:0 bool:0 bool:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1)],
+        [qw(unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:1:0 int:0:0 int:0:0 bool:0:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0 bool:0:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -12400,10 +12400,10 @@ sub api_netgroup_mod
     return $self->rpc_api('netgroup_mod',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(description nisdomainname usercategory hostcategory externalhost setattr addattr delattr rights all raw version no_members)],
-        [qw(unicode:0 unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -12463,10 +12463,10 @@ sub api_netgroup_remove_member
     return $self->rpc_api('netgroup_remove_member',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members user group host hostgroup netgroup)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -12518,10 +12518,10 @@ sub api_netgroup_show
     return $self->rpc_api('netgroup_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(rights all raw version no_members)],
-        [qw(bool:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -12584,7 +12584,7 @@ sub api_otpconfig_mod
         [qw()],
         \%opts,
         [qw(ipatokentotpauthwindow ipatokentotpsyncwindow ipatokenhotpauthwindow ipatokenhotpsyncwindow setattr addattr delattr rights all raw version)],
-        [qw(int:0 int:0 int:0 int:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0)],
+        [qw(int:0:0 int:0:0 int:0:0 int:0:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -12630,7 +12630,7 @@ sub api_otpconfig_show
         [qw()],
         \%opts,
         [qw(rights all raw version)],
-        [qw(bool:0 bool:0 bool:0 unicode:0)],
+        [qw(bool:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -12720,10 +12720,10 @@ sub api_otptoken_add
     return $self->rpc_api('otptoken_add',    
         [$ipatokenuniqueid],
         [qw(ipatokenuniqueid)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
         \%opts,
         [qw(type description ipatokenowner ipatokendisabled ipatokennotbefore ipatokennotafter ipatokenvendor ipatokenmodel ipatokenserial ipatokenotpkey ipatokenotpalgorithm ipatokenotpdigits ipatokentotpclockoffset ipatokentotptimestep ipatokenhotpcounter setattr addattr qrcode no_qrcode all raw version no_members)],
-        [qw(unicode:0 unicode:0 unicode:0 bool:0 datetime:0 datetime:0 unicode:0 unicode:0 unicode:0 str:0 unicode:0 int:0 int:0 int:0 int:0 unicode:1 unicode:1 bool:0 bool:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:0 unicode:0:0 unicode:0:0 bool:0:0 datetime:0:0 datetime:0:0 unicode:0:0 unicode:0:0 unicode:0:0 str:0:0 unicode:0:0 int:0:0 int:0:0 int:0:0 int:0:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -12775,10 +12775,10 @@ sub api_otptoken_add_managedby
     return $self->rpc_api('otptoken_add_managedby',    
         [$ipatokenuniqueid],
         [qw(ipatokenuniqueid)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members user)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0)],
     );
 }
 
@@ -12836,10 +12836,10 @@ sub api_otptoken_add_yubikey
     return $self->rpc_api('otptoken_add_yubikey',    
         [$ipatokenuniqueid],
         [qw(ipatokenuniqueid)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
         \%opts,
         [qw(slot description ipatokenowner ipatokendisabled ipatokennotbefore ipatokennotafter ipatokenotpdigits version)],
-        [qw(int:0 unicode:0 unicode:0 bool:0 datetime:0 datetime:0 int:0 unicode:0)],
+        [qw(int:0:0 unicode:0:0 unicode:0:0 bool:0:0 datetime:0:0 datetime:0:0 int:0:0 unicode:0:0)],
     );
 }
 
@@ -12885,10 +12885,10 @@ sub api_otptoken_del
     return $self->rpc_api('otptoken_del',    
         [$ipatokenuniqueid],
         [qw(ipatokenuniqueid)],
-        [qw(unicode:1)],
+        [qw(unicode:1:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool:0 unicode:0)],
+        [qw(bool:0:0 unicode:0:0)],
     );
 }
 
@@ -12974,10 +12974,10 @@ sub api_otptoken_find
     return $self->rpc_api('otptoken_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
         \%opts,
         [qw(ipatokenuniqueid type description ipatokenowner ipatokendisabled ipatokennotbefore ipatokennotafter ipatokenvendor ipatokenmodel ipatokenserial ipatokenotpalgorithm ipatokenotpdigits ipatokentotpclockoffset ipatokentotptimestep ipatokenhotpcounter timelimit sizelimit all raw version no_members pkey_only)],
-        [qw(unicode:0 unicode:0 unicode:0 unicode:0 bool:0 datetime:0 datetime:0 unicode:0 unicode:0 unicode:0 unicode:0 int:0 int:0 int:0 int:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0 bool:0)],
+        [qw(unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 bool:0:0 datetime:0:0 datetime:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 int:0:0 int:0:0 int:0:0 int:0:0 int:0:0 int:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0 bool:0:0)],
     );
 }
 
@@ -13056,10 +13056,10 @@ sub api_otptoken_mod
     return $self->rpc_api('otptoken_mod',    
         [$ipatokenuniqueid],
         [qw(ipatokenuniqueid)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(description ipatokenowner ipatokendisabled ipatokennotbefore ipatokennotafter ipatokenvendor ipatokenmodel ipatokenserial setattr addattr delattr rights all raw version no_members rename)],
-        [qw(unicode:0 unicode:0 bool:0 datetime:0 datetime:0 unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0 bool:0 unicode:0)],
+        [qw(unicode:0:0 unicode:0:0 bool:0:0 datetime:0:0 datetime:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -13111,10 +13111,10 @@ sub api_otptoken_remove_managedby
     return $self->rpc_api('otptoken_remove_managedby',    
         [$ipatokenuniqueid],
         [qw(ipatokenuniqueid)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members user)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0)],
     );
 }
 
@@ -13166,10 +13166,10 @@ sub api_otptoken_show
     return $self->rpc_api('otptoken_show',    
         [$ipatokenuniqueid],
         [qw(ipatokenuniqueid)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(rights all raw version no_members)],
-        [qw(bool:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -13221,10 +13221,10 @@ sub api_otptoken_sync
     return $self->rpc_api('otptoken_sync',    
         [$token],
         [qw(token)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
         \%opts,
         [qw(user password first_code second_code version)],
-        [qw(unicode:0 unicode:0 unicode:0 unicode:0 unicode:0)],
+        [qw(unicode:0:1 unicode:0:1 unicode:0:1 unicode:0:1 unicode:0:0)],
     );
 }
 
@@ -13274,10 +13274,10 @@ sub api_passwd
     return $self->rpc_api('passwd',    
         [$principal, $password, $current_password],
         [qw(principal password current_password)],
-        [qw(unicode:0 unicode:0 unicode:0)],
+        [qw(unicode:0:0 unicode:0:1 unicode:0:0)],
         \%opts,
         [qw(otp version)],
-        [qw(unicode:0 unicode:0)],
+        [qw(unicode:0:0 unicode:0:0)],
     );
 }
 
@@ -13363,10 +13363,10 @@ sub api_permission_add
     return $self->rpc_api('permission_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(ipapermright attrs ipapermbindruletype ipapermlocation extratargetfilter ipapermtargetfilter ipapermtarget ipapermtargetto ipapermtargetfrom memberof targetgroup type filter subtree permissions setattr addattr all raw version no_members)],
-        [qw(unicode:1 unicode:1 unicode:0 DN:0 unicode:1 unicode:1 DN:0 DN:0 DN:0 unicode:1 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:1:0 unicode:1:0 unicode:0:0 DN:0:0 unicode:1:0 unicode:1:0 DN:0:0 DN:0:0 DN:0:0 unicode:1:0 unicode:0:0 unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -13418,10 +13418,10 @@ sub api_permission_add_member
     return $self->rpc_api('permission_add_member',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members privilege)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0)],
     );
 }
 
@@ -13473,10 +13473,10 @@ sub api_permission_add_noaci
     return $self->rpc_api('permission_add_noaci',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(ipapermissiontype all raw version no_members)],
-        [qw(unicode:1 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:1:1 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -13524,10 +13524,10 @@ sub api_permission_del
     return $self->rpc_api('permission_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:1)],
+        [qw(unicode:1:1)],
         \%opts,
         [qw(continue force version)],
-        [qw(bool:0 bool:0 unicode:0)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -13621,10 +13621,10 @@ sub api_permission_find
     return $self->rpc_api('permission_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
         \%opts,
         [qw(cn ipapermright attrs ipapermincludedattr ipapermexcludedattr ipapermdefaultattr ipapermbindruletype ipapermlocation extratargetfilter ipapermtargetfilter ipapermtarget ipapermtargetto ipapermtargetfrom memberof targetgroup type filter subtree permissions timelimit sizelimit all raw version no_members pkey_only)],
-        [qw(unicode:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:0 DN:0 unicode:1 unicode:1 DN:0 DN:0 DN:0 unicode:1 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 int:0 int:0 bool:0 bool:0 unicode:0 bool:0 bool:0)],
+        [qw(unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:0:0 DN:0:0 unicode:1:0 unicode:1:0 DN:0:0 DN:0:0 DN:0:0 unicode:1:0 unicode:0:0 unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 int:0:0 int:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0 bool:0:0)],
     );
 }
 
@@ -13721,10 +13721,10 @@ sub api_permission_mod
     return $self->rpc_api('permission_mod',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(ipapermright attrs ipapermincludedattr ipapermexcludedattr ipapermbindruletype ipapermlocation extratargetfilter ipapermtargetfilter ipapermtarget ipapermtargetto ipapermtargetfrom memberof targetgroup type filter subtree permissions setattr addattr delattr rights all raw version no_members rename)],
-        [qw(unicode:1 unicode:1 unicode:1 unicode:1 unicode:0 DN:0 unicode:1 unicode:1 DN:0 DN:0 DN:0 unicode:1 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0 bool:0 unicode:0)],
+        [qw(unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:0:0 DN:0:0 unicode:1:0 unicode:1:0 DN:0:0 DN:0:0 DN:0:0 unicode:1:0 unicode:0:0 unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -13776,10 +13776,10 @@ sub api_permission_remove_member
     return $self->rpc_api('permission_remove_member',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members privilege)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0)],
     );
 }
 
@@ -13831,10 +13831,10 @@ sub api_permission_show
     return $self->rpc_api('permission_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(rights all raw version no_members)],
-        [qw(bool:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -13874,7 +13874,7 @@ sub api_ping
         [qw()],
         \%opts,
         [qw(version)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
     );
 }
 
@@ -13918,7 +13918,7 @@ sub api_plugins
         [qw()],
         \%opts,
         [qw(server all version)],
-        [qw(bool:0 bool:0 unicode:0)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -13976,10 +13976,10 @@ sub api_privilege_add
     return $self->rpc_api('privilege_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(description setattr addattr all raw version no_members)],
-        [qw(unicode:0 unicode:1 unicode:1 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -14031,10 +14031,10 @@ sub api_privilege_add_member
     return $self->rpc_api('privilege_add_member',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members role)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0)],
     );
 }
 
@@ -14086,10 +14086,10 @@ sub api_privilege_add_permission
     return $self->rpc_api('privilege_add_permission',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members permission)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0)],
     );
 }
 
@@ -14135,10 +14135,10 @@ sub api_privilege_del
     return $self->rpc_api('privilege_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:1)],
+        [qw(unicode:1:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool:0 unicode:0)],
+        [qw(bool:0:0 unicode:0:0)],
     );
 }
 
@@ -14198,10 +14198,10 @@ sub api_privilege_find
     return $self->rpc_api('privilege_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
         \%opts,
         [qw(cn description timelimit sizelimit all raw version no_members pkey_only)],
-        [qw(unicode:0 unicode:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0 bool:0)],
+        [qw(unicode:0:0 unicode:0:0 int:0:0 int:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0 bool:0:0)],
     );
 }
 
@@ -14266,10 +14266,10 @@ sub api_privilege_mod
     return $self->rpc_api('privilege_mod',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(description setattr addattr delattr rights all raw version no_members rename)],
-        [qw(unicode:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0 bool:0 unicode:0)],
+        [qw(unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -14323,10 +14323,10 @@ sub api_privilege_remove_member
     return $self->rpc_api('privilege_remove_member',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members role)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0)],
     );
 }
 
@@ -14378,10 +14378,10 @@ sub api_privilege_remove_permission
     return $self->rpc_api('privilege_remove_permission',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members permission)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0)],
     );
 }
 
@@ -14433,10 +14433,10 @@ sub api_privilege_show
     return $self->rpc_api('privilege_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(rights all raw version no_members)],
-        [qw(bool:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -14508,10 +14508,10 @@ sub api_pwpolicy_add
     return $self->rpc_api('pwpolicy_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(krbmaxpwdlife krbminpwdlife krbpwdhistorylength krbpwdmindiffchars krbpwdminlength cospriority krbpwdmaxfailure krbpwdfailurecountinterval krbpwdlockoutduration setattr addattr all raw version)],
-        [qw(int:0 int:0 int:0 int:0 int:0 int:0 int:0 int:0 int:0 unicode:1 unicode:1 bool:0 bool:0 unicode:0)],
+        [qw(int:0:0 int:0:0 int:0:0 int:0:0 int:0:0 int:0:1 int:0:0 int:0:0 int:0:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -14557,10 +14557,10 @@ sub api_pwpolicy_del
     return $self->rpc_api('pwpolicy_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:1)],
+        [qw(unicode:1:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool:0 unicode:0)],
+        [qw(bool:0:0 unicode:0:0)],
     );
 }
 
@@ -14634,10 +14634,10 @@ sub api_pwpolicy_find
     return $self->rpc_api('pwpolicy_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
         \%opts,
         [qw(cn krbmaxpwdlife krbminpwdlife krbpwdhistorylength krbpwdmindiffchars krbpwdminlength cospriority krbpwdmaxfailure krbpwdfailurecountinterval krbpwdlockoutduration timelimit sizelimit all raw version pkey_only)],
-        [qw(unicode:0 int:0 int:0 int:0 int:0 int:0 int:0 int:0 int:0 int:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:0 int:0:0 int:0:0 int:0:0 int:0:0 int:0:0 int:0:0 int:0:0 int:0:0 int:0:0 int:0:0 int:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -14714,10 +14714,10 @@ sub api_pwpolicy_mod
     return $self->rpc_api('pwpolicy_mod',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
         \%opts,
         [qw(krbmaxpwdlife krbminpwdlife krbpwdhistorylength krbpwdmindiffchars krbpwdminlength cospriority krbpwdmaxfailure krbpwdfailurecountinterval krbpwdlockoutduration setattr addattr delattr rights all raw version)],
-        [qw(int:0 int:0 int:0 int:0 int:0 int:0 int:0 int:0 int:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0)],
+        [qw(int:0:0 int:0:0 int:0:0 int:0:0 int:0:0 int:0:0 int:0:0 int:0:0 int:0:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -14769,10 +14769,10 @@ sub api_pwpolicy_show
     return $self->rpc_api('pwpolicy_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
         \%opts,
         [qw(rights user all raw version)],
-        [qw(bool:0 unicode:0 bool:0 bool:0 unicode:0)],
+        [qw(bool:0:0 unicode:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -14838,10 +14838,10 @@ sub api_radiusproxy_add
     return $self->rpc_api('radiusproxy_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(description ipatokenradiusserver ipatokenradiussecret ipatokenradiustimeout ipatokenradiusretries ipatokenusermapattribute setattr addattr all raw version)],
-        [qw(unicode:0 unicode:1 unicode:0 int:0 int:0 unicode:0 unicode:1 unicode:1 bool:0 bool:0 unicode:0)],
+        [qw(unicode:0:0 unicode:1:1 unicode:0:1 int:0:0 int:0:0 unicode:0:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -14887,10 +14887,10 @@ sub api_radiusproxy_del
     return $self->rpc_api('radiusproxy_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:1)],
+        [qw(unicode:1:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool:0 unicode:0)],
+        [qw(bool:0:0 unicode:0:0)],
     );
 }
 
@@ -14958,10 +14958,10 @@ sub api_radiusproxy_find
     return $self->rpc_api('radiusproxy_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
         \%opts,
         [qw(cn description ipatokenradiusserver ipatokenradiussecret ipatokenradiustimeout ipatokenradiusretries ipatokenusermapattribute timelimit sizelimit all raw version pkey_only)],
-        [qw(unicode:0 unicode:0 unicode:1 unicode:0 int:0 int:0 unicode:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:0 unicode:0:0 unicode:1:0 unicode:0:0 int:0:0 int:0:0 unicode:0:0 int:0:0 int:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -15034,10 +15034,10 @@ sub api_radiusproxy_mod
     return $self->rpc_api('radiusproxy_mod',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(description ipatokenradiusserver ipatokenradiussecret ipatokenradiustimeout ipatokenradiusretries ipatokenusermapattribute setattr addattr delattr rights all raw version rename)],
-        [qw(unicode:0 unicode:1 unicode:0 int:0 int:0 unicode:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0 unicode:0)],
+        [qw(unicode:0:0 unicode:1:0 unicode:0:0 int:0:0 int:0:0 unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0 unicode:0:0)],
     );
 }
 
@@ -15087,10 +15087,10 @@ sub api_radiusproxy_show
     return $self->rpc_api('radiusproxy_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(rights all raw version)],
-        [qw(bool:0 bool:0 bool:0 unicode:0)],
+        [qw(bool:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -15153,7 +15153,7 @@ sub api_realmdomains_mod
         [qw()],
         \%opts,
         [qw(associateddomain add_domain del_domain setattr addattr delattr rights force all raw version)],
-        [qw(unicode:1 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 bool:0 unicode:0)],
+        [qw(unicode:1:0 unicode:0:0 unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -15199,7 +15199,7 @@ sub api_realmdomains_show
         [qw()],
         \%opts,
         [qw(rights all raw version)],
-        [qw(bool:0 bool:0 bool:0 unicode:0)],
+        [qw(bool:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -15257,10 +15257,10 @@ sub api_role_add
     return $self->rpc_api('role_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(description setattr addattr all raw version no_members)],
-        [qw(unicode:0 unicode:1 unicode:1 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -15320,10 +15320,10 @@ sub api_role_add_member
     return $self->rpc_api('role_add_member',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members user group host hostgroup service)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -15375,10 +15375,10 @@ sub api_role_add_privilege
     return $self->rpc_api('role_add_privilege',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members privilege)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0)],
     );
 }
 
@@ -15424,10 +15424,10 @@ sub api_role_del
     return $self->rpc_api('role_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:1)],
+        [qw(unicode:1:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool:0 unicode:0)],
+        [qw(bool:0:0 unicode:0:0)],
     );
 }
 
@@ -15487,10 +15487,10 @@ sub api_role_find
     return $self->rpc_api('role_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
         \%opts,
         [qw(cn description timelimit sizelimit all raw version no_members pkey_only)],
-        [qw(unicode:0 unicode:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0 bool:0)],
+        [qw(unicode:0:0 unicode:0:0 int:0:0 int:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0 bool:0:0)],
     );
 }
 
@@ -15555,10 +15555,10 @@ sub api_role_mod
     return $self->rpc_api('role_mod',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(description setattr addattr delattr rights all raw version no_members rename)],
-        [qw(unicode:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0 bool:0 unicode:0)],
+        [qw(unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -15618,10 +15618,10 @@ sub api_role_remove_member
     return $self->rpc_api('role_remove_member',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members user group host hostgroup service)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -15673,10 +15673,10 @@ sub api_role_remove_privilege
     return $self->rpc_api('role_remove_privilege',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members privilege)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0)],
     );
 }
 
@@ -15728,10 +15728,10 @@ sub api_role_show
     return $self->rpc_api('role_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(rights all raw version no_members)],
-        [qw(bool:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -15783,10 +15783,10 @@ sub api_selfservice_add
     return $self->rpc_api('selfservice_add',    
         [$aciname],
         [qw(aciname)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(permissions attrs all raw version)],
-        [qw(unicode:1 unicode:1 bool:0 bool:0 unicode:0)],
+        [qw(unicode:1:0 unicode:1:1 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -15830,10 +15830,10 @@ sub api_selfservice_del
     return $self->rpc_api('selfservice_del',    
         [$aciname],
         [qw(aciname)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(version)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
     );
 }
 
@@ -15889,10 +15889,10 @@ sub api_selfservice_find
     return $self->rpc_api('selfservice_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
         \%opts,
         [qw(aciname permissions attrs pkey_only all raw version)],
-        [qw(unicode:0 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0)],
+        [qw(unicode:0:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -15944,10 +15944,10 @@ sub api_selfservice_mod
     return $self->rpc_api('selfservice_mod',    
         [$aciname],
         [qw(aciname)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(permissions attrs all raw version)],
-        [qw(unicode:1 unicode:1 bool:0 bool:0 unicode:0)],
+        [qw(unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -15995,10 +15995,10 @@ sub api_selfservice_show
     return $self->rpc_api('selfservice_show',    
         [$aciname],
         [qw(aciname)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version)],
-        [qw(bool:0 bool:0 unicode:0)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -16066,10 +16066,10 @@ sub api_selinuxusermap_add
     return $self->rpc_api('selinuxusermap_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(ipaselinuxuser seealso usercategory hostcategory description ipaenabledflag setattr addattr all raw version no_members)],
-        [qw(unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 bool:0 unicode:1 unicode:1 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:1 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -16123,10 +16123,10 @@ sub api_selinuxusermap_add_host
     return $self->rpc_api('selinuxusermap_add_host',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members host hostgroup)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -16180,10 +16180,10 @@ sub api_selinuxusermap_add_user
     return $self->rpc_api('selinuxusermap_add_user',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members user group)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -16229,10 +16229,10 @@ sub api_selinuxusermap_del
     return $self->rpc_api('selinuxusermap_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:1)],
+        [qw(unicode:1:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool:0 unicode:0)],
+        [qw(bool:0:0 unicode:0:0)],
     );
 }
 
@@ -16276,10 +16276,10 @@ sub api_selinuxusermap_disable
     return $self->rpc_api('selinuxusermap_disable',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(version)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
     );
 }
 
@@ -16323,10 +16323,10 @@ sub api_selinuxusermap_enable
     return $self->rpc_api('selinuxusermap_enable',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(version)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
     );
 }
 
@@ -16396,10 +16396,10 @@ sub api_selinuxusermap_find
     return $self->rpc_api('selinuxusermap_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
         \%opts,
         [qw(cn ipaselinuxuser seealso usercategory hostcategory description ipaenabledflag timelimit sizelimit all raw version no_members pkey_only)],
-        [qw(unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 bool:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0 bool:0)],
+        [qw(unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 bool:0:0 int:0:0 int:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0 bool:0:0)],
     );
 }
 
@@ -16472,10 +16472,10 @@ sub api_selinuxusermap_mod
     return $self->rpc_api('selinuxusermap_mod',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(ipaselinuxuser seealso usercategory hostcategory description ipaenabledflag setattr addattr delattr rights all raw version no_members)],
-        [qw(unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 bool:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -16529,10 +16529,10 @@ sub api_selinuxusermap_remove_host
     return $self->rpc_api('selinuxusermap_remove_host',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members host hostgroup)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -16586,10 +16586,10 @@ sub api_selinuxusermap_remove_user
     return $self->rpc_api('selinuxusermap_remove_user',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members user group)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -16641,10 +16641,10 @@ sub api_selinuxusermap_show
     return $self->rpc_api('selinuxusermap_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(rights all raw version no_members)],
-        [qw(bool:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -16690,10 +16690,10 @@ sub api_server_del
     return $self->rpc_api('server_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:1)],
+        [qw(unicode:1:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool:0 unicode:0)],
+        [qw(bool:0:0 unicode:0:0)],
     );
 }
 
@@ -16755,10 +16755,10 @@ sub api_server_find
     return $self->rpc_api('server_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
         \%opts,
         [qw(cn iparepltopomanagedsuffix ipamindomainlevel ipamaxdomainlevel timelimit sizelimit all raw version pkey_only)],
-        [qw(unicode:0 unicode:0 int:0 int:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:0 unicode:0:0 int:0:0 int:0:0 int:0:0 int:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -16808,10 +16808,10 @@ sub api_server_show
     return $self->rpc_api('server_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(rights all raw version)],
-        [qw(bool:0 bool:0 bool:0 unicode:0)],
+        [qw(bool:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -16877,10 +16877,10 @@ sub api_service_add
     return $self->rpc_api('service_add',    
         [$krbprincipalname],
         [qw(krbprincipalname)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(usercertificate ipakrbauthzdata ipakrbrequirespreauth ipakrbokasdelegate setattr addattr force all raw version no_members)],
-        [qw(str:1 unicode:1 bool:0 bool:0 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(str:1:0 unicode:1:0 bool:0:0 bool:0:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -16932,10 +16932,10 @@ sub api_service_add_cert
     return $self->rpc_api('service_add_cert',    
         [$krbprincipalname],
         [qw(krbprincipalname)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members usercertificate)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 str:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 str:1:0)],
     );
 }
 
@@ -16987,10 +16987,10 @@ sub api_service_add_host
     return $self->rpc_api('service_add_host',    
         [$krbprincipalname],
         [qw(krbprincipalname)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members host)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0)],
     );
 }
 
@@ -17048,10 +17048,10 @@ sub api_service_allow_create_keytab
     return $self->rpc_api('service_allow_create_keytab',    
         [$krbprincipalname],
         [qw(krbprincipalname)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members user group host hostgroup)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1 unicode:1 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -17109,10 +17109,10 @@ sub api_service_allow_retrieve_keytab
     return $self->rpc_api('service_allow_retrieve_keytab',    
         [$krbprincipalname],
         [qw(krbprincipalname)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members user group host hostgroup)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1 unicode:1 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -17158,10 +17158,10 @@ sub api_service_del
     return $self->rpc_api('service_del',    
         [$krbprincipalname],
         [qw(krbprincipalname)],
-        [qw(unicode:1)],
+        [qw(unicode:1:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool:0 unicode:0)],
+        [qw(bool:0:0 unicode:0:0)],
     );
 }
 
@@ -17205,10 +17205,10 @@ sub api_service_disable
     return $self->rpc_api('service_disable',    
         [$krbprincipalname],
         [qw(krbprincipalname)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(version)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
     );
 }
 
@@ -17266,10 +17266,10 @@ sub api_service_disallow_create_keytab
     return $self->rpc_api('service_disallow_create_keytab',    
         [$krbprincipalname],
         [qw(krbprincipalname)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members user group host hostgroup)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1 unicode:1 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -17327,10 +17327,10 @@ sub api_service_disallow_retrieve_keytab
     return $self->rpc_api('service_disallow_retrieve_keytab',    
         [$krbprincipalname],
         [qw(krbprincipalname)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members user group host hostgroup)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1 unicode:1 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -17394,10 +17394,10 @@ sub api_service_find
     return $self->rpc_api('service_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
         \%opts,
         [qw(krbprincipalname ipakrbauthzdata timelimit sizelimit all raw version no_members pkey_only man_by_host not_man_by_host)],
-        [qw(unicode:0 unicode:1 int:0 int:0 bool:0 bool:0 unicode:0 bool:0 bool:0 unicode:1 unicode:1)],
+        [qw(unicode:0:0 unicode:1:0 int:0:0 int:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0 bool:0:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -17466,10 +17466,10 @@ sub api_service_mod
     return $self->rpc_api('service_mod',    
         [$krbprincipalname],
         [qw(krbprincipalname)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(usercertificate ipakrbauthzdata ipakrbrequirespreauth ipakrbokasdelegate setattr addattr delattr rights all raw version no_members)],
-        [qw(str:1 unicode:1 bool:0 bool:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(str:1:0 unicode:1:0 bool:0:0 bool:0:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -17521,10 +17521,10 @@ sub api_service_remove_cert
     return $self->rpc_api('service_remove_cert',    
         [$krbprincipalname],
         [qw(krbprincipalname)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members usercertificate)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 str:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 str:1:0)],
     );
 }
 
@@ -17576,10 +17576,10 @@ sub api_service_remove_host
     return $self->rpc_api('service_remove_host',    
         [$krbprincipalname],
         [qw(krbprincipalname)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members host)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0)],
     );
 }
 
@@ -17633,10 +17633,10 @@ sub api_service_show
     return $self->rpc_api('service_show',    
         [$krbprincipalname],
         [qw(krbprincipalname)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(rights out all raw version no_members)],
-        [qw(bool:0 unicode:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(bool:0:0 unicode:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -17692,10 +17692,10 @@ sub api_servicedelegationrule_add
     return $self->rpc_api('servicedelegationrule_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(setattr addattr all raw version no_members)],
-        [qw(unicode:1 unicode:1 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -17747,10 +17747,10 @@ sub api_servicedelegationrule_add_member
     return $self->rpc_api('servicedelegationrule_add_member',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members principal)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0)],
     );
 }
 
@@ -17802,10 +17802,10 @@ sub api_servicedelegationrule_add_target
     return $self->rpc_api('servicedelegationrule_add_target',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members servicedelegationtarget)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0)],
     );
 }
 
@@ -17851,10 +17851,10 @@ sub api_servicedelegationrule_del
     return $self->rpc_api('servicedelegationrule_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:1)],
+        [qw(unicode:1:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool:0 unicode:0)],
+        [qw(bool:0:0 unicode:0:0)],
     );
 }
 
@@ -17912,10 +17912,10 @@ sub api_servicedelegationrule_find
     return $self->rpc_api('servicedelegationrule_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
         \%opts,
         [qw(cn timelimit sizelimit all raw version no_members pkey_only)],
-        [qw(unicode:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0 bool:0)],
+        [qw(unicode:0:0 int:0:0 int:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0 bool:0:0)],
     );
 }
 
@@ -17967,10 +17967,10 @@ sub api_servicedelegationrule_remove_member
     return $self->rpc_api('servicedelegationrule_remove_member',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members principal)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0)],
     );
 }
 
@@ -18022,10 +18022,10 @@ sub api_servicedelegationrule_remove_target
     return $self->rpc_api('servicedelegationrule_remove_target',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members servicedelegationtarget)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0)],
     );
 }
 
@@ -18077,10 +18077,10 @@ sub api_servicedelegationrule_show
     return $self->rpc_api('servicedelegationrule_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(rights all raw version no_members)],
-        [qw(bool:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -18134,10 +18134,10 @@ sub api_servicedelegationtarget_add
     return $self->rpc_api('servicedelegationtarget_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(setattr addattr all raw version)],
-        [qw(unicode:1 unicode:1 bool:0 bool:0 unicode:0)],
+        [qw(unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -18187,10 +18187,10 @@ sub api_servicedelegationtarget_add_member
     return $self->rpc_api('servicedelegationtarget_add_member',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version principal)],
-        [qw(bool:0 bool:0 unicode:0 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 unicode:1:0)],
     );
 }
 
@@ -18236,10 +18236,10 @@ sub api_servicedelegationtarget_del
     return $self->rpc_api('servicedelegationtarget_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:1)],
+        [qw(unicode:1:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool:0 unicode:0)],
+        [qw(bool:0:0 unicode:0:0)],
     );
 }
 
@@ -18295,10 +18295,10 @@ sub api_servicedelegationtarget_find
     return $self->rpc_api('servicedelegationtarget_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
         \%opts,
         [qw(cn timelimit sizelimit all raw version pkey_only)],
-        [qw(unicode:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:0 int:0:0 int:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -18348,10 +18348,10 @@ sub api_servicedelegationtarget_remove_member
     return $self->rpc_api('servicedelegationtarget_remove_member',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version principal)],
-        [qw(bool:0 bool:0 unicode:0 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 unicode:1:0)],
     );
 }
 
@@ -18401,10 +18401,10 @@ sub api_servicedelegationtarget_show
     return $self->rpc_api('servicedelegationtarget_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(rights all raw version)],
-        [qw(bool:0 bool:0 bool:0 unicode:0)],
+        [qw(bool:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -18446,7 +18446,7 @@ sub api_session_logout
         [qw()],
         \%opts,
         [qw(version)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
     );
 }
 
@@ -18486,7 +18486,7 @@ sub api_sidgen_was_run
         [qw()],
         \%opts,
         [qw(version)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
     );
 }
 
@@ -18536,10 +18536,10 @@ sub api_stageuser_activate
     return $self->rpc_api('stageuser_activate',    
         [$uid],
         [qw(uid)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members)],
-        [qw(bool:0 bool:0 unicode:0 bool:0)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -18671,10 +18671,10 @@ sub api_stageuser_add
     return $self->rpc_api('stageuser_add',    
         [$uid],
         [qw(uid)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(givenname sn cn displayname initials homedirectory gecos loginshell krbprincipalname krbprincipalexpiration mail userpassword random uidnumber gidnumber street l st postalcode telephonenumber mobile pager facsimiletelephonenumber ou title manager carlicense ipasshpubkey ipauserauthtype userclass ipatokenradiusconfiglink ipatokenradiususername departmentnumber employeenumber employeetype preferredlanguage usercertificate setattr addattr from_delete all raw version no_members)],
-        [qw(unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 datetime:0 unicode:1 unicode:0 bool:0 int:0 int:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:0 unicode:0 unicode:1 unicode:0 unicode:0 unicode:0 str:1 unicode:1 unicode:1 object:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:1 unicode:0:1 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 datetime:0:0 unicode:1:0 unicode:0:0 bool:0:0 int:0:0 int:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:0:0 unicode:0:0 unicode:1:0 unicode:0:0 unicode:0:0 unicode:0:0 str:1:0 unicode:1:0 unicode:1:0 object:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -18720,10 +18720,10 @@ sub api_stageuser_del
     return $self->rpc_api('stageuser_del',    
         [$uid],
         [qw(uid)],
-        [qw(unicode:1)],
+        [qw(unicode:1:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool:0 unicode:0)],
+        [qw(bool:0:0 unicode:0:0)],
     );
 }
 
@@ -18871,10 +18871,10 @@ sub api_stageuser_find
     return $self->rpc_api('stageuser_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
         \%opts,
         [qw(uid givenname sn cn displayname initials homedirectory gecos loginshell krbprincipalname krbprincipalexpiration mail userpassword uidnumber gidnumber street l st postalcode telephonenumber mobile pager facsimiletelephonenumber ou title manager carlicense ipauserauthtype userclass ipatokenradiusconfiglink ipatokenradiususername departmentnumber employeenumber employeetype preferredlanguage usercertificate timelimit sizelimit all raw version no_members pkey_only in_group not_in_group in_netgroup not_in_netgroup in_role not_in_role in_hbacrule not_in_hbacrule in_sudorule not_in_sudorule)],
-        [qw(unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 datetime:0 unicode:1 unicode:0 int:0 int:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 unicode:0 unicode:0 unicode:1 unicode:0 unicode:0 unicode:0 str:1 int:0 int:0 bool:0 bool:0 unicode:0 bool:0 bool:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1)],
+        [qw(unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 datetime:0:0 unicode:1:0 unicode:0:0 int:0:0 int:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:0:0 unicode:0:0 unicode:1:0 unicode:0:0 unicode:0:0 unicode:0:0 str:1:0 int:0:0 int:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0 bool:0:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -19009,10 +19009,10 @@ sub api_stageuser_mod
     return $self->rpc_api('stageuser_mod',    
         [$uid],
         [qw(uid)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(givenname sn cn displayname initials homedirectory gecos loginshell krbprincipalexpiration mail userpassword random uidnumber gidnumber street l st postalcode telephonenumber mobile pager facsimiletelephonenumber ou title manager carlicense ipasshpubkey ipauserauthtype userclass ipatokenradiusconfiglink ipatokenradiususername departmentnumber employeenumber employeetype preferredlanguage usercertificate setattr addattr delattr rights all raw version no_members rename)],
-        [qw(unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 datetime:0 unicode:1 unicode:0 bool:0 int:0 int:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:0 unicode:0 unicode:1 unicode:0 unicode:0 unicode:0 str:1 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0 bool:0 unicode:0)],
+        [qw(unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 datetime:0:0 unicode:1:0 unicode:0:0 bool:0:0 int:0:0 int:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:0:0 unicode:0:0 unicode:1:0 unicode:0:0 unicode:0:0 unicode:0:0 str:1:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -19064,10 +19064,10 @@ sub api_stageuser_show
     return $self->rpc_api('stageuser_show',    
         [$uid],
         [qw(uid)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(rights all raw version no_members)],
-        [qw(bool:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -19125,10 +19125,10 @@ sub api_sudocmd_add
     return $self->rpc_api('sudocmd_add',    
         [$sudocmd],
         [qw(sudocmd)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(description setattr addattr all raw version no_members)],
-        [qw(unicode:0 unicode:1 unicode:1 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -19174,10 +19174,10 @@ sub api_sudocmd_del
     return $self->rpc_api('sudocmd_del',    
         [$sudocmd],
         [qw(sudocmd)],
-        [qw(unicode:1)],
+        [qw(unicode:1:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool:0 unicode:0)],
+        [qw(bool:0:0 unicode:0:0)],
     );
 }
 
@@ -19237,10 +19237,10 @@ sub api_sudocmd_find
     return $self->rpc_api('sudocmd_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
         \%opts,
         [qw(sudocmd description timelimit sizelimit all raw version no_members pkey_only)],
-        [qw(unicode:0 unicode:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0 bool:0)],
+        [qw(unicode:0:0 unicode:0:0 int:0:0 int:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0 bool:0:0)],
     );
 }
 
@@ -19303,10 +19303,10 @@ sub api_sudocmd_mod
     return $self->rpc_api('sudocmd_mod',    
         [$sudocmd],
         [qw(sudocmd)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(description setattr addattr delattr rights all raw version no_members)],
-        [qw(unicode:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -19358,10 +19358,10 @@ sub api_sudocmd_show
     return $self->rpc_api('sudocmd_show',    
         [$sudocmd],
         [qw(sudocmd)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(rights all raw version no_members)],
-        [qw(bool:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -19419,10 +19419,10 @@ sub api_sudocmdgroup_add
     return $self->rpc_api('sudocmdgroup_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(description setattr addattr all raw version no_members)],
-        [qw(unicode:0 unicode:1 unicode:1 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -19474,10 +19474,10 @@ sub api_sudocmdgroup_add_member
     return $self->rpc_api('sudocmdgroup_add_member',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members sudocmd)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0)],
     );
 }
 
@@ -19523,10 +19523,10 @@ sub api_sudocmdgroup_del
     return $self->rpc_api('sudocmdgroup_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:1)],
+        [qw(unicode:1:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool:0 unicode:0)],
+        [qw(bool:0:0 unicode:0:0)],
     );
 }
 
@@ -19586,10 +19586,10 @@ sub api_sudocmdgroup_find
     return $self->rpc_api('sudocmdgroup_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
         \%opts,
         [qw(cn description timelimit sizelimit all raw version no_members pkey_only)],
-        [qw(unicode:0 unicode:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0 bool:0)],
+        [qw(unicode:0:0 unicode:0:0 int:0:0 int:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0 bool:0:0)],
     );
 }
 
@@ -19652,10 +19652,10 @@ sub api_sudocmdgroup_mod
     return $self->rpc_api('sudocmdgroup_mod',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(description setattr addattr delattr rights all raw version no_members)],
-        [qw(unicode:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -19707,10 +19707,10 @@ sub api_sudocmdgroup_remove_member
     return $self->rpc_api('sudocmdgroup_remove_member',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members sudocmd)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0)],
     );
 }
 
@@ -19762,10 +19762,10 @@ sub api_sudocmdgroup_show
     return $self->rpc_api('sudocmdgroup_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(rights all raw version no_members)],
-        [qw(bool:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -19845,10 +19845,10 @@ sub api_sudorule_add
     return $self->rpc_api('sudorule_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(description ipaenabledflag usercategory hostcategory cmdcategory ipasudorunasusercategory ipasudorunasgroupcategory sudoorder externaluser externalhost ipasudorunasextuser ipasudorunasextgroup setattr addattr all raw version no_members)],
-        [qw(unicode:0 bool:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 int:0 unicode:0 unicode:1 unicode:0 unicode:0 unicode:1 unicode:1 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:0 bool:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 int:0:0 unicode:0:0 unicode:1:0 unicode:0:0 unicode:0:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -19902,10 +19902,10 @@ sub api_sudorule_add_allow_command
     return $self->rpc_api('sudorule_add_allow_command',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members sudocmd sudocmdgroup)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -19959,10 +19959,10 @@ sub api_sudorule_add_deny_command
     return $self->rpc_api('sudorule_add_deny_command',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members sudocmd sudocmdgroup)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -20018,10 +20018,10 @@ sub api_sudorule_add_host
     return $self->rpc_api('sudorule_add_host',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members host hostgroup hostmask)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -20073,10 +20073,10 @@ sub api_sudorule_add_option
     return $self->rpc_api('sudorule_add_option',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(ipasudoopt all raw version no_members)],
-        [qw(unicode:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:1 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -20128,10 +20128,10 @@ sub api_sudorule_add_runasgroup
     return $self->rpc_api('sudorule_add_runasgroup',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members group)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0)],
     );
 }
 
@@ -20185,10 +20185,10 @@ sub api_sudorule_add_runasuser
     return $self->rpc_api('sudorule_add_runasuser',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members user group)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -20242,10 +20242,10 @@ sub api_sudorule_add_user
     return $self->rpc_api('sudorule_add_user',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members user group)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -20291,10 +20291,10 @@ sub api_sudorule_del
     return $self->rpc_api('sudorule_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:1)],
+        [qw(unicode:1:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool:0 unicode:0)],
+        [qw(bool:0:0 unicode:0:0)],
     );
 }
 
@@ -20338,10 +20338,10 @@ sub api_sudorule_disable
     return $self->rpc_api('sudorule_disable',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(version)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
     );
 }
 
@@ -20385,10 +20385,10 @@ sub api_sudorule_enable
     return $self->rpc_api('sudorule_enable',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(version)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
     );
 }
 
@@ -20470,10 +20470,10 @@ sub api_sudorule_find
     return $self->rpc_api('sudorule_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
         \%opts,
         [qw(cn description ipaenabledflag usercategory hostcategory cmdcategory ipasudorunasusercategory ipasudorunasgroupcategory sudoorder externaluser externalhost ipasudorunasextuser ipasudorunasextgroup timelimit sizelimit all raw version no_members pkey_only)],
-        [qw(unicode:0 unicode:0 bool:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 int:0 unicode:0 unicode:1 unicode:0 unicode:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0 bool:0)],
+        [qw(unicode:0:0 unicode:0:0 bool:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 int:0:0 unicode:0:0 unicode:1:0 unicode:0:0 unicode:0:0 int:0:0 int:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0 bool:0:0)],
     );
 }
 
@@ -20558,10 +20558,10 @@ sub api_sudorule_mod
     return $self->rpc_api('sudorule_mod',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(description ipaenabledflag usercategory hostcategory cmdcategory ipasudorunasusercategory ipasudorunasgroupcategory sudoorder externaluser externalhost ipasudorunasextuser ipasudorunasextgroup setattr addattr delattr rights all raw version no_members)],
-        [qw(unicode:0 bool:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 int:0 unicode:0 unicode:1 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:0 bool:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 int:0:0 unicode:0:0 unicode:1:0 unicode:0:0 unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -20615,10 +20615,10 @@ sub api_sudorule_remove_allow_command
     return $self->rpc_api('sudorule_remove_allow_command',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members sudocmd sudocmdgroup)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -20672,10 +20672,10 @@ sub api_sudorule_remove_deny_command
     return $self->rpc_api('sudorule_remove_deny_command',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members sudocmd sudocmdgroup)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -20731,10 +20731,10 @@ sub api_sudorule_remove_host
     return $self->rpc_api('sudorule_remove_host',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members host hostgroup hostmask)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -20786,10 +20786,10 @@ sub api_sudorule_remove_option
     return $self->rpc_api('sudorule_remove_option',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(ipasudoopt all raw version no_members)],
-        [qw(unicode:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:1 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -20841,10 +20841,10 @@ sub api_sudorule_remove_runasgroup
     return $self->rpc_api('sudorule_remove_runasgroup',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members group)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0)],
     );
 }
 
@@ -20898,10 +20898,10 @@ sub api_sudorule_remove_runasuser
     return $self->rpc_api('sudorule_remove_runasuser',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members user group)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -20955,10 +20955,10 @@ sub api_sudorule_remove_user
     return $self->rpc_api('sudorule_remove_user',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members user group)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -21010,10 +21010,10 @@ sub api_sudorule_show
     return $self->rpc_api('sudorule_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(rights all raw version no_members)],
-        [qw(bool:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -21085,10 +21085,10 @@ sub api_topologysegment_add
     return $self->rpc_api('topologysegment_add',    
         [$topologysuffixcn, $cn],
         [qw(topologysuffixcn cn)],
-        [qw(unicode:0 unicode:0)],
+        [qw(unicode:0:1 unicode:0:1)],
         \%opts,
         [qw(iparepltoposegmentleftnode iparepltoposegmentrightnode iparepltoposegmentdirection nsds5replicastripattrs nsds5replicatedattributelist nsds5replicatedattributelisttotal nsds5replicatimeout nsds5replicaenabled setattr addattr all raw version)],
-        [qw(unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 int:0 unicode:0 unicode:1 unicode:1 bool:0 bool:0 unicode:0)],
+        [qw(unicode:0:1 unicode:0:1 unicode:0:1 unicode:0:0 unicode:0:0 unicode:0:0 int:0:0 unicode:0:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -21136,10 +21136,10 @@ sub api_topologysegment_del
     return $self->rpc_api('topologysegment_del',    
         [$topologysuffixcn, $cn],
         [qw(topologysuffixcn cn)],
-        [qw(unicode:0 unicode:1)],
+        [qw(unicode:0:1 unicode:1:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool:0 unicode:0)],
+        [qw(bool:0:0 unicode:0:0)],
     );
 }
 
@@ -21213,10 +21213,10 @@ sub api_topologysegment_find
     return $self->rpc_api('topologysegment_find',    
         [$topologysuffixcn, $criteria],
         [qw(topologysuffixcn criteria)],
-        [qw(unicode:0 unicode:0)],
+        [qw(unicode:0:1 unicode:0:0)],
         \%opts,
         [qw(cn iparepltoposegmentleftnode iparepltoposegmentrightnode iparepltoposegmentdirection nsds5replicastripattrs nsds5replicatedattributelist nsds5replicatedattributelisttotal nsds5replicatimeout nsds5replicaenabled timelimit sizelimit all raw version pkey_only)],
-        [qw(unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 int:0 unicode:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 int:0:0 unicode:0:0 int:0:0 int:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -21287,10 +21287,10 @@ sub api_topologysegment_mod
     return $self->rpc_api('topologysegment_mod',    
         [$topologysuffixcn, $cn],
         [qw(topologysuffixcn cn)],
-        [qw(unicode:0 unicode:0)],
+        [qw(unicode:0:1 unicode:0:1)],
         \%opts,
         [qw(nsds5replicastripattrs nsds5replicatedattributelist nsds5replicatedattributelisttotal nsds5replicatimeout nsds5replicaenabled setattr addattr delattr rights all raw version)],
-        [qw(unicode:0 unicode:0 unicode:0 int:0 unicode:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0)],
+        [qw(unicode:0:0 unicode:0:0 unicode:0:0 int:0:0 unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -21342,10 +21342,10 @@ sub api_topologysegment_reinitialize
     return $self->rpc_api('topologysegment_reinitialize',    
         [$topologysuffixcn, $cn],
         [qw(topologysuffixcn cn)],
-        [qw(unicode:0 unicode:0)],
+        [qw(unicode:0:1 unicode:0:1)],
         \%opts,
         [qw(left right stop version)],
-        [qw(bool:0 bool:0 bool:0 unicode:0)],
+        [qw(bool:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -21397,10 +21397,10 @@ sub api_topologysegment_show
     return $self->rpc_api('topologysegment_show',    
         [$topologysuffixcn, $cn],
         [qw(topologysuffixcn cn)],
-        [qw(unicode:0 unicode:0)],
+        [qw(unicode:0:1 unicode:0:1)],
         \%opts,
         [qw(rights all raw version)],
-        [qw(bool:0 bool:0 bool:0 unicode:0)],
+        [qw(bool:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -21456,10 +21456,10 @@ sub api_topologysuffix_add
     return $self->rpc_api('topologysuffix_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(iparepltopoconfroot setattr addattr all raw version)],
-        [qw(unicode:0 unicode:1 unicode:1 bool:0 bool:0 unicode:0)],
+        [qw(unicode:0:1 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -21505,10 +21505,10 @@ sub api_topologysuffix_del
     return $self->rpc_api('topologysuffix_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:1)],
+        [qw(unicode:1:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool:0 unicode:0)],
+        [qw(bool:0:0 unicode:0:0)],
     );
 }
 
@@ -21566,10 +21566,10 @@ sub api_topologysuffix_find
     return $self->rpc_api('topologysuffix_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
         \%opts,
         [qw(cn iparepltopoconfroot timelimit sizelimit all raw version pkey_only)],
-        [qw(unicode:0 unicode:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:0 unicode:0:0 int:0:0 int:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -21630,10 +21630,10 @@ sub api_topologysuffix_mod
     return $self->rpc_api('topologysuffix_mod',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(iparepltopoconfroot setattr addattr delattr rights all raw version)],
-        [qw(unicode:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0)],
+        [qw(unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -21683,10 +21683,10 @@ sub api_topologysuffix_show
     return $self->rpc_api('topologysuffix_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(rights all raw version)],
-        [qw(bool:0 bool:0 bool:0 unicode:0)],
+        [qw(bool:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -21738,10 +21738,10 @@ sub api_topologysuffix_verify
     return $self->rpc_api('topologysuffix_verify',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(version)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
     );
 }
 
@@ -21825,10 +21825,10 @@ sub api_trust_add
     return $self->rpc_api('trust_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(setattr addattr trust_type realm_admin realm_passwd realm_server trust_secret base_id range_size range_type bidirectional all raw version)],
-        [qw(unicode:1 unicode:1 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 int:0 int:0 unicode:0 bool:0 bool:0 bool:0 unicode:0)],
+        [qw(unicode:1:0 unicode:1:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 int:0:0 int:0:0 unicode:0:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -21874,10 +21874,10 @@ sub api_trust_del
     return $self->rpc_api('trust_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:1)],
+        [qw(unicode:1:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool:0 unicode:0)],
+        [qw(bool:0:0 unicode:0:0)],
     );
 }
 
@@ -21929,10 +21929,10 @@ sub api_trust_fetch_domains
     return $self->rpc_api('trust_fetch_domains',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(rights realm_server all raw version)],
-        [qw(bool:0 unicode:0 bool:0 bool:0 unicode:0)],
+        [qw(bool:0:0 unicode:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -21996,10 +21996,10 @@ sub api_trust_find
     return $self->rpc_api('trust_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
         \%opts,
         [qw(cn ipantflatname ipanttrusteddomainsid ipantsidblacklistincoming ipantsidblacklistoutgoing timelimit sizelimit all raw version pkey_only)],
-        [qw(unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 int:0 int:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:0 unicode:0:0 unicode:0:0 unicode:1:0 unicode:1:0 int:0:0 int:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -22067,10 +22067,10 @@ sub api_trust_mod
     return $self->rpc_api('trust_mod',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(ipantsidblacklistincoming ipantsidblacklistoutgoing setattr addattr delattr rights all raw version)],
-        [qw(unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0)],
+        [qw(unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -22116,7 +22116,7 @@ sub api_trust_resolve
         [qw()],
         \%opts,
         [qw(sids all raw version)],
-        [qw(unicode:1 bool:0 bool:0 unicode:0)],
+        [qw(unicode:1:1 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -22166,10 +22166,10 @@ sub api_trust_show
     return $self->rpc_api('trust_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(rights all raw version)],
-        [qw(bool:0 bool:0 bool:0 unicode:0)],
+        [qw(bool:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -22228,7 +22228,7 @@ sub api_trustconfig_mod
         [qw()],
         \%opts,
         [qw(ipantfallbackprimarygroup setattr addattr delattr rights trust_type all raw version)],
-        [qw(unicode:0 unicode:1 unicode:1 unicode:1 bool:0 unicode:0 bool:0 bool:0 unicode:0)],
+        [qw(unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 unicode:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -22276,7 +22276,7 @@ sub api_trustconfig_show
         [qw()],
         \%opts,
         [qw(rights trust_type all raw version)],
-        [qw(bool:0 unicode:0 bool:0 bool:0 unicode:0)],
+        [qw(bool:0:0 unicode:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -22340,10 +22340,10 @@ sub api_trustdomain_add
     return $self->rpc_api('trustdomain_add',    
         [$trustcn, $cn],
         [qw(trustcn cn)],
-        [qw(unicode:0 unicode:0)],
+        [qw(unicode:0:1 unicode:0:1)],
         \%opts,
         [qw(ipantflatname ipanttrusteddomainsid ipanttrustpartner setattr addattr trust_type all raw version)],
-        [qw(unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 unicode:0 bool:0 bool:0 unicode:0)],
+        [qw(unicode:0:0 unicode:0:0 unicode:0:0 unicode:1:0 unicode:1:0 unicode:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -22391,10 +22391,10 @@ sub api_trustdomain_del
     return $self->rpc_api('trustdomain_del',    
         [$trustcn, $cn],
         [qw(trustcn cn)],
-        [qw(unicode:0 unicode:1)],
+        [qw(unicode:0:1 unicode:1:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool:0 unicode:0)],
+        [qw(bool:0:0 unicode:0:0)],
     );
 }
 
@@ -22440,10 +22440,10 @@ sub api_trustdomain_disable
     return $self->rpc_api('trustdomain_disable',    
         [$trustcn, $cn],
         [qw(trustcn cn)],
-        [qw(unicode:0 unicode:0)],
+        [qw(unicode:0:1 unicode:0:1)],
         \%opts,
         [qw(version)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
     );
 }
 
@@ -22489,10 +22489,10 @@ sub api_trustdomain_enable
     return $self->rpc_api('trustdomain_enable',    
         [$trustcn, $cn],
         [qw(trustcn cn)],
-        [qw(unicode:0 unicode:0)],
+        [qw(unicode:0:1 unicode:0:1)],
         \%opts,
         [qw(version)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
     );
 }
 
@@ -22556,10 +22556,10 @@ sub api_trustdomain_find
     return $self->rpc_api('trustdomain_find',    
         [$trustcn, $criteria],
         [qw(trustcn criteria)],
-        [qw(unicode:0 unicode:0)],
+        [qw(unicode:0:1 unicode:0:0)],
         \%opts,
         [qw(cn ipantflatname ipanttrusteddomainsid ipanttrustpartner timelimit sizelimit all raw version pkey_only)],
-        [qw(unicode:0 unicode:0 unicode:0 unicode:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 int:0:0 int:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -22628,10 +22628,10 @@ sub api_trustdomain_mod
     return $self->rpc_api('trustdomain_mod',    
         [$trustcn, $cn],
         [qw(trustcn cn)],
-        [qw(unicode:0 unicode:0)],
+        [qw(unicode:0:1 unicode:0:1)],
         \%opts,
         [qw(ipantflatname ipanttrusteddomainsid ipanttrustpartner setattr addattr delattr rights trust_type all raw version)],
-        [qw(unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 bool:0 unicode:0 bool:0 bool:0 unicode:0)],
+        [qw(unicode:0:0 unicode:0:0 unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 unicode:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -22765,10 +22765,10 @@ sub api_user_add
     return $self->rpc_api('user_add',    
         [$uid],
         [qw(uid)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(givenname sn cn displayname initials homedirectory gecos loginshell krbprincipalname krbprincipalexpiration mail userpassword random uidnumber gidnumber street l st postalcode telephonenumber mobile pager facsimiletelephonenumber ou title manager carlicense ipasshpubkey ipauserauthtype userclass ipatokenradiusconfiglink ipatokenradiususername departmentnumber employeenumber employeetype preferredlanguage usercertificate nsaccountlock setattr addattr noprivate all raw version no_members)],
-        [qw(unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 datetime:0 unicode:1 unicode:0 bool:0 int:0 int:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:0 unicode:0 unicode:1 unicode:0 unicode:0 unicode:0 str:1 bool:0 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:1 unicode:0:1 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 datetime:0:0 unicode:1:0 unicode:0:0 bool:0:0 int:0:0 int:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:0:0 unicode:0:0 unicode:1:0 unicode:0:0 unicode:0:0 unicode:0:0 str:1:0 bool:0:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -22820,10 +22820,10 @@ sub api_user_add_cert
     return $self->rpc_api('user_add_cert',    
         [$uid],
         [qw(uid)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members usercertificate)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 str:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 str:1:0)],
     );
 }
 
@@ -22875,10 +22875,10 @@ sub api_user_del
     return $self->rpc_api('user_del',    
         [$uid],
         [qw(uid)],
-        [qw(unicode:1)],
+        [qw(unicode:1:1)],
         \%opts,
         [qw(continue preserve preserve no_preserve version)],
-        [qw(bool:0 bool:0 bool:0 bool:0 unicode:0)],
+        [qw(bool:0:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -22922,10 +22922,10 @@ sub api_user_disable
     return $self->rpc_api('user_disable',    
         [$uid],
         [qw(uid)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(version)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
     );
 }
 
@@ -22969,10 +22969,10 @@ sub api_user_enable
     return $self->rpc_api('user_enable',    
         [$uid],
         [qw(uid)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(version)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
     );
 }
 
@@ -23126,10 +23126,10 @@ sub api_user_find
     return $self->rpc_api('user_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
         \%opts,
         [qw(uid givenname sn cn displayname initials homedirectory gecos loginshell krbprincipalname krbprincipalexpiration mail userpassword uidnumber gidnumber street l st postalcode telephonenumber mobile pager facsimiletelephonenumber ou title manager carlicense ipauserauthtype userclass ipatokenradiusconfiglink ipatokenradiususername departmentnumber employeenumber employeetype preferredlanguage usercertificate nsaccountlock preserved timelimit sizelimit whoami all raw version no_members pkey_only in_group not_in_group in_netgroup not_in_netgroup in_role not_in_role in_hbacrule not_in_hbacrule in_sudorule not_in_sudorule)],
-        [qw(unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 datetime:0 unicode:1 unicode:0 int:0 int:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 unicode:0 unicode:0 unicode:1 unicode:0 unicode:0 unicode:0 str:1 bool:0 bool:0 int:0 int:0 bool:0 bool:0 bool:0 unicode:0 bool:0 bool:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1)],
+        [qw(unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 datetime:0:0 unicode:1:0 unicode:0:0 int:0:0 int:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:0:0 unicode:0:0 unicode:1:0 unicode:0:0 unicode:0:0 unicode:0:0 str:1:0 bool:0:0 bool:0:0 int:0:0 int:0:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0 bool:0:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -23266,10 +23266,10 @@ sub api_user_mod
     return $self->rpc_api('user_mod',    
         [$uid],
         [qw(uid)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(givenname sn cn displayname initials homedirectory gecos loginshell krbprincipalexpiration mail userpassword random uidnumber gidnumber street l st postalcode telephonenumber mobile pager facsimiletelephonenumber ou title manager carlicense ipasshpubkey ipauserauthtype userclass ipatokenradiusconfiglink ipatokenradiususername departmentnumber employeenumber employeetype preferredlanguage usercertificate nsaccountlock setattr addattr delattr rights all raw version no_members rename)],
-        [qw(unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 datetime:0 unicode:1 unicode:0 bool:0 int:0 int:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:0 unicode:0 unicode:1 unicode:0 unicode:0 unicode:0 str:1 bool:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0 bool:0 unicode:0)],
+        [qw(unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 datetime:0:0 unicode:1:0 unicode:0:0 bool:0:0 int:0:0 int:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:0:0 unicode:0:0 unicode:1:0 unicode:0:0 unicode:0:0 unicode:0:0 str:1:0 bool:0:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -23321,10 +23321,10 @@ sub api_user_remove_cert
     return $self->rpc_api('user_remove_cert',    
         [$uid],
         [qw(uid)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members usercertificate)],
-        [qw(bool:0 bool:0 unicode:0 bool:0 str:1)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0 str:1:0)],
     );
 }
 
@@ -23378,10 +23378,10 @@ sub api_user_show
     return $self->rpc_api('user_show',    
         [$uid],
         [qw(uid)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(rights out all raw version no_members)],
-        [qw(bool:0 unicode:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(bool:0:0 unicode:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -23427,10 +23427,10 @@ sub api_user_stage
     return $self->rpc_api('user_stage',    
         [$uid],
         [qw(uid)],
-        [qw(unicode:1)],
+        [qw(unicode:1:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool:0 unicode:0)],
+        [qw(bool:0:0 unicode:0:0)],
     );
 }
 
@@ -23500,10 +23500,10 @@ sub api_user_status
     return $self->rpc_api('user_status',    
         [$uid],
         [qw(uid)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(all raw version no_members)],
-        [qw(bool:0 bool:0 unicode:0 bool:0)],
+        [qw(bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -23547,10 +23547,10 @@ sub api_user_undel
     return $self->rpc_api('user_undel',    
         [$uid],
         [qw(uid)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(version)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
     );
 }
 
@@ -23600,10 +23600,10 @@ sub api_user_unlock
     return $self->rpc_api('user_unlock',    
         [$uid],
         [qw(uid)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(version)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
     );
 }
 
@@ -23675,10 +23675,10 @@ sub api_vault_add
     return $self->rpc_api('vault_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(setattr addattr service shared username description ipavaulttype password password_file ipavaultpublickey public_key_file all raw version)],
-        [qw(unicode:1 unicode:1 unicode:0 bool:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 str:0 unicode:0 bool:0 bool:0 unicode:0)],
+        [qw(unicode:1:0 unicode:1:0 unicode:0:0 bool:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 str:0:0 unicode:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -23742,10 +23742,10 @@ sub api_vault_add_internal
     return $self->rpc_api('vault_add_internal',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(description ipavaulttype ipavaultsalt ipavaultpublickey service shared username all raw version no_members)],
-        [qw(unicode:0 unicode:0 str:0 str:0 unicode:0 bool:0 unicode:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:0 unicode:0:0 str:0:0 str:0:0 unicode:0:0 bool:0:0 unicode:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -23807,10 +23807,10 @@ sub api_vault_add_member
     return $self->rpc_api('vault_add_member',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(service shared username all raw version no_members user group services)],
-        [qw(unicode:0 bool:0 unicode:0 bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1 unicode:1)],
+        [qw(unicode:0:0 bool:0:0 unicode:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -23872,10 +23872,10 @@ sub api_vault_add_owner
     return $self->rpc_api('vault_add_owner',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(service shared username all raw version no_members user group services)],
-        [qw(unicode:0 bool:0 unicode:0 bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1 unicode:1)],
+        [qw(unicode:0:0 bool:0:0 unicode:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -23939,10 +23939,10 @@ sub api_vault_archive
     return $self->rpc_api('vault_archive',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(service shared username data in password password_file override_password all raw version)],
-        [qw(unicode:0 bool:0 unicode:0 str:0 unicode:0 unicode:0 unicode:0 bool:0 bool:0 bool:0 unicode:0)],
+        [qw(unicode:0:0 bool:0:0 unicode:0:0 str:0:0 unicode:0:0 unicode:0:0 unicode:0:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -24002,10 +24002,10 @@ sub api_vault_archive_internal
     return $self->rpc_api('vault_archive_internal',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(service shared username session_key vault_data nonce all raw version)],
-        [qw(unicode:0 bool:0 unicode:0 str:0 str:0 str:0 bool:0 bool:0 unicode:0)],
+        [qw(unicode:0:0 bool:0:0 unicode:0:0 str:0:1 str:0:1 str:0:1 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -24057,10 +24057,10 @@ sub api_vault_del
     return $self->rpc_api('vault_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:1)],
+        [qw(unicode:1:1)],
         \%opts,
         [qw(continue service shared username version)],
-        [qw(bool:0 unicode:0 bool:0 unicode:0 unicode:0)],
+        [qw(bool:0:0 unicode:0:0 bool:0:0 unicode:0:0 unicode:0:0)],
     );
 }
 
@@ -24132,10 +24132,10 @@ sub api_vault_find
     return $self->rpc_api('vault_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode:0)],
+        [qw(unicode:0:0)],
         \%opts,
         [qw(cn description ipavaulttype timelimit sizelimit service shared username services users all raw version no_members pkey_only)],
-        [qw(unicode:0 unicode:0 unicode:0 int:0 int:0 unicode:0 bool:0 unicode:0 bool:0 bool:0 bool:0 bool:0 unicode:0 bool:0 bool:0)],
+        [qw(unicode:0:0 unicode:0:0 unicode:0:0 int:0:0 int:0:0 unicode:0:0 bool:0:0 unicode:0:0 bool:0:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0 bool:0:0)],
     );
 }
 
@@ -24213,10 +24213,10 @@ sub api_vault_mod
     return $self->rpc_api('vault_mod',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(service shared username description ipavaulttype ipavaultsalt change_password old_password old_password_file new_password new_password_file private_key private_key_file ipavaultpublickey public_key_file all raw version)],
-        [qw(unicode:0 bool:0 unicode:0 unicode:0 unicode:0 str:0 bool:0 unicode:0 unicode:0 unicode:0 unicode:0 str:0 unicode:0 str:0 unicode:0 bool:0 bool:0 unicode:0)],
+        [qw(unicode:0:0 bool:0:0 unicode:0:0 unicode:0:0 unicode:0:0 str:0:0 bool:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 str:0:0 unicode:0:0 str:0:0 unicode:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -24291,10 +24291,10 @@ sub api_vault_mod_internal
     return $self->rpc_api('vault_mod_internal',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(description ipavaulttype ipavaultsalt ipavaultpublickey setattr addattr delattr rights service shared username all raw version no_members)],
-        [qw(unicode:0 unicode:0 str:0 str:0 unicode:1 unicode:1 unicode:1 bool:0 unicode:0 bool:0 unicode:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(unicode:0:0 unicode:0:0 str:0:0 str:0:0 unicode:1:0 unicode:1:0 unicode:1:0 bool:0:0 unicode:0:0 bool:0:0 unicode:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -24356,10 +24356,10 @@ sub api_vault_remove_member
     return $self->rpc_api('vault_remove_member',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(service shared username all raw version no_members user group services)],
-        [qw(unicode:0 bool:0 unicode:0 bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1 unicode:1)],
+        [qw(unicode:0:0 bool:0:0 unicode:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -24421,10 +24421,10 @@ sub api_vault_remove_owner
     return $self->rpc_api('vault_remove_owner',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(service shared username all raw version no_members user group services)],
-        [qw(unicode:0 bool:0 unicode:0 bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1 unicode:1)],
+        [qw(unicode:0:0 bool:0:0 unicode:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -24488,10 +24488,10 @@ sub api_vault_retrieve
     return $self->rpc_api('vault_retrieve',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(service shared username out password password_file private_key private_key_file all raw version)],
-        [qw(unicode:0 bool:0 unicode:0 unicode:0 unicode:0 unicode:0 str:0 unicode:0 bool:0 bool:0 unicode:0)],
+        [qw(unicode:0:0 bool:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 str:0:0 unicode:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -24547,10 +24547,10 @@ sub api_vault_retrieve_internal
     return $self->rpc_api('vault_retrieve_internal',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(service shared username session_key all raw version)],
-        [qw(unicode:0 bool:0 unicode:0 str:0 bool:0 bool:0 unicode:0)],
+        [qw(unicode:0:0 bool:0:0 unicode:0:0 str:0:1 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -24608,10 +24608,10 @@ sub api_vault_show
     return $self->rpc_api('vault_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode:0)],
+        [qw(unicode:0:1)],
         \%opts,
         [qw(rights service shared username all raw version no_members)],
-        [qw(bool:0 unicode:0 bool:0 unicode:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(bool:0:0 unicode:0:0 bool:0:0 unicode:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 
@@ -24657,7 +24657,7 @@ sub api_vaultconfig_show
         [qw()],
         \%opts,
         [qw(transport_out all raw version)],
-        [qw(unicode:0 bool:0 bool:0 unicode:0)],
+        [qw(unicode:0:0 bool:0:0 bool:0:0 unicode:0:0)],
     );
 }
 
@@ -24715,7 +24715,7 @@ sub api_vaultcontainer_add_owner
         [qw()],
         \%opts,
         [qw(service shared username all raw version no_members user group services)],
-        [qw(unicode:0 bool:0 unicode:0 bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1 unicode:1)],
+        [qw(unicode:0:0 bool:0:0 unicode:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -24763,7 +24763,7 @@ sub api_vaultcontainer_del
         [qw()],
         \%opts,
         [qw(continue service shared username version)],
-        [qw(bool:0 unicode:0 bool:0 unicode:0 unicode:0)],
+        [qw(bool:0:0 unicode:0:0 bool:0:0 unicode:0:0 unicode:0:0)],
     );
 }
 
@@ -24821,7 +24821,7 @@ sub api_vaultcontainer_remove_owner
         [qw()],
         \%opts,
         [qw(service shared username all raw version no_members user group services)],
-        [qw(unicode:0 bool:0 unicode:0 bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1 unicode:1)],
+        [qw(unicode:0:0 bool:0:0 unicode:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0 unicode:1:0 unicode:1:0 unicode:1:0)],
     );
 }
 
@@ -24875,7 +24875,7 @@ sub api_vaultcontainer_show
         [qw()],
         \%opts,
         [qw(rights service shared username all raw version no_members)],
-        [qw(bool:0 unicode:0 bool:0 unicode:0 bool:0 bool:0 unicode:0 bool:0)],
+        [qw(bool:0:0 unicode:0:0 bool:0:0 unicode:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
     );
 }
 

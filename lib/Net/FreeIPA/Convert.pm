@@ -76,16 +76,18 @@ sub rpc_api
         my $args_name = shift(@$args_names);
 
         my $emsg = "$method: mandatory $aidx-th argument $args_name";
+        my ($type, $multi, $mandatory) = split(':', shift(@$args_types));
 
         if (defined($arg)) {
-            my $cargs = $self->check_type($arg, shift(@$args_types), $emsg);
+            my $cargs = $self->check_type($arg, $type, $multi, $emsg);
             if ($cargs) {
                 push(@new_args, $self->convert(@$cargs));
             } else {
                 # error logged in check_type
                 return;
             }
-        } else {
+        } elsif ($mandatory) {
+            # Lets hope there are no non-mandatory positional arguments
             $self->error("$emsg undefined");
             return;
         };
@@ -97,6 +99,16 @@ sub rpc_api
 
     my %new_opts;
     my %rpc_opts;
+
+    # Check for mandatory options
+    foreach my $key (@$opts_keys) {
+        my ($type, $multi, $mandatory) = split(':', $opts_types_map{$key});
+        if ($mandatory && ! defined($opts->{$key})) {
+            $self->error("$method: missing mandatory option: $key");
+            return;
+        }
+    }
+
     foreach my $key (sort keys %$opts) {
         my $emsg = "$method: not a valid option key: $key";
         if ($key =~ m/$API_RPC_OPTION_PATTERN/) {
@@ -104,8 +116,9 @@ sub rpc_api
             $key =~ s/$API_RPC_OPTION_PATTERN//;
             $rpc_opts{$key} = $val;
         } else {
+            my ($type, $multi, $mandatory) = split(':', $opts_types_map{$key});
             if (grep {$key eq $_} @$opts_keys) {
-                my $cargs = $self->check_type($opts->{$key}, $opts_types_map{$key}, $emsg);
+                my $cargs = $self->check_type($opts->{$key}, $type, $multi, $emsg);
                 if ($cargs) {
                     $new_opts{$key} = $self->convert(@$cargs);
                 } else {
@@ -129,13 +142,11 @@ Given C<value>, use C<typedata> to do some preliminary type check, before conver
 
 In case of failure, log an error message using C<emsg> prefix.
 
-The typdate is a :-separated string with fields
-
 =over
 
-=item type
+=item type: the type
 
-=item multivalue boolean
+=item multi: boolean, indicating multivalue (implying an arrayref)
 
 =back
 
@@ -148,9 +159,7 @@ Returns undef on failure, arrayref with original value and type to convert to ot
 
 sub check_type
 {
-    my ($self, $value, $typedata, $emsg) = @_;
-
-    my ($type, $multi) = split(':', $typedata);
+    my ($self, $value, $type, $multi, $emsg) = @_;
 
     my $ref = ref($value);
 
