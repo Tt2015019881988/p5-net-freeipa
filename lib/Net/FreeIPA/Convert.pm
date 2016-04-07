@@ -74,10 +74,19 @@ sub rpc_api
     foreach my $arg (@$args) {
         $aidx += 1;
         my $args_name = shift(@$args_names);
+
+        my $emsg = "$method: mandatory $aidx-th argument $args_name";
+
         if (defined($arg)) {
-            push(@new_args, $self->convert($arg, shift(@$args_types)));
+            my $cargs = $self->check_type($arg, shift(@$args_types), $emsg);
+            if ($cargs) {
+                push(@new_args, $self->convert(@$cargs));
+            } else {
+                # error logged in check_type
+                return;
+            }
         } else {
-            $self->error("$method: undefined mandatory $aidx-th argument $args_name");
+            $self->error("$emsg undefined");
             return;
         };
     };
@@ -89,15 +98,22 @@ sub rpc_api
     my %new_opts;
     my %rpc_opts;
     foreach my $key (sort keys %$opts) {
+        my $emsg = "$method: not a valid option key: $key";
         if ($key =~ m/$API_RPC_OPTION_PATTERN/) {
             my $val = $opts->{$key};
             $key =~ s/$API_RPC_OPTION_PATTERN//;
             $rpc_opts{$key} = $val;
         } else {
             if (grep {$key eq $_} @$opts_keys) {
-                $new_opts{$key} = $self->convert($opts->{$key}, $opts_types_map{$key});
+                my $cargs = $self->check_type($opts->{$key}, $opts_types_map{$key}, $emsg);
+                if ($cargs) {
+                    $new_opts{$key} = $self->convert(@$cargs);
+                } else {
+                    # error logged in check_type
+                    return;
+                }
             } else {
-                $self->error("$method: not a valid option key: $key (allowed ".join(",", @$opts_keys).")");
+                $self->error("$emsg (allowed ".join(",", @$opts_keys).")");
                 return;
             }
         };
@@ -106,6 +122,51 @@ sub rpc_api
     return $self->rpc($command, \@new_args, \%new_opts, %rpc_opts);
 }
 
+
+=item check_type
+
+Given C<value>, use C<typedata> to do some preliminary type check, before converting.
+
+In case of failure, log an error message using C<emsg> prefix.
+
+The typdate is a :-separated string with fields
+
+=over
+
+=item type
+
+=item multivalue boolean
+
+=back
+
+Returns undef on failure, arrayref with original value and type to convert to otherwise
+
+=cut
+
+# This odd construct is needed because the data returned from convert
+# cannot be stored in a variable
+
+sub check_type
+{
+    my ($self, $value, $typedata, $emsg) = @_;
+
+    my ($type, $multi) = split(':', $typedata);
+
+    my $ref = ref($value);
+
+    my $res = [$value, $type];
+
+    if ($multi && $ref ne 'ARRAY') {
+        $self->error("$emsg has to be an arrayref (is multivalued)");
+        return;
+    } elsif ((! $multi) && $ref ne '') {
+        $self->error("$emsg has to be a scalar (is not multivalued)");
+        return;
+    }
+
+
+    return $res
+}
 
 =item convert
 
