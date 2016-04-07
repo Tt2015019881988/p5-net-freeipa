@@ -59,7 +59,7 @@ sub get_api
     $f->get_api_version() || die("Failed to get api_version ".Dumper($f));
     my $version = $f->{result};
     $f->set_api_version($version);
-    
+
     $f->get_api_commands() || die("Failed to get commands metdata ".Dumper($f));
 
     return $version, $f->{result};
@@ -108,7 +108,7 @@ sub make_module
 
 sub main
 {
-    my ($version, $commands) = get_api($ENV{GEN_API_HOSTNAME});
+    my ($version, $commands) = get_api($ENV{GEN_API_HOSTNAME}, debugapi => ($ENV{GEN_API_DEBUG} ? 1 : 0));
 
     my $tt = Template->new({
         INCLUDE_PATH => $GEN_API_DIR,
@@ -123,7 +123,7 @@ sub main
         script_name => $SCRIPT_NAME,
         join_name => sub {my $args = shift; return join(' ', map {$_->{name}} @$args); },
         join_name_vars => sub {my $args = shift; return join(', ', map {'$'.$_->{name}} @$args)},
-        join_type => sub {my $args = shift; return join(' ', map {$_->{type}} @$args) },
+        join_type => sub {my $args = shift; return join(' ', map {join(':', $_->{type}, ($_->{multivalue} ? 1 : 0))} @$args) },
         ref => sub {return ref(shift) },
         check_hash => sub {
             my $array = shift;
@@ -136,6 +136,7 @@ sub main
                         name => $oldel,
                         type => 'unknown',
                         class => 'unknown',
+                        multivalue => 0,
                         doc => 'unknown',
                     };
                 }

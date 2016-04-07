@@ -48,9 +48,9 @@ Wrapper method for aci_add API
 
 =item group: User group ACI grants access to (type unicode class Str)
 
-=item permissions: Permissions to grant(read, write, add, delete, all) (type unicode class Str)
+=item permissions: Permissions to grant(read, write, add, delete, all) (arrayref of type unicode class Str)
 
-=item attrs: Attributes (type unicode class Str)
+=item attrs: Attributes (arrayref of type unicode class Str)
 
 =item type: type of IPA object (user, group, host, hostgroup, service, netgroup) (type unicode class StrEnum)
 
@@ -89,10 +89,10 @@ sub api_aci_add
     return $self->rpc_api('aci_add',    
         [$aciname],
         [qw(aciname)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(permission group permissions attrs type memberof filter subtree targetgroup selfaci aciprefix test all raw version)],
-        [qw(unicode unicode unicode unicode unicode unicode unicode unicode unicode bool unicode bool bool bool unicode)],
+        [qw(unicode:0 unicode:0 unicode:1 unicode:1 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 bool:0 unicode:0 bool:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -140,10 +140,10 @@ sub api_aci_del
     return $self->rpc_api('aci_del',    
         [$aciname],
         [qw(aciname)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(aciprefix version)],
-        [qw(unicode unicode)],
+        [qw(unicode:0 unicode:0)],
     );
 }
 
@@ -194,9 +194,9 @@ Wrapper method for aci_find API
 
 =item group: User group ACI grants access to (type unicode class Str)
 
-=item permissions: Permissions to grant(read, write, add, delete, all) (type unicode class Str)
+=item permissions: Permissions to grant(read, write, add, delete, all) (arrayref of type unicode class Str)
 
-=item attrs: Attributes (type unicode class Str)
+=item attrs: Attributes (arrayref of type unicode class Str)
 
 =item type: type of IPA object (user, group, host, hostgroup, service, netgroup) (type unicode class StrEnum)
 
@@ -235,10 +235,10 @@ sub api_aci_find
     return $self->rpc_api('aci_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(aciname permission group permissions attrs type memberof filter subtree targetgroup selfaci aciprefix pkey_only all raw version)],
-        [qw(unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode bool unicode bool bool bool unicode)],
+        [qw(unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 bool:0 unicode:0 bool:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -271,9 +271,9 @@ Wrapper method for aci_mod API
 
 =item group: User group ACI grants access to (type unicode class Str)
 
-=item permissions: Permissions to grant(read, write, add, delete, all) (type unicode class Str)
+=item permissions: Permissions to grant(read, write, add, delete, all) (arrayref of type unicode class Str)
 
-=item attrs: Attributes (type unicode class Str)
+=item attrs: Attributes (arrayref of type unicode class Str)
 
 =item type: type of IPA object (user, group, host, hostgroup, service, netgroup) (type unicode class StrEnum)
 
@@ -310,10 +310,10 @@ sub api_aci_mod
     return $self->rpc_api('aci_mod',    
         [$aciname],
         [qw(aciname)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(permission group permissions attrs type memberof filter subtree targetgroup selfaci aciprefix all raw version)],
-        [qw(unicode unicode unicode unicode unicode unicode unicode unicode unicode bool unicode bool bool unicode)],
+        [qw(unicode:0 unicode:0 unicode:1 unicode:1 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 bool:0 unicode:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -346,9 +346,9 @@ Wrapper method for aci_rename API
 
 =item group: User group ACI grants access to (type unicode class Str)
 
-=item permissions: Permissions to grant(read, write, add, delete, all) (type unicode class Str)
+=item permissions: Permissions to grant(read, write, add, delete, all) (arrayref of type unicode class Str)
 
-=item attrs: Attributes (type unicode class Str)
+=item attrs: Attributes (arrayref of type unicode class Str)
 
 =item type: type of IPA object (user, group, host, hostgroup, service, netgroup) (type unicode class StrEnum)
 
@@ -387,10 +387,10 @@ sub api_aci_rename
     return $self->rpc_api('aci_rename',    
         [$aciname],
         [qw(aciname)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(permission group permissions attrs type memberof filter subtree targetgroup selfaci aciprefix newname all raw version)],
-        [qw(unicode unicode unicode unicode unicode unicode unicode unicode unicode bool unicode unicode bool bool unicode)],
+        [qw(unicode:0 unicode:0 unicode:1 unicode:1 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 bool:0 unicode:0 unicode:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -444,10 +444,10 @@ sub api_aci_show
     return $self->rpc_api('aci_show',    
         [$aciname],
         [qw(aciname)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(aciprefix location all raw version)],
-        [qw(unicode DN bool bool unicode)],
+        [qw(unicode:0 DN:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -487,7 +487,7 @@ sub api_adtrust_is_enabled
         [qw()],
         \%opts,
         [qw(version)],
-        [qw(unicode)],
+        [qw(unicode:0)],
     );
 }
 
@@ -519,10 +519,10 @@ Wrapper method for automember_add API
 =item description: A description of this auto member rule (type unicode class Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item type: Grouping to which the rule applies (type unicode class StrEnum)
 
@@ -547,10 +547,10 @@ sub api_automember_add
     return $self->rpc_api('automember_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(description setattr addattr type all raw version)],
-        [qw(unicode unicode unicode unicode bool bool unicode)],
+        [qw(unicode:0 unicode:1 unicode:1 unicode:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -581,9 +581,9 @@ Wrapper method for automember_add_condition API
 
 =item description: A description of this auto member rule (type unicode class Str)
 
-=item automemberinclusiveregex: Inclusive Regex (type unicode class Str)
+=item automemberinclusiveregex: Inclusive Regex (arrayref of type unicode class Str)
 
-=item automemberexclusiveregex: Exclusive Regex (type unicode class Str)
+=item automemberexclusiveregex: Exclusive Regex (arrayref of type unicode class Str)
 
 =item key: Attribute to filter via regex. For example fqdn for a host, or manager for a user (type unicode class Str)
 
@@ -610,10 +610,10 @@ sub api_automember_add_condition
     return $self->rpc_api('automember_add_condition',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(description automemberinclusiveregex automemberexclusiveregex key type all raw version)],
-        [qw(unicode unicode unicode unicode unicode bool bool unicode)],
+        [qw(unicode:0 unicode:1 unicode:1 unicode:0 unicode:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -663,7 +663,7 @@ sub api_automember_default_group_remove
         [qw()],
         \%opts,
         [qw(description type all raw version)],
-        [qw(unicode unicode bool bool unicode)],
+        [qw(unicode:0 unicode:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -715,7 +715,7 @@ sub api_automember_default_group_set
         [qw()],
         \%opts,
         [qw(description automemberdefaultgroup type all raw version)],
-        [qw(unicode unicode unicode bool bool unicode)],
+        [qw(unicode:0 unicode:0 unicode:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -763,7 +763,7 @@ sub api_automember_default_group_show
         [qw()],
         \%opts,
         [qw(type all raw version)],
-        [qw(unicode bool bool unicode)],
+        [qw(unicode:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -811,10 +811,10 @@ sub api_automember_del
     return $self->rpc_api('automember_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(type version)],
-        [qw(unicode unicode)],
+        [qw(unicode:0 unicode:0)],
     );
 }
 
@@ -868,10 +868,10 @@ sub api_automember_find
     return $self->rpc_api('automember_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(description type all raw version)],
-        [qw(unicode unicode bool bool unicode)],
+        [qw(unicode:0 unicode:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -903,13 +903,13 @@ Wrapper method for automember_mod API
 =item description: A description of this auto member rule (type unicode class Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item delattr: Delete an attribute/value pair. The option will be evaluated
-last, after all sets and adds. (type unicode class Str)
+last, after all sets and adds. (arrayref of type unicode class Str)
 
 =item rights: Display the access rights of this entry (requires --all). See ipa man page for details. (type bool class Flag)
 
@@ -936,10 +936,10 @@ sub api_automember_mod
     return $self->rpc_api('automember_mod',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(description setattr addattr delattr rights type all raw version)],
-        [qw(unicode unicode unicode unicode bool unicode bool bool unicode)],
+        [qw(unicode:0 unicode:1 unicode:1 unicode:1 bool:0 unicode:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -961,9 +961,9 @@ Rebuild auto membership.
 
 =item type: Grouping to which the rule applies (type unicode class StrEnum)
 
-=item users: Rebuild membership for specified users (type unicode class Str)
+=item users: Rebuild membership for specified users (arrayref of type unicode class Str)
 
-=item hosts: Rebuild membership for specified hosts (type unicode class Str)
+=item hosts: Rebuild membership for specified hosts (arrayref of type unicode class Str)
 
 =item no_wait: Don't wait for rebuilding membership (type bool class Flag)
 
@@ -991,7 +991,7 @@ sub api_automember_rebuild
         [qw()],
         \%opts,
         [qw(type users hosts no_wait all raw version)],
-        [qw(unicode unicode unicode bool bool bool unicode)],
+        [qw(unicode:0 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -1022,9 +1022,9 @@ Wrapper method for automember_remove_condition API
 
 =item description: A description of this auto member rule (type unicode class Str)
 
-=item automemberinclusiveregex: Inclusive Regex (type unicode class Str)
+=item automemberinclusiveregex: Inclusive Regex (arrayref of type unicode class Str)
 
-=item automemberexclusiveregex: Exclusive Regex (type unicode class Str)
+=item automemberexclusiveregex: Exclusive Regex (arrayref of type unicode class Str)
 
 =item key: Attribute to filter via regex. For example fqdn for a host, or manager for a user (type unicode class Str)
 
@@ -1051,10 +1051,10 @@ sub api_automember_remove_condition
     return $self->rpc_api('automember_remove_condition',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(description automemberinclusiveregex automemberexclusiveregex key type all raw version)],
-        [qw(unicode unicode unicode unicode unicode bool bool unicode)],
+        [qw(unicode:0 unicode:1 unicode:1 unicode:0 unicode:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -1106,10 +1106,10 @@ sub api_automember_show
     return $self->rpc_api('automember_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(type all raw version)],
-        [qw(unicode bool bool unicode)],
+        [qw(unicode:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -1143,10 +1143,10 @@ Create a new automount key.
 =item automountinformation: Mount information (type unicode class IA5Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -1169,10 +1169,10 @@ sub api_automountkey_add
     return $self->rpc_api('automountkey_add',    
         [$automountlocationcn, $automountmapautomountmapname],
         [qw(automountlocationcn automountmapautomountmapname)],
-        [qw(unicode unicode)],
+        [qw(unicode:0 unicode:0)],
         \%opts,
         [qw(automountkey automountinformation setattr addattr all raw version)],
-        [qw(unicode unicode unicode unicode bool bool unicode)],
+        [qw(unicode:0 unicode:0 unicode:1 unicode:1 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -1224,10 +1224,10 @@ sub api_automountkey_del
     return $self->rpc_api('automountkey_del',    
         [$automountlocationcn, $automountmapautomountmapname],
         [qw(automountlocationcn automountmapautomountmapname)],
-        [qw(unicode unicode)],
+        [qw(unicode:0 unicode:0)],
         \%opts,
         [qw(continue automountkey automountinformation version)],
-        [qw(bool unicode unicode unicode)],
+        [qw(bool:0 unicode:0 unicode:0 unicode:0)],
     );
 }
 
@@ -1287,10 +1287,10 @@ sub api_automountkey_find
     return $self->rpc_api('automountkey_find',    
         [$automountlocationcn, $automountmapautomountmapname, $criteria],
         [qw(automountlocationcn automountmapautomountmapname criteria)],
-        [qw(unicode unicode unicode)],
+        [qw(unicode:0 unicode:0 unicode:0)],
         \%opts,
         [qw(automountkey automountinformation timelimit sizelimit all raw version)],
-        [qw(unicode unicode int int bool bool unicode)],
+        [qw(unicode:0 unicode:0 int:0 int:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -1324,13 +1324,13 @@ Modify an automount key.
 =item automountinformation: Mount information (type unicode class IA5Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item delattr: Delete an attribute/value pair. The option will be evaluated
-last, after all sets and adds. (type unicode class Str)
+last, after all sets and adds. (arrayref of type unicode class Str)
 
 =item rights: Display the access rights of this entry (requires --all). See ipa man page for details. (type bool class Flag)
 
@@ -1359,10 +1359,10 @@ sub api_automountkey_mod
     return $self->rpc_api('automountkey_mod',    
         [$automountlocationcn, $automountmapautomountmapname],
         [qw(automountlocationcn automountmapautomountmapname)],
-        [qw(unicode unicode)],
+        [qw(unicode:0 unicode:0)],
         \%opts,
         [qw(automountkey automountinformation setattr addattr delattr rights newautomountinformation all raw version rename)],
-        [qw(unicode unicode unicode unicode unicode bool unicode bool bool unicode unicode)],
+        [qw(unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 bool:0 unicode:0 bool:0 bool:0 unicode:0 unicode:0)],
     );
 }
 
@@ -1418,10 +1418,10 @@ sub api_automountkey_show
     return $self->rpc_api('automountkey_show',    
         [$automountlocationcn, $automountmapautomountmapname],
         [qw(automountlocationcn automountmapautomountmapname)],
-        [qw(unicode unicode)],
+        [qw(unicode:0 unicode:0)],
         \%opts,
         [qw(rights automountkey automountinformation all raw version)],
-        [qw(bool unicode unicode bool bool unicode)],
+        [qw(bool:0 unicode:0 unicode:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -1449,10 +1449,10 @@ Create a new automount location.
 =over
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -1475,10 +1475,10 @@ sub api_automountlocation_add
     return $self->rpc_api('automountlocation_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(setattr addattr all raw version)],
-        [qw(unicode unicode bool bool unicode)],
+        [qw(unicode:1 unicode:1 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -1496,7 +1496,7 @@ Delete an automount location.
 
 =over
 
-=item cn: Automount location name. (type unicode class Str)
+=item cn: Automount location name. (arrayref of type unicode class Str)
 
 =back
 
@@ -1524,10 +1524,10 @@ sub api_automountlocation_del
     return $self->rpc_api('automountlocation_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool unicode)],
+        [qw(bool:0 unicode:0)],
     );
 }
 
@@ -1583,10 +1583,10 @@ sub api_automountlocation_find
     return $self->rpc_api('automountlocation_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(cn timelimit sizelimit all raw version pkey_only)],
-        [qw(unicode int int bool bool unicode bool)],
+        [qw(unicode:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -1634,10 +1634,10 @@ sub api_automountlocation_import
     return $self->rpc_api('automountlocation_import',    
         [$cn, $masterfile],
         [qw(cn masterfile)],
-        [qw(unicode unicode)],
+        [qw(unicode:0 unicode:0)],
         \%opts,
         [qw(continue version)],
-        [qw(bool unicode)],
+        [qw(bool:0 unicode:0)],
     );
 }
 
@@ -1687,10 +1687,10 @@ sub api_automountlocation_show
     return $self->rpc_api('automountlocation_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(rights all raw version)],
-        [qw(bool bool bool unicode)],
+        [qw(bool:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -1734,10 +1734,10 @@ sub api_automountlocation_tofiles
     return $self->rpc_api('automountlocation_tofiles',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(version)],
-        [qw(unicode)],
+        [qw(unicode:0)],
     );
 }
 
@@ -1769,10 +1769,10 @@ Create a new automount map.
 =item description: Description (type unicode class Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -1795,10 +1795,10 @@ sub api_automountmap_add
     return $self->rpc_api('automountmap_add',    
         [$automountlocationcn, $automountmapname],
         [qw(automountlocationcn automountmapname)],
-        [qw(unicode unicode)],
+        [qw(unicode:0 unicode:0)],
         \%opts,
         [qw(description setattr addattr all raw version)],
-        [qw(unicode unicode unicode bool bool unicode)],
+        [qw(unicode:0 unicode:1 unicode:1 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -1830,10 +1830,10 @@ Create a new indirect mount point.
 =item description: Description (type unicode class Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item key: Mount point (type unicode class Str)
 
@@ -1860,10 +1860,10 @@ sub api_automountmap_add_indirect
     return $self->rpc_api('automountmap_add_indirect',    
         [$automountlocationcn, $automountmapname],
         [qw(automountlocationcn automountmapname)],
-        [qw(unicode unicode)],
+        [qw(unicode:0 unicode:0)],
         \%opts,
         [qw(description setattr addattr key parentmap all raw version)],
-        [qw(unicode unicode unicode unicode unicode bool bool unicode)],
+        [qw(unicode:0 unicode:1 unicode:1 unicode:0 unicode:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -1883,7 +1883,7 @@ Delete an automount map.
 
 =item automountlocationcn: Automount location name. (type unicode class Str)
 
-=item automountmapname: Automount map name. (type unicode class IA5Str)
+=item automountmapname: Automount map name. (arrayref of type unicode class IA5Str)
 
 =back
 
@@ -1911,10 +1911,10 @@ sub api_automountmap_del
     return $self->rpc_api('automountmap_del',    
         [$automountlocationcn, $automountmapname],
         [qw(automountlocationcn automountmapname)],
-        [qw(unicode unicode)],
+        [qw(unicode:0 unicode:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool unicode)],
+        [qw(bool:0 unicode:0)],
     );
 }
 
@@ -1974,10 +1974,10 @@ sub api_automountmap_find
     return $self->rpc_api('automountmap_find',    
         [$automountlocationcn, $criteria],
         [qw(automountlocationcn criteria)],
-        [qw(unicode unicode)],
+        [qw(unicode:0 unicode:0)],
         \%opts,
         [qw(automountmapname description timelimit sizelimit all raw version pkey_only)],
-        [qw(unicode unicode int int bool bool unicode bool)],
+        [qw(unicode:0 unicode:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -2009,13 +2009,13 @@ Modify an automount map.
 =item description: Description (type unicode class Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item delattr: Delete an attribute/value pair. The option will be evaluated
-last, after all sets and adds. (type unicode class Str)
+last, after all sets and adds. (arrayref of type unicode class Str)
 
 =item rights: Display the access rights of this entry (requires --all). See ipa man page for details. (type bool class Flag)
 
@@ -2040,10 +2040,10 @@ sub api_automountmap_mod
     return $self->rpc_api('automountmap_mod',    
         [$automountlocationcn, $automountmapname],
         [qw(automountlocationcn automountmapname)],
-        [qw(unicode unicode)],
+        [qw(unicode:0 unicode:0)],
         \%opts,
         [qw(description setattr addattr delattr rights all raw version)],
-        [qw(unicode unicode unicode unicode bool bool bool unicode)],
+        [qw(unicode:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -2095,10 +2095,10 @@ sub api_automountmap_show
     return $self->rpc_api('automountmap_show',    
         [$automountlocationcn, $automountmapname],
         [qw(automountlocationcn automountmapname)],
-        [qw(unicode unicode)],
+        [qw(unicode:0 unicode:0)],
         \%opts,
         [qw(rights all raw version)],
-        [qw(bool bool bool unicode)],
+        [qw(bool:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -2116,7 +2116,7 @@ None
 
 =over
 
-=item methods: Nested Methods to execute (type object class Any)
+=item methods: Nested Methods to execute (arrayref of type object class Any)
 
 =back
 
@@ -2142,10 +2142,10 @@ sub api_batch
     return $self->rpc_api('batch',    
         [$methods],
         [qw(methods)],
-        [qw(object)],
+        [qw(object:1)],
         \%opts,
         [qw(version)],
-        [qw(unicode)],
+        [qw(unicode:0)],
     );
 }
 
@@ -2187,7 +2187,7 @@ sub api_ca_is_enabled
         [qw()],
         \%opts,
         [qw(version)],
-        [qw(unicode)],
+        [qw(unicode:0)],
     );
 }
 
@@ -2227,10 +2227,10 @@ Create a new CA ACL.
 =item servicecategory: Service category the ACL applies to (type unicode class StrEnum)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -2255,10 +2255,10 @@ sub api_caacl_add
     return $self->rpc_api('caacl_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(description ipaenabledflag ipacertprofilecategory usercategory hostcategory servicecategory setattr addattr all raw version no_members)],
-        [qw(unicode bool unicode unicode unicode unicode unicode unicode bool bool unicode bool)],
+        [qw(unicode:0 bool:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -2293,9 +2293,9 @@ Add target hosts and hostgroups to a CA ACL.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item host: hosts to add (type unicode class Str)
+=item host: hosts to add (arrayref of type unicode class Str)
 
-=item hostgroup: host groups to add (type unicode class Str)
+=item hostgroup: host groups to add (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -2312,10 +2312,10 @@ sub api_caacl_add_host
     return $self->rpc_api('caacl_add_host',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members host hostgroup)],
-        [qw(bool bool unicode bool unicode unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
     );
 }
 
@@ -2350,7 +2350,7 @@ Add profiles to a CA ACL.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item certprofile: Certificate Profiles to add (type unicode class Str)
+=item certprofile: Certificate Profiles to add (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -2367,10 +2367,10 @@ sub api_caacl_add_profile
     return $self->rpc_api('caacl_add_profile',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members certprofile)],
-        [qw(bool bool unicode bool unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
     );
 }
 
@@ -2405,7 +2405,7 @@ Add services to a CA ACL.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item service: services to add (type unicode class Str)
+=item service: services to add (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -2422,10 +2422,10 @@ sub api_caacl_add_service
     return $self->rpc_api('caacl_add_service',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members service)],
-        [qw(bool bool unicode bool unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
     );
 }
 
@@ -2460,9 +2460,9 @@ Add users and groups to a CA ACL.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item user: users to add (type unicode class Str)
+=item user: users to add (arrayref of type unicode class Str)
 
-=item group: groups to add (type unicode class Str)
+=item group: groups to add (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -2479,10 +2479,10 @@ sub api_caacl_add_user
     return $self->rpc_api('caacl_add_user',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members user group)],
-        [qw(bool bool unicode bool unicode unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
     );
 }
 
@@ -2500,7 +2500,7 @@ Delete a CA ACL.
 
 =over
 
-=item cn: ACL name (type unicode class Str)
+=item cn: ACL name (arrayref of type unicode class Str)
 
 =back
 
@@ -2528,10 +2528,10 @@ sub api_caacl_del
     return $self->rpc_api('caacl_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool unicode)],
+        [qw(bool:0 unicode:0)],
     );
 }
 
@@ -2575,10 +2575,10 @@ sub api_caacl_disable
     return $self->rpc_api('caacl_disable',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(version)],
-        [qw(unicode)],
+        [qw(unicode:0)],
     );
 }
 
@@ -2622,10 +2622,10 @@ sub api_caacl_enable
     return $self->rpc_api('caacl_enable',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(version)],
-        [qw(unicode)],
+        [qw(unicode:0)],
     );
 }
 
@@ -2695,10 +2695,10 @@ sub api_caacl_find
     return $self->rpc_api('caacl_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(cn description ipaenabledflag ipacertprofilecategory usercategory hostcategory servicecategory timelimit sizelimit all raw version no_members pkey_only)],
-        [qw(unicode unicode bool unicode unicode unicode unicode int int bool bool unicode bool bool)],
+        [qw(unicode:0 unicode:0 bool:0 unicode:0 unicode:0 unicode:0 unicode:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0 bool:0)],
     );
 }
 
@@ -2738,13 +2738,13 @@ Modify a CA ACL.
 =item servicecategory: Service category the ACL applies to (type unicode class StrEnum)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item delattr: Delete an attribute/value pair. The option will be evaluated
-last, after all sets and adds. (type unicode class Str)
+last, after all sets and adds. (arrayref of type unicode class Str)
 
 =item rights: Display the access rights of this entry (requires --all). See ipa man page for details. (type bool class Flag)
 
@@ -2771,10 +2771,10 @@ sub api_caacl_mod
     return $self->rpc_api('caacl_mod',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(description ipaenabledflag ipacertprofilecategory usercategory hostcategory servicecategory setattr addattr delattr rights all raw version no_members)],
-        [qw(unicode bool unicode unicode unicode unicode unicode unicode unicode bool bool bool unicode bool)],
+        [qw(unicode:0 bool:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -2809,9 +2809,9 @@ Remove target hosts and hostgroups from a CA ACL.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item host: hosts to remove (type unicode class Str)
+=item host: hosts to remove (arrayref of type unicode class Str)
 
-=item hostgroup: host groups to remove (type unicode class Str)
+=item hostgroup: host groups to remove (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -2828,10 +2828,10 @@ sub api_caacl_remove_host
     return $self->rpc_api('caacl_remove_host',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members host hostgroup)],
-        [qw(bool bool unicode bool unicode unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
     );
 }
 
@@ -2866,7 +2866,7 @@ Remove profiles from a CA ACL.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item certprofile: Certificate Profiles to remove (type unicode class Str)
+=item certprofile: Certificate Profiles to remove (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -2883,10 +2883,10 @@ sub api_caacl_remove_profile
     return $self->rpc_api('caacl_remove_profile',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members certprofile)],
-        [qw(bool bool unicode bool unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
     );
 }
 
@@ -2921,7 +2921,7 @@ Remove services from a CA ACL.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item service: services to remove (type unicode class Str)
+=item service: services to remove (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -2938,10 +2938,10 @@ sub api_caacl_remove_service
     return $self->rpc_api('caacl_remove_service',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members service)],
-        [qw(bool bool unicode bool unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
     );
 }
 
@@ -2976,9 +2976,9 @@ Remove users and groups from a CA ACL.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item user: users to remove (type unicode class Str)
+=item user: users to remove (arrayref of type unicode class Str)
 
-=item group: groups to remove (type unicode class Str)
+=item group: groups to remove (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -2995,10 +2995,10 @@ sub api_caacl_remove_user
     return $self->rpc_api('caacl_remove_user',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members user group)],
-        [qw(bool bool unicode bool unicode unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
     );
 }
 
@@ -3050,10 +3050,10 @@ sub api_caacl_show
     return $self->rpc_api('caacl_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(rights all raw version no_members)],
-        [qw(bool bool bool unicode bool)],
+        [qw(bool:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -3125,7 +3125,7 @@ sub api_cert_find
         [qw()],
         \%opts,
         [qw(subject revocation_reason min_serial_number max_serial_number exactly validnotafter_from validnotafter_to validnotbefore_from validnotbefore_to issuedon_from issuedon_to revokedon_from revokedon_to sizelimit all raw version)],
-        [qw(unicode int int int bool unicode unicode unicode unicode unicode unicode unicode unicode int bool bool unicode)],
+        [qw(unicode:0 int:0 int:0 int:0 bool:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 int:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -3169,10 +3169,10 @@ sub api_cert_remove_hold
     return $self->rpc_api('cert_remove_hold',    
         [$serial_number],
         [qw(serial_number)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(version)],
-        [qw(unicode)],
+        [qw(unicode:0)],
     );
 }
 
@@ -3224,10 +3224,10 @@ sub api_cert_request
     return $self->rpc_api('cert_request',    
         [$csr],
         [qw(csr)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(principal request_type add profile_id version)],
-        [qw(unicode unicode bool unicode unicode)],
+        [qw(unicode:0 unicode:0 bool:0 unicode:0 unicode:0)],
     );
 }
 
@@ -3273,10 +3273,10 @@ sub api_cert_revoke
     return $self->rpc_api('cert_revoke',    
         [$serial_number],
         [qw(serial_number)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(revocation_reason version)],
-        [qw(int unicode)],
+        [qw(int:0 unicode:0)],
     );
 }
 
@@ -3322,10 +3322,10 @@ sub api_cert_show
     return $self->rpc_api('cert_show',    
         [$serial_number],
         [qw(serial_number)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(out version)],
-        [qw(unicode unicode)],
+        [qw(unicode:0 unicode:0)],
     );
 }
 
@@ -3369,10 +3369,10 @@ sub api_cert_status
     return $self->rpc_api('cert_status',    
         [$request_id],
         [qw(request_id)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(version)],
-        [qw(unicode)],
+        [qw(unicode:0)],
     );
 }
 
@@ -3390,7 +3390,7 @@ Delete a Certificate Profile.
 
 =over
 
-=item cn: Profile ID for referring to this profile (type unicode class Str)
+=item cn: Profile ID for referring to this profile (arrayref of type unicode class Str)
 
 =back
 
@@ -3418,10 +3418,10 @@ sub api_certprofile_del
     return $self->rpc_api('certprofile_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool unicode)],
+        [qw(bool:0 unicode:0)],
     );
 }
 
@@ -3481,10 +3481,10 @@ sub api_certprofile_find
     return $self->rpc_api('certprofile_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(cn description ipacertprofilestoreissued timelimit sizelimit all raw version pkey_only)],
-        [qw(unicode unicode bool int int bool bool unicode bool)],
+        [qw(unicode:0 unicode:0 bool:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -3538,10 +3538,10 @@ sub api_certprofile_import
     return $self->rpc_api('certprofile_import',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(description ipacertprofilestoreissued file all raw version)],
-        [qw(unicode bool unicode bool bool unicode)],
+        [qw(unicode:0 bool:0 unicode:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -3573,13 +3573,13 @@ Modify Certificate Profile configuration.
 =item ipacertprofilestoreissued: Whether to store certs issued using this profile (type bool class Bool)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item delattr: Delete an attribute/value pair. The option will be evaluated
-last, after all sets and adds. (type unicode class Str)
+last, after all sets and adds. (arrayref of type unicode class Str)
 
 =item rights: Display the access rights of this entry (requires --all). See ipa man page for details. (type bool class Flag)
 
@@ -3606,10 +3606,10 @@ sub api_certprofile_mod
     return $self->rpc_api('certprofile_mod',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(description ipacertprofilestoreissued setattr addattr delattr rights file all raw version)],
-        [qw(unicode bool unicode unicode unicode bool unicode bool bool unicode)],
+        [qw(unicode:0 bool:0 unicode:1 unicode:1 unicode:1 bool:0 unicode:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -3661,10 +3661,10 @@ sub api_certprofile_show
     return $self->rpc_api('certprofile_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(rights out all raw version)],
-        [qw(bool unicode bool bool unicode)],
+        [qw(bool:0 unicode:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -3704,7 +3704,7 @@ sub api_compat_is_enabled
         [qw()],
         \%opts,
         [qw(version)],
-        [qw(unicode)],
+        [qw(unicode:0)],
     );
 }
 
@@ -3744,30 +3744,30 @@ Modify configuration options.
 
 =item ipamigrationenabled: Enable migration mode (type bool class Bool)
 
-=item ipagroupobjectclasses: Default group objectclasses (comma-separated list) (type unicode class Str)
+=item ipagroupobjectclasses: Default group objectclasses (comma-separated list) (arrayref of type unicode class Str)
 
-=item ipauserobjectclasses: Default user objectclasses (comma-separated list) (type unicode class Str)
+=item ipauserobjectclasses: Default user objectclasses (comma-separated list) (arrayref of type unicode class Str)
 
 =item ipapwdexpadvnotify: Number of days's notice of impending password expiration (type int class Int)
 
-=item ipaconfigstring: Extra hashes to generate in password plug-in (type unicode class StrEnum)
+=item ipaconfigstring: Extra hashes to generate in password plug-in (arrayref of type unicode class StrEnum)
 
 =item ipaselinuxusermaporder: Order in increasing priority of SELinux users, delimited by $ (type unicode class Str)
 
 =item ipaselinuxusermapdefault: Default SELinux user when no match is found in SELinux map rule (type unicode class Str)
 
-=item ipakrbauthzdata: Default types of PAC supported for services (type unicode class StrEnum)
+=item ipakrbauthzdata: Default types of PAC supported for services (arrayref of type unicode class StrEnum)
 
-=item ipauserauthtype: Default types of supported user authentication (type unicode class StrEnum)
+=item ipauserauthtype: Default types of supported user authentication (arrayref of type unicode class StrEnum)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item delattr: Delete an attribute/value pair. The option will be evaluated
-last, after all sets and adds. (type unicode class Str)
+last, after all sets and adds. (arrayref of type unicode class Str)
 
 =item rights: Display the access rights of this entry (requires --all). See ipa man page for details. (type bool class Flag)
 
@@ -3795,7 +3795,7 @@ sub api_config_mod
         [qw()],
         \%opts,
         [qw(ipamaxusernamelength ipahomesrootdir ipadefaultloginshell ipadefaultprimarygroup ipadefaultemaildomain ipasearchtimelimit ipasearchrecordslimit ipausersearchfields ipagroupsearchfields ipamigrationenabled ipagroupobjectclasses ipauserobjectclasses ipapwdexpadvnotify ipaconfigstring ipaselinuxusermaporder ipaselinuxusermapdefault ipakrbauthzdata ipauserauthtype setattr addattr delattr rights all raw version)],
-        [qw(int unicode unicode unicode unicode int int unicode unicode bool unicode unicode int unicode unicode unicode unicode unicode unicode unicode unicode bool bool bool unicode)],
+        [qw(int:0 unicode:0 unicode:0 unicode:0 unicode:0 int:0 int:0 unicode:0 unicode:0 bool:0 unicode:1 unicode:1 int:0 unicode:1 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -3841,7 +3841,7 @@ sub api_config_show
         [qw()],
         \%opts,
         [qw(rights all raw version)],
-        [qw(bool bool bool unicode)],
+        [qw(bool:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -3873,10 +3873,10 @@ None
 =item cospriority: <cospriority> (type int class Int)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -3899,10 +3899,10 @@ sub api_cosentry_add
     return $self->rpc_api('cosentry_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(krbpwdpolicyreference cospriority setattr addattr all raw version)],
-        [qw(DN int unicode unicode bool bool unicode)],
+        [qw(DN:0 int:0 unicode:1 unicode:1 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -3920,7 +3920,7 @@ None
 
 =over
 
-=item cn: <cn> (type unicode class Str)
+=item cn: <cn> (arrayref of type unicode class Str)
 
 =back
 
@@ -3948,10 +3948,10 @@ sub api_cosentry_del
     return $self->rpc_api('cosentry_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool unicode)],
+        [qw(bool:0 unicode:0)],
     );
 }
 
@@ -4011,10 +4011,10 @@ sub api_cosentry_find
     return $self->rpc_api('cosentry_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(cn krbpwdpolicyreference cospriority timelimit sizelimit all raw version pkey_only)],
-        [qw(unicode DN int int int bool bool unicode bool)],
+        [qw(unicode:0 DN:0 int:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -4046,13 +4046,13 @@ None
 =item cospriority: <cospriority> (type int class Int)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item delattr: Delete an attribute/value pair. The option will be evaluated
-last, after all sets and adds. (type unicode class Str)
+last, after all sets and adds. (arrayref of type unicode class Str)
 
 =item rights: Display the access rights of this entry (requires --all). See ipa man page for details. (type bool class Flag)
 
@@ -4077,10 +4077,10 @@ sub api_cosentry_mod
     return $self->rpc_api('cosentry_mod',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(krbpwdpolicyreference cospriority setattr addattr delattr rights all raw version)],
-        [qw(DN int unicode unicode unicode bool bool bool unicode)],
+        [qw(DN:0 int:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -4130,10 +4130,10 @@ sub api_cosentry_show
     return $self->rpc_api('cosentry_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(rights all raw version)],
-        [qw(bool bool bool unicode)],
+        [qw(bool:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -4160,9 +4160,9 @@ Add a new delegation.
 
 =over
 
-=item permissions: Permissions to grant (read, write). Default is write. (type unicode class Str)
+=item permissions: Permissions to grant (read, write). Default is write. (arrayref of type unicode class Str)
 
-=item attrs: Attributes to which the delegation applies (type unicode class Str)
+=item attrs: Attributes to which the delegation applies (arrayref of type unicode class Str)
 
 =item memberof: User group to apply delegation to (type unicode class Str)
 
@@ -4189,10 +4189,10 @@ sub api_delegation_add
     return $self->rpc_api('delegation_add',    
         [$aciname],
         [qw(aciname)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(permissions attrs memberof group all raw version)],
-        [qw(unicode unicode unicode unicode bool bool unicode)],
+        [qw(unicode:1 unicode:1 unicode:0 unicode:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -4236,10 +4236,10 @@ sub api_delegation_del
     return $self->rpc_api('delegation_del',    
         [$aciname],
         [qw(aciname)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(version)],
-        [qw(unicode)],
+        [qw(unicode:0)],
     );
 }
 
@@ -4268,9 +4268,9 @@ Search for delegations.
 
 =item aciname: Delegation name (type unicode class Str)
 
-=item permissions: Permissions to grant (read, write). Default is write. (type unicode class Str)
+=item permissions: Permissions to grant (read, write). Default is write. (arrayref of type unicode class Str)
 
-=item attrs: Attributes to which the delegation applies (type unicode class Str)
+=item attrs: Attributes to which the delegation applies (arrayref of type unicode class Str)
 
 =item memberof: User group to apply delegation to (type unicode class Str)
 
@@ -4299,10 +4299,10 @@ sub api_delegation_find
     return $self->rpc_api('delegation_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(aciname permissions attrs memberof group pkey_only all raw version)],
-        [qw(unicode unicode unicode unicode unicode bool bool bool unicode)],
+        [qw(unicode:0 unicode:1 unicode:1 unicode:0 unicode:0 bool:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -4329,9 +4329,9 @@ Modify a delegation.
 
 =over
 
-=item permissions: Permissions to grant (read, write). Default is write. (type unicode class Str)
+=item permissions: Permissions to grant (read, write). Default is write. (arrayref of type unicode class Str)
 
-=item attrs: Attributes to which the delegation applies (type unicode class Str)
+=item attrs: Attributes to which the delegation applies (arrayref of type unicode class Str)
 
 =item memberof: User group to apply delegation to (type unicode class Str)
 
@@ -4358,10 +4358,10 @@ sub api_delegation_mod
     return $self->rpc_api('delegation_mod',    
         [$aciname],
         [qw(aciname)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(permissions attrs memberof group all raw version)],
-        [qw(unicode unicode unicode unicode bool bool unicode)],
+        [qw(unicode:1 unicode:1 unicode:0 unicode:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -4409,10 +4409,10 @@ sub api_delegation_show
     return $self->rpc_api('delegation_show',    
         [$aciname],
         [qw(aciname)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version)],
-        [qw(bool bool unicode)],
+        [qw(bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -4454,7 +4454,7 @@ sub api_dns_is_enabled
         [qw()],
         \%opts,
         [qw(version)],
-        [qw(unicode)],
+        [qw(unicode:0)],
     );
 }
 
@@ -4498,10 +4498,10 @@ sub api_dns_resolve
     return $self->rpc_api('dns_resolve',    
         [$hostname],
         [qw(hostname)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(version)],
-        [qw(unicode)],
+        [qw(unicode:0)],
     );
 }
 
@@ -4521,7 +4521,7 @@ Modify global DNS configuration.
 
 =over
 
-=item idnsforwarders: Global forwarders. A custom port can be specified for each forwarder using a standard format "IP_ADDRESS port PORT" (type unicode class Str)
+=item idnsforwarders: Global forwarders. A custom port can be specified for each forwarder using a standard format "IP_ADDRESS port PORT" (arrayref of type unicode class Str)
 
 =item idnsforwardpolicy: Global forwarding policy. Set to "none" to disable any configured global forwarders. (type unicode class StrEnum)
 
@@ -4530,13 +4530,13 @@ Modify global DNS configuration.
 =item idnszonerefresh: Zone refresh interval (type object class DeprecatedParam)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item delattr: Delete an attribute/value pair. The option will be evaluated
-last, after all sets and adds. (type unicode class Str)
+last, after all sets and adds. (arrayref of type unicode class Str)
 
 =item rights: Display the access rights of this entry (requires --all). See ipa man page for details. (type bool class Flag)
 
@@ -4564,7 +4564,7 @@ sub api_dnsconfig_mod
         [qw()],
         \%opts,
         [qw(idnsforwarders idnsforwardpolicy idnsallowsyncptr idnszonerefresh setattr addattr delattr rights all raw version)],
-        [qw(unicode unicode bool object unicode unicode unicode bool bool bool unicode)],
+        [qw(unicode:1 unicode:0 bool:0 object:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -4610,7 +4610,7 @@ sub api_dnsconfig_show
         [qw()],
         \%opts,
         [qw(rights all raw version)],
-        [qw(bool bool bool unicode)],
+        [qw(bool:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -4639,15 +4639,15 @@ Create new DNS forward zone.
 
 =item name_from_ip: IP network to create reverse zone name from (type unicode class Str)
 
-=item idnsforwarders: Per-zone forwarders. A custom port can be specified for each forwarder using a standard format "IP_ADDRESS port PORT" (type unicode class Str)
+=item idnsforwarders: Per-zone forwarders. A custom port can be specified for each forwarder using a standard format "IP_ADDRESS port PORT" (arrayref of type unicode class Str)
 
 =item idnsforwardpolicy: Per-zone conditional forwarding policy. Set to "none" to disable forwarding to global forwarder for this zone. In that case, conditional zone forwarders are disregarded. (type unicode class StrEnum)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -4670,10 +4670,10 @@ sub api_dnsforwardzone_add
     return $self->rpc_api('dnsforwardzone_add',    
         [$idnsname],
         [qw(idnsname)],
-        [qw(DNSName)],
+        [qw(DNSName:0)],
         \%opts,
         [qw(name_from_ip idnsforwarders idnsforwardpolicy setattr addattr all raw version)],
-        [qw(unicode unicode unicode unicode unicode bool bool unicode)],
+        [qw(unicode:0 unicode:1 unicode:0 unicode:1 unicode:1 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -4717,10 +4717,10 @@ sub api_dnsforwardzone_add_permission
     return $self->rpc_api('dnsforwardzone_add_permission',    
         [$idnsname],
         [qw(idnsname)],
-        [qw(DNSName)],
+        [qw(DNSName:0)],
         \%opts,
         [qw(version)],
-        [qw(unicode)],
+        [qw(unicode:0)],
     );
 }
 
@@ -4738,7 +4738,7 @@ Delete DNS forward zone.
 
 =over
 
-=item idnsname: Zone name (FQDN) (type DNSName class DNSNameParam)
+=item idnsname: Zone name (FQDN) (arrayref of type DNSName class DNSNameParam)
 
 =back
 
@@ -4766,10 +4766,10 @@ sub api_dnsforwardzone_del
     return $self->rpc_api('dnsforwardzone_del',    
         [$idnsname],
         [qw(idnsname)],
-        [qw(DNSName)],
+        [qw(DNSName:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool unicode)],
+        [qw(bool:0 unicode:0)],
     );
 }
 
@@ -4813,10 +4813,10 @@ sub api_dnsforwardzone_disable
     return $self->rpc_api('dnsforwardzone_disable',    
         [$idnsname],
         [qw(idnsname)],
-        [qw(DNSName)],
+        [qw(DNSName:0)],
         \%opts,
         [qw(version)],
-        [qw(unicode)],
+        [qw(unicode:0)],
     );
 }
 
@@ -4860,10 +4860,10 @@ sub api_dnsforwardzone_enable
     return $self->rpc_api('dnsforwardzone_enable',    
         [$idnsname],
         [qw(idnsname)],
-        [qw(DNSName)],
+        [qw(DNSName:0)],
         \%opts,
         [qw(version)],
-        [qw(unicode)],
+        [qw(unicode:0)],
     );
 }
 
@@ -4896,7 +4896,7 @@ Search for DNS forward zones.
 
 =item idnszoneactive: Is zone active? (type bool class Bool)
 
-=item idnsforwarders: Per-zone forwarders. A custom port can be specified for each forwarder using a standard format "IP_ADDRESS port PORT" (type unicode class Str)
+=item idnsforwarders: Per-zone forwarders. A custom port can be specified for each forwarder using a standard format "IP_ADDRESS port PORT" (arrayref of type unicode class Str)
 
 =item idnsforwardpolicy: Per-zone conditional forwarding policy. Set to "none" to disable forwarding to global forwarder for this zone. In that case, conditional zone forwarders are disregarded. (type unicode class StrEnum)
 
@@ -4927,10 +4927,10 @@ sub api_dnsforwardzone_find
     return $self->rpc_api('dnsforwardzone_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(idnsname name_from_ip idnszoneactive idnsforwarders idnsforwardpolicy timelimit sizelimit all raw version pkey_only)],
-        [qw(DNSName unicode bool unicode unicode int int bool bool unicode bool)],
+        [qw(DNSName:0 unicode:0 bool:0 unicode:1 unicode:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -4959,18 +4959,18 @@ Modify DNS forward zone.
 
 =item name_from_ip: IP network to create reverse zone name from (type unicode class Str)
 
-=item idnsforwarders: Per-zone forwarders. A custom port can be specified for each forwarder using a standard format "IP_ADDRESS port PORT" (type unicode class Str)
+=item idnsforwarders: Per-zone forwarders. A custom port can be specified for each forwarder using a standard format "IP_ADDRESS port PORT" (arrayref of type unicode class Str)
 
 =item idnsforwardpolicy: Per-zone conditional forwarding policy. Set to "none" to disable forwarding to global forwarder for this zone. In that case, conditional zone forwarders are disregarded. (type unicode class StrEnum)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item delattr: Delete an attribute/value pair. The option will be evaluated
-last, after all sets and adds. (type unicode class Str)
+last, after all sets and adds. (arrayref of type unicode class Str)
 
 =item rights: Display the access rights of this entry (requires --all). See ipa man page for details. (type bool class Flag)
 
@@ -4995,10 +4995,10 @@ sub api_dnsforwardzone_mod
     return $self->rpc_api('dnsforwardzone_mod',    
         [$idnsname],
         [qw(idnsname)],
-        [qw(DNSName)],
+        [qw(DNSName:0)],
         \%opts,
         [qw(name_from_ip idnsforwarders idnsforwardpolicy setattr addattr delattr rights all raw version)],
-        [qw(unicode unicode unicode unicode unicode unicode bool bool bool unicode)],
+        [qw(unicode:0 unicode:1 unicode:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -5042,10 +5042,10 @@ sub api_dnsforwardzone_remove_permission
     return $self->rpc_api('dnsforwardzone_remove_permission',    
         [$idnsname],
         [qw(idnsname)],
-        [qw(DNSName)],
+        [qw(DNSName:0)],
         \%opts,
         [qw(version)],
-        [qw(unicode)],
+        [qw(unicode:0)],
     );
 }
 
@@ -5095,10 +5095,10 @@ sub api_dnsforwardzone_show
     return $self->rpc_api('dnsforwardzone_show',    
         [$idnsname],
         [qw(idnsname)],
-        [qw(DNSName)],
+        [qw(DNSName:0)],
         \%opts,
         [qw(rights all raw version)],
-        [qw(bool bool bool unicode)],
+        [qw(bool:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -5131,31 +5131,31 @@ Add new DNS resource record.
 
 =item dnsclass: <dnsclass> (type unicode class StrEnum)
 
-=item arecord: Raw A records (type unicode class ARecord)
+=item arecord: Raw A records (arrayref of type unicode class ARecord)
 
 =item a_part_ip_address: IP Address (type unicode class Str)
 
 =item a_extra_create_reverse: Create reverse record for this IP Address (type bool class Flag)
 
-=item aaaarecord: Raw AAAA records (type unicode class AAAARecord)
+=item aaaarecord: Raw AAAA records (arrayref of type unicode class AAAARecord)
 
 =item aaaa_part_ip_address: IP Address (type unicode class Str)
 
 =item aaaa_extra_create_reverse: Create reverse record for this IP Address (type bool class Flag)
 
-=item a6record: Raw A6 records (type unicode class A6Record)
+=item a6record: Raw A6 records (arrayref of type unicode class A6Record)
 
 =item a6_part_data: Record data (type unicode class Str)
 
-=item afsdbrecord: Raw AFSDB records (type unicode class AFSDBRecord)
+=item afsdbrecord: Raw AFSDB records (arrayref of type unicode class AFSDBRecord)
 
 =item afsdb_part_subtype: Subtype (type int class Int)
 
 =item afsdb_part_hostname: Hostname (type DNSName class DNSNameParam)
 
-=item aplrecord: Raw APL records (type unicode class APLRecord)
+=item aplrecord: Raw APL records (arrayref of type unicode class APLRecord)
 
-=item certrecord: Raw CERT records (type unicode class CERTRecord)
+=item certrecord: Raw CERT records (arrayref of type unicode class CERTRecord)
 
 =item cert_part_type: Certificate Type (type int class Int)
 
@@ -5165,13 +5165,13 @@ Add new DNS resource record.
 
 =item cert_part_certificate_or_crl: Certificate/CRL (type unicode class Str)
 
-=item cnamerecord: Raw CNAME records (type unicode class CNAMERecord)
+=item cnamerecord: Raw CNAME records (arrayref of type unicode class CNAMERecord)
 
 =item cname_part_hostname: A hostname which this alias hostname points to (type DNSName class DNSNameParam)
 
-=item dhcidrecord: Raw DHCID records (type unicode class DHCIDRecord)
+=item dhcidrecord: Raw DHCID records (arrayref of type unicode class DHCIDRecord)
 
-=item dlvrecord: Raw DLV records (type unicode class DLVRecord)
+=item dlvrecord: Raw DLV records (arrayref of type unicode class DLVRecord)
 
 =item dlv_part_key_tag: Key Tag (type int class Int)
 
@@ -5181,11 +5181,11 @@ Add new DNS resource record.
 
 =item dlv_part_digest: Digest (type unicode class Str)
 
-=item dnamerecord: Raw DNAME records (type unicode class DNAMERecord)
+=item dnamerecord: Raw DNAME records (arrayref of type unicode class DNAMERecord)
 
 =item dname_part_target: Target (type DNSName class DNSNameParam)
 
-=item dsrecord: Raw DS records (type unicode class DSRecord)
+=item dsrecord: Raw DS records (arrayref of type unicode class DSRecord)
 
 =item ds_part_key_tag: Key Tag (type int class Int)
 
@@ -5195,19 +5195,19 @@ Add new DNS resource record.
 
 =item ds_part_digest: Digest (type unicode class Str)
 
-=item hiprecord: Raw HIP records (type unicode class HIPRecord)
+=item hiprecord: Raw HIP records (arrayref of type unicode class HIPRecord)
 
-=item ipseckeyrecord: Raw IPSECKEY records (type unicode class IPSECKEYRecord)
+=item ipseckeyrecord: Raw IPSECKEY records (arrayref of type unicode class IPSECKEYRecord)
 
-=item keyrecord: Raw KEY records (type unicode class KEYRecord)
+=item keyrecord: Raw KEY records (arrayref of type unicode class KEYRecord)
 
-=item kxrecord: Raw KX records (type unicode class KXRecord)
+=item kxrecord: Raw KX records (arrayref of type unicode class KXRecord)
 
 =item kx_part_preference: Preference given to this exchanger. Lower values are more preferred (type int class Int)
 
 =item kx_part_exchanger: A host willing to act as a key exchanger (type DNSName class DNSNameParam)
 
-=item locrecord: Raw LOC records (type unicode class LOCRecord)
+=item locrecord: Raw LOC records (arrayref of type unicode class LOCRecord)
 
 =item loc_part_lat_deg: Degrees Latitude (type int class Int)
 
@@ -5233,13 +5233,13 @@ Add new DNS resource record.
 
 =item loc_part_v_precision: Vertical Precision (type Decimal class Decimal)
 
-=item mxrecord: Raw MX records (type unicode class MXRecord)
+=item mxrecord: Raw MX records (arrayref of type unicode class MXRecord)
 
 =item mx_part_preference: Preference given to this exchanger. Lower values are more preferred (type int class Int)
 
 =item mx_part_exchanger: A host willing to act as a mail exchanger (type DNSName class DNSNameParam)
 
-=item naptrrecord: Raw NAPTR records (type unicode class NAPTRRecord)
+=item naptrrecord: Raw NAPTR records (arrayref of type unicode class NAPTRRecord)
 
 =item naptr_part_order: Order (type int class Int)
 
@@ -5253,25 +5253,25 @@ Add new DNS resource record.
 
 =item naptr_part_replacement: Replacement (type unicode class Str)
 
-=item nsrecord: Raw NS records (type unicode class NSRecord)
+=item nsrecord: Raw NS records (arrayref of type unicode class NSRecord)
 
 =item ns_part_hostname: Hostname (type DNSName class DNSNameParam)
 
-=item nsecrecord: Raw NSEC records (type unicode class NSECRecord)
+=item nsecrecord: Raw NSEC records (arrayref of type unicode class NSECRecord)
 
-=item ptrrecord: Raw PTR records (type unicode class PTRRecord)
+=item ptrrecord: Raw PTR records (arrayref of type unicode class PTRRecord)
 
 =item ptr_part_hostname: The hostname this reverse record points to (type DNSName class DNSNameParam)
 
-=item rrsigrecord: Raw RRSIG records (type unicode class RRSIGRecord)
+=item rrsigrecord: Raw RRSIG records (arrayref of type unicode class RRSIGRecord)
 
-=item rprecord: Raw RP records (type unicode class RPRecord)
+=item rprecord: Raw RP records (arrayref of type unicode class RPRecord)
 
-=item sigrecord: Raw SIG records (type unicode class SIGRecord)
+=item sigrecord: Raw SIG records (arrayref of type unicode class SIGRecord)
 
-=item spfrecord: Raw SPF records (type unicode class SPFRecord)
+=item spfrecord: Raw SPF records (arrayref of type unicode class SPFRecord)
 
-=item srvrecord: Raw SRV records (type unicode class SRVRecord)
+=item srvrecord: Raw SRV records (arrayref of type unicode class SRVRecord)
 
 =item srv_part_priority: Priority (type int class Int)
 
@@ -5281,7 +5281,7 @@ Add new DNS resource record.
 
 =item srv_part_target: The domain name of the target host or '.' if the service is decidedly not available at this domain (type DNSName class DNSNameParam)
 
-=item sshfprecord: Raw SSHFP records (type unicode class SSHFPRecord)
+=item sshfprecord: Raw SSHFP records (arrayref of type unicode class SSHFPRecord)
 
 =item sshfp_part_algorithm: Algorithm (type int class Int)
 
@@ -5289,7 +5289,7 @@ Add new DNS resource record.
 
 =item sshfp_part_fingerprint: Fingerprint (type unicode class Str)
 
-=item tlsarecord: Raw TLSA records (type unicode class TLSARecord)
+=item tlsarecord: Raw TLSA records (arrayref of type unicode class TLSARecord)
 
 =item tlsa_part_cert_usage: Certificate Usage (type int class Int)
 
@@ -5299,15 +5299,15 @@ Add new DNS resource record.
 
 =item tlsa_part_cert_association_data: Certificate Association Data (type unicode class Str)
 
-=item txtrecord: Raw TXT records (type unicode class TXTRecord)
+=item txtrecord: Raw TXT records (arrayref of type unicode class TXTRecord)
 
 =item txt_part_data: Text Data (type unicode class Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item force: force NS record creation even if its hostname is not in DNS (type bool class Flag)
 
@@ -5334,10 +5334,10 @@ sub api_dnsrecord_add
     return $self->rpc_api('dnsrecord_add',    
         [$dnszoneidnsname, $idnsname],
         [qw(dnszoneidnsname idnsname)],
-        [qw(DNSName DNSName)],
+        [qw(DNSName:0 DNSName:0)],
         \%opts,
         [qw(dnsttl dnsclass arecord a_part_ip_address a_extra_create_reverse aaaarecord aaaa_part_ip_address aaaa_extra_create_reverse a6record a6_part_data afsdbrecord afsdb_part_subtype afsdb_part_hostname aplrecord certrecord cert_part_type cert_part_key_tag cert_part_algorithm cert_part_certificate_or_crl cnamerecord cname_part_hostname dhcidrecord dlvrecord dlv_part_key_tag dlv_part_algorithm dlv_part_digest_type dlv_part_digest dnamerecord dname_part_target dsrecord ds_part_key_tag ds_part_algorithm ds_part_digest_type ds_part_digest hiprecord ipseckeyrecord keyrecord kxrecord kx_part_preference kx_part_exchanger locrecord loc_part_lat_deg loc_part_lat_min loc_part_lat_sec loc_part_lat_dir loc_part_lon_deg loc_part_lon_min loc_part_lon_sec loc_part_lon_dir loc_part_altitude loc_part_size loc_part_h_precision loc_part_v_precision mxrecord mx_part_preference mx_part_exchanger naptrrecord naptr_part_order naptr_part_preference naptr_part_flags naptr_part_service naptr_part_regexp naptr_part_replacement nsrecord ns_part_hostname nsecrecord ptrrecord ptr_part_hostname rrsigrecord rprecord sigrecord spfrecord srvrecord srv_part_priority srv_part_weight srv_part_port srv_part_target sshfprecord sshfp_part_algorithm sshfp_part_fp_type sshfp_part_fingerprint tlsarecord tlsa_part_cert_usage tlsa_part_selector tlsa_part_matching_type tlsa_part_cert_association_data txtrecord txt_part_data setattr addattr force structured all raw version)],
-        [qw(int unicode unicode unicode bool unicode unicode bool unicode unicode unicode int DNSName unicode unicode int int int unicode unicode DNSName unicode unicode int int int unicode unicode DNSName unicode int int int unicode unicode unicode unicode unicode int DNSName unicode int int Decimal unicode int int Decimal unicode Decimal Decimal Decimal Decimal unicode int DNSName unicode int int unicode unicode unicode unicode unicode DNSName unicode unicode DNSName unicode unicode unicode unicode unicode int int int DNSName unicode int int unicode unicode int int int unicode unicode unicode unicode unicode bool bool bool bool unicode)],
+        [qw(int:0 unicode:0 unicode:1 unicode:0 bool:0 unicode:1 unicode:0 bool:0 unicode:1 unicode:0 unicode:1 int:0 DNSName:0 unicode:1 unicode:1 int:0 int:0 int:0 unicode:0 unicode:1 DNSName:0 unicode:1 unicode:1 int:0 int:0 int:0 unicode:0 unicode:1 DNSName:0 unicode:1 int:0 int:0 int:0 unicode:0 unicode:1 unicode:1 unicode:1 unicode:1 int:0 DNSName:0 unicode:1 int:0 int:0 Decimal:0 unicode:0 int:0 int:0 Decimal:0 unicode:0 Decimal:0 Decimal:0 Decimal:0 Decimal:0 unicode:1 int:0 DNSName:0 unicode:1 int:0 int:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:1 DNSName:0 unicode:1 unicode:1 DNSName:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 int:0 int:0 int:0 DNSName:0 unicode:1 int:0 int:0 unicode:0 unicode:1 int:0 int:0 int:0 unicode:0 unicode:1 unicode:0 unicode:1 unicode:1 bool:0 bool:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -5370,63 +5370,63 @@ Delete DNS resource record.
 
 =item dnsclass: <dnsclass> (type unicode class StrEnum)
 
-=item arecord: Raw A records (type unicode class ARecord)
+=item arecord: Raw A records (arrayref of type unicode class ARecord)
 
-=item aaaarecord: Raw AAAA records (type unicode class AAAARecord)
+=item aaaarecord: Raw AAAA records (arrayref of type unicode class AAAARecord)
 
-=item a6record: Raw A6 records (type unicode class A6Record)
+=item a6record: Raw A6 records (arrayref of type unicode class A6Record)
 
-=item afsdbrecord: Raw AFSDB records (type unicode class AFSDBRecord)
+=item afsdbrecord: Raw AFSDB records (arrayref of type unicode class AFSDBRecord)
 
-=item aplrecord: Raw APL records (type unicode class APLRecord)
+=item aplrecord: Raw APL records (arrayref of type unicode class APLRecord)
 
-=item certrecord: Raw CERT records (type unicode class CERTRecord)
+=item certrecord: Raw CERT records (arrayref of type unicode class CERTRecord)
 
-=item cnamerecord: Raw CNAME records (type unicode class CNAMERecord)
+=item cnamerecord: Raw CNAME records (arrayref of type unicode class CNAMERecord)
 
-=item dhcidrecord: Raw DHCID records (type unicode class DHCIDRecord)
+=item dhcidrecord: Raw DHCID records (arrayref of type unicode class DHCIDRecord)
 
-=item dlvrecord: Raw DLV records (type unicode class DLVRecord)
+=item dlvrecord: Raw DLV records (arrayref of type unicode class DLVRecord)
 
-=item dnamerecord: Raw DNAME records (type unicode class DNAMERecord)
+=item dnamerecord: Raw DNAME records (arrayref of type unicode class DNAMERecord)
 
-=item dsrecord: Raw DS records (type unicode class DSRecord)
+=item dsrecord: Raw DS records (arrayref of type unicode class DSRecord)
 
-=item hiprecord: Raw HIP records (type unicode class HIPRecord)
+=item hiprecord: Raw HIP records (arrayref of type unicode class HIPRecord)
 
-=item ipseckeyrecord: Raw IPSECKEY records (type unicode class IPSECKEYRecord)
+=item ipseckeyrecord: Raw IPSECKEY records (arrayref of type unicode class IPSECKEYRecord)
 
-=item keyrecord: Raw KEY records (type unicode class KEYRecord)
+=item keyrecord: Raw KEY records (arrayref of type unicode class KEYRecord)
 
-=item kxrecord: Raw KX records (type unicode class KXRecord)
+=item kxrecord: Raw KX records (arrayref of type unicode class KXRecord)
 
-=item locrecord: Raw LOC records (type unicode class LOCRecord)
+=item locrecord: Raw LOC records (arrayref of type unicode class LOCRecord)
 
-=item mxrecord: Raw MX records (type unicode class MXRecord)
+=item mxrecord: Raw MX records (arrayref of type unicode class MXRecord)
 
-=item naptrrecord: Raw NAPTR records (type unicode class NAPTRRecord)
+=item naptrrecord: Raw NAPTR records (arrayref of type unicode class NAPTRRecord)
 
-=item nsrecord: Raw NS records (type unicode class NSRecord)
+=item nsrecord: Raw NS records (arrayref of type unicode class NSRecord)
 
-=item nsecrecord: Raw NSEC records (type unicode class NSECRecord)
+=item nsecrecord: Raw NSEC records (arrayref of type unicode class NSECRecord)
 
-=item ptrrecord: Raw PTR records (type unicode class PTRRecord)
+=item ptrrecord: Raw PTR records (arrayref of type unicode class PTRRecord)
 
-=item rrsigrecord: Raw RRSIG records (type unicode class RRSIGRecord)
+=item rrsigrecord: Raw RRSIG records (arrayref of type unicode class RRSIGRecord)
 
-=item rprecord: Raw RP records (type unicode class RPRecord)
+=item rprecord: Raw RP records (arrayref of type unicode class RPRecord)
 
-=item sigrecord: Raw SIG records (type unicode class SIGRecord)
+=item sigrecord: Raw SIG records (arrayref of type unicode class SIGRecord)
 
-=item spfrecord: Raw SPF records (type unicode class SPFRecord)
+=item spfrecord: Raw SPF records (arrayref of type unicode class SPFRecord)
 
-=item srvrecord: Raw SRV records (type unicode class SRVRecord)
+=item srvrecord: Raw SRV records (arrayref of type unicode class SRVRecord)
 
-=item sshfprecord: Raw SSHFP records (type unicode class SSHFPRecord)
+=item sshfprecord: Raw SSHFP records (arrayref of type unicode class SSHFPRecord)
 
-=item tlsarecord: Raw TLSA records (type unicode class TLSARecord)
+=item tlsarecord: Raw TLSA records (arrayref of type unicode class TLSARecord)
 
-=item txtrecord: Raw TXT records (type unicode class TXTRecord)
+=item txtrecord: Raw TXT records (arrayref of type unicode class TXTRecord)
 
 =item del_all: Delete all associated records (type bool class Flag)
 
@@ -5449,10 +5449,10 @@ sub api_dnsrecord_del
     return $self->rpc_api('dnsrecord_del',    
         [$dnszoneidnsname, $idnsname],
         [qw(dnszoneidnsname idnsname)],
-        [qw(DNSName DNSName)],
+        [qw(DNSName:0 DNSName:0)],
         \%opts,
         [qw(dnsttl dnsclass arecord aaaarecord a6record afsdbrecord aplrecord certrecord cnamerecord dhcidrecord dlvrecord dnamerecord dsrecord hiprecord ipseckeyrecord keyrecord kxrecord locrecord mxrecord naptrrecord nsrecord nsecrecord ptrrecord rrsigrecord rprecord sigrecord spfrecord srvrecord sshfprecord tlsarecord txtrecord del_all structured version)],
-        [qw(int unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode bool bool unicode)],
+        [qw(int:0 unicode:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -5474,7 +5474,7 @@ Wrapper method for dnsrecord_delentry API
 
 =item dnszoneidnsname: Zone name (FQDN) (type DNSName class DNSNameParam)
 
-=item idnsname: Record name (type DNSName class DNSNameParam)
+=item idnsname: Record name (arrayref of type DNSName class DNSNameParam)
 
 =back
 
@@ -5502,10 +5502,10 @@ sub api_dnsrecord_delentry
     return $self->rpc_api('dnsrecord_delentry',    
         [$dnszoneidnsname, $idnsname],
         [qw(dnszoneidnsname idnsname)],
-        [qw(DNSName DNSName)],
+        [qw(DNSName:0 DNSName:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool unicode)],
+        [qw(bool:0 unicode:0)],
     );
 }
 
@@ -5540,63 +5540,63 @@ Search for DNS resources.
 
 =item dnsclass: <dnsclass> (type unicode class StrEnum)
 
-=item arecord: Raw A records (type unicode class ARecord)
+=item arecord: Raw A records (arrayref of type unicode class ARecord)
 
-=item aaaarecord: Raw AAAA records (type unicode class AAAARecord)
+=item aaaarecord: Raw AAAA records (arrayref of type unicode class AAAARecord)
 
-=item a6record: Raw A6 records (type unicode class A6Record)
+=item a6record: Raw A6 records (arrayref of type unicode class A6Record)
 
-=item afsdbrecord: Raw AFSDB records (type unicode class AFSDBRecord)
+=item afsdbrecord: Raw AFSDB records (arrayref of type unicode class AFSDBRecord)
 
-=item aplrecord: Raw APL records (type unicode class APLRecord)
+=item aplrecord: Raw APL records (arrayref of type unicode class APLRecord)
 
-=item certrecord: Raw CERT records (type unicode class CERTRecord)
+=item certrecord: Raw CERT records (arrayref of type unicode class CERTRecord)
 
-=item cnamerecord: Raw CNAME records (type unicode class CNAMERecord)
+=item cnamerecord: Raw CNAME records (arrayref of type unicode class CNAMERecord)
 
-=item dhcidrecord: Raw DHCID records (type unicode class DHCIDRecord)
+=item dhcidrecord: Raw DHCID records (arrayref of type unicode class DHCIDRecord)
 
-=item dlvrecord: Raw DLV records (type unicode class DLVRecord)
+=item dlvrecord: Raw DLV records (arrayref of type unicode class DLVRecord)
 
-=item dnamerecord: Raw DNAME records (type unicode class DNAMERecord)
+=item dnamerecord: Raw DNAME records (arrayref of type unicode class DNAMERecord)
 
-=item dsrecord: Raw DS records (type unicode class DSRecord)
+=item dsrecord: Raw DS records (arrayref of type unicode class DSRecord)
 
-=item hiprecord: Raw HIP records (type unicode class HIPRecord)
+=item hiprecord: Raw HIP records (arrayref of type unicode class HIPRecord)
 
-=item ipseckeyrecord: Raw IPSECKEY records (type unicode class IPSECKEYRecord)
+=item ipseckeyrecord: Raw IPSECKEY records (arrayref of type unicode class IPSECKEYRecord)
 
-=item keyrecord: Raw KEY records (type unicode class KEYRecord)
+=item keyrecord: Raw KEY records (arrayref of type unicode class KEYRecord)
 
-=item kxrecord: Raw KX records (type unicode class KXRecord)
+=item kxrecord: Raw KX records (arrayref of type unicode class KXRecord)
 
-=item locrecord: Raw LOC records (type unicode class LOCRecord)
+=item locrecord: Raw LOC records (arrayref of type unicode class LOCRecord)
 
-=item mxrecord: Raw MX records (type unicode class MXRecord)
+=item mxrecord: Raw MX records (arrayref of type unicode class MXRecord)
 
-=item naptrrecord: Raw NAPTR records (type unicode class NAPTRRecord)
+=item naptrrecord: Raw NAPTR records (arrayref of type unicode class NAPTRRecord)
 
-=item nsrecord: Raw NS records (type unicode class NSRecord)
+=item nsrecord: Raw NS records (arrayref of type unicode class NSRecord)
 
-=item nsecrecord: Raw NSEC records (type unicode class NSECRecord)
+=item nsecrecord: Raw NSEC records (arrayref of type unicode class NSECRecord)
 
-=item ptrrecord: Raw PTR records (type unicode class PTRRecord)
+=item ptrrecord: Raw PTR records (arrayref of type unicode class PTRRecord)
 
-=item rrsigrecord: Raw RRSIG records (type unicode class RRSIGRecord)
+=item rrsigrecord: Raw RRSIG records (arrayref of type unicode class RRSIGRecord)
 
-=item rprecord: Raw RP records (type unicode class RPRecord)
+=item rprecord: Raw RP records (arrayref of type unicode class RPRecord)
 
-=item sigrecord: Raw SIG records (type unicode class SIGRecord)
+=item sigrecord: Raw SIG records (arrayref of type unicode class SIGRecord)
 
-=item spfrecord: Raw SPF records (type unicode class SPFRecord)
+=item spfrecord: Raw SPF records (arrayref of type unicode class SPFRecord)
 
-=item srvrecord: Raw SRV records (type unicode class SRVRecord)
+=item srvrecord: Raw SRV records (arrayref of type unicode class SRVRecord)
 
-=item sshfprecord: Raw SSHFP records (type unicode class SSHFPRecord)
+=item sshfprecord: Raw SSHFP records (arrayref of type unicode class SSHFPRecord)
 
-=item tlsarecord: Raw TLSA records (type unicode class TLSARecord)
+=item tlsarecord: Raw TLSA records (arrayref of type unicode class TLSARecord)
 
-=item txtrecord: Raw TXT records (type unicode class TXTRecord)
+=item txtrecord: Raw TXT records (arrayref of type unicode class TXTRecord)
 
 =item timelimit: Time limit of search in seconds (type int class Int)
 
@@ -5627,10 +5627,10 @@ sub api_dnsrecord_find
     return $self->rpc_api('dnsrecord_find',    
         [$dnszoneidnsname, $criteria],
         [qw(dnszoneidnsname criteria)],
-        [qw(DNSName unicode)],
+        [qw(DNSName:0 unicode:0)],
         \%opts,
         [qw(idnsname dnsttl dnsclass arecord aaaarecord a6record afsdbrecord aplrecord certrecord cnamerecord dhcidrecord dlvrecord dnamerecord dsrecord hiprecord ipseckeyrecord keyrecord kxrecord locrecord mxrecord naptrrecord nsrecord nsecrecord ptrrecord rrsigrecord rprecord sigrecord spfrecord srvrecord sshfprecord tlsarecord txtrecord timelimit sizelimit structured all raw version pkey_only)],
-        [qw(DNSName int unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode int int bool bool bool unicode bool)],
+        [qw(DNSName:0 int:0 unicode:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 int:0 int:0 bool:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -5663,27 +5663,27 @@ Modify a DNS resource record.
 
 =item dnsclass: <dnsclass> (type unicode class StrEnum)
 
-=item arecord: Raw A records (type unicode class ARecord)
+=item arecord: Raw A records (arrayref of type unicode class ARecord)
 
 =item a_part_ip_address: IP Address (type unicode class Str)
 
-=item aaaarecord: Raw AAAA records (type unicode class AAAARecord)
+=item aaaarecord: Raw AAAA records (arrayref of type unicode class AAAARecord)
 
 =item aaaa_part_ip_address: IP Address (type unicode class Str)
 
-=item a6record: Raw A6 records (type unicode class A6Record)
+=item a6record: Raw A6 records (arrayref of type unicode class A6Record)
 
 =item a6_part_data: Record data (type unicode class Str)
 
-=item afsdbrecord: Raw AFSDB records (type unicode class AFSDBRecord)
+=item afsdbrecord: Raw AFSDB records (arrayref of type unicode class AFSDBRecord)
 
 =item afsdb_part_subtype: Subtype (type int class Int)
 
 =item afsdb_part_hostname: Hostname (type DNSName class DNSNameParam)
 
-=item aplrecord: Raw APL records (type unicode class APLRecord)
+=item aplrecord: Raw APL records (arrayref of type unicode class APLRecord)
 
-=item certrecord: Raw CERT records (type unicode class CERTRecord)
+=item certrecord: Raw CERT records (arrayref of type unicode class CERTRecord)
 
 =item cert_part_type: Certificate Type (type int class Int)
 
@@ -5693,13 +5693,13 @@ Modify a DNS resource record.
 
 =item cert_part_certificate_or_crl: Certificate/CRL (type unicode class Str)
 
-=item cnamerecord: Raw CNAME records (type unicode class CNAMERecord)
+=item cnamerecord: Raw CNAME records (arrayref of type unicode class CNAMERecord)
 
 =item cname_part_hostname: A hostname which this alias hostname points to (type DNSName class DNSNameParam)
 
-=item dhcidrecord: Raw DHCID records (type unicode class DHCIDRecord)
+=item dhcidrecord: Raw DHCID records (arrayref of type unicode class DHCIDRecord)
 
-=item dlvrecord: Raw DLV records (type unicode class DLVRecord)
+=item dlvrecord: Raw DLV records (arrayref of type unicode class DLVRecord)
 
 =item dlv_part_key_tag: Key Tag (type int class Int)
 
@@ -5709,11 +5709,11 @@ Modify a DNS resource record.
 
 =item dlv_part_digest: Digest (type unicode class Str)
 
-=item dnamerecord: Raw DNAME records (type unicode class DNAMERecord)
+=item dnamerecord: Raw DNAME records (arrayref of type unicode class DNAMERecord)
 
 =item dname_part_target: Target (type DNSName class DNSNameParam)
 
-=item dsrecord: Raw DS records (type unicode class DSRecord)
+=item dsrecord: Raw DS records (arrayref of type unicode class DSRecord)
 
 =item ds_part_key_tag: Key Tag (type int class Int)
 
@@ -5723,19 +5723,19 @@ Modify a DNS resource record.
 
 =item ds_part_digest: Digest (type unicode class Str)
 
-=item hiprecord: Raw HIP records (type unicode class HIPRecord)
+=item hiprecord: Raw HIP records (arrayref of type unicode class HIPRecord)
 
-=item ipseckeyrecord: Raw IPSECKEY records (type unicode class IPSECKEYRecord)
+=item ipseckeyrecord: Raw IPSECKEY records (arrayref of type unicode class IPSECKEYRecord)
 
-=item keyrecord: Raw KEY records (type unicode class KEYRecord)
+=item keyrecord: Raw KEY records (arrayref of type unicode class KEYRecord)
 
-=item kxrecord: Raw KX records (type unicode class KXRecord)
+=item kxrecord: Raw KX records (arrayref of type unicode class KXRecord)
 
 =item kx_part_preference: Preference given to this exchanger. Lower values are more preferred (type int class Int)
 
 =item kx_part_exchanger: A host willing to act as a key exchanger (type DNSName class DNSNameParam)
 
-=item locrecord: Raw LOC records (type unicode class LOCRecord)
+=item locrecord: Raw LOC records (arrayref of type unicode class LOCRecord)
 
 =item loc_part_lat_deg: Degrees Latitude (type int class Int)
 
@@ -5761,13 +5761,13 @@ Modify a DNS resource record.
 
 =item loc_part_v_precision: Vertical Precision (type Decimal class Decimal)
 
-=item mxrecord: Raw MX records (type unicode class MXRecord)
+=item mxrecord: Raw MX records (arrayref of type unicode class MXRecord)
 
 =item mx_part_preference: Preference given to this exchanger. Lower values are more preferred (type int class Int)
 
 =item mx_part_exchanger: A host willing to act as a mail exchanger (type DNSName class DNSNameParam)
 
-=item naptrrecord: Raw NAPTR records (type unicode class NAPTRRecord)
+=item naptrrecord: Raw NAPTR records (arrayref of type unicode class NAPTRRecord)
 
 =item naptr_part_order: Order (type int class Int)
 
@@ -5781,25 +5781,25 @@ Modify a DNS resource record.
 
 =item naptr_part_replacement: Replacement (type unicode class Str)
 
-=item nsrecord: Raw NS records (type unicode class NSRecord)
+=item nsrecord: Raw NS records (arrayref of type unicode class NSRecord)
 
 =item ns_part_hostname: Hostname (type DNSName class DNSNameParam)
 
-=item nsecrecord: Raw NSEC records (type unicode class NSECRecord)
+=item nsecrecord: Raw NSEC records (arrayref of type unicode class NSECRecord)
 
-=item ptrrecord: Raw PTR records (type unicode class PTRRecord)
+=item ptrrecord: Raw PTR records (arrayref of type unicode class PTRRecord)
 
 =item ptr_part_hostname: The hostname this reverse record points to (type DNSName class DNSNameParam)
 
-=item rrsigrecord: Raw RRSIG records (type unicode class RRSIGRecord)
+=item rrsigrecord: Raw RRSIG records (arrayref of type unicode class RRSIGRecord)
 
-=item rprecord: Raw RP records (type unicode class RPRecord)
+=item rprecord: Raw RP records (arrayref of type unicode class RPRecord)
 
-=item sigrecord: Raw SIG records (type unicode class SIGRecord)
+=item sigrecord: Raw SIG records (arrayref of type unicode class SIGRecord)
 
-=item spfrecord: Raw SPF records (type unicode class SPFRecord)
+=item spfrecord: Raw SPF records (arrayref of type unicode class SPFRecord)
 
-=item srvrecord: Raw SRV records (type unicode class SRVRecord)
+=item srvrecord: Raw SRV records (arrayref of type unicode class SRVRecord)
 
 =item srv_part_priority: Priority (type int class Int)
 
@@ -5809,7 +5809,7 @@ Modify a DNS resource record.
 
 =item srv_part_target: The domain name of the target host or '.' if the service is decidedly not available at this domain (type DNSName class DNSNameParam)
 
-=item sshfprecord: Raw SSHFP records (type unicode class SSHFPRecord)
+=item sshfprecord: Raw SSHFP records (arrayref of type unicode class SSHFPRecord)
 
 =item sshfp_part_algorithm: Algorithm (type int class Int)
 
@@ -5817,7 +5817,7 @@ Modify a DNS resource record.
 
 =item sshfp_part_fingerprint: Fingerprint (type unicode class Str)
 
-=item tlsarecord: Raw TLSA records (type unicode class TLSARecord)
+=item tlsarecord: Raw TLSA records (arrayref of type unicode class TLSARecord)
 
 =item tlsa_part_cert_usage: Certificate Usage (type int class Int)
 
@@ -5827,18 +5827,18 @@ Modify a DNS resource record.
 
 =item tlsa_part_cert_association_data: Certificate Association Data (type unicode class Str)
 
-=item txtrecord: Raw TXT records (type unicode class TXTRecord)
+=item txtrecord: Raw TXT records (arrayref of type unicode class TXTRecord)
 
 =item txt_part_data: Text Data (type unicode class Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item delattr: Delete an attribute/value pair. The option will be evaluated
-last, after all sets and adds. (type unicode class Str)
+last, after all sets and adds. (arrayref of type unicode class Str)
 
 =item rights: Display the access rights of this entry (requires --all). See ipa man page for details. (type bool class Flag)
 
@@ -5867,10 +5867,10 @@ sub api_dnsrecord_mod
     return $self->rpc_api('dnsrecord_mod',    
         [$dnszoneidnsname, $idnsname],
         [qw(dnszoneidnsname idnsname)],
-        [qw(DNSName DNSName)],
+        [qw(DNSName:0 DNSName:0)],
         \%opts,
         [qw(dnsttl dnsclass arecord a_part_ip_address aaaarecord aaaa_part_ip_address a6record a6_part_data afsdbrecord afsdb_part_subtype afsdb_part_hostname aplrecord certrecord cert_part_type cert_part_key_tag cert_part_algorithm cert_part_certificate_or_crl cnamerecord cname_part_hostname dhcidrecord dlvrecord dlv_part_key_tag dlv_part_algorithm dlv_part_digest_type dlv_part_digest dnamerecord dname_part_target dsrecord ds_part_key_tag ds_part_algorithm ds_part_digest_type ds_part_digest hiprecord ipseckeyrecord keyrecord kxrecord kx_part_preference kx_part_exchanger locrecord loc_part_lat_deg loc_part_lat_min loc_part_lat_sec loc_part_lat_dir loc_part_lon_deg loc_part_lon_min loc_part_lon_sec loc_part_lon_dir loc_part_altitude loc_part_size loc_part_h_precision loc_part_v_precision mxrecord mx_part_preference mx_part_exchanger naptrrecord naptr_part_order naptr_part_preference naptr_part_flags naptr_part_service naptr_part_regexp naptr_part_replacement nsrecord ns_part_hostname nsecrecord ptrrecord ptr_part_hostname rrsigrecord rprecord sigrecord spfrecord srvrecord srv_part_priority srv_part_weight srv_part_port srv_part_target sshfprecord sshfp_part_algorithm sshfp_part_fp_type sshfp_part_fingerprint tlsarecord tlsa_part_cert_usage tlsa_part_selector tlsa_part_matching_type tlsa_part_cert_association_data txtrecord txt_part_data setattr addattr delattr rights structured all raw version rename)],
-        [qw(int unicode unicode unicode unicode unicode unicode unicode unicode int DNSName unicode unicode int int int unicode unicode DNSName unicode unicode int int int unicode unicode DNSName unicode int int int unicode unicode unicode unicode unicode int DNSName unicode int int Decimal unicode int int Decimal unicode Decimal Decimal Decimal Decimal unicode int DNSName unicode int int unicode unicode unicode unicode unicode DNSName unicode unicode DNSName unicode unicode unicode unicode unicode int int int DNSName unicode int int unicode unicode int int int unicode unicode unicode unicode unicode unicode bool bool bool bool unicode DNSName)],
+        [qw(int:0 unicode:0 unicode:1 unicode:0 unicode:1 unicode:0 unicode:1 unicode:0 unicode:1 int:0 DNSName:0 unicode:1 unicode:1 int:0 int:0 int:0 unicode:0 unicode:1 DNSName:0 unicode:1 unicode:1 int:0 int:0 int:0 unicode:0 unicode:1 DNSName:0 unicode:1 int:0 int:0 int:0 unicode:0 unicode:1 unicode:1 unicode:1 unicode:1 int:0 DNSName:0 unicode:1 int:0 int:0 Decimal:0 unicode:0 int:0 int:0 Decimal:0 unicode:0 Decimal:0 Decimal:0 Decimal:0 Decimal:0 unicode:1 int:0 DNSName:0 unicode:1 int:0 int:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:1 DNSName:0 unicode:1 unicode:1 DNSName:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 int:0 int:0 int:0 DNSName:0 unicode:1 int:0 int:0 unicode:0 unicode:1 int:0 int:0 int:0 unicode:0 unicode:1 unicode:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 bool:0 unicode:0 DNSName:0)],
     );
 }
 
@@ -5924,10 +5924,10 @@ sub api_dnsrecord_show
     return $self->rpc_api('dnsrecord_show',    
         [$dnszoneidnsname, $idnsname],
         [qw(dnszoneidnsname idnsname)],
-        [qw(DNSName DNSName)],
+        [qw(DNSName:0 DNSName:0)],
         \%opts,
         [qw(rights structured all raw version)],
-        [qw(bool bool bool bool unicode)],
+        [qw(bool:0 bool:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -5956,7 +5956,7 @@ Create new DNS zone (SOA record).
 
 =item name_from_ip: IP network to create reverse zone name from (type unicode class Str)
 
-=item idnsforwarders: Per-zone forwarders. A custom port can be specified for each forwarder using a standard format "IP_ADDRESS port PORT" (type unicode class Str)
+=item idnsforwarders: Per-zone forwarders. A custom port can be specified for each forwarder using a standard format "IP_ADDRESS port PORT" (arrayref of type unicode class Str)
 
 =item idnsforwardpolicy: Per-zone conditional forwarding policy. Set to "none" to disable forwarding to global forwarder for this zone. In that case, conditional zone forwarders are disregarded. (type unicode class StrEnum)
 
@@ -5993,10 +5993,10 @@ Create new DNS zone (SOA record).
 =item nsec3paramrecord: NSEC3PARAM record for zone in format: hash_algorithm flags iterations salt (type unicode class Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item force: Force DNS zone creation even if nameserver is not resolvable. (type bool class Flag)
 
@@ -6023,10 +6023,10 @@ sub api_dnszone_add
     return $self->rpc_api('dnszone_add',    
         [$idnsname],
         [qw(idnsname)],
-        [qw(DNSName)],
+        [qw(DNSName:0)],
         \%opts,
         [qw(name_from_ip idnsforwarders idnsforwardpolicy idnssoamname idnssoarname idnssoaserial idnssoarefresh idnssoaretry idnssoaexpire idnssoaminimum dnsttl dnsclass idnsupdatepolicy idnsallowdynupdate idnsallowquery idnsallowtransfer idnsallowsyncptr idnssecinlinesigning nsec3paramrecord setattr addattr force ip_address all raw version)],
-        [qw(unicode unicode unicode DNSName DNSName int int int int int int unicode unicode bool unicode unicode bool bool unicode unicode unicode bool unicode bool bool unicode)],
+        [qw(unicode:0 unicode:1 unicode:0 DNSName:0 DNSName:0 int:0 int:0 int:0 int:0 int:0 int:0 unicode:0 unicode:0 bool:0 unicode:0 unicode:0 bool:0 bool:0 unicode:0 unicode:1 unicode:1 bool:0 unicode:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -6070,10 +6070,10 @@ sub api_dnszone_add_permission
     return $self->rpc_api('dnszone_add_permission',    
         [$idnsname],
         [qw(idnsname)],
-        [qw(DNSName)],
+        [qw(DNSName:0)],
         \%opts,
         [qw(version)],
-        [qw(unicode)],
+        [qw(unicode:0)],
     );
 }
 
@@ -6091,7 +6091,7 @@ Delete DNS zone (SOA record).
 
 =over
 
-=item idnsname: Zone name (FQDN) (type DNSName class DNSNameParam)
+=item idnsname: Zone name (FQDN) (arrayref of type DNSName class DNSNameParam)
 
 =back
 
@@ -6119,10 +6119,10 @@ sub api_dnszone_del
     return $self->rpc_api('dnszone_del',    
         [$idnsname],
         [qw(idnsname)],
-        [qw(DNSName)],
+        [qw(DNSName:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool unicode)],
+        [qw(bool:0 unicode:0)],
     );
 }
 
@@ -6166,10 +6166,10 @@ sub api_dnszone_disable
     return $self->rpc_api('dnszone_disable',    
         [$idnsname],
         [qw(idnsname)],
-        [qw(DNSName)],
+        [qw(DNSName:0)],
         \%opts,
         [qw(version)],
-        [qw(unicode)],
+        [qw(unicode:0)],
     );
 }
 
@@ -6213,10 +6213,10 @@ sub api_dnszone_enable
     return $self->rpc_api('dnszone_enable',    
         [$idnsname],
         [qw(idnsname)],
-        [qw(DNSName)],
+        [qw(DNSName:0)],
         \%opts,
         [qw(version)],
-        [qw(unicode)],
+        [qw(unicode:0)],
     );
 }
 
@@ -6249,7 +6249,7 @@ Search for DNS zones (SOA records).
 
 =item idnszoneactive: Is zone active? (type bool class Bool)
 
-=item idnsforwarders: Per-zone forwarders. A custom port can be specified for each forwarder using a standard format "IP_ADDRESS port PORT" (type unicode class Str)
+=item idnsforwarders: Per-zone forwarders. A custom port can be specified for each forwarder using a standard format "IP_ADDRESS port PORT" (arrayref of type unicode class Str)
 
 =item idnsforwardpolicy: Per-zone conditional forwarding policy. Set to "none" to disable forwarding to global forwarder for this zone. In that case, conditional zone forwarders are disregarded. (type unicode class StrEnum)
 
@@ -6314,10 +6314,10 @@ sub api_dnszone_find
     return $self->rpc_api('dnszone_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(idnsname name_from_ip idnszoneactive idnsforwarders idnsforwardpolicy idnssoamname idnssoarname idnssoaserial idnssoarefresh idnssoaretry idnssoaexpire idnssoaminimum dnsttl dnsclass idnsupdatepolicy idnsallowdynupdate idnsallowquery idnsallowtransfer idnsallowsyncptr idnssecinlinesigning nsec3paramrecord timelimit sizelimit forward_only all raw version pkey_only)],
-        [qw(DNSName unicode bool unicode unicode DNSName DNSName int int int int int int unicode unicode bool unicode unicode bool bool unicode int int bool bool bool unicode bool)],
+        [qw(DNSName:0 unicode:0 bool:0 unicode:1 unicode:0 DNSName:0 DNSName:0 int:0 int:0 int:0 int:0 int:0 int:0 unicode:0 unicode:0 bool:0 unicode:0 unicode:0 bool:0 bool:0 unicode:0 int:0 int:0 bool:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -6346,7 +6346,7 @@ Modify DNS zone (SOA record).
 
 =item name_from_ip: IP network to create reverse zone name from (type unicode class Str)
 
-=item idnsforwarders: Per-zone forwarders. A custom port can be specified for each forwarder using a standard format "IP_ADDRESS port PORT" (type unicode class Str)
+=item idnsforwarders: Per-zone forwarders. A custom port can be specified for each forwarder using a standard format "IP_ADDRESS port PORT" (arrayref of type unicode class Str)
 
 =item idnsforwardpolicy: Per-zone conditional forwarding policy. Set to "none" to disable forwarding to global forwarder for this zone. In that case, conditional zone forwarders are disregarded. (type unicode class StrEnum)
 
@@ -6383,13 +6383,13 @@ Modify DNS zone (SOA record).
 =item nsec3paramrecord: NSEC3PARAM record for zone in format: hash_algorithm flags iterations salt (type unicode class Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item delattr: Delete an attribute/value pair. The option will be evaluated
-last, after all sets and adds. (type unicode class Str)
+last, after all sets and adds. (arrayref of type unicode class Str)
 
 =item rights: Display the access rights of this entry (requires --all). See ipa man page for details. (type bool class Flag)
 
@@ -6416,10 +6416,10 @@ sub api_dnszone_mod
     return $self->rpc_api('dnszone_mod',    
         [$idnsname],
         [qw(idnsname)],
-        [qw(DNSName)],
+        [qw(DNSName:0)],
         \%opts,
         [qw(name_from_ip idnsforwarders idnsforwardpolicy idnssoamname idnssoarname idnssoaserial idnssoarefresh idnssoaretry idnssoaexpire idnssoaminimum dnsttl dnsclass idnsupdatepolicy idnsallowdynupdate idnsallowquery idnsallowtransfer idnsallowsyncptr idnssecinlinesigning nsec3paramrecord setattr addattr delattr rights force all raw version)],
-        [qw(unicode unicode unicode DNSName DNSName int int int int int int unicode unicode bool unicode unicode bool bool unicode unicode unicode unicode bool bool bool bool unicode)],
+        [qw(unicode:0 unicode:1 unicode:0 DNSName:0 DNSName:0 int:0 int:0 int:0 int:0 int:0 int:0 unicode:0 unicode:0 bool:0 unicode:0 unicode:0 bool:0 bool:0 unicode:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -6463,10 +6463,10 @@ sub api_dnszone_remove_permission
     return $self->rpc_api('dnszone_remove_permission',    
         [$idnsname],
         [qw(idnsname)],
-        [qw(DNSName)],
+        [qw(DNSName:0)],
         \%opts,
         [qw(version)],
-        [qw(unicode)],
+        [qw(unicode:0)],
     );
 }
 
@@ -6516,10 +6516,10 @@ sub api_dnszone_show
     return $self->rpc_api('dnszone_show',    
         [$idnsname],
         [qw(idnsname)],
-        [qw(DNSName)],
+        [qw(DNSName:0)],
         \%opts,
         [qw(rights all raw version)],
-        [qw(bool bool bool unicode)],
+        [qw(bool:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -6559,7 +6559,7 @@ sub api_domainlevel_get
         [qw()],
         \%opts,
         [qw(version)],
-        [qw(unicode)],
+        [qw(unicode:0)],
     );
 }
 
@@ -6603,10 +6603,10 @@ sub api_domainlevel_set
     return $self->rpc_api('domainlevel_set',    
         [$ipadomainlevel],
         [qw(ipadomainlevel)],
-        [qw(int)],
+        [qw(int:0)],
         \%opts,
         [qw(version)],
-        [qw(unicode)],
+        [qw(unicode:0)],
     );
 }
 
@@ -6654,10 +6654,10 @@ sub api_env
     return $self->rpc_api('env',    
         [$variables],
         [qw(variables)],
-        [qw(unknown)],
+        [qw(unknown:0)],
         \%opts,
         [qw(server all version)],
-        [qw(bool bool unicode)],
+        [qw(bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -6689,10 +6689,10 @@ Create a new group.
 =item gidnumber: GID (use this option to set it manually) (type int class Int)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item nonposix: Create as a non-POSIX group (type bool class Flag)
 
@@ -6721,10 +6721,10 @@ sub api_group_add
     return $self->rpc_api('group_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(description gidnumber setattr addattr nonposix external all raw version no_members)],
-        [qw(unicode int unicode unicode bool bool bool bool unicode bool)],
+        [qw(unicode:0 int:0 unicode:1 unicode:1 bool:0 bool:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -6751,7 +6751,7 @@ Add members to a group.
 
 =over
 
-=item ipaexternalmember: Members of a trusted domain in DOM\name or name@domain form (type unicode class Str)
+=item ipaexternalmember: Members of a trusted domain in DOM\name or name@domain form (arrayref of type unicode class Str)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -6761,9 +6761,9 @@ Add members to a group.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item user: users to add (type unicode class Str)
+=item user: users to add (arrayref of type unicode class Str)
 
-=item group: groups to add (type unicode class Str)
+=item group: groups to add (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -6780,10 +6780,10 @@ sub api_group_add_member
     return $self->rpc_api('group_add_member',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(ipaexternalmember all raw version no_members user group)],
-        [qw(unicode bool bool unicode bool unicode unicode)],
+        [qw(unicode:1 bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
     );
 }
 
@@ -6801,7 +6801,7 @@ Delete group.
 
 =over
 
-=item cn: Group name (type unicode class Str)
+=item cn: Group name (arrayref of type unicode class Str)
 
 =back
 
@@ -6829,10 +6829,10 @@ sub api_group_del
     return $self->rpc_api('group_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool unicode)],
+        [qw(bool:0 unicode:0)],
     );
 }
 
@@ -6876,10 +6876,10 @@ sub api_group_detach
     return $self->rpc_api('group_detach',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(version)],
-        [qw(unicode)],
+        [qw(unicode:0)],
     );
 }
 
@@ -6934,33 +6934,33 @@ Search for groups.
 
 =item pkey_only: Results should contain primary key attribute only ("group-name") (type bool class Flag)
 
-=item user: Search for groups with these member users. (type unicode class Str)
+=item user: Search for groups with these member users. (arrayref of type unicode class Str)
 
-=item no_user: Search for groups without these member users. (type unicode class Str)
+=item no_user: Search for groups without these member users. (arrayref of type unicode class Str)
 
-=item group: Search for groups with these member groups. (type unicode class Str)
+=item group: Search for groups with these member groups. (arrayref of type unicode class Str)
 
-=item no_group: Search for groups without these member groups. (type unicode class Str)
+=item no_group: Search for groups without these member groups. (arrayref of type unicode class Str)
 
-=item in_group: Search for groups with these member of groups. (type unicode class Str)
+=item in_group: Search for groups with these member of groups. (arrayref of type unicode class Str)
 
-=item not_in_group: Search for groups without these member of groups. (type unicode class Str)
+=item not_in_group: Search for groups without these member of groups. (arrayref of type unicode class Str)
 
-=item in_netgroup: Search for groups with these member of netgroups. (type unicode class Str)
+=item in_netgroup: Search for groups with these member of netgroups. (arrayref of type unicode class Str)
 
-=item not_in_netgroup: Search for groups without these member of netgroups. (type unicode class Str)
+=item not_in_netgroup: Search for groups without these member of netgroups. (arrayref of type unicode class Str)
 
-=item in_role: Search for groups with these member of roles. (type unicode class Str)
+=item in_role: Search for groups with these member of roles. (arrayref of type unicode class Str)
 
-=item not_in_role: Search for groups without these member of roles. (type unicode class Str)
+=item not_in_role: Search for groups without these member of roles. (arrayref of type unicode class Str)
 
-=item in_hbacrule: Search for groups with these member of HBAC rules. (type unicode class Str)
+=item in_hbacrule: Search for groups with these member of HBAC rules. (arrayref of type unicode class Str)
 
-=item not_in_hbacrule: Search for groups without these member of HBAC rules. (type unicode class Str)
+=item not_in_hbacrule: Search for groups without these member of HBAC rules. (arrayref of type unicode class Str)
 
-=item in_sudorule: Search for groups with these member of sudo rules. (type unicode class Str)
+=item in_sudorule: Search for groups with these member of sudo rules. (arrayref of type unicode class Str)
 
-=item not_in_sudorule: Search for groups without these member of sudo rules. (type unicode class Str)
+=item not_in_sudorule: Search for groups without these member of sudo rules. (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -6977,10 +6977,10 @@ sub api_group_find
     return $self->rpc_api('group_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(cn description gidnumber timelimit sizelimit private posix external nonposix all raw version no_members pkey_only user no_user group no_group in_group not_in_group in_netgroup not_in_netgroup in_role not_in_role in_hbacrule not_in_hbacrule in_sudorule not_in_sudorule)],
-        [qw(unicode unicode int int int bool bool bool bool bool bool unicode bool bool unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode)],
+        [qw(unicode:0 unicode:0 int:0 int:0 int:0 bool:0 bool:0 bool:0 bool:0 bool:0 bool:0 unicode:0 bool:0 bool:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1)],
     );
 }
 
@@ -7012,13 +7012,13 @@ Modify a group.
 =item gidnumber: GID (use this option to set it manually) (type int class Int)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item delattr: Delete an attribute/value pair. The option will be evaluated
-last, after all sets and adds. (type unicode class Str)
+last, after all sets and adds. (arrayref of type unicode class Str)
 
 =item rights: Display the access rights of this entry (requires --all). See ipa man page for details. (type bool class Flag)
 
@@ -7051,10 +7051,10 @@ sub api_group_mod
     return $self->rpc_api('group_mod',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(description gidnumber setattr addattr delattr rights posix external all raw version no_members rename)],
-        [qw(unicode int unicode unicode unicode bool bool bool bool bool unicode bool unicode)],
+        [qw(unicode:0 int:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 bool:0 bool:0 unicode:0 bool:0 unicode:0)],
     );
 }
 
@@ -7081,7 +7081,7 @@ Remove members from a group.
 
 =over
 
-=item ipaexternalmember: Members of a trusted domain in DOM\name or name@domain form (type unicode class Str)
+=item ipaexternalmember: Members of a trusted domain in DOM\name or name@domain form (arrayref of type unicode class Str)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -7091,9 +7091,9 @@ Remove members from a group.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item user: users to remove (type unicode class Str)
+=item user: users to remove (arrayref of type unicode class Str)
 
-=item group: groups to remove (type unicode class Str)
+=item group: groups to remove (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -7110,10 +7110,10 @@ sub api_group_remove_member
     return $self->rpc_api('group_remove_member',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(ipaexternalmember all raw version no_members user group)],
-        [qw(unicode bool bool unicode bool unicode unicode)],
+        [qw(unicode:1 bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
     );
 }
 
@@ -7165,10 +7165,10 @@ sub api_group_show
     return $self->rpc_api('group_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(rights all raw version no_members)],
-        [qw(bool bool bool unicode bool)],
+        [qw(bool:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -7213,13 +7213,13 @@ Create a new HBAC rule.
 
 =item sourcehost_hostgroup: <sourcehost_hostgroup> (type object class DeprecatedParam)
 
-=item externalhost: External host (type unicode class Str)
+=item externalhost: External host (arrayref of type unicode class Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -7244,10 +7244,10 @@ sub api_hbacrule_add
     return $self->rpc_api('hbacrule_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(accessruletype usercategory hostcategory sourcehostcategory servicecategory description ipaenabledflag sourcehost_host sourcehost_hostgroup externalhost setattr addattr all raw version no_members)],
-        [qw(unicode unicode unicode object unicode unicode bool object object unicode unicode unicode bool bool unicode bool)],
+        [qw(unicode:0 unicode:0 unicode:0 object:0 unicode:0 unicode:0 bool:0 object:0 object:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -7282,9 +7282,9 @@ Add target hosts and hostgroups to an HBAC rule.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item host: hosts to add (type unicode class Str)
+=item host: hosts to add (arrayref of type unicode class Str)
 
-=item hostgroup: host groups to add (type unicode class Str)
+=item hostgroup: host groups to add (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -7301,10 +7301,10 @@ sub api_hbacrule_add_host
     return $self->rpc_api('hbacrule_add_host',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members host hostgroup)],
-        [qw(bool bool unicode bool unicode unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
     );
 }
 
@@ -7339,9 +7339,9 @@ Add services to an HBAC rule.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item hbacsvc: HBAC services to add (type unicode class Str)
+=item hbacsvc: HBAC services to add (arrayref of type unicode class Str)
 
-=item hbacsvcgroup: HBAC service groups to add (type unicode class Str)
+=item hbacsvcgroup: HBAC service groups to add (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -7358,10 +7358,10 @@ sub api_hbacrule_add_service
     return $self->rpc_api('hbacrule_add_service',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members hbacsvc hbacsvcgroup)],
-        [qw(bool bool unicode bool unicode unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
     );
 }
 
@@ -7396,9 +7396,9 @@ None
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item host: hosts to add (type unicode class Str)
+=item host: hosts to add (arrayref of type unicode class Str)
 
-=item hostgroup: host groups to add (type unicode class Str)
+=item hostgroup: host groups to add (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -7415,10 +7415,10 @@ sub api_hbacrule_add_sourcehost
     return $self->rpc_api('hbacrule_add_sourcehost',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members host hostgroup)],
-        [qw(bool bool unicode bool unicode unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
     );
 }
 
@@ -7453,9 +7453,9 @@ Add users and groups to an HBAC rule.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item user: users to add (type unicode class Str)
+=item user: users to add (arrayref of type unicode class Str)
 
-=item group: groups to add (type unicode class Str)
+=item group: groups to add (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -7472,10 +7472,10 @@ sub api_hbacrule_add_user
     return $self->rpc_api('hbacrule_add_user',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members user group)],
-        [qw(bool bool unicode bool unicode unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
     );
 }
 
@@ -7493,7 +7493,7 @@ Delete an HBAC rule.
 
 =over
 
-=item cn: Rule name (type unicode class Str)
+=item cn: Rule name (arrayref of type unicode class Str)
 
 =back
 
@@ -7521,10 +7521,10 @@ sub api_hbacrule_del
     return $self->rpc_api('hbacrule_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool unicode)],
+        [qw(bool:0 unicode:0)],
     );
 }
 
@@ -7568,10 +7568,10 @@ sub api_hbacrule_disable
     return $self->rpc_api('hbacrule_disable',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(version)],
-        [qw(unicode)],
+        [qw(unicode:0)],
     );
 }
 
@@ -7615,10 +7615,10 @@ sub api_hbacrule_enable
     return $self->rpc_api('hbacrule_enable',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(version)],
-        [qw(unicode)],
+        [qw(unicode:0)],
     );
 }
 
@@ -7665,7 +7665,7 @@ Search for HBAC rules.
 
 =item sourcehost_hostgroup: <sourcehost_hostgroup> (type object class DeprecatedParam)
 
-=item externalhost: External host (type unicode class Str)
+=item externalhost: External host (arrayref of type unicode class Str)
 
 =item timelimit: Time limit of search in seconds (type int class Int)
 
@@ -7696,10 +7696,10 @@ sub api_hbacrule_find
     return $self->rpc_api('hbacrule_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(cn accessruletype usercategory hostcategory sourcehostcategory servicecategory description ipaenabledflag sourcehost_host sourcehost_hostgroup externalhost timelimit sizelimit all raw version no_members pkey_only)],
-        [qw(unicode unicode unicode unicode object unicode unicode bool object object unicode int int bool bool unicode bool bool)],
+        [qw(unicode:0 unicode:0 unicode:0 unicode:0 object:0 unicode:0 unicode:0 bool:0 object:0 object:0 unicode:1 int:0 int:0 bool:0 bool:0 unicode:0 bool:0 bool:0)],
     );
 }
 
@@ -7744,16 +7744,16 @@ Modify an HBAC rule.
 
 =item sourcehost_hostgroup: <sourcehost_hostgroup> (type object class DeprecatedParam)
 
-=item externalhost: External host (type unicode class Str)
+=item externalhost: External host (arrayref of type unicode class Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item delattr: Delete an attribute/value pair. The option will be evaluated
-last, after all sets and adds. (type unicode class Str)
+last, after all sets and adds. (arrayref of type unicode class Str)
 
 =item rights: Display the access rights of this entry (requires --all). See ipa man page for details. (type bool class Flag)
 
@@ -7780,10 +7780,10 @@ sub api_hbacrule_mod
     return $self->rpc_api('hbacrule_mod',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(accessruletype usercategory hostcategory sourcehostcategory servicecategory description ipaenabledflag sourcehost_host sourcehost_hostgroup externalhost setattr addattr delattr rights all raw version no_members)],
-        [qw(unicode unicode unicode object unicode unicode bool object object unicode unicode unicode unicode bool bool bool unicode bool)],
+        [qw(unicode:0 unicode:0 unicode:0 object:0 unicode:0 unicode:0 bool:0 object:0 object:0 unicode:1 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -7818,9 +7818,9 @@ Remove target hosts and hostgroups from an HBAC rule.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item host: hosts to remove (type unicode class Str)
+=item host: hosts to remove (arrayref of type unicode class Str)
 
-=item hostgroup: host groups to remove (type unicode class Str)
+=item hostgroup: host groups to remove (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -7837,10 +7837,10 @@ sub api_hbacrule_remove_host
     return $self->rpc_api('hbacrule_remove_host',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members host hostgroup)],
-        [qw(bool bool unicode bool unicode unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
     );
 }
 
@@ -7875,9 +7875,9 @@ Remove service and service groups from an HBAC rule.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item hbacsvc: HBAC services to remove (type unicode class Str)
+=item hbacsvc: HBAC services to remove (arrayref of type unicode class Str)
 
-=item hbacsvcgroup: HBAC service groups to remove (type unicode class Str)
+=item hbacsvcgroup: HBAC service groups to remove (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -7894,10 +7894,10 @@ sub api_hbacrule_remove_service
     return $self->rpc_api('hbacrule_remove_service',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members hbacsvc hbacsvcgroup)],
-        [qw(bool bool unicode bool unicode unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
     );
 }
 
@@ -7932,9 +7932,9 @@ None
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item host: hosts to remove (type unicode class Str)
+=item host: hosts to remove (arrayref of type unicode class Str)
 
-=item hostgroup: host groups to remove (type unicode class Str)
+=item hostgroup: host groups to remove (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -7951,10 +7951,10 @@ sub api_hbacrule_remove_sourcehost
     return $self->rpc_api('hbacrule_remove_sourcehost',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members host hostgroup)],
-        [qw(bool bool unicode bool unicode unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
     );
 }
 
@@ -7989,9 +7989,9 @@ Remove users and groups from an HBAC rule.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item user: users to remove (type unicode class Str)
+=item user: users to remove (arrayref of type unicode class Str)
 
-=item group: groups to remove (type unicode class Str)
+=item group: groups to remove (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -8008,10 +8008,10 @@ sub api_hbacrule_remove_user
     return $self->rpc_api('hbacrule_remove_user',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members user group)],
-        [qw(bool bool unicode bool unicode unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
     );
 }
 
@@ -8063,10 +8063,10 @@ sub api_hbacrule_show
     return $self->rpc_api('hbacrule_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(rights all raw version no_members)],
-        [qw(bool bool bool unicode bool)],
+        [qw(bool:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -8096,10 +8096,10 @@ Add a new HBAC service.
 =item description: HBAC service description (type unicode class Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -8124,10 +8124,10 @@ sub api_hbacsvc_add
     return $self->rpc_api('hbacsvc_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(description setattr addattr all raw version no_members)],
-        [qw(unicode unicode unicode bool bool unicode bool)],
+        [qw(unicode:0 unicode:1 unicode:1 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -8145,7 +8145,7 @@ Delete an existing HBAC service.
 
 =over
 
-=item cn: HBAC service (type unicode class Str)
+=item cn: HBAC service (arrayref of type unicode class Str)
 
 =back
 
@@ -8173,10 +8173,10 @@ sub api_hbacsvc_del
     return $self->rpc_api('hbacsvc_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool unicode)],
+        [qw(bool:0 unicode:0)],
     );
 }
 
@@ -8236,10 +8236,10 @@ sub api_hbacsvc_find
     return $self->rpc_api('hbacsvc_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(cn description timelimit sizelimit all raw version no_members pkey_only)],
-        [qw(unicode unicode int int bool bool unicode bool bool)],
+        [qw(unicode:0 unicode:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0 bool:0)],
     );
 }
 
@@ -8269,13 +8269,13 @@ Modify an HBAC service.
 =item description: HBAC service description (type unicode class Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item delattr: Delete an attribute/value pair. The option will be evaluated
-last, after all sets and adds. (type unicode class Str)
+last, after all sets and adds. (arrayref of type unicode class Str)
 
 =item rights: Display the access rights of this entry (requires --all). See ipa man page for details. (type bool class Flag)
 
@@ -8302,10 +8302,10 @@ sub api_hbacsvc_mod
     return $self->rpc_api('hbacsvc_mod',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(description setattr addattr delattr rights all raw version no_members)],
-        [qw(unicode unicode unicode unicode bool bool bool unicode bool)],
+        [qw(unicode:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -8357,10 +8357,10 @@ sub api_hbacsvc_show
     return $self->rpc_api('hbacsvc_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(rights all raw version no_members)],
-        [qw(bool bool bool unicode bool)],
+        [qw(bool:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -8390,10 +8390,10 @@ Add a new HBAC service group.
 =item description: HBAC service group description (type unicode class Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -8418,10 +8418,10 @@ sub api_hbacsvcgroup_add
     return $self->rpc_api('hbacsvcgroup_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(description setattr addattr all raw version no_members)],
-        [qw(unicode unicode unicode bool bool unicode bool)],
+        [qw(unicode:0 unicode:1 unicode:1 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -8456,7 +8456,7 @@ Add members to an HBAC service group.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item hbacsvc: HBAC services to add (type unicode class Str)
+=item hbacsvc: HBAC services to add (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -8473,10 +8473,10 @@ sub api_hbacsvcgroup_add_member
     return $self->rpc_api('hbacsvcgroup_add_member',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members hbacsvc)],
-        [qw(bool bool unicode bool unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
     );
 }
 
@@ -8494,7 +8494,7 @@ Delete an HBAC service group.
 
 =over
 
-=item cn: Service group name (type unicode class Str)
+=item cn: Service group name (arrayref of type unicode class Str)
 
 =back
 
@@ -8522,10 +8522,10 @@ sub api_hbacsvcgroup_del
     return $self->rpc_api('hbacsvcgroup_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool unicode)],
+        [qw(bool:0 unicode:0)],
     );
 }
 
@@ -8585,10 +8585,10 @@ sub api_hbacsvcgroup_find
     return $self->rpc_api('hbacsvcgroup_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(cn description timelimit sizelimit all raw version no_members pkey_only)],
-        [qw(unicode unicode int int bool bool unicode bool bool)],
+        [qw(unicode:0 unicode:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0 bool:0)],
     );
 }
 
@@ -8618,13 +8618,13 @@ Modify an HBAC service group.
 =item description: HBAC service group description (type unicode class Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item delattr: Delete an attribute/value pair. The option will be evaluated
-last, after all sets and adds. (type unicode class Str)
+last, after all sets and adds. (arrayref of type unicode class Str)
 
 =item rights: Display the access rights of this entry (requires --all). See ipa man page for details. (type bool class Flag)
 
@@ -8651,10 +8651,10 @@ sub api_hbacsvcgroup_mod
     return $self->rpc_api('hbacsvcgroup_mod',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(description setattr addattr delattr rights all raw version no_members)],
-        [qw(unicode unicode unicode unicode bool bool bool unicode bool)],
+        [qw(unicode:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -8689,7 +8689,7 @@ Remove members from an HBAC service group.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item hbacsvc: HBAC services to remove (type unicode class Str)
+=item hbacsvc: HBAC services to remove (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -8706,10 +8706,10 @@ sub api_hbacsvcgroup_remove_member
     return $self->rpc_api('hbacsvcgroup_remove_member',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members hbacsvc)],
-        [qw(bool bool unicode bool unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
     );
 }
 
@@ -8761,10 +8761,10 @@ sub api_hbacsvcgroup_show
     return $self->rpc_api('hbacsvcgroup_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(rights all raw version no_members)],
-        [qw(bool bool bool unicode bool)],
+        [qw(bool:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -8792,7 +8792,7 @@ Simulate use of Host-based access controls
 
 =item service: Service (type unicode class Str)
 
-=item rules: Rules to test. If not specified, --enabled is assumed (type unicode class Str)
+=item rules: Rules to test. If not specified, --enabled is assumed (arrayref of type unicode class Str)
 
 =item nodetail: Hide details which rules are matched, not matched, or invalid (type bool class Flag)
 
@@ -8822,7 +8822,7 @@ sub api_hbactest
         [qw()],
         \%opts,
         [qw(user sourcehost targethost service rules nodetail enabled disabled sizelimit version)],
-        [qw(unicode object unicode unicode unicode bool bool bool int unicode)],
+        [qw(unicode:0 object:0 unicode:0 unicode:0 unicode:1 bool:0 bool:0 bool:0 int:0 unicode:0)],
     );
 }
 
@@ -8863,13 +8863,13 @@ Add a new host.
 
 =item random: Generate a random password to be used in bulk enrollment (type bool class Flag)
 
-=item usercertificate: Base-64 encoded server certificate (type str class Bytes)
+=item usercertificate: Base-64 encoded server certificate (arrayref of type str class Bytes)
 
-=item macaddress: Hardware MAC address(es) on this host (type unicode class Str)
+=item macaddress: Hardware MAC address(es) on this host (arrayref of type unicode class Str)
 
-=item ipasshpubkey: SSH public key (type unicode class Str)
+=item ipasshpubkey: SSH public key (arrayref of type unicode class Str)
 
-=item userclass: Host category (semantics placed on this attribute are for local interpretation) (type unicode class Str)
+=item userclass: Host category (semantics placed on this attribute are for local interpretation) (arrayref of type unicode class Str)
 
 =item ipaassignedidview: Assigned ID View (type unicode class Str)
 
@@ -8878,10 +8878,10 @@ Add a new host.
 =item ipakrbokasdelegate: Client credentials may be delegated to the service (type bool class Bool)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item force: force host name even if not in DNS (type bool class Flag)
 
@@ -8912,10 +8912,10 @@ sub api_host_add
     return $self->rpc_api('host_add',    
         [$fqdn],
         [qw(fqdn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(description l nshostlocation nshardwareplatform nsosversion userpassword random usercertificate macaddress ipasshpubkey userclass ipaassignedidview ipakrbrequirespreauth ipakrbokasdelegate setattr addattr force no_reverse ip_address all raw version no_members)],
-        [qw(unicode unicode unicode unicode unicode unicode bool str unicode unicode unicode unicode bool bool unicode unicode bool bool unicode bool bool unicode bool)],
+        [qw(unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 bool:0 str:1 unicode:1 unicode:1 unicode:1 unicode:0 bool:0 bool:0 unicode:1 unicode:1 bool:0 bool:0 unicode:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -8950,7 +8950,7 @@ Add certificates to host entry
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item usercertificate: Base-64 encoded server certificate (type str class Bytes)
+=item usercertificate: Base-64 encoded server certificate (arrayref of type str class Bytes)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -8967,10 +8967,10 @@ sub api_host_add_cert
     return $self->rpc_api('host_add_cert',    
         [$fqdn],
         [qw(fqdn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members usercertificate)],
-        [qw(bool bool unicode bool str)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 str:1)],
     );
 }
 
@@ -9005,7 +9005,7 @@ Add hosts that can manage this host.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item host: hosts to add (type unicode class Str)
+=item host: hosts to add (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -9022,10 +9022,10 @@ sub api_host_add_managedby
     return $self->rpc_api('host_add_managedby',    
         [$fqdn],
         [qw(fqdn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members host)],
-        [qw(bool bool unicode bool unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
     );
 }
 
@@ -9060,13 +9060,13 @@ Allow users, groups, hosts or host groups to create a keytab of this host.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item user: users to add (type unicode class Str)
+=item user: users to add (arrayref of type unicode class Str)
 
-=item group: groups to add (type unicode class Str)
+=item group: groups to add (arrayref of type unicode class Str)
 
-=item host: hosts to add (type unicode class Str)
+=item host: hosts to add (arrayref of type unicode class Str)
 
-=item hostgroup: host groups to add (type unicode class Str)
+=item hostgroup: host groups to add (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -9083,10 +9083,10 @@ sub api_host_allow_create_keytab
     return $self->rpc_api('host_allow_create_keytab',    
         [$fqdn],
         [qw(fqdn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members user group host hostgroup)],
-        [qw(bool bool unicode bool unicode unicode unicode unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1 unicode:1 unicode:1)],
     );
 }
 
@@ -9121,13 +9121,13 @@ Allow users, groups, hosts or host groups to retrieve a keytab of this host.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item user: users to add (type unicode class Str)
+=item user: users to add (arrayref of type unicode class Str)
 
-=item group: groups to add (type unicode class Str)
+=item group: groups to add (arrayref of type unicode class Str)
 
-=item host: hosts to add (type unicode class Str)
+=item host: hosts to add (arrayref of type unicode class Str)
 
-=item hostgroup: host groups to add (type unicode class Str)
+=item hostgroup: host groups to add (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -9144,10 +9144,10 @@ sub api_host_allow_retrieve_keytab
     return $self->rpc_api('host_allow_retrieve_keytab',    
         [$fqdn],
         [qw(fqdn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members user group host hostgroup)],
-        [qw(bool bool unicode bool unicode unicode unicode unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1 unicode:1 unicode:1)],
     );
 }
 
@@ -9165,7 +9165,7 @@ Delete a host.
 
 =over
 
-=item fqdn: Host name (type unicode class Str)
+=item fqdn: Host name (arrayref of type unicode class Str)
 
 =back
 
@@ -9195,10 +9195,10 @@ sub api_host_del
     return $self->rpc_api('host_del',    
         [$fqdn],
         [qw(fqdn)],
-        [qw(unicode)],
+        [qw(unicode:1)],
         \%opts,
         [qw(continue updatedns version)],
-        [qw(bool bool unicode)],
+        [qw(bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -9242,10 +9242,10 @@ sub api_host_disable
     return $self->rpc_api('host_disable',    
         [$fqdn],
         [qw(fqdn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(version)],
-        [qw(unicode)],
+        [qw(unicode:0)],
     );
 }
 
@@ -9280,13 +9280,13 @@ Disallow users, groups, hosts or host groups to create a keytab of this host.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item user: users to remove (type unicode class Str)
+=item user: users to remove (arrayref of type unicode class Str)
 
-=item group: groups to remove (type unicode class Str)
+=item group: groups to remove (arrayref of type unicode class Str)
 
-=item host: hosts to remove (type unicode class Str)
+=item host: hosts to remove (arrayref of type unicode class Str)
 
-=item hostgroup: host groups to remove (type unicode class Str)
+=item hostgroup: host groups to remove (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -9303,10 +9303,10 @@ sub api_host_disallow_create_keytab
     return $self->rpc_api('host_disallow_create_keytab',    
         [$fqdn],
         [qw(fqdn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members user group host hostgroup)],
-        [qw(bool bool unicode bool unicode unicode unicode unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1 unicode:1 unicode:1)],
     );
 }
 
@@ -9341,13 +9341,13 @@ Disallow users, groups, hosts or host groups to retrieve a keytab of this host.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item user: users to remove (type unicode class Str)
+=item user: users to remove (arrayref of type unicode class Str)
 
-=item group: groups to remove (type unicode class Str)
+=item group: groups to remove (arrayref of type unicode class Str)
 
-=item host: hosts to remove (type unicode class Str)
+=item host: hosts to remove (arrayref of type unicode class Str)
 
-=item hostgroup: host groups to remove (type unicode class Str)
+=item hostgroup: host groups to remove (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -9364,10 +9364,10 @@ sub api_host_disallow_retrieve_keytab
     return $self->rpc_api('host_disallow_retrieve_keytab',    
         [$fqdn],
         [qw(fqdn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members user group host hostgroup)],
-        [qw(bool bool unicode bool unicode unicode unicode unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1 unicode:1 unicode:1)],
     );
 }
 
@@ -9408,11 +9408,11 @@ Search for hosts.
 
 =item userpassword: Password used in bulk enrollment (type unicode class Str)
 
-=item usercertificate: Base-64 encoded server certificate (type str class Bytes)
+=item usercertificate: Base-64 encoded server certificate (arrayref of type str class Bytes)
 
-=item macaddress: Hardware MAC address(es) on this host (type unicode class Str)
+=item macaddress: Hardware MAC address(es) on this host (arrayref of type unicode class Str)
 
-=item userclass: Host category (semantics placed on this attribute are for local interpretation) (type unicode class Str)
+=item userclass: Host category (semantics placed on this attribute are for local interpretation) (arrayref of type unicode class Str)
 
 =item ipaassignedidview: Assigned ID View (type unicode class Str)
 
@@ -9430,37 +9430,37 @@ Search for hosts.
 
 =item pkey_only: Results should contain primary key attribute only ("hostname") (type bool class Flag)
 
-=item in_hostgroup: Search for hosts with these member of host groups. (type unicode class Str)
+=item in_hostgroup: Search for hosts with these member of host groups. (arrayref of type unicode class Str)
 
-=item not_in_hostgroup: Search for hosts without these member of host groups. (type unicode class Str)
+=item not_in_hostgroup: Search for hosts without these member of host groups. (arrayref of type unicode class Str)
 
-=item in_netgroup: Search for hosts with these member of netgroups. (type unicode class Str)
+=item in_netgroup: Search for hosts with these member of netgroups. (arrayref of type unicode class Str)
 
-=item not_in_netgroup: Search for hosts without these member of netgroups. (type unicode class Str)
+=item not_in_netgroup: Search for hosts without these member of netgroups. (arrayref of type unicode class Str)
 
-=item in_role: Search for hosts with these member of roles. (type unicode class Str)
+=item in_role: Search for hosts with these member of roles. (arrayref of type unicode class Str)
 
-=item not_in_role: Search for hosts without these member of roles. (type unicode class Str)
+=item not_in_role: Search for hosts without these member of roles. (arrayref of type unicode class Str)
 
-=item in_hbacrule: Search for hosts with these member of HBAC rules. (type unicode class Str)
+=item in_hbacrule: Search for hosts with these member of HBAC rules. (arrayref of type unicode class Str)
 
-=item not_in_hbacrule: Search for hosts without these member of HBAC rules. (type unicode class Str)
+=item not_in_hbacrule: Search for hosts without these member of HBAC rules. (arrayref of type unicode class Str)
 
-=item in_sudorule: Search for hosts with these member of sudo rules. (type unicode class Str)
+=item in_sudorule: Search for hosts with these member of sudo rules. (arrayref of type unicode class Str)
 
-=item not_in_sudorule: Search for hosts without these member of sudo rules. (type unicode class Str)
+=item not_in_sudorule: Search for hosts without these member of sudo rules. (arrayref of type unicode class Str)
 
-=item enroll_by_user: Search for hosts with these enrolled by users. (type unicode class Str)
+=item enroll_by_user: Search for hosts with these enrolled by users. (arrayref of type unicode class Str)
 
-=item not_enroll_by_user: Search for hosts without these enrolled by users. (type unicode class Str)
+=item not_enroll_by_user: Search for hosts without these enrolled by users. (arrayref of type unicode class Str)
 
-=item man_by_host: Search for hosts with these managed by hosts. (type unicode class Str)
+=item man_by_host: Search for hosts with these managed by hosts. (arrayref of type unicode class Str)
 
-=item not_man_by_host: Search for hosts without these managed by hosts. (type unicode class Str)
+=item not_man_by_host: Search for hosts without these managed by hosts. (arrayref of type unicode class Str)
 
-=item man_host: Search for hosts with these managing hosts. (type unicode class Str)
+=item man_host: Search for hosts with these managing hosts. (arrayref of type unicode class Str)
 
-=item not_man_host: Search for hosts without these managing hosts. (type unicode class Str)
+=item not_man_host: Search for hosts without these managing hosts. (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -9477,10 +9477,10 @@ sub api_host_find
     return $self->rpc_api('host_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(fqdn description l nshostlocation nshardwareplatform nsosversion userpassword usercertificate macaddress userclass ipaassignedidview timelimit sizelimit all raw version no_members pkey_only in_hostgroup not_in_hostgroup in_netgroup not_in_netgroup in_role not_in_role in_hbacrule not_in_hbacrule in_sudorule not_in_sudorule enroll_by_user not_enroll_by_user man_by_host not_man_by_host man_host not_man_host)],
-        [qw(unicode unicode unicode unicode unicode unicode unicode str unicode unicode unicode int int bool bool unicode bool bool unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode)],
+        [qw(unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 str:1 unicode:1 unicode:1 unicode:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0 bool:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1)],
     );
 }
 
@@ -9521,13 +9521,13 @@ Modify information about a host.
 
 =item random: Generate a random password to be used in bulk enrollment (type bool class Flag)
 
-=item usercertificate: Base-64 encoded server certificate (type str class Bytes)
+=item usercertificate: Base-64 encoded server certificate (arrayref of type str class Bytes)
 
-=item macaddress: Hardware MAC address(es) on this host (type unicode class Str)
+=item macaddress: Hardware MAC address(es) on this host (arrayref of type unicode class Str)
 
-=item ipasshpubkey: SSH public key (type unicode class Str)
+=item ipasshpubkey: SSH public key (arrayref of type unicode class Str)
 
-=item userclass: Host category (semantics placed on this attribute are for local interpretation) (type unicode class Str)
+=item userclass: Host category (semantics placed on this attribute are for local interpretation) (arrayref of type unicode class Str)
 
 =item ipaassignedidview: Assigned ID View (type unicode class Str)
 
@@ -9536,13 +9536,13 @@ Modify information about a host.
 =item ipakrbokasdelegate: Client credentials may be delegated to the service (type bool class Bool)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item delattr: Delete an attribute/value pair. The option will be evaluated
-last, after all sets and adds. (type unicode class Str)
+last, after all sets and adds. (arrayref of type unicode class Str)
 
 =item rights: Display the access rights of this entry (requires --all). See ipa man page for details. (type bool class Flag)
 
@@ -9573,10 +9573,10 @@ sub api_host_mod
     return $self->rpc_api('host_mod',    
         [$fqdn],
         [qw(fqdn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(description l nshostlocation nshardwareplatform nsosversion userpassword random usercertificate macaddress ipasshpubkey userclass ipaassignedidview ipakrbrequirespreauth ipakrbokasdelegate setattr addattr delattr rights krbprincipalname updatedns all raw version no_members)],
-        [qw(unicode unicode unicode unicode unicode unicode bool str unicode unicode unicode unicode bool bool unicode unicode unicode bool unicode bool bool bool unicode bool)],
+        [qw(unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 bool:0 str:1 unicode:1 unicode:1 unicode:1 unicode:0 bool:0 bool:0 unicode:1 unicode:1 unicode:1 bool:0 unicode:0 bool:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -9611,7 +9611,7 @@ Remove certificates from host entry
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item usercertificate: Base-64 encoded server certificate (type str class Bytes)
+=item usercertificate: Base-64 encoded server certificate (arrayref of type str class Bytes)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -9628,10 +9628,10 @@ sub api_host_remove_cert
     return $self->rpc_api('host_remove_cert',    
         [$fqdn],
         [qw(fqdn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members usercertificate)],
-        [qw(bool bool unicode bool str)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 str:1)],
     );
 }
 
@@ -9666,7 +9666,7 @@ Remove hosts that can manage this host.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item host: hosts to remove (type unicode class Str)
+=item host: hosts to remove (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -9683,10 +9683,10 @@ sub api_host_remove_managedby
     return $self->rpc_api('host_remove_managedby',    
         [$fqdn],
         [qw(fqdn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members host)],
-        [qw(bool bool unicode bool unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
     );
 }
 
@@ -9740,10 +9740,10 @@ sub api_host_show
     return $self->rpc_api('host_show',    
         [$fqdn],
         [qw(fqdn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(rights out all raw version no_members)],
-        [qw(bool unicode bool bool unicode bool)],
+        [qw(bool:0 unicode:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -9773,10 +9773,10 @@ Add a new hostgroup.
 =item description: A description of this host-group (type unicode class Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -9801,10 +9801,10 @@ sub api_hostgroup_add
     return $self->rpc_api('hostgroup_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(description setattr addattr all raw version no_members)],
-        [qw(unicode unicode unicode bool bool unicode bool)],
+        [qw(unicode:0 unicode:1 unicode:1 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -9839,9 +9839,9 @@ Add members to a hostgroup.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item host: hosts to add (type unicode class Str)
+=item host: hosts to add (arrayref of type unicode class Str)
 
-=item hostgroup: host groups to add (type unicode class Str)
+=item hostgroup: host groups to add (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -9858,10 +9858,10 @@ sub api_hostgroup_add_member
     return $self->rpc_api('hostgroup_add_member',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members host hostgroup)],
-        [qw(bool bool unicode bool unicode unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
     );
 }
 
@@ -9879,7 +9879,7 @@ Delete a hostgroup.
 
 =over
 
-=item cn: Name of host-group (type unicode class Str)
+=item cn: Name of host-group (arrayref of type unicode class Str)
 
 =back
 
@@ -9907,10 +9907,10 @@ sub api_hostgroup_del
     return $self->rpc_api('hostgroup_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool unicode)],
+        [qw(bool:0 unicode:0)],
     );
 }
 
@@ -9955,29 +9955,29 @@ Search for hostgroups.
 
 =item pkey_only: Results should contain primary key attribute only ("hostgroup-name") (type bool class Flag)
 
-=item host: Search for host groups with these member hosts. (type unicode class Str)
+=item host: Search for host groups with these member hosts. (arrayref of type unicode class Str)
 
-=item no_host: Search for host groups without these member hosts. (type unicode class Str)
+=item no_host: Search for host groups without these member hosts. (arrayref of type unicode class Str)
 
-=item hostgroup: Search for host groups with these member host groups. (type unicode class Str)
+=item hostgroup: Search for host groups with these member host groups. (arrayref of type unicode class Str)
 
-=item no_hostgroup: Search for host groups without these member host groups. (type unicode class Str)
+=item no_hostgroup: Search for host groups without these member host groups. (arrayref of type unicode class Str)
 
-=item in_hostgroup: Search for host groups with these member of host groups. (type unicode class Str)
+=item in_hostgroup: Search for host groups with these member of host groups. (arrayref of type unicode class Str)
 
-=item not_in_hostgroup: Search for host groups without these member of host groups. (type unicode class Str)
+=item not_in_hostgroup: Search for host groups without these member of host groups. (arrayref of type unicode class Str)
 
-=item in_netgroup: Search for host groups with these member of netgroups. (type unicode class Str)
+=item in_netgroup: Search for host groups with these member of netgroups. (arrayref of type unicode class Str)
 
-=item not_in_netgroup: Search for host groups without these member of netgroups. (type unicode class Str)
+=item not_in_netgroup: Search for host groups without these member of netgroups. (arrayref of type unicode class Str)
 
-=item in_hbacrule: Search for host groups with these member of HBAC rules. (type unicode class Str)
+=item in_hbacrule: Search for host groups with these member of HBAC rules. (arrayref of type unicode class Str)
 
-=item not_in_hbacrule: Search for host groups without these member of HBAC rules. (type unicode class Str)
+=item not_in_hbacrule: Search for host groups without these member of HBAC rules. (arrayref of type unicode class Str)
 
-=item in_sudorule: Search for host groups with these member of sudo rules. (type unicode class Str)
+=item in_sudorule: Search for host groups with these member of sudo rules. (arrayref of type unicode class Str)
 
-=item not_in_sudorule: Search for host groups without these member of sudo rules. (type unicode class Str)
+=item not_in_sudorule: Search for host groups without these member of sudo rules. (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -9994,10 +9994,10 @@ sub api_hostgroup_find
     return $self->rpc_api('hostgroup_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(cn description timelimit sizelimit all raw version no_members pkey_only host no_host hostgroup no_hostgroup in_hostgroup not_in_hostgroup in_netgroup not_in_netgroup in_hbacrule not_in_hbacrule in_sudorule not_in_sudorule)],
-        [qw(unicode unicode int int bool bool unicode bool bool unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode)],
+        [qw(unicode:0 unicode:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0 bool:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1)],
     );
 }
 
@@ -10027,13 +10027,13 @@ Modify a hostgroup.
 =item description: A description of this host-group (type unicode class Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item delattr: Delete an attribute/value pair. The option will be evaluated
-last, after all sets and adds. (type unicode class Str)
+last, after all sets and adds. (arrayref of type unicode class Str)
 
 =item rights: Display the access rights of this entry (requires --all). See ipa man page for details. (type bool class Flag)
 
@@ -10060,10 +10060,10 @@ sub api_hostgroup_mod
     return $self->rpc_api('hostgroup_mod',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(description setattr addattr delattr rights all raw version no_members)],
-        [qw(unicode unicode unicode unicode bool bool bool unicode bool)],
+        [qw(unicode:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -10098,9 +10098,9 @@ Remove members from a hostgroup.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item host: hosts to remove (type unicode class Str)
+=item host: hosts to remove (arrayref of type unicode class Str)
 
-=item hostgroup: host groups to remove (type unicode class Str)
+=item hostgroup: host groups to remove (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -10117,10 +10117,10 @@ sub api_hostgroup_remove_member
     return $self->rpc_api('hostgroup_remove_member',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members host hostgroup)],
-        [qw(bool bool unicode bool unicode unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
     );
 }
 
@@ -10172,10 +10172,10 @@ sub api_hostgroup_show
     return $self->rpc_api('hostgroup_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(rights all raw version no_members)],
-        [qw(bool bool bool unicode bool)],
+        [qw(bool:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -10215,7 +10215,7 @@ sub api_i18n_messages
         [qw()],
         \%opts,
         [qw(version)],
-        [qw(unicode)],
+        [qw(unicode:0)],
     );
 }
 
@@ -10251,10 +10251,10 @@ Add a new Group ID override.
 =item gidnumber: Group ID Number (type int class Int)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item fallback_to_ldap: Allow falling back to AD DC LDAP when resolving AD trusted objects. For two-way trusts only. (type bool class Flag)
 
@@ -10279,10 +10279,10 @@ sub api_idoverridegroup_add
     return $self->rpc_api('idoverridegroup_add',    
         [$idviewcn, $ipaanchoruuid],
         [qw(idviewcn ipaanchoruuid)],
-        [qw(unicode unicode)],
+        [qw(unicode:0 unicode:0)],
         \%opts,
         [qw(description cn gidnumber setattr addattr fallback_to_ldap all raw version)],
-        [qw(unicode unicode int unicode unicode bool bool bool unicode)],
+        [qw(unicode:0 unicode:0 int:0 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -10302,7 +10302,7 @@ Delete an Group ID override.
 
 =item idviewcn: ID View Name (type unicode class Str)
 
-=item ipaanchoruuid: Anchor to override (type unicode class Str)
+=item ipaanchoruuid: Anchor to override (arrayref of type unicode class Str)
 
 =back
 
@@ -10332,10 +10332,10 @@ sub api_idoverridegroup_del
     return $self->rpc_api('idoverridegroup_del',    
         [$idviewcn, $ipaanchoruuid],
         [qw(idviewcn ipaanchoruuid)],
-        [qw(unicode unicode)],
+        [qw(unicode:0 unicode:1)],
         \%opts,
         [qw(continue fallback_to_ldap version)],
-        [qw(bool bool unicode)],
+        [qw(bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -10401,10 +10401,10 @@ sub api_idoverridegroup_find
     return $self->rpc_api('idoverridegroup_find',    
         [$idviewcn, $criteria],
         [qw(idviewcn criteria)],
-        [qw(unicode unicode)],
+        [qw(unicode:0 unicode:0)],
         \%opts,
         [qw(ipaanchoruuid description cn gidnumber timelimit sizelimit fallback_to_ldap all raw version pkey_only)],
-        [qw(unicode unicode unicode int int int bool bool bool unicode bool)],
+        [qw(unicode:0 unicode:0 unicode:0 int:0 int:0 int:0 bool:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -10440,13 +10440,13 @@ Modify an Group ID override.
 =item gidnumber: Group ID Number (type int class Int)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item delattr: Delete an attribute/value pair. The option will be evaluated
-last, after all sets and adds. (type unicode class Str)
+last, after all sets and adds. (arrayref of type unicode class Str)
 
 =item rights: Display the access rights of this entry (requires --all). See ipa man page for details. (type bool class Flag)
 
@@ -10475,10 +10475,10 @@ sub api_idoverridegroup_mod
     return $self->rpc_api('idoverridegroup_mod',    
         [$idviewcn, $ipaanchoruuid],
         [qw(idviewcn ipaanchoruuid)],
-        [qw(unicode unicode)],
+        [qw(unicode:0 unicode:0)],
         \%opts,
         [qw(description cn gidnumber setattr addattr delattr rights fallback_to_ldap all raw version rename)],
-        [qw(unicode unicode int unicode unicode unicode bool bool bool bool unicode unicode)],
+        [qw(unicode:0 unicode:0 int:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 bool:0 unicode:0 unicode:0)],
     );
 }
 
@@ -10532,10 +10532,10 @@ sub api_idoverridegroup_show
     return $self->rpc_api('idoverridegroup_show',    
         [$idviewcn, $ipaanchoruuid],
         [qw(idviewcn ipaanchoruuid)],
-        [qw(unicode unicode)],
+        [qw(unicode:0 unicode:0)],
         \%opts,
         [qw(rights fallback_to_ldap all raw version)],
-        [qw(bool bool bool bool unicode)],
+        [qw(bool:0 bool:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -10580,13 +10580,13 @@ Add a new User ID override.
 
 =item ipaoriginaluid: <ipaoriginaluid> (type unicode class Str)
 
-=item ipasshpubkey: SSH public key (type unicode class Str)
+=item ipasshpubkey: SSH public key (arrayref of type unicode class Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item fallback_to_ldap: Allow falling back to AD DC LDAP when resolving AD trusted objects. For two-way trusts only. (type bool class Flag)
 
@@ -10611,10 +10611,10 @@ sub api_idoverrideuser_add
     return $self->rpc_api('idoverrideuser_add',    
         [$idviewcn, $ipaanchoruuid],
         [qw(idviewcn ipaanchoruuid)],
-        [qw(unicode unicode)],
+        [qw(unicode:0 unicode:0)],
         \%opts,
         [qw(description uid uidnumber gecos gidnumber homedirectory loginshell ipaoriginaluid ipasshpubkey setattr addattr fallback_to_ldap all raw version)],
-        [qw(unicode unicode int unicode int unicode unicode unicode unicode unicode unicode bool bool bool unicode)],
+        [qw(unicode:0 unicode:0 int:0 unicode:0 int:0 unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -10634,7 +10634,7 @@ Delete an User ID override.
 
 =item idviewcn: ID View Name (type unicode class Str)
 
-=item ipaanchoruuid: Anchor to override (type unicode class Str)
+=item ipaanchoruuid: Anchor to override (arrayref of type unicode class Str)
 
 =back
 
@@ -10664,10 +10664,10 @@ sub api_idoverrideuser_del
     return $self->rpc_api('idoverrideuser_del',    
         [$idviewcn, $ipaanchoruuid],
         [qw(idviewcn ipaanchoruuid)],
-        [qw(unicode unicode)],
+        [qw(unicode:0 unicode:1)],
         \%opts,
         [qw(continue fallback_to_ldap version)],
-        [qw(bool bool unicode)],
+        [qw(bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -10743,10 +10743,10 @@ sub api_idoverrideuser_find
     return $self->rpc_api('idoverrideuser_find',    
         [$idviewcn, $criteria],
         [qw(idviewcn criteria)],
-        [qw(unicode unicode)],
+        [qw(unicode:0 unicode:0)],
         \%opts,
         [qw(ipaanchoruuid description uid uidnumber gecos gidnumber homedirectory loginshell ipaoriginaluid timelimit sizelimit fallback_to_ldap all raw version pkey_only)],
-        [qw(unicode unicode unicode int unicode int unicode unicode unicode int int bool bool bool unicode bool)],
+        [qw(unicode:0 unicode:0 unicode:0 int:0 unicode:0 int:0 unicode:0 unicode:0 unicode:0 int:0 int:0 bool:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -10791,16 +10791,16 @@ Modify an User ID override.
 
 =item ipaoriginaluid: <ipaoriginaluid> (type unicode class Str)
 
-=item ipasshpubkey: SSH public key (type unicode class Str)
+=item ipasshpubkey: SSH public key (arrayref of type unicode class Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item delattr: Delete an attribute/value pair. The option will be evaluated
-last, after all sets and adds. (type unicode class Str)
+last, after all sets and adds. (arrayref of type unicode class Str)
 
 =item rights: Display the access rights of this entry (requires --all). See ipa man page for details. (type bool class Flag)
 
@@ -10829,10 +10829,10 @@ sub api_idoverrideuser_mod
     return $self->rpc_api('idoverrideuser_mod',    
         [$idviewcn, $ipaanchoruuid],
         [qw(idviewcn ipaanchoruuid)],
-        [qw(unicode unicode)],
+        [qw(unicode:0 unicode:0)],
         \%opts,
         [qw(description uid uidnumber gecos gidnumber homedirectory loginshell ipaoriginaluid ipasshpubkey setattr addattr delattr rights fallback_to_ldap all raw version rename)],
-        [qw(unicode unicode int unicode int unicode unicode unicode unicode unicode unicode unicode bool bool bool bool unicode unicode)],
+        [qw(unicode:0 unicode:0 int:0 unicode:0 int:0 unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 bool:0 unicode:0 unicode:0)],
     );
 }
 
@@ -10886,10 +10886,10 @@ sub api_idoverrideuser_show
     return $self->rpc_api('idoverrideuser_show',    
         [$idviewcn, $ipaanchoruuid],
         [qw(idviewcn ipaanchoruuid)],
-        [qw(unicode unicode)],
+        [qw(unicode:0 unicode:0)],
         \%opts,
         [qw(rights fallback_to_ldap all raw version)],
-        [qw(bool bool bool bool unicode)],
+        [qw(bool:0 bool:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -10964,10 +10964,10 @@ modified to match the new range.
 =item iparangetype: ID range type, one of ipa-ad-trust-posix, ipa-ad-trust, ipa-local (type unicode class StrEnum)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -10990,10 +10990,10 @@ sub api_idrange_add
     return $self->rpc_api('idrange_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(ipabaseid ipaidrangesize ipabaserid ipasecondarybaserid ipanttrusteddomainsid ipanttrusteddomainname iparangetype setattr addattr all raw version)],
-        [qw(int int int int unicode unicode unicode unicode unicode bool bool unicode)],
+        [qw(int:0 int:0 int:0 int:0 unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -11011,7 +11011,7 @@ Delete an ID range.
 
 =over
 
-=item cn: Range name (type unicode class Str)
+=item cn: Range name (arrayref of type unicode class Str)
 
 =back
 
@@ -11039,10 +11039,10 @@ sub api_idrange_del
     return $self->rpc_api('idrange_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool unicode)],
+        [qw(bool:0 unicode:0)],
     );
 }
 
@@ -11110,10 +11110,10 @@ sub api_idrange_find
     return $self->rpc_api('idrange_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(cn ipabaseid ipaidrangesize ipabaserid ipasecondarybaserid ipanttrusteddomainsid iparangetype timelimit sizelimit all raw version pkey_only)],
-        [qw(unicode int int int int unicode unicode int int bool bool unicode bool)],
+        [qw(unicode:0 int:0 int:0 int:0 int:0 unicode:0 unicode:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -11164,13 +11164,13 @@ modified to match the new range.
 =item ipasecondarybaserid: First RID of the secondary RID range (type int class Int)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item delattr: Delete an attribute/value pair. The option will be evaluated
-last, after all sets and adds. (type unicode class Str)
+last, after all sets and adds. (arrayref of type unicode class Str)
 
 =item rights: Display the access rights of this entry (requires --all). See ipa man page for details. (type bool class Flag)
 
@@ -11199,10 +11199,10 @@ sub api_idrange_mod
     return $self->rpc_api('idrange_mod',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(ipabaseid ipaidrangesize ipabaserid ipasecondarybaserid setattr addattr delattr rights ipanttrusteddomainsid ipanttrusteddomainname all raw version)],
-        [qw(int int int int unicode unicode unicode bool object object bool bool unicode)],
+        [qw(int:0 int:0 int:0 int:0 unicode:1 unicode:1 unicode:1 bool:0 object:0 object:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -11252,10 +11252,10 @@ sub api_idrange_show
     return $self->rpc_api('idrange_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(rights all raw version)],
-        [qw(bool bool bool unicode)],
+        [qw(bool:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -11285,10 +11285,10 @@ Add a new ID View.
 =item description: Description (type unicode class Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -11311,10 +11311,10 @@ sub api_idview_add
     return $self->rpc_api('idview_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(description setattr addattr all raw version)],
-        [qw(unicode unicode unicode bool bool unicode)],
+        [qw(unicode:0 unicode:1 unicode:1 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -11341,9 +11341,9 @@ Applies ID View to specified hosts or current members of specified hostgroups. I
 
 =over
 
-=item host: Hosts to apply the ID View to (type unicode class Str)
+=item host: Hosts to apply the ID View to (arrayref of type unicode class Str)
 
-=item hostgroup: Hostgroups to whose hosts apply the ID View to. Please note that view is not applied automatically to any hosts added to the hostgroup after running the idview-apply command. (type unicode class Str)
+=item hostgroup: Hostgroups to whose hosts apply the ID View to. Please note that view is not applied automatically to any hosts added to the hostgroup after running the idview-apply command. (arrayref of type unicode class Str)
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
@@ -11362,10 +11362,10 @@ sub api_idview_apply
     return $self->rpc_api('idview_apply',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(host hostgroup version)],
-        [qw(unicode unicode unicode)],
+        [qw(unicode:1 unicode:1 unicode:0)],
     );
 }
 
@@ -11383,7 +11383,7 @@ Delete an ID View.
 
 =over
 
-=item cn: ID View Name (type unicode class Str)
+=item cn: ID View Name (arrayref of type unicode class Str)
 
 =back
 
@@ -11411,10 +11411,10 @@ sub api_idview_del
     return $self->rpc_api('idview_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool unicode)],
+        [qw(bool:0 unicode:0)],
     );
 }
 
@@ -11472,10 +11472,10 @@ sub api_idview_find
     return $self->rpc_api('idview_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(cn description timelimit sizelimit all raw version pkey_only)],
-        [qw(unicode unicode int int bool bool unicode bool)],
+        [qw(unicode:0 unicode:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -11505,13 +11505,13 @@ Modify an ID View.
 =item description: Description (type unicode class Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item delattr: Delete an attribute/value pair. The option will be evaluated
-last, after all sets and adds. (type unicode class Str)
+last, after all sets and adds. (arrayref of type unicode class Str)
 
 =item rights: Display the access rights of this entry (requires --all). See ipa man page for details. (type bool class Flag)
 
@@ -11538,10 +11538,10 @@ sub api_idview_mod
     return $self->rpc_api('idview_mod',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(description setattr addattr delattr rights all raw version rename)],
-        [qw(unicode unicode unicode unicode bool bool bool unicode unicode)],
+        [qw(unicode:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0 unicode:0)],
     );
 }
 
@@ -11593,10 +11593,10 @@ sub api_idview_show
     return $self->rpc_api('idview_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(rights show_hosts all raw version)],
-        [qw(bool bool bool bool unicode)],
+        [qw(bool:0 bool:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -11616,9 +11616,9 @@ Clears ID View from specified hosts or current members of specified hostgroups.
 
 =over
 
-=item host: Hosts to clear (any) ID View from. (type unicode class Str)
+=item host: Hosts to clear (any) ID View from. (arrayref of type unicode class Str)
 
-=item hostgroup: Hostgroups whose hosts should have ID Views cleared. Note that view is not cleared automatically from any host added to the hostgroup after running idview-unapply command. (type unicode class Str)
+=item hostgroup: Hostgroups whose hosts should have ID Views cleared. Note that view is not cleared automatically from any host added to the hostgroup after running idview-unapply command. (arrayref of type unicode class Str)
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
@@ -11640,7 +11640,7 @@ sub api_idview_unapply
         [qw()],
         \%opts,
         [qw(host hostgroup version)],
-        [qw(unicode unicode unicode)],
+        [qw(unicode:1 unicode:1 unicode:0)],
     );
 }
 
@@ -11690,10 +11690,10 @@ sub api_join
     return $self->rpc_api('join',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(realm nshardwareplatform nsosversion version)],
-        [qw(unicode unicode unicode unicode)],
+        [qw(unicode:0 unicode:0 unicode:0 unicode:0)],
     );
 }
 
@@ -11747,10 +11747,10 @@ sub api_json_metadata
     return $self->rpc_api('json_metadata',    
         [$objname, $methodname],
         [qw(objname methodname)],
-        [qw(unicode unicode)],
+        [qw(unicode:0 unicode:0)],
         \%opts,
         [qw(object method command version)],
-        [qw(unicode unicode unicode unicode)],
+        [qw(unicode:0 unicode:0 unicode:0 unicode:0)],
     );
 }
 
@@ -11790,7 +11790,7 @@ sub api_kra_is_enabled
         [qw()],
         \%opts,
         [qw(version)],
-        [qw(unicode)],
+        [qw(unicode:0)],
     );
 }
 
@@ -11822,13 +11822,13 @@ Modify Kerberos ticket policy.
 =item krbmaxrenewableage: Maximum renewable age (seconds) (type int class Int)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item delattr: Delete an attribute/value pair. The option will be evaluated
-last, after all sets and adds. (type unicode class Str)
+last, after all sets and adds. (arrayref of type unicode class Str)
 
 =item rights: Display the access rights of this entry (requires --all). See ipa man page for details. (type bool class Flag)
 
@@ -11853,10 +11853,10 @@ sub api_krbtpolicy_mod
     return $self->rpc_api('krbtpolicy_mod',    
         [$uid],
         [qw(uid)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(krbmaxticketlife krbmaxrenewableage setattr addattr delattr rights all raw version)],
-        [qw(int int unicode unicode unicode bool bool bool unicode)],
+        [qw(int:0 int:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -11904,10 +11904,10 @@ sub api_krbtpolicy_reset
     return $self->rpc_api('krbtpolicy_reset',    
         [$uid],
         [qw(uid)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version)],
-        [qw(bool bool unicode)],
+        [qw(bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -11957,10 +11957,10 @@ sub api_krbtpolicy_show
     return $self->rpc_api('krbtpolicy_show',    
         [$uid],
         [qw(uid)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(rights all raw version)],
-        [qw(bool bool bool unicode)],
+        [qw(bool:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -11995,17 +11995,17 @@ Migrate users and groups from DS to IPA.
 
 =item groupcontainer: DN of container for groups in DS relative to base DN (type DN class DNParam)
 
-=item userobjectclass: Objectclasses used to search for user entries in DS (type unicode class Str)
+=item userobjectclass: Objectclasses used to search for user entries in DS (arrayref of type unicode class Str)
 
-=item groupobjectclass: Objectclasses used to search for group entries in DS (type unicode class Str)
+=item groupobjectclass: Objectclasses used to search for group entries in DS (arrayref of type unicode class Str)
 
-=item userignoreobjectclass: Objectclasses to be ignored for user entries in DS (type unicode class Str)
+=item userignoreobjectclass: Objectclasses to be ignored for user entries in DS (arrayref of type unicode class Str)
 
-=item userignoreattribute: Attributes to be ignored for user entries in DS (type unicode class Str)
+=item userignoreattribute: Attributes to be ignored for user entries in DS (arrayref of type unicode class Str)
 
-=item groupignoreobjectclass: Objectclasses to be ignored for group entries in DS (type unicode class Str)
+=item groupignoreobjectclass: Objectclasses to be ignored for group entries in DS (arrayref of type unicode class Str)
 
-=item groupignoreattribute: Attributes to be ignored for group entries in DS (type unicode class Str)
+=item groupignoreattribute: Attributes to be ignored for group entries in DS (arrayref of type unicode class Str)
 
 =item groupoverwritegid: When migrating a group already existing in IPA domain overwrite the group GID and report as success (type bool class Flag)
 
@@ -12025,9 +12025,9 @@ Migrate users and groups from DS to IPA.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
-=item exclude_groups: groups to exclude from migration (type unicode class Str)
+=item exclude_groups: groups to exclude from migration (arrayref of type unicode class Str)
 
-=item exclude_users: users to exclude from migration (type unicode class Str)
+=item exclude_users: users to exclude from migration (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -12044,10 +12044,10 @@ sub api_migrate_ds
     return $self->rpc_api('migrate_ds',    
         [$ldapuri, $bindpw],
         [qw(ldapuri bindpw)],
-        [qw(unicode unicode)],
+        [qw(unicode:0 unicode:0)],
         \%opts,
         [qw(binddn usercontainer groupcontainer userobjectclass groupobjectclass userignoreobjectclass userignoreattribute groupignoreobjectclass groupignoreattribute groupoverwritegid schema continue basedn compat cacertfile use_def_group scope version exclude_groups exclude_users)],
-        [qw(DN DN DN unicode unicode unicode unicode unicode unicode bool unicode bool DN bool unicode bool unicode unicode unicode unicode)],
+        [qw(DN:0 DN:0 DN:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 bool:0 unicode:0 bool:0 DN:0 bool:0 unicode:0 bool:0 unicode:0 unicode:0 unicode:1 unicode:1)],
     );
 }
 
@@ -12082,13 +12082,13 @@ Add a new netgroup.
 
 =item hostcategory: Host category the rule applies to (type unicode class StrEnum)
 
-=item externalhost: External host (type unicode class Str)
+=item externalhost: External host (arrayref of type unicode class Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -12113,10 +12113,10 @@ sub api_netgroup_add
     return $self->rpc_api('netgroup_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(description nisdomainname usercategory hostcategory externalhost setattr addattr all raw version no_members)],
-        [qw(unicode unicode unicode unicode unicode unicode unicode bool bool unicode bool)],
+        [qw(unicode:0 unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -12151,15 +12151,15 @@ Add members to a netgroup.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item user: users to add (type unicode class Str)
+=item user: users to add (arrayref of type unicode class Str)
 
-=item group: groups to add (type unicode class Str)
+=item group: groups to add (arrayref of type unicode class Str)
 
-=item host: hosts to add (type unicode class Str)
+=item host: hosts to add (arrayref of type unicode class Str)
 
-=item hostgroup: host groups to add (type unicode class Str)
+=item hostgroup: host groups to add (arrayref of type unicode class Str)
 
-=item netgroup: netgroups to add (type unicode class Str)
+=item netgroup: netgroups to add (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -12176,10 +12176,10 @@ sub api_netgroup_add_member
     return $self->rpc_api('netgroup_add_member',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members user group host hostgroup netgroup)],
-        [qw(bool bool unicode bool unicode unicode unicode unicode unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1)],
     );
 }
 
@@ -12197,7 +12197,7 @@ Delete a netgroup.
 
 =over
 
-=item cn: Netgroup name (type unicode class Str)
+=item cn: Netgroup name (arrayref of type unicode class Str)
 
 =back
 
@@ -12225,10 +12225,10 @@ sub api_netgroup_del
     return $self->rpc_api('netgroup_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool unicode)],
+        [qw(bool:0 unicode:0)],
     );
 }
 
@@ -12267,7 +12267,7 @@ Search for a netgroup.
 
 =item hostcategory: Host category the rule applies to (type unicode class StrEnum)
 
-=item externalhost: External host (type unicode class Str)
+=item externalhost: External host (arrayref of type unicode class Str)
 
 =item timelimit: Time limit of search in seconds (type int class Int)
 
@@ -12287,29 +12287,29 @@ Search for a netgroup.
 
 =item pkey_only: Results should contain primary key attribute only ("name") (type bool class Flag)
 
-=item netgroup: Search for netgroups with these member netgroups. (type unicode class Str)
+=item netgroup: Search for netgroups with these member netgroups. (arrayref of type unicode class Str)
 
-=item no_netgroup: Search for netgroups without these member netgroups. (type unicode class Str)
+=item no_netgroup: Search for netgroups without these member netgroups. (arrayref of type unicode class Str)
 
-=item user: Search for netgroups with these member users. (type unicode class Str)
+=item user: Search for netgroups with these member users. (arrayref of type unicode class Str)
 
-=item no_user: Search for netgroups without these member users. (type unicode class Str)
+=item no_user: Search for netgroups without these member users. (arrayref of type unicode class Str)
 
-=item group: Search for netgroups with these member groups. (type unicode class Str)
+=item group: Search for netgroups with these member groups. (arrayref of type unicode class Str)
 
-=item no_group: Search for netgroups without these member groups. (type unicode class Str)
+=item no_group: Search for netgroups without these member groups. (arrayref of type unicode class Str)
 
-=item host: Search for netgroups with these member hosts. (type unicode class Str)
+=item host: Search for netgroups with these member hosts. (arrayref of type unicode class Str)
 
-=item no_host: Search for netgroups without these member hosts. (type unicode class Str)
+=item no_host: Search for netgroups without these member hosts. (arrayref of type unicode class Str)
 
-=item hostgroup: Search for netgroups with these member host groups. (type unicode class Str)
+=item hostgroup: Search for netgroups with these member host groups. (arrayref of type unicode class Str)
 
-=item no_hostgroup: Search for netgroups without these member host groups. (type unicode class Str)
+=item no_hostgroup: Search for netgroups without these member host groups. (arrayref of type unicode class Str)
 
-=item in_netgroup: Search for netgroups with these member of netgroups. (type unicode class Str)
+=item in_netgroup: Search for netgroups with these member of netgroups. (arrayref of type unicode class Str)
 
-=item not_in_netgroup: Search for netgroups without these member of netgroups. (type unicode class Str)
+=item not_in_netgroup: Search for netgroups without these member of netgroups. (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -12326,10 +12326,10 @@ sub api_netgroup_find
     return $self->rpc_api('netgroup_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(cn description nisdomainname ipauniqueid usercategory hostcategory externalhost timelimit sizelimit private managed all raw version no_members pkey_only netgroup no_netgroup user no_user group no_group host no_host hostgroup no_hostgroup in_netgroup not_in_netgroup)],
-        [qw(unicode unicode unicode unicode unicode unicode unicode int int bool bool bool bool unicode bool bool unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode)],
+        [qw(unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:1 int:0 int:0 bool:0 bool:0 bool:0 bool:0 unicode:0 bool:0 bool:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1)],
     );
 }
 
@@ -12364,16 +12364,16 @@ Modify a netgroup.
 
 =item hostcategory: Host category the rule applies to (type unicode class StrEnum)
 
-=item externalhost: External host (type unicode class Str)
+=item externalhost: External host (arrayref of type unicode class Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item delattr: Delete an attribute/value pair. The option will be evaluated
-last, after all sets and adds. (type unicode class Str)
+last, after all sets and adds. (arrayref of type unicode class Str)
 
 =item rights: Display the access rights of this entry (requires --all). See ipa man page for details. (type bool class Flag)
 
@@ -12400,10 +12400,10 @@ sub api_netgroup_mod
     return $self->rpc_api('netgroup_mod',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(description nisdomainname usercategory hostcategory externalhost setattr addattr delattr rights all raw version no_members)],
-        [qw(unicode unicode unicode unicode unicode unicode unicode unicode bool bool bool unicode bool)],
+        [qw(unicode:0 unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -12438,15 +12438,15 @@ Remove members from a netgroup.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item user: users to remove (type unicode class Str)
+=item user: users to remove (arrayref of type unicode class Str)
 
-=item group: groups to remove (type unicode class Str)
+=item group: groups to remove (arrayref of type unicode class Str)
 
-=item host: hosts to remove (type unicode class Str)
+=item host: hosts to remove (arrayref of type unicode class Str)
 
-=item hostgroup: host groups to remove (type unicode class Str)
+=item hostgroup: host groups to remove (arrayref of type unicode class Str)
 
-=item netgroup: netgroups to remove (type unicode class Str)
+=item netgroup: netgroups to remove (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -12463,10 +12463,10 @@ sub api_netgroup_remove_member
     return $self->rpc_api('netgroup_remove_member',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members user group host hostgroup netgroup)],
-        [qw(bool bool unicode bool unicode unicode unicode unicode unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1)],
     );
 }
 
@@ -12518,10 +12518,10 @@ sub api_netgroup_show
     return $self->rpc_api('netgroup_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(rights all raw version no_members)],
-        [qw(bool bool bool unicode bool)],
+        [qw(bool:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -12550,13 +12550,13 @@ Modify OTP configuration options.
 =item ipatokenhotpsyncwindow: HOTP synchronization skip-ahead (type int class Int)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item delattr: Delete an attribute/value pair. The option will be evaluated
-last, after all sets and adds. (type unicode class Str)
+last, after all sets and adds. (arrayref of type unicode class Str)
 
 =item rights: Display the access rights of this entry (requires --all). See ipa man page for details. (type bool class Flag)
 
@@ -12584,7 +12584,7 @@ sub api_otpconfig_mod
         [qw()],
         \%opts,
         [qw(ipatokentotpauthwindow ipatokentotpsyncwindow ipatokenhotpauthwindow ipatokenhotpsyncwindow setattr addattr delattr rights all raw version)],
-        [qw(int int int int unicode unicode unicode bool bool bool unicode)],
+        [qw(int:0 int:0 int:0 int:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -12630,7 +12630,7 @@ sub api_otpconfig_show
         [qw()],
         \%opts,
         [qw(rights all raw version)],
-        [qw(bool bool bool unicode)],
+        [qw(bool:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -12688,10 +12688,10 @@ Add a new OTP token.
 =item ipatokenhotpcounter: Initial counter for the HOTP token (type int class Int)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item qrcode: (deprecated) (type bool class Flag)
 
@@ -12720,10 +12720,10 @@ sub api_otptoken_add
     return $self->rpc_api('otptoken_add',    
         [$ipatokenuniqueid],
         [qw(ipatokenuniqueid)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(type description ipatokenowner ipatokendisabled ipatokennotbefore ipatokennotafter ipatokenvendor ipatokenmodel ipatokenserial ipatokenotpkey ipatokenotpalgorithm ipatokenotpdigits ipatokentotpclockoffset ipatokentotptimestep ipatokenhotpcounter setattr addattr qrcode no_qrcode all raw version no_members)],
-        [qw(unicode unicode unicode bool datetime datetime unicode unicode unicode str unicode int int int int unicode unicode bool bool bool bool unicode bool)],
+        [qw(unicode:0 unicode:0 unicode:0 bool:0 datetime:0 datetime:0 unicode:0 unicode:0 unicode:0 str:0 unicode:0 int:0 int:0 int:0 int:0 unicode:1 unicode:1 bool:0 bool:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -12758,7 +12758,7 @@ Add users that can manage this token.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item user: users to add (type unicode class Str)
+=item user: users to add (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -12775,10 +12775,10 @@ sub api_otptoken_add_managedby
     return $self->rpc_api('otptoken_add_managedby',    
         [$ipatokenuniqueid],
         [qw(ipatokenuniqueid)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members user)],
-        [qw(bool bool unicode bool unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
     );
 }
 
@@ -12836,10 +12836,10 @@ sub api_otptoken_add_yubikey
     return $self->rpc_api('otptoken_add_yubikey',    
         [$ipatokenuniqueid],
         [qw(ipatokenuniqueid)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(slot description ipatokenowner ipatokendisabled ipatokennotbefore ipatokennotafter ipatokenotpdigits version)],
-        [qw(int unicode unicode bool datetime datetime int unicode)],
+        [qw(int:0 unicode:0 unicode:0 bool:0 datetime:0 datetime:0 int:0 unicode:0)],
     );
 }
 
@@ -12857,7 +12857,7 @@ Delete an OTP token.
 
 =over
 
-=item ipatokenuniqueid: Unique ID (type unicode class Str)
+=item ipatokenuniqueid: Unique ID (arrayref of type unicode class Str)
 
 =back
 
@@ -12885,10 +12885,10 @@ sub api_otptoken_del
     return $self->rpc_api('otptoken_del',    
         [$ipatokenuniqueid],
         [qw(ipatokenuniqueid)],
-        [qw(unicode)],
+        [qw(unicode:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool unicode)],
+        [qw(bool:0 unicode:0)],
     );
 }
 
@@ -12974,10 +12974,10 @@ sub api_otptoken_find
     return $self->rpc_api('otptoken_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(ipatokenuniqueid type description ipatokenowner ipatokendisabled ipatokennotbefore ipatokennotafter ipatokenvendor ipatokenmodel ipatokenserial ipatokenotpalgorithm ipatokenotpdigits ipatokentotpclockoffset ipatokentotptimestep ipatokenhotpcounter timelimit sizelimit all raw version no_members pkey_only)],
-        [qw(unicode unicode unicode unicode bool datetime datetime unicode unicode unicode unicode int int int int int int bool bool unicode bool bool)],
+        [qw(unicode:0 unicode:0 unicode:0 unicode:0 bool:0 datetime:0 datetime:0 unicode:0 unicode:0 unicode:0 unicode:0 int:0 int:0 int:0 int:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0 bool:0)],
     );
 }
 
@@ -13021,13 +13021,13 @@ Modify a OTP token.
 =item ipatokenserial: Token serial (informational only) (type unicode class Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item delattr: Delete an attribute/value pair. The option will be evaluated
-last, after all sets and adds. (type unicode class Str)
+last, after all sets and adds. (arrayref of type unicode class Str)
 
 =item rights: Display the access rights of this entry (requires --all). See ipa man page for details. (type bool class Flag)
 
@@ -13056,10 +13056,10 @@ sub api_otptoken_mod
     return $self->rpc_api('otptoken_mod',    
         [$ipatokenuniqueid],
         [qw(ipatokenuniqueid)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(description ipatokenowner ipatokendisabled ipatokennotbefore ipatokennotafter ipatokenvendor ipatokenmodel ipatokenserial setattr addattr delattr rights all raw version no_members rename)],
-        [qw(unicode unicode bool datetime datetime unicode unicode unicode unicode unicode unicode bool bool bool unicode bool unicode)],
+        [qw(unicode:0 unicode:0 bool:0 datetime:0 datetime:0 unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0 bool:0 unicode:0)],
     );
 }
 
@@ -13094,7 +13094,7 @@ Remove hosts that can manage this host.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item user: users to remove (type unicode class Str)
+=item user: users to remove (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -13111,10 +13111,10 @@ sub api_otptoken_remove_managedby
     return $self->rpc_api('otptoken_remove_managedby',    
         [$ipatokenuniqueid],
         [qw(ipatokenuniqueid)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members user)],
-        [qw(bool bool unicode bool unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
     );
 }
 
@@ -13166,10 +13166,10 @@ sub api_otptoken_show
     return $self->rpc_api('otptoken_show',    
         [$ipatokenuniqueid],
         [qw(ipatokenuniqueid)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(rights all raw version no_members)],
-        [qw(bool bool bool unicode bool)],
+        [qw(bool:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -13221,10 +13221,10 @@ sub api_otptoken_sync
     return $self->rpc_api('otptoken_sync',    
         [$token],
         [qw(token)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(user password first_code second_code version)],
-        [qw(unicode unicode unicode unicode unicode)],
+        [qw(unicode:0 unicode:0 unicode:0 unicode:0 unicode:0)],
     );
 }
 
@@ -13274,10 +13274,10 @@ sub api_passwd
     return $self->rpc_api('passwd',    
         [$principal, $password, $current_password],
         [qw(principal password current_password)],
-        [qw(unicode unicode unicode)],
+        [qw(unicode:0 unicode:0 unicode:0)],
         \%opts,
         [qw(otp version)],
-        [qw(unicode unicode)],
+        [qw(unicode:0 unicode:0)],
     );
 }
 
@@ -13304,17 +13304,17 @@ Add a new permission.
 
 =over
 
-=item ipapermright: Rights to grant (read, search, compare, write, add, delete, all) (type unicode class StrEnum)
+=item ipapermright: Rights to grant (read, search, compare, write, add, delete, all) (arrayref of type unicode class StrEnum)
 
-=item attrs: All attributes to which the permission applies (type unicode class Str)
+=item attrs: All attributes to which the permission applies (arrayref of type unicode class Str)
 
 =item ipapermbindruletype: Bind rule type (type unicode class StrEnum)
 
 =item ipapermlocation: Subtree to apply permissions to (type DN class DNOrURL)
 
-=item extratargetfilter: Extra target filter (type unicode class Str)
+=item extratargetfilter: Extra target filter (arrayref of type unicode class Str)
 
-=item ipapermtargetfilter: All target filters, including those implied by type and memberof (type unicode class Str)
+=item ipapermtargetfilter: All target filters, including those implied by type and memberof (arrayref of type unicode class Str)
 
 =item ipapermtarget: Optional DN to apply the permission to (must be in the subtree, but may not yet exist) (type DN class DNParam)
 
@@ -13322,23 +13322,23 @@ Add a new permission.
 
 =item ipapermtargetfrom: Optional DN subtree from where an entry can be moved (must be in the subtree, but may not yet exist) (type DN class DNParam)
 
-=item memberof: Target members of a group (sets memberOf targetfilter) (type unicode class Str)
+=item memberof: Target members of a group (sets memberOf targetfilter) (arrayref of type unicode class Str)
 
 =item targetgroup: User group to apply permissions to (sets target) (type unicode class Str)
 
 =item type: Type of IPA object (sets subtree and objectClass targetfilter) (type unicode class Str)
 
-=item filter: Deprecated; use extratargetfilter (type unicode class Str)
+=item filter: Deprecated; use extratargetfilter (arrayref of type unicode class Str)
 
-=item subtree: Deprecated; use ipapermlocation (type unicode class Str)
+=item subtree: Deprecated; use ipapermlocation (arrayref of type unicode class Str)
 
-=item permissions: Deprecated; use ipapermright (type unicode class Str)
+=item permissions: Deprecated; use ipapermright (arrayref of type unicode class Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -13363,10 +13363,10 @@ sub api_permission_add
     return $self->rpc_api('permission_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(ipapermright attrs ipapermbindruletype ipapermlocation extratargetfilter ipapermtargetfilter ipapermtarget ipapermtargetto ipapermtargetfrom memberof targetgroup type filter subtree permissions setattr addattr all raw version no_members)],
-        [qw(unicode unicode unicode DN unicode unicode DN DN DN unicode unicode unicode unicode unicode unicode unicode unicode bool bool unicode bool)],
+        [qw(unicode:1 unicode:1 unicode:0 DN:0 unicode:1 unicode:1 DN:0 DN:0 DN:0 unicode:1 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -13401,7 +13401,7 @@ Add members to a permission.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item privilege: privileges to add (type unicode class Str)
+=item privilege: privileges to add (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -13418,10 +13418,10 @@ sub api_permission_add_member
     return $self->rpc_api('permission_add_member',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members privilege)],
-        [qw(bool bool unicode bool unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
     );
 }
 
@@ -13448,7 +13448,7 @@ Add a system permission without an ACI (internal command)
 
 =over
 
-=item ipapermissiontype: Permission flags (type unicode class Str)
+=item ipapermissiontype: Permission flags (arrayref of type unicode class Str)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -13473,10 +13473,10 @@ sub api_permission_add_noaci
     return $self->rpc_api('permission_add_noaci',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(ipapermissiontype all raw version no_members)],
-        [qw(unicode bool bool unicode bool)],
+        [qw(unicode:1 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -13494,7 +13494,7 @@ Delete a permission.
 
 =over
 
-=item cn: Permission name (type unicode class Str)
+=item cn: Permission name (arrayref of type unicode class Str)
 
 =back
 
@@ -13524,10 +13524,10 @@ sub api_permission_del
     return $self->rpc_api('permission_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:1)],
         \%opts,
         [qw(continue force version)],
-        [qw(bool bool unicode)],
+        [qw(bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -13556,23 +13556,23 @@ Search for permissions.
 
 =item cn: Permission name (type unicode class Str)
 
-=item ipapermright: Rights to grant (read, search, compare, write, add, delete, all) (type unicode class StrEnum)
+=item ipapermright: Rights to grant (read, search, compare, write, add, delete, all) (arrayref of type unicode class StrEnum)
 
-=item attrs: All attributes to which the permission applies (type unicode class Str)
+=item attrs: All attributes to which the permission applies (arrayref of type unicode class Str)
 
-=item ipapermincludedattr: User-specified attributes to which the permission applies (type unicode class Str)
+=item ipapermincludedattr: User-specified attributes to which the permission applies (arrayref of type unicode class Str)
 
-=item ipapermexcludedattr: User-specified attributes to which the permission explicitly does not apply (type unicode class Str)
+=item ipapermexcludedattr: User-specified attributes to which the permission explicitly does not apply (arrayref of type unicode class Str)
 
-=item ipapermdefaultattr: Attributes to which the permission applies by default (type unicode class Str)
+=item ipapermdefaultattr: Attributes to which the permission applies by default (arrayref of type unicode class Str)
 
 =item ipapermbindruletype: Bind rule type (type unicode class StrEnum)
 
 =item ipapermlocation: Subtree to apply permissions to (type DN class DNOrURL)
 
-=item extratargetfilter: Extra target filter (type unicode class Str)
+=item extratargetfilter: Extra target filter (arrayref of type unicode class Str)
 
-=item ipapermtargetfilter: All target filters, including those implied by type and memberof (type unicode class Str)
+=item ipapermtargetfilter: All target filters, including those implied by type and memberof (arrayref of type unicode class Str)
 
 =item ipapermtarget: Optional DN to apply the permission to (must be in the subtree, but may not yet exist) (type DN class DNParam)
 
@@ -13580,17 +13580,17 @@ Search for permissions.
 
 =item ipapermtargetfrom: Optional DN subtree from where an entry can be moved (must be in the subtree, but may not yet exist) (type DN class DNParam)
 
-=item memberof: Target members of a group (sets memberOf targetfilter) (type unicode class Str)
+=item memberof: Target members of a group (sets memberOf targetfilter) (arrayref of type unicode class Str)
 
 =item targetgroup: User group to apply permissions to (sets target) (type unicode class Str)
 
 =item type: Type of IPA object (sets subtree and objectClass targetfilter) (type unicode class Str)
 
-=item filter: Deprecated; use extratargetfilter (type unicode class Str)
+=item filter: Deprecated; use extratargetfilter (arrayref of type unicode class Str)
 
-=item subtree: Deprecated; use ipapermlocation (type unicode class Str)
+=item subtree: Deprecated; use ipapermlocation (arrayref of type unicode class Str)
 
-=item permissions: Deprecated; use ipapermright (type unicode class Str)
+=item permissions: Deprecated; use ipapermright (arrayref of type unicode class Str)
 
 =item timelimit: Time limit of search in seconds (type int class Int)
 
@@ -13621,10 +13621,10 @@ sub api_permission_find
     return $self->rpc_api('permission_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(cn ipapermright attrs ipapermincludedattr ipapermexcludedattr ipapermdefaultattr ipapermbindruletype ipapermlocation extratargetfilter ipapermtargetfilter ipapermtarget ipapermtargetto ipapermtargetfrom memberof targetgroup type filter subtree permissions timelimit sizelimit all raw version no_members pkey_only)],
-        [qw(unicode unicode unicode unicode unicode unicode unicode DN unicode unicode DN DN DN unicode unicode unicode unicode unicode unicode int int bool bool unicode bool bool)],
+        [qw(unicode:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:0 DN:0 unicode:1 unicode:1 DN:0 DN:0 DN:0 unicode:1 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 int:0 int:0 bool:0 bool:0 unicode:0 bool:0 bool:0)],
     );
 }
 
@@ -13651,21 +13651,21 @@ Modify a permission.
 
 =over
 
-=item ipapermright: Rights to grant (read, search, compare, write, add, delete, all) (type unicode class StrEnum)
+=item ipapermright: Rights to grant (read, search, compare, write, add, delete, all) (arrayref of type unicode class StrEnum)
 
-=item attrs: All attributes to which the permission applies (type unicode class Str)
+=item attrs: All attributes to which the permission applies (arrayref of type unicode class Str)
 
-=item ipapermincludedattr: User-specified attributes to which the permission applies (type unicode class Str)
+=item ipapermincludedattr: User-specified attributes to which the permission applies (arrayref of type unicode class Str)
 
-=item ipapermexcludedattr: User-specified attributes to which the permission explicitly does not apply (type unicode class Str)
+=item ipapermexcludedattr: User-specified attributes to which the permission explicitly does not apply (arrayref of type unicode class Str)
 
 =item ipapermbindruletype: Bind rule type (type unicode class StrEnum)
 
 =item ipapermlocation: Subtree to apply permissions to (type DN class DNOrURL)
 
-=item extratargetfilter: Extra target filter (type unicode class Str)
+=item extratargetfilter: Extra target filter (arrayref of type unicode class Str)
 
-=item ipapermtargetfilter: All target filters, including those implied by type and memberof (type unicode class Str)
+=item ipapermtargetfilter: All target filters, including those implied by type and memberof (arrayref of type unicode class Str)
 
 =item ipapermtarget: Optional DN to apply the permission to (must be in the subtree, but may not yet exist) (type DN class DNParam)
 
@@ -13673,26 +13673,26 @@ Modify a permission.
 
 =item ipapermtargetfrom: Optional DN subtree from where an entry can be moved (must be in the subtree, but may not yet exist) (type DN class DNParam)
 
-=item memberof: Target members of a group (sets memberOf targetfilter) (type unicode class Str)
+=item memberof: Target members of a group (sets memberOf targetfilter) (arrayref of type unicode class Str)
 
 =item targetgroup: User group to apply permissions to (sets target) (type unicode class Str)
 
 =item type: Type of IPA object (sets subtree and objectClass targetfilter) (type unicode class Str)
 
-=item filter: Deprecated; use extratargetfilter (type unicode class Str)
+=item filter: Deprecated; use extratargetfilter (arrayref of type unicode class Str)
 
-=item subtree: Deprecated; use ipapermlocation (type unicode class Str)
+=item subtree: Deprecated; use ipapermlocation (arrayref of type unicode class Str)
 
-=item permissions: Deprecated; use ipapermright (type unicode class Str)
+=item permissions: Deprecated; use ipapermright (arrayref of type unicode class Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item delattr: Delete an attribute/value pair. The option will be evaluated
-last, after all sets and adds. (type unicode class Str)
+last, after all sets and adds. (arrayref of type unicode class Str)
 
 =item rights: Display the access rights of this entry (requires --all). See ipa man page for details. (type bool class Flag)
 
@@ -13721,10 +13721,10 @@ sub api_permission_mod
     return $self->rpc_api('permission_mod',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(ipapermright attrs ipapermincludedattr ipapermexcludedattr ipapermbindruletype ipapermlocation extratargetfilter ipapermtargetfilter ipapermtarget ipapermtargetto ipapermtargetfrom memberof targetgroup type filter subtree permissions setattr addattr delattr rights all raw version no_members rename)],
-        [qw(unicode unicode unicode unicode unicode DN unicode unicode DN DN DN unicode unicode unicode unicode unicode unicode unicode unicode unicode bool bool bool unicode bool unicode)],
+        [qw(unicode:1 unicode:1 unicode:1 unicode:1 unicode:0 DN:0 unicode:1 unicode:1 DN:0 DN:0 DN:0 unicode:1 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0 bool:0 unicode:0)],
     );
 }
 
@@ -13759,7 +13759,7 @@ Remove members from a permission.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item privilege: privileges to remove (type unicode class Str)
+=item privilege: privileges to remove (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -13776,10 +13776,10 @@ sub api_permission_remove_member
     return $self->rpc_api('permission_remove_member',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members privilege)],
-        [qw(bool bool unicode bool unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
     );
 }
 
@@ -13831,10 +13831,10 @@ sub api_permission_show
     return $self->rpc_api('permission_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(rights all raw version no_members)],
-        [qw(bool bool bool unicode bool)],
+        [qw(bool:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -13874,7 +13874,7 @@ sub api_ping
         [qw()],
         \%opts,
         [qw(version)],
-        [qw(unicode)],
+        [qw(unicode:0)],
     );
 }
 
@@ -13918,7 +13918,7 @@ sub api_plugins
         [qw()],
         \%opts,
         [qw(server all version)],
-        [qw(bool bool unicode)],
+        [qw(bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -13948,10 +13948,10 @@ Add a new privilege.
 =item description: Privilege description (type unicode class Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -13976,10 +13976,10 @@ sub api_privilege_add
     return $self->rpc_api('privilege_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(description setattr addattr all raw version no_members)],
-        [qw(unicode unicode unicode bool bool unicode bool)],
+        [qw(unicode:0 unicode:1 unicode:1 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -14014,7 +14014,7 @@ Add members to a privilege.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item role: roles to add (type unicode class Str)
+=item role: roles to add (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -14031,10 +14031,10 @@ sub api_privilege_add_member
     return $self->rpc_api('privilege_add_member',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members role)],
-        [qw(bool bool unicode bool unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
     );
 }
 
@@ -14069,7 +14069,7 @@ Add permissions to a privilege.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item permission: permissions (type unicode class Str)
+=item permission: permissions (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -14086,10 +14086,10 @@ sub api_privilege_add_permission
     return $self->rpc_api('privilege_add_permission',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members permission)],
-        [qw(bool bool unicode bool unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
     );
 }
 
@@ -14107,7 +14107,7 @@ Delete a privilege.
 
 =over
 
-=item cn: Privilege name (type unicode class Str)
+=item cn: Privilege name (arrayref of type unicode class Str)
 
 =back
 
@@ -14135,10 +14135,10 @@ sub api_privilege_del
     return $self->rpc_api('privilege_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool unicode)],
+        [qw(bool:0 unicode:0)],
     );
 }
 
@@ -14198,10 +14198,10 @@ sub api_privilege_find
     return $self->rpc_api('privilege_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(cn description timelimit sizelimit all raw version no_members pkey_only)],
-        [qw(unicode unicode int int bool bool unicode bool bool)],
+        [qw(unicode:0 unicode:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0 bool:0)],
     );
 }
 
@@ -14231,13 +14231,13 @@ Modify a privilege.
 =item description: Privilege description (type unicode class Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item delattr: Delete an attribute/value pair. The option will be evaluated
-last, after all sets and adds. (type unicode class Str)
+last, after all sets and adds. (arrayref of type unicode class Str)
 
 =item rights: Display the access rights of this entry (requires --all). See ipa man page for details. (type bool class Flag)
 
@@ -14266,10 +14266,10 @@ sub api_privilege_mod
     return $self->rpc_api('privilege_mod',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(description setattr addattr delattr rights all raw version no_members rename)],
-        [qw(unicode unicode unicode unicode bool bool bool unicode bool unicode)],
+        [qw(unicode:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0 bool:0 unicode:0)],
     );
 }
 
@@ -14306,7 +14306,7 @@ Wrapper method for privilege_remove_member API
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item role: roles to remove (type unicode class Str)
+=item role: roles to remove (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -14323,10 +14323,10 @@ sub api_privilege_remove_member
     return $self->rpc_api('privilege_remove_member',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members role)],
-        [qw(bool bool unicode bool unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
     );
 }
 
@@ -14361,7 +14361,7 @@ Remove permissions from a privilege.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item permission: permissions (type unicode class Str)
+=item permission: permissions (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -14378,10 +14378,10 @@ sub api_privilege_remove_permission
     return $self->rpc_api('privilege_remove_permission',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members permission)],
-        [qw(bool bool unicode bool unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
     );
 }
 
@@ -14433,10 +14433,10 @@ sub api_privilege_show
     return $self->rpc_api('privilege_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(rights all raw version no_members)],
-        [qw(bool bool bool unicode bool)],
+        [qw(bool:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -14482,10 +14482,10 @@ Add a new group password policy.
 =item krbpwdlockoutduration: Period for which lockout is enforced (seconds) (type int class Int)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -14508,10 +14508,10 @@ sub api_pwpolicy_add
     return $self->rpc_api('pwpolicy_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(krbmaxpwdlife krbminpwdlife krbpwdhistorylength krbpwdmindiffchars krbpwdminlength cospriority krbpwdmaxfailure krbpwdfailurecountinterval krbpwdlockoutduration setattr addattr all raw version)],
-        [qw(int int int int int int int int int unicode unicode bool bool unicode)],
+        [qw(int:0 int:0 int:0 int:0 int:0 int:0 int:0 int:0 int:0 unicode:1 unicode:1 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -14529,7 +14529,7 @@ Delete a group password policy.
 
 =over
 
-=item cn: Manage password policy for specific group (type unicode class Str)
+=item cn: Manage password policy for specific group (arrayref of type unicode class Str)
 
 =back
 
@@ -14557,10 +14557,10 @@ sub api_pwpolicy_del
     return $self->rpc_api('pwpolicy_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool unicode)],
+        [qw(bool:0 unicode:0)],
     );
 }
 
@@ -14634,10 +14634,10 @@ sub api_pwpolicy_find
     return $self->rpc_api('pwpolicy_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(cn krbmaxpwdlife krbminpwdlife krbpwdhistorylength krbpwdmindiffchars krbpwdminlength cospriority krbpwdmaxfailure krbpwdfailurecountinterval krbpwdlockoutduration timelimit sizelimit all raw version pkey_only)],
-        [qw(unicode int int int int int int int int int int int bool bool unicode bool)],
+        [qw(unicode:0 int:0 int:0 int:0 int:0 int:0 int:0 int:0 int:0 int:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -14683,13 +14683,13 @@ Modify a group password policy.
 =item krbpwdlockoutduration: Period for which lockout is enforced (seconds) (type int class Int)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item delattr: Delete an attribute/value pair. The option will be evaluated
-last, after all sets and adds. (type unicode class Str)
+last, after all sets and adds. (arrayref of type unicode class Str)
 
 =item rights: Display the access rights of this entry (requires --all). See ipa man page for details. (type bool class Flag)
 
@@ -14714,10 +14714,10 @@ sub api_pwpolicy_mod
     return $self->rpc_api('pwpolicy_mod',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(krbmaxpwdlife krbminpwdlife krbpwdhistorylength krbpwdmindiffchars krbpwdminlength cospriority krbpwdmaxfailure krbpwdfailurecountinterval krbpwdlockoutduration setattr addattr delattr rights all raw version)],
-        [qw(int int int int int int int int int unicode unicode unicode bool bool bool unicode)],
+        [qw(int:0 int:0 int:0 int:0 int:0 int:0 int:0 int:0 int:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -14769,10 +14769,10 @@ sub api_pwpolicy_show
     return $self->rpc_api('pwpolicy_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(rights user all raw version)],
-        [qw(bool unicode bool bool unicode)],
+        [qw(bool:0 unicode:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -14801,7 +14801,7 @@ Add a new RADIUS proxy server.
 
 =item description: A description of this RADIUS proxy server (type unicode class Str)
 
-=item ipatokenradiusserver: The hostname or IP (with or without port) (type unicode class Str)
+=item ipatokenradiusserver: The hostname or IP (with or without port) (arrayref of type unicode class Str)
 
 =item ipatokenradiussecret: The secret used to encrypt data (type unicode class Password)
 
@@ -14812,10 +14812,10 @@ Add a new RADIUS proxy server.
 =item ipatokenusermapattribute: The username attribute on the user object (type unicode class Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -14838,10 +14838,10 @@ sub api_radiusproxy_add
     return $self->rpc_api('radiusproxy_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(description ipatokenradiusserver ipatokenradiussecret ipatokenradiustimeout ipatokenradiusretries ipatokenusermapattribute setattr addattr all raw version)],
-        [qw(unicode unicode unicode int int unicode unicode unicode bool bool unicode)],
+        [qw(unicode:0 unicode:1 unicode:0 int:0 int:0 unicode:0 unicode:1 unicode:1 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -14859,7 +14859,7 @@ Delete a RADIUS proxy server.
 
 =over
 
-=item cn: RADIUS proxy server name (type unicode class Str)
+=item cn: RADIUS proxy server name (arrayref of type unicode class Str)
 
 =back
 
@@ -14887,10 +14887,10 @@ sub api_radiusproxy_del
     return $self->rpc_api('radiusproxy_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool unicode)],
+        [qw(bool:0 unicode:0)],
     );
 }
 
@@ -14921,7 +14921,7 @@ Search for RADIUS proxy servers.
 
 =item description: A description of this RADIUS proxy server (type unicode class Str)
 
-=item ipatokenradiusserver: The hostname or IP (with or without port) (type unicode class Str)
+=item ipatokenradiusserver: The hostname or IP (with or without port) (arrayref of type unicode class Str)
 
 =item ipatokenradiussecret: The secret used to encrypt data (type unicode class Password)
 
@@ -14958,10 +14958,10 @@ sub api_radiusproxy_find
     return $self->rpc_api('radiusproxy_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(cn description ipatokenradiusserver ipatokenradiussecret ipatokenradiustimeout ipatokenradiusretries ipatokenusermapattribute timelimit sizelimit all raw version pkey_only)],
-        [qw(unicode unicode unicode unicode int int unicode int int bool bool unicode bool)],
+        [qw(unicode:0 unicode:0 unicode:1 unicode:0 int:0 int:0 unicode:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -14990,7 +14990,7 @@ Modify a RADIUS proxy server.
 
 =item description: A description of this RADIUS proxy server (type unicode class Str)
 
-=item ipatokenradiusserver: The hostname or IP (with or without port) (type unicode class Str)
+=item ipatokenradiusserver: The hostname or IP (with or without port) (arrayref of type unicode class Str)
 
 =item ipatokenradiussecret: The secret used to encrypt data (type unicode class Password)
 
@@ -15001,13 +15001,13 @@ Modify a RADIUS proxy server.
 =item ipatokenusermapattribute: The username attribute on the user object (type unicode class Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item delattr: Delete an attribute/value pair. The option will be evaluated
-last, after all sets and adds. (type unicode class Str)
+last, after all sets and adds. (arrayref of type unicode class Str)
 
 =item rights: Display the access rights of this entry (requires --all). See ipa man page for details. (type bool class Flag)
 
@@ -15034,10 +15034,10 @@ sub api_radiusproxy_mod
     return $self->rpc_api('radiusproxy_mod',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(description ipatokenradiusserver ipatokenradiussecret ipatokenradiustimeout ipatokenradiusretries ipatokenusermapattribute setattr addattr delattr rights all raw version rename)],
-        [qw(unicode unicode unicode int int unicode unicode unicode unicode bool bool bool unicode unicode)],
+        [qw(unicode:0 unicode:1 unicode:0 int:0 int:0 unicode:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0 unicode:0)],
     );
 }
 
@@ -15087,10 +15087,10 @@ sub api_radiusproxy_show
     return $self->rpc_api('radiusproxy_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(rights all raw version)],
-        [qw(bool bool bool unicode)],
+        [qw(bool:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -15110,20 +15110,20 @@ Modify realm domains.
 
 =over
 
-=item associateddomain: Domain (type unicode class Str)
+=item associateddomain: Domain (arrayref of type unicode class Str)
 
 =item add_domain: Add domain (type unicode class Str)
 
 =item del_domain: Delete domain (type unicode class Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item delattr: Delete an attribute/value pair. The option will be evaluated
-last, after all sets and adds. (type unicode class Str)
+last, after all sets and adds. (arrayref of type unicode class Str)
 
 =item rights: Display the access rights of this entry (requires --all). See ipa man page for details. (type bool class Flag)
 
@@ -15153,7 +15153,7 @@ sub api_realmdomains_mod
         [qw()],
         \%opts,
         [qw(associateddomain add_domain del_domain setattr addattr delattr rights force all raw version)],
-        [qw(unicode unicode unicode unicode unicode unicode bool bool bool bool unicode)],
+        [qw(unicode:1 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -15199,7 +15199,7 @@ sub api_realmdomains_show
         [qw()],
         \%opts,
         [qw(rights all raw version)],
-        [qw(bool bool bool unicode)],
+        [qw(bool:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -15229,10 +15229,10 @@ Add a new role.
 =item description: A description of this role-group (type unicode class Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -15257,10 +15257,10 @@ sub api_role_add
     return $self->rpc_api('role_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(description setattr addattr all raw version no_members)],
-        [qw(unicode unicode unicode bool bool unicode bool)],
+        [qw(unicode:0 unicode:1 unicode:1 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -15295,15 +15295,15 @@ Add members to a role.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item user: users to add (type unicode class Str)
+=item user: users to add (arrayref of type unicode class Str)
 
-=item group: groups to add (type unicode class Str)
+=item group: groups to add (arrayref of type unicode class Str)
 
-=item host: hosts to add (type unicode class Str)
+=item host: hosts to add (arrayref of type unicode class Str)
 
-=item hostgroup: host groups to add (type unicode class Str)
+=item hostgroup: host groups to add (arrayref of type unicode class Str)
 
-=item service: services to add (type unicode class Str)
+=item service: services to add (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -15320,10 +15320,10 @@ sub api_role_add_member
     return $self->rpc_api('role_add_member',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members user group host hostgroup service)],
-        [qw(bool bool unicode bool unicode unicode unicode unicode unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1)],
     );
 }
 
@@ -15358,7 +15358,7 @@ Add privileges to a role.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item privilege: privileges (type unicode class Str)
+=item privilege: privileges (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -15375,10 +15375,10 @@ sub api_role_add_privilege
     return $self->rpc_api('role_add_privilege',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members privilege)],
-        [qw(bool bool unicode bool unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
     );
 }
 
@@ -15396,7 +15396,7 @@ Delete a role.
 
 =over
 
-=item cn: Role name (type unicode class Str)
+=item cn: Role name (arrayref of type unicode class Str)
 
 =back
 
@@ -15424,10 +15424,10 @@ sub api_role_del
     return $self->rpc_api('role_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool unicode)],
+        [qw(bool:0 unicode:0)],
     );
 }
 
@@ -15487,10 +15487,10 @@ sub api_role_find
     return $self->rpc_api('role_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(cn description timelimit sizelimit all raw version no_members pkey_only)],
-        [qw(unicode unicode int int bool bool unicode bool bool)],
+        [qw(unicode:0 unicode:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0 bool:0)],
     );
 }
 
@@ -15520,13 +15520,13 @@ Modify a role.
 =item description: A description of this role-group (type unicode class Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item delattr: Delete an attribute/value pair. The option will be evaluated
-last, after all sets and adds. (type unicode class Str)
+last, after all sets and adds. (arrayref of type unicode class Str)
 
 =item rights: Display the access rights of this entry (requires --all). See ipa man page for details. (type bool class Flag)
 
@@ -15555,10 +15555,10 @@ sub api_role_mod
     return $self->rpc_api('role_mod',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(description setattr addattr delattr rights all raw version no_members rename)],
-        [qw(unicode unicode unicode unicode bool bool bool unicode bool unicode)],
+        [qw(unicode:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0 bool:0 unicode:0)],
     );
 }
 
@@ -15593,15 +15593,15 @@ Remove members from a role.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item user: users to remove (type unicode class Str)
+=item user: users to remove (arrayref of type unicode class Str)
 
-=item group: groups to remove (type unicode class Str)
+=item group: groups to remove (arrayref of type unicode class Str)
 
-=item host: hosts to remove (type unicode class Str)
+=item host: hosts to remove (arrayref of type unicode class Str)
 
-=item hostgroup: host groups to remove (type unicode class Str)
+=item hostgroup: host groups to remove (arrayref of type unicode class Str)
 
-=item service: services to remove (type unicode class Str)
+=item service: services to remove (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -15618,10 +15618,10 @@ sub api_role_remove_member
     return $self->rpc_api('role_remove_member',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members user group host hostgroup service)],
-        [qw(bool bool unicode bool unicode unicode unicode unicode unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1)],
     );
 }
 
@@ -15656,7 +15656,7 @@ Remove privileges from a role.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item privilege: privileges (type unicode class Str)
+=item privilege: privileges (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -15673,10 +15673,10 @@ sub api_role_remove_privilege
     return $self->rpc_api('role_remove_privilege',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members privilege)],
-        [qw(bool bool unicode bool unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
     );
 }
 
@@ -15728,10 +15728,10 @@ sub api_role_show
     return $self->rpc_api('role_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(rights all raw version no_members)],
-        [qw(bool bool bool unicode bool)],
+        [qw(bool:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -15758,9 +15758,9 @@ Add a new self-service permission.
 
 =over
 
-=item permissions: Permissions to grant (read, write). Default is write. (type unicode class Str)
+=item permissions: Permissions to grant (read, write). Default is write. (arrayref of type unicode class Str)
 
-=item attrs: Attributes to which the permission applies. (type unicode class Str)
+=item attrs: Attributes to which the permission applies. (arrayref of type unicode class Str)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -15783,10 +15783,10 @@ sub api_selfservice_add
     return $self->rpc_api('selfservice_add',    
         [$aciname],
         [qw(aciname)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(permissions attrs all raw version)],
-        [qw(unicode unicode bool bool unicode)],
+        [qw(unicode:1 unicode:1 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -15830,10 +15830,10 @@ sub api_selfservice_del
     return $self->rpc_api('selfservice_del',    
         [$aciname],
         [qw(aciname)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(version)],
-        [qw(unicode)],
+        [qw(unicode:0)],
     );
 }
 
@@ -15862,9 +15862,9 @@ Search for a self-service permission.
 
 =item aciname: Self-service name (type unicode class Str)
 
-=item permissions: Permissions to grant (read, write). Default is write. (type unicode class Str)
+=item permissions: Permissions to grant (read, write). Default is write. (arrayref of type unicode class Str)
 
-=item attrs: Attributes to which the permission applies. (type unicode class Str)
+=item attrs: Attributes to which the permission applies. (arrayref of type unicode class Str)
 
 =item pkey_only: Results should contain primary key attribute only ("name") (type bool class Flag)
 
@@ -15889,10 +15889,10 @@ sub api_selfservice_find
     return $self->rpc_api('selfservice_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(aciname permissions attrs pkey_only all raw version)],
-        [qw(unicode unicode unicode bool bool bool unicode)],
+        [qw(unicode:0 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -15919,9 +15919,9 @@ Modify a self-service permission.
 
 =over
 
-=item permissions: Permissions to grant (read, write). Default is write. (type unicode class Str)
+=item permissions: Permissions to grant (read, write). Default is write. (arrayref of type unicode class Str)
 
-=item attrs: Attributes to which the permission applies. (type unicode class Str)
+=item attrs: Attributes to which the permission applies. (arrayref of type unicode class Str)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -15944,10 +15944,10 @@ sub api_selfservice_mod
     return $self->rpc_api('selfservice_mod',    
         [$aciname],
         [qw(aciname)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(permissions attrs all raw version)],
-        [qw(unicode unicode bool bool unicode)],
+        [qw(unicode:1 unicode:1 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -15995,10 +15995,10 @@ sub api_selfservice_show
     return $self->rpc_api('selfservice_show',    
         [$aciname],
         [qw(aciname)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version)],
-        [qw(bool bool unicode)],
+        [qw(bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -16038,10 +16038,10 @@ Create a new SELinux User Map.
 =item ipaenabledflag: Enabled (type bool class Bool)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -16066,10 +16066,10 @@ sub api_selinuxusermap_add
     return $self->rpc_api('selinuxusermap_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(ipaselinuxuser seealso usercategory hostcategory description ipaenabledflag setattr addattr all raw version no_members)],
-        [qw(unicode unicode unicode unicode unicode bool unicode unicode bool bool unicode bool)],
+        [qw(unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 bool:0 unicode:1 unicode:1 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -16104,9 +16104,9 @@ Add target hosts and hostgroups to an SELinux User Map rule.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item host: hosts to add (type unicode class Str)
+=item host: hosts to add (arrayref of type unicode class Str)
 
-=item hostgroup: host groups to add (type unicode class Str)
+=item hostgroup: host groups to add (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -16123,10 +16123,10 @@ sub api_selinuxusermap_add_host
     return $self->rpc_api('selinuxusermap_add_host',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members host hostgroup)],
-        [qw(bool bool unicode bool unicode unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
     );
 }
 
@@ -16161,9 +16161,9 @@ Add users and groups to an SELinux User Map rule.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item user: users to add (type unicode class Str)
+=item user: users to add (arrayref of type unicode class Str)
 
-=item group: groups to add (type unicode class Str)
+=item group: groups to add (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -16180,10 +16180,10 @@ sub api_selinuxusermap_add_user
     return $self->rpc_api('selinuxusermap_add_user',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members user group)],
-        [qw(bool bool unicode bool unicode unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
     );
 }
 
@@ -16201,7 +16201,7 @@ Delete a SELinux User Map.
 
 =over
 
-=item cn: Rule name (type unicode class Str)
+=item cn: Rule name (arrayref of type unicode class Str)
 
 =back
 
@@ -16229,10 +16229,10 @@ sub api_selinuxusermap_del
     return $self->rpc_api('selinuxusermap_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool unicode)],
+        [qw(bool:0 unicode:0)],
     );
 }
 
@@ -16276,10 +16276,10 @@ sub api_selinuxusermap_disable
     return $self->rpc_api('selinuxusermap_disable',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(version)],
-        [qw(unicode)],
+        [qw(unicode:0)],
     );
 }
 
@@ -16323,10 +16323,10 @@ sub api_selinuxusermap_enable
     return $self->rpc_api('selinuxusermap_enable',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(version)],
-        [qw(unicode)],
+        [qw(unicode:0)],
     );
 }
 
@@ -16396,10 +16396,10 @@ sub api_selinuxusermap_find
     return $self->rpc_api('selinuxusermap_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(cn ipaselinuxuser seealso usercategory hostcategory description ipaenabledflag timelimit sizelimit all raw version no_members pkey_only)],
-        [qw(unicode unicode unicode unicode unicode unicode bool int int bool bool unicode bool bool)],
+        [qw(unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 bool:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0 bool:0)],
     );
 }
 
@@ -16439,13 +16439,13 @@ Modify a SELinux User Map.
 =item ipaenabledflag: Enabled (type bool class Bool)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item delattr: Delete an attribute/value pair. The option will be evaluated
-last, after all sets and adds. (type unicode class Str)
+last, after all sets and adds. (arrayref of type unicode class Str)
 
 =item rights: Display the access rights of this entry (requires --all). See ipa man page for details. (type bool class Flag)
 
@@ -16472,10 +16472,10 @@ sub api_selinuxusermap_mod
     return $self->rpc_api('selinuxusermap_mod',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(ipaselinuxuser seealso usercategory hostcategory description ipaenabledflag setattr addattr delattr rights all raw version no_members)],
-        [qw(unicode unicode unicode unicode unicode bool unicode unicode unicode bool bool bool unicode bool)],
+        [qw(unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 bool:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -16510,9 +16510,9 @@ Remove target hosts and hostgroups from an SELinux User Map rule.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item host: hosts to remove (type unicode class Str)
+=item host: hosts to remove (arrayref of type unicode class Str)
 
-=item hostgroup: host groups to remove (type unicode class Str)
+=item hostgroup: host groups to remove (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -16529,10 +16529,10 @@ sub api_selinuxusermap_remove_host
     return $self->rpc_api('selinuxusermap_remove_host',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members host hostgroup)],
-        [qw(bool bool unicode bool unicode unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
     );
 }
 
@@ -16567,9 +16567,9 @@ Remove users and groups from an SELinux User Map rule.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item user: users to remove (type unicode class Str)
+=item user: users to remove (arrayref of type unicode class Str)
 
-=item group: groups to remove (type unicode class Str)
+=item group: groups to remove (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -16586,10 +16586,10 @@ sub api_selinuxusermap_remove_user
     return $self->rpc_api('selinuxusermap_remove_user',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members user group)],
-        [qw(bool bool unicode bool unicode unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
     );
 }
 
@@ -16641,10 +16641,10 @@ sub api_selinuxusermap_show
     return $self->rpc_api('selinuxusermap_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(rights all raw version no_members)],
-        [qw(bool bool bool unicode bool)],
+        [qw(bool:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -16662,7 +16662,7 @@ Delete IPA server.
 
 =over
 
-=item cn: IPA server hostname (type unicode class Str)
+=item cn: IPA server hostname (arrayref of type unicode class Str)
 
 =back
 
@@ -16690,10 +16690,10 @@ sub api_server_del
     return $self->rpc_api('server_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool unicode)],
+        [qw(bool:0 unicode:0)],
     );
 }
 
@@ -16755,10 +16755,10 @@ sub api_server_find
     return $self->rpc_api('server_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(cn iparepltopomanagedsuffix ipamindomainlevel ipamaxdomainlevel timelimit sizelimit all raw version pkey_only)],
-        [qw(unicode unicode int int int int bool bool unicode bool)],
+        [qw(unicode:0 unicode:0 int:0 int:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -16808,10 +16808,10 @@ sub api_server_show
     return $self->rpc_api('server_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(rights all raw version)],
-        [qw(bool bool bool unicode)],
+        [qw(bool:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -16838,19 +16838,19 @@ Add a new IPA new service.
 
 =over
 
-=item usercertificate: Base-64 encoded server certificate (type str class Bytes)
+=item usercertificate: Base-64 encoded server certificate (arrayref of type str class Bytes)
 
-=item ipakrbauthzdata: Override default list of supported PAC types. Use 'NONE' to disable PAC support for this service, e.g. this might be necessary for NFS services. (type unicode class StrEnum)
+=item ipakrbauthzdata: Override default list of supported PAC types. Use 'NONE' to disable PAC support for this service, e.g. this might be necessary for NFS services. (arrayref of type unicode class StrEnum)
 
 =item ipakrbrequirespreauth: Pre-authentication is required for the service (type bool class Bool)
 
 =item ipakrbokasdelegate: Client credentials may be delegated to the service (type bool class Bool)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item force: force principal name even if not in DNS (type bool class Flag)
 
@@ -16877,10 +16877,10 @@ sub api_service_add
     return $self->rpc_api('service_add',    
         [$krbprincipalname],
         [qw(krbprincipalname)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(usercertificate ipakrbauthzdata ipakrbrequirespreauth ipakrbokasdelegate setattr addattr force all raw version no_members)],
-        [qw(str unicode bool bool unicode unicode bool bool bool unicode bool)],
+        [qw(str:1 unicode:1 bool:0 bool:0 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -16915,7 +16915,7 @@ Add new certificates to a service
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item usercertificate: Base-64 encoded server certificate (type str class Bytes)
+=item usercertificate: Base-64 encoded server certificate (arrayref of type str class Bytes)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -16932,10 +16932,10 @@ sub api_service_add_cert
     return $self->rpc_api('service_add_cert',    
         [$krbprincipalname],
         [qw(krbprincipalname)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members usercertificate)],
-        [qw(bool bool unicode bool str)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 str:1)],
     );
 }
 
@@ -16970,7 +16970,7 @@ Add hosts that can manage this service.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item host: hosts to add (type unicode class Str)
+=item host: hosts to add (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -16987,10 +16987,10 @@ sub api_service_add_host
     return $self->rpc_api('service_add_host',    
         [$krbprincipalname],
         [qw(krbprincipalname)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members host)],
-        [qw(bool bool unicode bool unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
     );
 }
 
@@ -17025,13 +17025,13 @@ Allow users, groups, hosts or host groups to create a keytab of this service.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item user: users to add (type unicode class Str)
+=item user: users to add (arrayref of type unicode class Str)
 
-=item group: groups to add (type unicode class Str)
+=item group: groups to add (arrayref of type unicode class Str)
 
-=item host: hosts to add (type unicode class Str)
+=item host: hosts to add (arrayref of type unicode class Str)
 
-=item hostgroup: host groups to add (type unicode class Str)
+=item hostgroup: host groups to add (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -17048,10 +17048,10 @@ sub api_service_allow_create_keytab
     return $self->rpc_api('service_allow_create_keytab',    
         [$krbprincipalname],
         [qw(krbprincipalname)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members user group host hostgroup)],
-        [qw(bool bool unicode bool unicode unicode unicode unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1 unicode:1 unicode:1)],
     );
 }
 
@@ -17086,13 +17086,13 @@ Allow users, groups, hosts or host groups to retrieve a keytab of this service.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item user: users to add (type unicode class Str)
+=item user: users to add (arrayref of type unicode class Str)
 
-=item group: groups to add (type unicode class Str)
+=item group: groups to add (arrayref of type unicode class Str)
 
-=item host: hosts to add (type unicode class Str)
+=item host: hosts to add (arrayref of type unicode class Str)
 
-=item hostgroup: host groups to add (type unicode class Str)
+=item hostgroup: host groups to add (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -17109,10 +17109,10 @@ sub api_service_allow_retrieve_keytab
     return $self->rpc_api('service_allow_retrieve_keytab',    
         [$krbprincipalname],
         [qw(krbprincipalname)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members user group host hostgroup)],
-        [qw(bool bool unicode bool unicode unicode unicode unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1 unicode:1 unicode:1)],
     );
 }
 
@@ -17130,7 +17130,7 @@ Delete an IPA service.
 
 =over
 
-=item krbprincipalname: Service principal (type unicode class Str)
+=item krbprincipalname: Service principal (arrayref of type unicode class Str)
 
 =back
 
@@ -17158,10 +17158,10 @@ sub api_service_del
     return $self->rpc_api('service_del',    
         [$krbprincipalname],
         [qw(krbprincipalname)],
-        [qw(unicode)],
+        [qw(unicode:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool unicode)],
+        [qw(bool:0 unicode:0)],
     );
 }
 
@@ -17205,10 +17205,10 @@ sub api_service_disable
     return $self->rpc_api('service_disable',    
         [$krbprincipalname],
         [qw(krbprincipalname)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(version)],
-        [qw(unicode)],
+        [qw(unicode:0)],
     );
 }
 
@@ -17243,13 +17243,13 @@ Disallow users, groups, hosts or host groups to create a keytab of this service.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item user: users to remove (type unicode class Str)
+=item user: users to remove (arrayref of type unicode class Str)
 
-=item group: groups to remove (type unicode class Str)
+=item group: groups to remove (arrayref of type unicode class Str)
 
-=item host: hosts to remove (type unicode class Str)
+=item host: hosts to remove (arrayref of type unicode class Str)
 
-=item hostgroup: host groups to remove (type unicode class Str)
+=item hostgroup: host groups to remove (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -17266,10 +17266,10 @@ sub api_service_disallow_create_keytab
     return $self->rpc_api('service_disallow_create_keytab',    
         [$krbprincipalname],
         [qw(krbprincipalname)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members user group host hostgroup)],
-        [qw(bool bool unicode bool unicode unicode unicode unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1 unicode:1 unicode:1)],
     );
 }
 
@@ -17304,13 +17304,13 @@ Disallow users, groups, hosts or host groups to retrieve a keytab of this servic
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item user: users to remove (type unicode class Str)
+=item user: users to remove (arrayref of type unicode class Str)
 
-=item group: groups to remove (type unicode class Str)
+=item group: groups to remove (arrayref of type unicode class Str)
 
-=item host: hosts to remove (type unicode class Str)
+=item host: hosts to remove (arrayref of type unicode class Str)
 
-=item hostgroup: host groups to remove (type unicode class Str)
+=item hostgroup: host groups to remove (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -17327,10 +17327,10 @@ sub api_service_disallow_retrieve_keytab
     return $self->rpc_api('service_disallow_retrieve_keytab',    
         [$krbprincipalname],
         [qw(krbprincipalname)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members user group host hostgroup)],
-        [qw(bool bool unicode bool unicode unicode unicode unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1 unicode:1 unicode:1)],
     );
 }
 
@@ -17359,7 +17359,7 @@ Search for IPA services.
 
 =item krbprincipalname: Service principal (type unicode class Str)
 
-=item ipakrbauthzdata: Override default list of supported PAC types. Use 'NONE' to disable PAC support for this service, e.g. this might be necessary for NFS services. (type unicode class StrEnum)
+=item ipakrbauthzdata: Override default list of supported PAC types. Use 'NONE' to disable PAC support for this service, e.g. this might be necessary for NFS services. (arrayref of type unicode class StrEnum)
 
 =item timelimit: Time limit of search in seconds (type int class Int)
 
@@ -17375,9 +17375,9 @@ Search for IPA services.
 
 =item pkey_only: Results should contain primary key attribute only ("principal") (type bool class Flag)
 
-=item man_by_host: Search for services with these managed by hosts. (type unicode class Str)
+=item man_by_host: Search for services with these managed by hosts. (arrayref of type unicode class Str)
 
-=item not_man_by_host: Search for services without these managed by hosts. (type unicode class Str)
+=item not_man_by_host: Search for services without these managed by hosts. (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -17394,10 +17394,10 @@ sub api_service_find
     return $self->rpc_api('service_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(krbprincipalname ipakrbauthzdata timelimit sizelimit all raw version no_members pkey_only man_by_host not_man_by_host)],
-        [qw(unicode unicode int int bool bool unicode bool bool unicode unicode)],
+        [qw(unicode:0 unicode:1 int:0 int:0 bool:0 bool:0 unicode:0 bool:0 bool:0 unicode:1 unicode:1)],
     );
 }
 
@@ -17424,22 +17424,22 @@ Modify an existing IPA service.
 
 =over
 
-=item usercertificate: Base-64 encoded server certificate (type str class Bytes)
+=item usercertificate: Base-64 encoded server certificate (arrayref of type str class Bytes)
 
-=item ipakrbauthzdata: Override default list of supported PAC types. Use 'NONE' to disable PAC support for this service, e.g. this might be necessary for NFS services. (type unicode class StrEnum)
+=item ipakrbauthzdata: Override default list of supported PAC types. Use 'NONE' to disable PAC support for this service, e.g. this might be necessary for NFS services. (arrayref of type unicode class StrEnum)
 
 =item ipakrbrequirespreauth: Pre-authentication is required for the service (type bool class Bool)
 
 =item ipakrbokasdelegate: Client credentials may be delegated to the service (type bool class Bool)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item delattr: Delete an attribute/value pair. The option will be evaluated
-last, after all sets and adds. (type unicode class Str)
+last, after all sets and adds. (arrayref of type unicode class Str)
 
 =item rights: Display the access rights of this entry (requires --all). See ipa man page for details. (type bool class Flag)
 
@@ -17466,10 +17466,10 @@ sub api_service_mod
     return $self->rpc_api('service_mod',    
         [$krbprincipalname],
         [qw(krbprincipalname)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(usercertificate ipakrbauthzdata ipakrbrequirespreauth ipakrbokasdelegate setattr addattr delattr rights all raw version no_members)],
-        [qw(str unicode bool bool unicode unicode unicode bool bool bool unicode bool)],
+        [qw(str:1 unicode:1 bool:0 bool:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -17504,7 +17504,7 @@ Remove certificates from a service
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item usercertificate: Base-64 encoded server certificate (type str class Bytes)
+=item usercertificate: Base-64 encoded server certificate (arrayref of type str class Bytes)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -17521,10 +17521,10 @@ sub api_service_remove_cert
     return $self->rpc_api('service_remove_cert',    
         [$krbprincipalname],
         [qw(krbprincipalname)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members usercertificate)],
-        [qw(bool bool unicode bool str)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 str:1)],
     );
 }
 
@@ -17559,7 +17559,7 @@ Remove hosts that can manage this service.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item host: hosts to remove (type unicode class Str)
+=item host: hosts to remove (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -17576,10 +17576,10 @@ sub api_service_remove_host
     return $self->rpc_api('service_remove_host',    
         [$krbprincipalname],
         [qw(krbprincipalname)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members host)],
-        [qw(bool bool unicode bool unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
     );
 }
 
@@ -17633,10 +17633,10 @@ sub api_service_show
     return $self->rpc_api('service_show',    
         [$krbprincipalname],
         [qw(krbprincipalname)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(rights out all raw version no_members)],
-        [qw(bool unicode bool bool unicode bool)],
+        [qw(bool:0 unicode:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -17664,10 +17664,10 @@ Create a new service delegation rule.
 =over
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -17692,10 +17692,10 @@ sub api_servicedelegationrule_add
     return $self->rpc_api('servicedelegationrule_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(setattr addattr all raw version no_members)],
-        [qw(unicode unicode bool bool unicode bool)],
+        [qw(unicode:1 unicode:1 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -17730,7 +17730,7 @@ Add member to a named service delegation rule.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item principal: principal to add (type unicode class Str)
+=item principal: principal to add (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -17747,10 +17747,10 @@ sub api_servicedelegationrule_add_member
     return $self->rpc_api('servicedelegationrule_add_member',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members principal)],
-        [qw(bool bool unicode bool unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
     );
 }
 
@@ -17785,7 +17785,7 @@ Add target to a named service delegation rule.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item servicedelegationtarget: service delegation targets to add (type unicode class Str)
+=item servicedelegationtarget: service delegation targets to add (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -17802,10 +17802,10 @@ sub api_servicedelegationrule_add_target
     return $self->rpc_api('servicedelegationrule_add_target',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members servicedelegationtarget)],
-        [qw(bool bool unicode bool unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
     );
 }
 
@@ -17823,7 +17823,7 @@ Delete service delegation.
 
 =over
 
-=item cn: Delegation name (type unicode class Str)
+=item cn: Delegation name (arrayref of type unicode class Str)
 
 =back
 
@@ -17851,10 +17851,10 @@ sub api_servicedelegationrule_del
     return $self->rpc_api('servicedelegationrule_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool unicode)],
+        [qw(bool:0 unicode:0)],
     );
 }
 
@@ -17912,10 +17912,10 @@ sub api_servicedelegationrule_find
     return $self->rpc_api('servicedelegationrule_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(cn timelimit sizelimit all raw version no_members pkey_only)],
-        [qw(unicode int int bool bool unicode bool bool)],
+        [qw(unicode:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0 bool:0)],
     );
 }
 
@@ -17950,7 +17950,7 @@ Remove member from a named service delegation rule.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item principal: principal to remove (type unicode class Str)
+=item principal: principal to remove (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -17967,10 +17967,10 @@ sub api_servicedelegationrule_remove_member
     return $self->rpc_api('servicedelegationrule_remove_member',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members principal)],
-        [qw(bool bool unicode bool unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
     );
 }
 
@@ -18005,7 +18005,7 @@ Remove target from a named service delegation rule.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item servicedelegationtarget: service delegation targets to remove (type unicode class Str)
+=item servicedelegationtarget: service delegation targets to remove (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -18022,10 +18022,10 @@ sub api_servicedelegationrule_remove_target
     return $self->rpc_api('servicedelegationrule_remove_target',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members servicedelegationtarget)],
-        [qw(bool bool unicode bool unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
     );
 }
 
@@ -18077,10 +18077,10 @@ sub api_servicedelegationrule_show
     return $self->rpc_api('servicedelegationrule_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(rights all raw version no_members)],
-        [qw(bool bool bool unicode bool)],
+        [qw(bool:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -18108,10 +18108,10 @@ Create a new service delegation target.
 =over
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -18134,10 +18134,10 @@ sub api_servicedelegationtarget_add
     return $self->rpc_api('servicedelegationtarget_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(setattr addattr all raw version)],
-        [qw(unicode unicode bool bool unicode)],
+        [qw(unicode:1 unicode:1 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -18170,7 +18170,7 @@ Add member to a named service delegation target.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
-=item principal: principal to add (type unicode class Str)
+=item principal: principal to add (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -18187,10 +18187,10 @@ sub api_servicedelegationtarget_add_member
     return $self->rpc_api('servicedelegationtarget_add_member',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version principal)],
-        [qw(bool bool unicode unicode)],
+        [qw(bool:0 bool:0 unicode:0 unicode:1)],
     );
 }
 
@@ -18208,7 +18208,7 @@ Delete service delegation target.
 
 =over
 
-=item cn: Delegation name (type unicode class Str)
+=item cn: Delegation name (arrayref of type unicode class Str)
 
 =back
 
@@ -18236,10 +18236,10 @@ sub api_servicedelegationtarget_del
     return $self->rpc_api('servicedelegationtarget_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool unicode)],
+        [qw(bool:0 unicode:0)],
     );
 }
 
@@ -18295,10 +18295,10 @@ sub api_servicedelegationtarget_find
     return $self->rpc_api('servicedelegationtarget_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(cn timelimit sizelimit all raw version pkey_only)],
-        [qw(unicode int int bool bool unicode bool)],
+        [qw(unicode:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -18331,7 +18331,7 @@ Remove member from a named service delegation target.
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
-=item principal: principal to remove (type unicode class Str)
+=item principal: principal to remove (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -18348,10 +18348,10 @@ sub api_servicedelegationtarget_remove_member
     return $self->rpc_api('servicedelegationtarget_remove_member',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version principal)],
-        [qw(bool bool unicode unicode)],
+        [qw(bool:0 bool:0 unicode:0 unicode:1)],
     );
 }
 
@@ -18401,10 +18401,10 @@ sub api_servicedelegationtarget_show
     return $self->rpc_api('servicedelegationtarget_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(rights all raw version)],
-        [qw(bool bool bool unicode)],
+        [qw(bool:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -18446,7 +18446,7 @@ sub api_session_logout
         [qw()],
         \%opts,
         [qw(version)],
-        [qw(unicode)],
+        [qw(unicode:0)],
     );
 }
 
@@ -18486,7 +18486,7 @@ sub api_sidgen_was_run
         [qw()],
         \%opts,
         [qw(version)],
-        [qw(unicode)],
+        [qw(unicode:0)],
     );
 }
 
@@ -18536,10 +18536,10 @@ sub api_stageuser_activate
     return $self->rpc_api('stageuser_activate',    
         [$uid],
         [qw(uid)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members)],
-        [qw(bool bool unicode bool)],
+        [qw(bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -18586,7 +18586,7 @@ Add a new stage user.
 
 =item krbprincipalexpiration: Kerberos principal expiration (type datetime class DateTime)
 
-=item mail: Email address (type unicode class Str)
+=item mail: Email address (arrayref of type unicode class Str)
 
 =item userpassword: Prompt to set the user password (type unicode class Password)
 
@@ -18604,13 +18604,13 @@ Add a new stage user.
 
 =item postalcode: ZIP (type unicode class Str)
 
-=item telephonenumber: Telephone Number (type unicode class Str)
+=item telephonenumber: Telephone Number (arrayref of type unicode class Str)
 
-=item mobile: Mobile Telephone Number (type unicode class Str)
+=item mobile: Mobile Telephone Number (arrayref of type unicode class Str)
 
-=item pager: Pager Number (type unicode class Str)
+=item pager: Pager Number (arrayref of type unicode class Str)
 
-=item facsimiletelephonenumber: Fax Number (type unicode class Str)
+=item facsimiletelephonenumber: Fax Number (arrayref of type unicode class Str)
 
 =item ou: Org. Unit (type unicode class Str)
 
@@ -18618,19 +18618,19 @@ Add a new stage user.
 
 =item manager: Manager (type unicode class Str)
 
-=item carlicense: Car License (type unicode class Str)
+=item carlicense: Car License (arrayref of type unicode class Str)
 
-=item ipasshpubkey: SSH public key (type unicode class Str)
+=item ipasshpubkey: SSH public key (arrayref of type unicode class Str)
 
-=item ipauserauthtype: Types of supported user authentication (type unicode class StrEnum)
+=item ipauserauthtype: Types of supported user authentication (arrayref of type unicode class StrEnum)
 
-=item userclass: User category (semantics placed on this attribute are for local interpretation) (type unicode class Str)
+=item userclass: User category (semantics placed on this attribute are for local interpretation) (arrayref of type unicode class Str)
 
 =item ipatokenradiusconfiglink: RADIUS proxy configuration (type unicode class Str)
 
 =item ipatokenradiususername: RADIUS proxy username (type unicode class Str)
 
-=item departmentnumber: Department Number (type unicode class Str)
+=item departmentnumber: Department Number (arrayref of type unicode class Str)
 
 =item employeenumber: Employee Number (type unicode class Str)
 
@@ -18638,13 +18638,13 @@ Add a new stage user.
 
 =item preferredlanguage: Preferred Language (type unicode class Str)
 
-=item usercertificate: Base-64 encoded server certificate (type str class Bytes)
+=item usercertificate: Base-64 encoded server certificate (arrayref of type str class Bytes)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item from_delete: Create Stage user in from a delete user (type object class DeprecatedParam)
 
@@ -18671,10 +18671,10 @@ sub api_stageuser_add
     return $self->rpc_api('stageuser_add',    
         [$uid],
         [qw(uid)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(givenname sn cn displayname initials homedirectory gecos loginshell krbprincipalname krbprincipalexpiration mail userpassword random uidnumber gidnumber street l st postalcode telephonenumber mobile pager facsimiletelephonenumber ou title manager carlicense ipasshpubkey ipauserauthtype userclass ipatokenradiusconfiglink ipatokenradiususername departmentnumber employeenumber employeetype preferredlanguage usercertificate setattr addattr from_delete all raw version no_members)],
-        [qw(unicode unicode unicode unicode unicode unicode unicode unicode unicode datetime unicode unicode bool int int unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode str unicode unicode object bool bool unicode bool)],
+        [qw(unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 datetime:0 unicode:1 unicode:0 bool:0 int:0 int:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:0 unicode:0 unicode:1 unicode:0 unicode:0 unicode:0 str:1 unicode:1 unicode:1 object:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -18692,7 +18692,7 @@ Delete a stage user.
 
 =over
 
-=item uid: User login (type unicode class Str)
+=item uid: User login (arrayref of type unicode class Str)
 
 =back
 
@@ -18720,10 +18720,10 @@ sub api_stageuser_del
     return $self->rpc_api('stageuser_del',    
         [$uid],
         [qw(uid)],
-        [qw(unicode)],
+        [qw(unicode:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool unicode)],
+        [qw(bool:0 unicode:0)],
     );
 }
 
@@ -18772,7 +18772,7 @@ Search for stage users.
 
 =item krbprincipalexpiration: Kerberos principal expiration (type datetime class DateTime)
 
-=item mail: Email address (type unicode class Str)
+=item mail: Email address (arrayref of type unicode class Str)
 
 =item userpassword: Prompt to set the user password (type unicode class Password)
 
@@ -18788,13 +18788,13 @@ Search for stage users.
 
 =item postalcode: ZIP (type unicode class Str)
 
-=item telephonenumber: Telephone Number (type unicode class Str)
+=item telephonenumber: Telephone Number (arrayref of type unicode class Str)
 
-=item mobile: Mobile Telephone Number (type unicode class Str)
+=item mobile: Mobile Telephone Number (arrayref of type unicode class Str)
 
-=item pager: Pager Number (type unicode class Str)
+=item pager: Pager Number (arrayref of type unicode class Str)
 
-=item facsimiletelephonenumber: Fax Number (type unicode class Str)
+=item facsimiletelephonenumber: Fax Number (arrayref of type unicode class Str)
 
 =item ou: Org. Unit (type unicode class Str)
 
@@ -18802,17 +18802,17 @@ Search for stage users.
 
 =item manager: Manager (type unicode class Str)
 
-=item carlicense: Car License (type unicode class Str)
+=item carlicense: Car License (arrayref of type unicode class Str)
 
-=item ipauserauthtype: Types of supported user authentication (type unicode class StrEnum)
+=item ipauserauthtype: Types of supported user authentication (arrayref of type unicode class StrEnum)
 
-=item userclass: User category (semantics placed on this attribute are for local interpretation) (type unicode class Str)
+=item userclass: User category (semantics placed on this attribute are for local interpretation) (arrayref of type unicode class Str)
 
 =item ipatokenradiusconfiglink: RADIUS proxy configuration (type unicode class Str)
 
 =item ipatokenradiususername: RADIUS proxy username (type unicode class Str)
 
-=item departmentnumber: Department Number (type unicode class Str)
+=item departmentnumber: Department Number (arrayref of type unicode class Str)
 
 =item employeenumber: Employee Number (type unicode class Str)
 
@@ -18820,7 +18820,7 @@ Search for stage users.
 
 =item preferredlanguage: Preferred Language (type unicode class Str)
 
-=item usercertificate: Base-64 encoded server certificate (type str class Bytes)
+=item usercertificate: Base-64 encoded server certificate (arrayref of type str class Bytes)
 
 =item timelimit: Time limit of search in seconds (type int class Int)
 
@@ -18836,25 +18836,25 @@ Search for stage users.
 
 =item pkey_only: Results should contain primary key attribute only ("login") (type bool class Flag)
 
-=item in_group: Search for stage users with these member of groups. (type unicode class Str)
+=item in_group: Search for stage users with these member of groups. (arrayref of type unicode class Str)
 
-=item not_in_group: Search for stage users without these member of groups. (type unicode class Str)
+=item not_in_group: Search for stage users without these member of groups. (arrayref of type unicode class Str)
 
-=item in_netgroup: Search for stage users with these member of netgroups. (type unicode class Str)
+=item in_netgroup: Search for stage users with these member of netgroups. (arrayref of type unicode class Str)
 
-=item not_in_netgroup: Search for stage users without these member of netgroups. (type unicode class Str)
+=item not_in_netgroup: Search for stage users without these member of netgroups. (arrayref of type unicode class Str)
 
-=item in_role: Search for stage users with these member of roles. (type unicode class Str)
+=item in_role: Search for stage users with these member of roles. (arrayref of type unicode class Str)
 
-=item not_in_role: Search for stage users without these member of roles. (type unicode class Str)
+=item not_in_role: Search for stage users without these member of roles. (arrayref of type unicode class Str)
 
-=item in_hbacrule: Search for stage users with these member of HBAC rules. (type unicode class Str)
+=item in_hbacrule: Search for stage users with these member of HBAC rules. (arrayref of type unicode class Str)
 
-=item not_in_hbacrule: Search for stage users without these member of HBAC rules. (type unicode class Str)
+=item not_in_hbacrule: Search for stage users without these member of HBAC rules. (arrayref of type unicode class Str)
 
-=item in_sudorule: Search for stage users with these member of sudo rules. (type unicode class Str)
+=item in_sudorule: Search for stage users with these member of sudo rules. (arrayref of type unicode class Str)
 
-=item not_in_sudorule: Search for stage users without these member of sudo rules. (type unicode class Str)
+=item not_in_sudorule: Search for stage users without these member of sudo rules. (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -18871,10 +18871,10 @@ sub api_stageuser_find
     return $self->rpc_api('stageuser_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(uid givenname sn cn displayname initials homedirectory gecos loginshell krbprincipalname krbprincipalexpiration mail userpassword uidnumber gidnumber street l st postalcode telephonenumber mobile pager facsimiletelephonenumber ou title manager carlicense ipauserauthtype userclass ipatokenradiusconfiglink ipatokenradiususername departmentnumber employeenumber employeetype preferredlanguage usercertificate timelimit sizelimit all raw version no_members pkey_only in_group not_in_group in_netgroup not_in_netgroup in_role not_in_role in_hbacrule not_in_hbacrule in_sudorule not_in_sudorule)],
-        [qw(unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode datetime unicode unicode int int unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode str int int bool bool unicode bool bool unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode)],
+        [qw(unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 datetime:0 unicode:1 unicode:0 int:0 int:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 unicode:0 unicode:0 unicode:1 unicode:0 unicode:0 unicode:0 str:1 int:0 int:0 bool:0 bool:0 unicode:0 bool:0 bool:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1)],
     );
 }
 
@@ -18919,7 +18919,7 @@ Modify a stage user.
 
 =item krbprincipalexpiration: Kerberos principal expiration (type datetime class DateTime)
 
-=item mail: Email address (type unicode class Str)
+=item mail: Email address (arrayref of type unicode class Str)
 
 =item userpassword: Prompt to set the user password (type unicode class Password)
 
@@ -18937,13 +18937,13 @@ Modify a stage user.
 
 =item postalcode: ZIP (type unicode class Str)
 
-=item telephonenumber: Telephone Number (type unicode class Str)
+=item telephonenumber: Telephone Number (arrayref of type unicode class Str)
 
-=item mobile: Mobile Telephone Number (type unicode class Str)
+=item mobile: Mobile Telephone Number (arrayref of type unicode class Str)
 
-=item pager: Pager Number (type unicode class Str)
+=item pager: Pager Number (arrayref of type unicode class Str)
 
-=item facsimiletelephonenumber: Fax Number (type unicode class Str)
+=item facsimiletelephonenumber: Fax Number (arrayref of type unicode class Str)
 
 =item ou: Org. Unit (type unicode class Str)
 
@@ -18951,19 +18951,19 @@ Modify a stage user.
 
 =item manager: Manager (type unicode class Str)
 
-=item carlicense: Car License (type unicode class Str)
+=item carlicense: Car License (arrayref of type unicode class Str)
 
-=item ipasshpubkey: SSH public key (type unicode class Str)
+=item ipasshpubkey: SSH public key (arrayref of type unicode class Str)
 
-=item ipauserauthtype: Types of supported user authentication (type unicode class StrEnum)
+=item ipauserauthtype: Types of supported user authentication (arrayref of type unicode class StrEnum)
 
-=item userclass: User category (semantics placed on this attribute are for local interpretation) (type unicode class Str)
+=item userclass: User category (semantics placed on this attribute are for local interpretation) (arrayref of type unicode class Str)
 
 =item ipatokenradiusconfiglink: RADIUS proxy configuration (type unicode class Str)
 
 =item ipatokenradiususername: RADIUS proxy username (type unicode class Str)
 
-=item departmentnumber: Department Number (type unicode class Str)
+=item departmentnumber: Department Number (arrayref of type unicode class Str)
 
 =item employeenumber: Employee Number (type unicode class Str)
 
@@ -18971,16 +18971,16 @@ Modify a stage user.
 
 =item preferredlanguage: Preferred Language (type unicode class Str)
 
-=item usercertificate: Base-64 encoded server certificate (type str class Bytes)
+=item usercertificate: Base-64 encoded server certificate (arrayref of type str class Bytes)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item delattr: Delete an attribute/value pair. The option will be evaluated
-last, after all sets and adds. (type unicode class Str)
+last, after all sets and adds. (arrayref of type unicode class Str)
 
 =item rights: Display the access rights of this entry (requires --all). See ipa man page for details. (type bool class Flag)
 
@@ -19009,10 +19009,10 @@ sub api_stageuser_mod
     return $self->rpc_api('stageuser_mod',    
         [$uid],
         [qw(uid)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(givenname sn cn displayname initials homedirectory gecos loginshell krbprincipalexpiration mail userpassword random uidnumber gidnumber street l st postalcode telephonenumber mobile pager facsimiletelephonenumber ou title manager carlicense ipasshpubkey ipauserauthtype userclass ipatokenradiusconfiglink ipatokenradiususername departmentnumber employeenumber employeetype preferredlanguage usercertificate setattr addattr delattr rights all raw version no_members rename)],
-        [qw(unicode unicode unicode unicode unicode unicode unicode unicode datetime unicode unicode bool int int unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode str unicode unicode unicode bool bool bool unicode bool unicode)],
+        [qw(unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 datetime:0 unicode:1 unicode:0 bool:0 int:0 int:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:0 unicode:0 unicode:1 unicode:0 unicode:0 unicode:0 str:1 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0 bool:0 unicode:0)],
     );
 }
 
@@ -19064,10 +19064,10 @@ sub api_stageuser_show
     return $self->rpc_api('stageuser_show',    
         [$uid],
         [qw(uid)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(rights all raw version no_members)],
-        [qw(bool bool bool unicode bool)],
+        [qw(bool:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -19097,10 +19097,10 @@ Create new Sudo Command.
 =item description: A description of this command (type unicode class Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -19125,10 +19125,10 @@ sub api_sudocmd_add
     return $self->rpc_api('sudocmd_add',    
         [$sudocmd],
         [qw(sudocmd)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(description setattr addattr all raw version no_members)],
-        [qw(unicode unicode unicode bool bool unicode bool)],
+        [qw(unicode:0 unicode:1 unicode:1 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -19146,7 +19146,7 @@ Delete Sudo Command.
 
 =over
 
-=item sudocmd: Sudo Command (type unicode class Str)
+=item sudocmd: Sudo Command (arrayref of type unicode class Str)
 
 =back
 
@@ -19174,10 +19174,10 @@ sub api_sudocmd_del
     return $self->rpc_api('sudocmd_del',    
         [$sudocmd],
         [qw(sudocmd)],
-        [qw(unicode)],
+        [qw(unicode:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool unicode)],
+        [qw(bool:0 unicode:0)],
     );
 }
 
@@ -19237,10 +19237,10 @@ sub api_sudocmd_find
     return $self->rpc_api('sudocmd_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(sudocmd description timelimit sizelimit all raw version no_members pkey_only)],
-        [qw(unicode unicode int int bool bool unicode bool bool)],
+        [qw(unicode:0 unicode:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0 bool:0)],
     );
 }
 
@@ -19270,13 +19270,13 @@ Modify Sudo Command.
 =item description: A description of this command (type unicode class Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item delattr: Delete an attribute/value pair. The option will be evaluated
-last, after all sets and adds. (type unicode class Str)
+last, after all sets and adds. (arrayref of type unicode class Str)
 
 =item rights: Display the access rights of this entry (requires --all). See ipa man page for details. (type bool class Flag)
 
@@ -19303,10 +19303,10 @@ sub api_sudocmd_mod
     return $self->rpc_api('sudocmd_mod',    
         [$sudocmd],
         [qw(sudocmd)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(description setattr addattr delattr rights all raw version no_members)],
-        [qw(unicode unicode unicode unicode bool bool bool unicode bool)],
+        [qw(unicode:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -19358,10 +19358,10 @@ sub api_sudocmd_show
     return $self->rpc_api('sudocmd_show',    
         [$sudocmd],
         [qw(sudocmd)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(rights all raw version no_members)],
-        [qw(bool bool bool unicode bool)],
+        [qw(bool:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -19391,10 +19391,10 @@ Create new Sudo Command Group.
 =item description: Group description (type unicode class Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -19419,10 +19419,10 @@ sub api_sudocmdgroup_add
     return $self->rpc_api('sudocmdgroup_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(description setattr addattr all raw version no_members)],
-        [qw(unicode unicode unicode bool bool unicode bool)],
+        [qw(unicode:0 unicode:1 unicode:1 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -19457,7 +19457,7 @@ Add members to Sudo Command Group.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item sudocmd: sudo commands to add (type unicode class Str)
+=item sudocmd: sudo commands to add (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -19474,10 +19474,10 @@ sub api_sudocmdgroup_add_member
     return $self->rpc_api('sudocmdgroup_add_member',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members sudocmd)],
-        [qw(bool bool unicode bool unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
     );
 }
 
@@ -19495,7 +19495,7 @@ Delete Sudo Command Group.
 
 =over
 
-=item cn: Sudo Command Group (type unicode class Str)
+=item cn: Sudo Command Group (arrayref of type unicode class Str)
 
 =back
 
@@ -19523,10 +19523,10 @@ sub api_sudocmdgroup_del
     return $self->rpc_api('sudocmdgroup_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool unicode)],
+        [qw(bool:0 unicode:0)],
     );
 }
 
@@ -19586,10 +19586,10 @@ sub api_sudocmdgroup_find
     return $self->rpc_api('sudocmdgroup_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(cn description timelimit sizelimit all raw version no_members pkey_only)],
-        [qw(unicode unicode int int bool bool unicode bool bool)],
+        [qw(unicode:0 unicode:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0 bool:0)],
     );
 }
 
@@ -19619,13 +19619,13 @@ Modify Sudo Command Group.
 =item description: Group description (type unicode class Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item delattr: Delete an attribute/value pair. The option will be evaluated
-last, after all sets and adds. (type unicode class Str)
+last, after all sets and adds. (arrayref of type unicode class Str)
 
 =item rights: Display the access rights of this entry (requires --all). See ipa man page for details. (type bool class Flag)
 
@@ -19652,10 +19652,10 @@ sub api_sudocmdgroup_mod
     return $self->rpc_api('sudocmdgroup_mod',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(description setattr addattr delattr rights all raw version no_members)],
-        [qw(unicode unicode unicode unicode bool bool bool unicode bool)],
+        [qw(unicode:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -19690,7 +19690,7 @@ Remove members from Sudo Command Group.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item sudocmd: sudo commands to remove (type unicode class Str)
+=item sudocmd: sudo commands to remove (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -19707,10 +19707,10 @@ sub api_sudocmdgroup_remove_member
     return $self->rpc_api('sudocmdgroup_remove_member',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members sudocmd)],
-        [qw(bool bool unicode bool unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
     );
 }
 
@@ -19762,10 +19762,10 @@ sub api_sudocmdgroup_show
     return $self->rpc_api('sudocmdgroup_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(rights all raw version no_members)],
-        [qw(bool bool bool unicode bool)],
+        [qw(bool:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -19810,17 +19810,17 @@ Create new Sudo Rule.
 
 =item externaluser: External User the rule applies to (sudorule-find only) (type unicode class Str)
 
-=item externalhost: External host (type unicode class Str)
+=item externalhost: External host (arrayref of type unicode class Str)
 
 =item ipasudorunasextuser: External User the commands can run as (sudorule-find only) (type unicode class Str)
 
 =item ipasudorunasextgroup: External Group the commands can run as (sudorule-find only) (type unicode class Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -19845,10 +19845,10 @@ sub api_sudorule_add
     return $self->rpc_api('sudorule_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(description ipaenabledflag usercategory hostcategory cmdcategory ipasudorunasusercategory ipasudorunasgroupcategory sudoorder externaluser externalhost ipasudorunasextuser ipasudorunasextgroup setattr addattr all raw version no_members)],
-        [qw(unicode bool unicode unicode unicode unicode unicode int unicode unicode unicode unicode unicode unicode bool bool unicode bool)],
+        [qw(unicode:0 bool:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 int:0 unicode:0 unicode:1 unicode:0 unicode:0 unicode:1 unicode:1 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -19883,9 +19883,9 @@ Add commands and sudo command groups affected by Sudo Rule.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item sudocmd: sudo commands to add (type unicode class Str)
+=item sudocmd: sudo commands to add (arrayref of type unicode class Str)
 
-=item sudocmdgroup: sudo command groups to add (type unicode class Str)
+=item sudocmdgroup: sudo command groups to add (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -19902,10 +19902,10 @@ sub api_sudorule_add_allow_command
     return $self->rpc_api('sudorule_add_allow_command',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members sudocmd sudocmdgroup)],
-        [qw(bool bool unicode bool unicode unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
     );
 }
 
@@ -19940,9 +19940,9 @@ Add commands and sudo command groups affected by Sudo Rule.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item sudocmd: sudo commands to add (type unicode class Str)
+=item sudocmd: sudo commands to add (arrayref of type unicode class Str)
 
-=item sudocmdgroup: sudo command groups to add (type unicode class Str)
+=item sudocmdgroup: sudo command groups to add (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -19959,10 +19959,10 @@ sub api_sudorule_add_deny_command
     return $self->rpc_api('sudorule_add_deny_command',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members sudocmd sudocmdgroup)],
-        [qw(bool bool unicode bool unicode unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
     );
 }
 
@@ -19997,11 +19997,11 @@ Add hosts and hostgroups affected by Sudo Rule.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item host: hosts to add (type unicode class Str)
+=item host: hosts to add (arrayref of type unicode class Str)
 
-=item hostgroup: host groups to add (type unicode class Str)
+=item hostgroup: host groups to add (arrayref of type unicode class Str)
 
-=item hostmask: host masks of allowed hosts (type unicode class Str)
+=item hostmask: host masks of allowed hosts (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -20018,10 +20018,10 @@ sub api_sudorule_add_host
     return $self->rpc_api('sudorule_add_host',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members host hostgroup hostmask)],
-        [qw(bool bool unicode bool unicode unicode unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1 unicode:1)],
     );
 }
 
@@ -20073,10 +20073,10 @@ sub api_sudorule_add_option
     return $self->rpc_api('sudorule_add_option',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(ipasudoopt all raw version no_members)],
-        [qw(unicode bool bool unicode bool)],
+        [qw(unicode:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -20111,7 +20111,7 @@ Add group for Sudo to execute as.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item group: groups to add (type unicode class Str)
+=item group: groups to add (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -20128,10 +20128,10 @@ sub api_sudorule_add_runasgroup
     return $self->rpc_api('sudorule_add_runasgroup',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members group)],
-        [qw(bool bool unicode bool unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
     );
 }
 
@@ -20166,9 +20166,9 @@ Add users and groups for Sudo to execute as.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item user: users to add (type unicode class Str)
+=item user: users to add (arrayref of type unicode class Str)
 
-=item group: groups to add (type unicode class Str)
+=item group: groups to add (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -20185,10 +20185,10 @@ sub api_sudorule_add_runasuser
     return $self->rpc_api('sudorule_add_runasuser',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members user group)],
-        [qw(bool bool unicode bool unicode unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
     );
 }
 
@@ -20223,9 +20223,9 @@ Add users and groups affected by Sudo Rule.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item user: users to add (type unicode class Str)
+=item user: users to add (arrayref of type unicode class Str)
 
-=item group: groups to add (type unicode class Str)
+=item group: groups to add (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -20242,10 +20242,10 @@ sub api_sudorule_add_user
     return $self->rpc_api('sudorule_add_user',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members user group)],
-        [qw(bool bool unicode bool unicode unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
     );
 }
 
@@ -20263,7 +20263,7 @@ Delete Sudo Rule.
 
 =over
 
-=item cn: Rule name (type unicode class Str)
+=item cn: Rule name (arrayref of type unicode class Str)
 
 =back
 
@@ -20291,10 +20291,10 @@ sub api_sudorule_del
     return $self->rpc_api('sudorule_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool unicode)],
+        [qw(bool:0 unicode:0)],
     );
 }
 
@@ -20338,10 +20338,10 @@ sub api_sudorule_disable
     return $self->rpc_api('sudorule_disable',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(version)],
-        [qw(unicode)],
+        [qw(unicode:0)],
     );
 }
 
@@ -20385,10 +20385,10 @@ sub api_sudorule_enable
     return $self->rpc_api('sudorule_enable',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(version)],
-        [qw(unicode)],
+        [qw(unicode:0)],
     );
 }
 
@@ -20435,7 +20435,7 @@ Search for Sudo Rule.
 
 =item externaluser: External User the rule applies to (sudorule-find only) (type unicode class Str)
 
-=item externalhost: External host (type unicode class Str)
+=item externalhost: External host (arrayref of type unicode class Str)
 
 =item ipasudorunasextuser: External User the commands can run as (sudorule-find only) (type unicode class Str)
 
@@ -20470,10 +20470,10 @@ sub api_sudorule_find
     return $self->rpc_api('sudorule_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(cn description ipaenabledflag usercategory hostcategory cmdcategory ipasudorunasusercategory ipasudorunasgroupcategory sudoorder externaluser externalhost ipasudorunasextuser ipasudorunasextgroup timelimit sizelimit all raw version no_members pkey_only)],
-        [qw(unicode unicode bool unicode unicode unicode unicode unicode int unicode unicode unicode unicode int int bool bool unicode bool bool)],
+        [qw(unicode:0 unicode:0 bool:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 int:0 unicode:0 unicode:1 unicode:0 unicode:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0 bool:0)],
     );
 }
 
@@ -20518,20 +20518,20 @@ Modify Sudo Rule.
 
 =item externaluser: External User the rule applies to (sudorule-find only) (type unicode class Str)
 
-=item externalhost: External host (type unicode class Str)
+=item externalhost: External host (arrayref of type unicode class Str)
 
 =item ipasudorunasextuser: External User the commands can run as (sudorule-find only) (type unicode class Str)
 
 =item ipasudorunasextgroup: External Group the commands can run as (sudorule-find only) (type unicode class Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item delattr: Delete an attribute/value pair. The option will be evaluated
-last, after all sets and adds. (type unicode class Str)
+last, after all sets and adds. (arrayref of type unicode class Str)
 
 =item rights: Display the access rights of this entry (requires --all). See ipa man page for details. (type bool class Flag)
 
@@ -20558,10 +20558,10 @@ sub api_sudorule_mod
     return $self->rpc_api('sudorule_mod',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(description ipaenabledflag usercategory hostcategory cmdcategory ipasudorunasusercategory ipasudorunasgroupcategory sudoorder externaluser externalhost ipasudorunasextuser ipasudorunasextgroup setattr addattr delattr rights all raw version no_members)],
-        [qw(unicode bool unicode unicode unicode unicode unicode int unicode unicode unicode unicode unicode unicode unicode bool bool bool unicode bool)],
+        [qw(unicode:0 bool:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 int:0 unicode:0 unicode:1 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -20596,9 +20596,9 @@ Remove commands and sudo command groups affected by Sudo Rule.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item sudocmd: sudo commands to remove (type unicode class Str)
+=item sudocmd: sudo commands to remove (arrayref of type unicode class Str)
 
-=item sudocmdgroup: sudo command groups to remove (type unicode class Str)
+=item sudocmdgroup: sudo command groups to remove (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -20615,10 +20615,10 @@ sub api_sudorule_remove_allow_command
     return $self->rpc_api('sudorule_remove_allow_command',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members sudocmd sudocmdgroup)],
-        [qw(bool bool unicode bool unicode unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
     );
 }
 
@@ -20653,9 +20653,9 @@ Remove commands and sudo command groups affected by Sudo Rule.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item sudocmd: sudo commands to remove (type unicode class Str)
+=item sudocmd: sudo commands to remove (arrayref of type unicode class Str)
 
-=item sudocmdgroup: sudo command groups to remove (type unicode class Str)
+=item sudocmdgroup: sudo command groups to remove (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -20672,10 +20672,10 @@ sub api_sudorule_remove_deny_command
     return $self->rpc_api('sudorule_remove_deny_command',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members sudocmd sudocmdgroup)],
-        [qw(bool bool unicode bool unicode unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
     );
 }
 
@@ -20710,11 +20710,11 @@ Remove hosts and hostgroups affected by Sudo Rule.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item host: hosts to remove (type unicode class Str)
+=item host: hosts to remove (arrayref of type unicode class Str)
 
-=item hostgroup: host groups to remove (type unicode class Str)
+=item hostgroup: host groups to remove (arrayref of type unicode class Str)
 
-=item hostmask: host masks of allowed hosts (type unicode class Str)
+=item hostmask: host masks of allowed hosts (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -20731,10 +20731,10 @@ sub api_sudorule_remove_host
     return $self->rpc_api('sudorule_remove_host',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members host hostgroup hostmask)],
-        [qw(bool bool unicode bool unicode unicode unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1 unicode:1)],
     );
 }
 
@@ -20786,10 +20786,10 @@ sub api_sudorule_remove_option
     return $self->rpc_api('sudorule_remove_option',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(ipasudoopt all raw version no_members)],
-        [qw(unicode bool bool unicode bool)],
+        [qw(unicode:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -20824,7 +20824,7 @@ Remove group for Sudo to execute as.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item group: groups to remove (type unicode class Str)
+=item group: groups to remove (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -20841,10 +20841,10 @@ sub api_sudorule_remove_runasgroup
     return $self->rpc_api('sudorule_remove_runasgroup',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members group)],
-        [qw(bool bool unicode bool unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1)],
     );
 }
 
@@ -20879,9 +20879,9 @@ Remove users and groups for Sudo to execute as.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item user: users to remove (type unicode class Str)
+=item user: users to remove (arrayref of type unicode class Str)
 
-=item group: groups to remove (type unicode class Str)
+=item group: groups to remove (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -20898,10 +20898,10 @@ sub api_sudorule_remove_runasuser
     return $self->rpc_api('sudorule_remove_runasuser',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members user group)],
-        [qw(bool bool unicode bool unicode unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
     );
 }
 
@@ -20936,9 +20936,9 @@ Remove users and groups affected by Sudo Rule.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item user: users to remove (type unicode class Str)
+=item user: users to remove (arrayref of type unicode class Str)
 
-=item group: groups to remove (type unicode class Str)
+=item group: groups to remove (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -20955,10 +20955,10 @@ sub api_sudorule_remove_user
     return $self->rpc_api('sudorule_remove_user',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members user group)],
-        [qw(bool bool unicode bool unicode unicode)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1)],
     );
 }
 
@@ -21010,10 +21010,10 @@ sub api_sudorule_show
     return $self->rpc_api('sudorule_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(rights all raw version no_members)],
-        [qw(bool bool bool unicode bool)],
+        [qw(bool:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -21059,10 +21059,10 @@ Add a new segment.
 =item nsds5replicaenabled: Whether a replication agreement is active, meaning whether replication is occurring per that agreement (type unicode class StrEnum)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -21085,10 +21085,10 @@ sub api_topologysegment_add
     return $self->rpc_api('topologysegment_add',    
         [$topologysuffixcn, $cn],
         [qw(topologysuffixcn cn)],
-        [qw(unicode unicode)],
+        [qw(unicode:0 unicode:0)],
         \%opts,
         [qw(iparepltoposegmentleftnode iparepltoposegmentrightnode iparepltoposegmentdirection nsds5replicastripattrs nsds5replicatedattributelist nsds5replicatedattributelisttotal nsds5replicatimeout nsds5replicaenabled setattr addattr all raw version)],
-        [qw(unicode unicode unicode unicode unicode unicode int unicode unicode unicode bool bool unicode)],
+        [qw(unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 int:0 unicode:0 unicode:1 unicode:1 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -21108,7 +21108,7 @@ Delete a segment.
 
 =item topologysuffixcn: Suffix name (type unicode class Str)
 
-=item cn: Arbitrary string identifying the segment (type unicode class Str)
+=item cn: Arbitrary string identifying the segment (arrayref of type unicode class Str)
 
 =back
 
@@ -21136,10 +21136,10 @@ sub api_topologysegment_del
     return $self->rpc_api('topologysegment_del',    
         [$topologysuffixcn, $cn],
         [qw(topologysuffixcn cn)],
-        [qw(unicode unicode)],
+        [qw(unicode:0 unicode:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool unicode)],
+        [qw(bool:0 unicode:0)],
     );
 }
 
@@ -21213,10 +21213,10 @@ sub api_topologysegment_find
     return $self->rpc_api('topologysegment_find',    
         [$topologysuffixcn, $criteria],
         [qw(topologysuffixcn criteria)],
-        [qw(unicode unicode)],
+        [qw(unicode:0 unicode:0)],
         \%opts,
         [qw(cn iparepltoposegmentleftnode iparepltoposegmentrightnode iparepltoposegmentdirection nsds5replicastripattrs nsds5replicatedattributelist nsds5replicatedattributelisttotal nsds5replicatimeout nsds5replicaenabled timelimit sizelimit all raw version pkey_only)],
-        [qw(unicode unicode unicode unicode unicode unicode unicode int unicode int int bool bool unicode bool)],
+        [qw(unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 int:0 unicode:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -21256,13 +21256,13 @@ Modify a segment.
 =item nsds5replicaenabled: Whether a replication agreement is active, meaning whether replication is occurring per that agreement (type unicode class StrEnum)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item delattr: Delete an attribute/value pair. The option will be evaluated
-last, after all sets and adds. (type unicode class Str)
+last, after all sets and adds. (arrayref of type unicode class Str)
 
 =item rights: Display the access rights of this entry (requires --all). See ipa man page for details. (type bool class Flag)
 
@@ -21287,10 +21287,10 @@ sub api_topologysegment_mod
     return $self->rpc_api('topologysegment_mod',    
         [$topologysuffixcn, $cn],
         [qw(topologysuffixcn cn)],
-        [qw(unicode unicode)],
+        [qw(unicode:0 unicode:0)],
         \%opts,
         [qw(nsds5replicastripattrs nsds5replicatedattributelist nsds5replicatedattributelisttotal nsds5replicatimeout nsds5replicaenabled setattr addattr delattr rights all raw version)],
-        [qw(unicode unicode unicode int unicode unicode unicode unicode bool bool bool unicode)],
+        [qw(unicode:0 unicode:0 unicode:0 int:0 unicode:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -21342,10 +21342,10 @@ sub api_topologysegment_reinitialize
     return $self->rpc_api('topologysegment_reinitialize',    
         [$topologysuffixcn, $cn],
         [qw(topologysuffixcn cn)],
-        [qw(unicode unicode)],
+        [qw(unicode:0 unicode:0)],
         \%opts,
         [qw(left right stop version)],
-        [qw(bool bool bool unicode)],
+        [qw(bool:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -21397,10 +21397,10 @@ sub api_topologysegment_show
     return $self->rpc_api('topologysegment_show',    
         [$topologysuffixcn, $cn],
         [qw(topologysuffixcn cn)],
-        [qw(unicode unicode)],
+        [qw(unicode:0 unicode:0)],
         \%opts,
         [qw(rights all raw version)],
-        [qw(bool bool bool unicode)],
+        [qw(bool:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -21430,10 +21430,10 @@ Add a new topology suffix to be managed.
 =item iparepltopoconfroot: LDAP suffix to be managed (type unicode class Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -21456,10 +21456,10 @@ sub api_topologysuffix_add
     return $self->rpc_api('topologysuffix_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(iparepltopoconfroot setattr addattr all raw version)],
-        [qw(unicode unicode unicode bool bool unicode)],
+        [qw(unicode:0 unicode:1 unicode:1 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -21477,7 +21477,7 @@ Delete a topology suffix.
 
 =over
 
-=item cn: Suffix name (type unicode class Str)
+=item cn: Suffix name (arrayref of type unicode class Str)
 
 =back
 
@@ -21505,10 +21505,10 @@ sub api_topologysuffix_del
     return $self->rpc_api('topologysuffix_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool unicode)],
+        [qw(bool:0 unicode:0)],
     );
 }
 
@@ -21566,10 +21566,10 @@ sub api_topologysuffix_find
     return $self->rpc_api('topologysuffix_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(cn iparepltopoconfroot timelimit sizelimit all raw version pkey_only)],
-        [qw(unicode unicode int int bool bool unicode bool)],
+        [qw(unicode:0 unicode:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -21599,13 +21599,13 @@ Modify a topology suffix.
 =item iparepltopoconfroot: LDAP suffix to be managed (type unicode class Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item delattr: Delete an attribute/value pair. The option will be evaluated
-last, after all sets and adds. (type unicode class Str)
+last, after all sets and adds. (arrayref of type unicode class Str)
 
 =item rights: Display the access rights of this entry (requires --all). See ipa man page for details. (type bool class Flag)
 
@@ -21630,10 +21630,10 @@ sub api_topologysuffix_mod
     return $self->rpc_api('topologysuffix_mod',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(iparepltopoconfroot setattr addattr delattr rights all raw version)],
-        [qw(unicode unicode unicode unicode bool bool bool unicode)],
+        [qw(unicode:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -21683,10 +21683,10 @@ sub api_topologysuffix_show
     return $self->rpc_api('topologysuffix_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(rights all raw version)],
-        [qw(bool bool bool unicode)],
+        [qw(bool:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -21738,10 +21738,10 @@ sub api_topologysuffix_verify
     return $self->rpc_api('topologysuffix_verify',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(version)],
-        [qw(unicode)],
+        [qw(unicode:0)],
     );
 }
 
@@ -21781,10 +21781,10 @@ sides.
 =over
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item trust_type: Trust type (ad for Active Directory, default) (type unicode class StrEnum)
 
@@ -21825,10 +21825,10 @@ sub api_trust_add
     return $self->rpc_api('trust_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(setattr addattr trust_type realm_admin realm_passwd realm_server trust_secret base_id range_size range_type bidirectional all raw version)],
-        [qw(unicode unicode unicode unicode unicode unicode unicode int int unicode bool bool bool unicode)],
+        [qw(unicode:1 unicode:1 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 int:0 int:0 unicode:0 bool:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -21846,7 +21846,7 @@ Delete a trust.
 
 =over
 
-=item cn: Realm name (type unicode class Str)
+=item cn: Realm name (arrayref of type unicode class Str)
 
 =back
 
@@ -21874,10 +21874,10 @@ sub api_trust_del
     return $self->rpc_api('trust_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool unicode)],
+        [qw(bool:0 unicode:0)],
     );
 }
 
@@ -21929,10 +21929,10 @@ sub api_trust_fetch_domains
     return $self->rpc_api('trust_fetch_domains',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(rights realm_server all raw version)],
-        [qw(bool unicode bool bool unicode)],
+        [qw(bool:0 unicode:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -21965,9 +21965,9 @@ Search for trusts.
 
 =item ipanttrusteddomainsid: Domain Security Identifier (type unicode class Str)
 
-=item ipantsidblacklistincoming: SID blacklist incoming (type unicode class Str)
+=item ipantsidblacklistincoming: SID blacklist incoming (arrayref of type unicode class Str)
 
-=item ipantsidblacklistoutgoing: SID blacklist outgoing (type unicode class Str)
+=item ipantsidblacklistoutgoing: SID blacklist outgoing (arrayref of type unicode class Str)
 
 =item timelimit: Time limit of search in seconds (type int class Int)
 
@@ -21996,10 +21996,10 @@ sub api_trust_find
     return $self->rpc_api('trust_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(cn ipantflatname ipanttrusteddomainsid ipantsidblacklistincoming ipantsidblacklistoutgoing timelimit sizelimit all raw version pkey_only)],
-        [qw(unicode unicode unicode unicode unicode int int bool bool unicode bool)],
+        [qw(unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 int:0 int:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -22031,18 +22031,18 @@ Wrapper method for trust_mod API
 
 =over
 
-=item ipantsidblacklistincoming: SID blacklist incoming (type unicode class Str)
+=item ipantsidblacklistincoming: SID blacklist incoming (arrayref of type unicode class Str)
 
-=item ipantsidblacklistoutgoing: SID blacklist outgoing (type unicode class Str)
+=item ipantsidblacklistoutgoing: SID blacklist outgoing (arrayref of type unicode class Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item delattr: Delete an attribute/value pair. The option will be evaluated
-last, after all sets and adds. (type unicode class Str)
+last, after all sets and adds. (arrayref of type unicode class Str)
 
 =item rights: Display the access rights of this entry (requires --all). See ipa man page for details. (type bool class Flag)
 
@@ -22067,10 +22067,10 @@ sub api_trust_mod
     return $self->rpc_api('trust_mod',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(ipantsidblacklistincoming ipantsidblacklistoutgoing setattr addattr delattr rights all raw version)],
-        [qw(unicode unicode unicode unicode unicode bool bool bool unicode)],
+        [qw(unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -22090,7 +22090,7 @@ Resolve security identifiers of users and groups in trusted domains
 
 =over
 
-=item sids: Security Identifiers (SIDs) (type unicode class Str)
+=item sids: Security Identifiers (SIDs) (arrayref of type unicode class Str)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -22116,7 +22116,7 @@ sub api_trust_resolve
         [qw()],
         \%opts,
         [qw(sids all raw version)],
-        [qw(unicode bool bool unicode)],
+        [qw(unicode:1 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -22166,10 +22166,10 @@ sub api_trust_show
     return $self->rpc_api('trust_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(rights all raw version)],
-        [qw(bool bool bool unicode)],
+        [qw(bool:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -22192,13 +22192,13 @@ Modify global trust configuration.
 =item ipantfallbackprimarygroup: Fallback primary group (type unicode class Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item delattr: Delete an attribute/value pair. The option will be evaluated
-last, after all sets and adds. (type unicode class Str)
+last, after all sets and adds. (arrayref of type unicode class Str)
 
 =item rights: Display the access rights of this entry (requires --all). See ipa man page for details. (type bool class Flag)
 
@@ -22228,7 +22228,7 @@ sub api_trustconfig_mod
         [qw()],
         \%opts,
         [qw(ipantfallbackprimarygroup setattr addattr delattr rights trust_type all raw version)],
-        [qw(unicode unicode unicode unicode bool unicode bool bool unicode)],
+        [qw(unicode:0 unicode:1 unicode:1 unicode:1 bool:0 unicode:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -22276,7 +22276,7 @@ sub api_trustconfig_show
         [qw()],
         \%opts,
         [qw(rights trust_type all raw version)],
-        [qw(bool unicode bool bool unicode)],
+        [qw(bool:0 unicode:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -22312,10 +22312,10 @@ Allow access from the trusted domain
 =item ipanttrustpartner: Trusted domain partner (type unicode class Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item trust_type: Trust type (ad for Active Directory, default) (type unicode class StrEnum)
 
@@ -22340,10 +22340,10 @@ sub api_trustdomain_add
     return $self->rpc_api('trustdomain_add',    
         [$trustcn, $cn],
         [qw(trustcn cn)],
-        [qw(unicode unicode)],
+        [qw(unicode:0 unicode:0)],
         \%opts,
         [qw(ipantflatname ipanttrusteddomainsid ipanttrustpartner setattr addattr trust_type all raw version)],
-        [qw(unicode unicode unicode unicode unicode unicode bool bool unicode)],
+        [qw(unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 unicode:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -22363,7 +22363,7 @@ Remove infromation about the domain associated with the trust.
 
 =item trustcn: Realm name (type unicode class Str)
 
-=item cn: Domain name (type unicode class Str)
+=item cn: Domain name (arrayref of type unicode class Str)
 
 =back
 
@@ -22391,10 +22391,10 @@ sub api_trustdomain_del
     return $self->rpc_api('trustdomain_del',    
         [$trustcn, $cn],
         [qw(trustcn cn)],
-        [qw(unicode unicode)],
+        [qw(unicode:0 unicode:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool unicode)],
+        [qw(bool:0 unicode:0)],
     );
 }
 
@@ -22440,10 +22440,10 @@ sub api_trustdomain_disable
     return $self->rpc_api('trustdomain_disable',    
         [$trustcn, $cn],
         [qw(trustcn cn)],
-        [qw(unicode unicode)],
+        [qw(unicode:0 unicode:0)],
         \%opts,
         [qw(version)],
-        [qw(unicode)],
+        [qw(unicode:0)],
     );
 }
 
@@ -22489,10 +22489,10 @@ sub api_trustdomain_enable
     return $self->rpc_api('trustdomain_enable',    
         [$trustcn, $cn],
         [qw(trustcn cn)],
-        [qw(unicode unicode)],
+        [qw(unicode:0 unicode:0)],
         \%opts,
         [qw(version)],
-        [qw(unicode)],
+        [qw(unicode:0)],
     );
 }
 
@@ -22556,10 +22556,10 @@ sub api_trustdomain_find
     return $self->rpc_api('trustdomain_find',    
         [$trustcn, $criteria],
         [qw(trustcn criteria)],
-        [qw(unicode unicode)],
+        [qw(unicode:0 unicode:0)],
         \%opts,
         [qw(cn ipantflatname ipanttrusteddomainsid ipanttrustpartner timelimit sizelimit all raw version pkey_only)],
-        [qw(unicode unicode unicode unicode int int bool bool unicode bool)],
+        [qw(unicode:0 unicode:0 unicode:0 unicode:0 int:0 int:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -22595,13 +22595,13 @@ Modify trustdomain of the trust
 =item ipanttrustpartner: Trusted domain partner (type unicode class Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item delattr: Delete an attribute/value pair. The option will be evaluated
-last, after all sets and adds. (type unicode class Str)
+last, after all sets and adds. (arrayref of type unicode class Str)
 
 =item rights: Display the access rights of this entry (requires --all). See ipa man page for details. (type bool class Flag)
 
@@ -22628,10 +22628,10 @@ sub api_trustdomain_mod
     return $self->rpc_api('trustdomain_mod',    
         [$trustcn, $cn],
         [qw(trustcn cn)],
-        [qw(unicode unicode)],
+        [qw(unicode:0 unicode:0)],
         \%opts,
         [qw(ipantflatname ipanttrusteddomainsid ipanttrustpartner setattr addattr delattr rights trust_type all raw version)],
-        [qw(unicode unicode unicode unicode unicode unicode bool unicode bool bool unicode)],
+        [qw(unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 bool:0 unicode:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -22678,7 +22678,7 @@ Add a new user.
 
 =item krbprincipalexpiration: Kerberos principal expiration (type datetime class DateTime)
 
-=item mail: Email address (type unicode class Str)
+=item mail: Email address (arrayref of type unicode class Str)
 
 =item userpassword: Prompt to set the user password (type unicode class Password)
 
@@ -22696,13 +22696,13 @@ Add a new user.
 
 =item postalcode: ZIP (type unicode class Str)
 
-=item telephonenumber: Telephone Number (type unicode class Str)
+=item telephonenumber: Telephone Number (arrayref of type unicode class Str)
 
-=item mobile: Mobile Telephone Number (type unicode class Str)
+=item mobile: Mobile Telephone Number (arrayref of type unicode class Str)
 
-=item pager: Pager Number (type unicode class Str)
+=item pager: Pager Number (arrayref of type unicode class Str)
 
-=item facsimiletelephonenumber: Fax Number (type unicode class Str)
+=item facsimiletelephonenumber: Fax Number (arrayref of type unicode class Str)
 
 =item ou: Org. Unit (type unicode class Str)
 
@@ -22710,19 +22710,19 @@ Add a new user.
 
 =item manager: Manager (type unicode class Str)
 
-=item carlicense: Car License (type unicode class Str)
+=item carlicense: Car License (arrayref of type unicode class Str)
 
-=item ipasshpubkey: SSH public key (type unicode class Str)
+=item ipasshpubkey: SSH public key (arrayref of type unicode class Str)
 
-=item ipauserauthtype: Types of supported user authentication (type unicode class StrEnum)
+=item ipauserauthtype: Types of supported user authentication (arrayref of type unicode class StrEnum)
 
-=item userclass: User category (semantics placed on this attribute are for local interpretation) (type unicode class Str)
+=item userclass: User category (semantics placed on this attribute are for local interpretation) (arrayref of type unicode class Str)
 
 =item ipatokenradiusconfiglink: RADIUS proxy configuration (type unicode class Str)
 
 =item ipatokenradiususername: RADIUS proxy username (type unicode class Str)
 
-=item departmentnumber: Department Number (type unicode class Str)
+=item departmentnumber: Department Number (arrayref of type unicode class Str)
 
 =item employeenumber: Employee Number (type unicode class Str)
 
@@ -22730,15 +22730,15 @@ Add a new user.
 
 =item preferredlanguage: Preferred Language (type unicode class Str)
 
-=item usercertificate: Base-64 encoded server certificate (type str class Bytes)
+=item usercertificate: Base-64 encoded server certificate (arrayref of type str class Bytes)
 
 =item nsaccountlock: Account disabled (type bool class Bool)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item noprivate: Don't create user private group (type bool class Flag)
 
@@ -22765,10 +22765,10 @@ sub api_user_add
     return $self->rpc_api('user_add',    
         [$uid],
         [qw(uid)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(givenname sn cn displayname initials homedirectory gecos loginshell krbprincipalname krbprincipalexpiration mail userpassword random uidnumber gidnumber street l st postalcode telephonenumber mobile pager facsimiletelephonenumber ou title manager carlicense ipasshpubkey ipauserauthtype userclass ipatokenradiusconfiglink ipatokenradiususername departmentnumber employeenumber employeetype preferredlanguage usercertificate nsaccountlock setattr addattr noprivate all raw version no_members)],
-        [qw(unicode unicode unicode unicode unicode unicode unicode unicode unicode datetime unicode unicode bool int int unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode str bool unicode unicode bool bool bool unicode bool)],
+        [qw(unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 datetime:0 unicode:1 unicode:0 bool:0 int:0 int:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:0 unicode:0 unicode:1 unicode:0 unicode:0 unicode:0 str:1 bool:0 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -22803,7 +22803,7 @@ Add one or more certificates to the user entry
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item usercertificate: Base-64 encoded server certificate (type str class Bytes)
+=item usercertificate: Base-64 encoded server certificate (arrayref of type str class Bytes)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -22820,10 +22820,10 @@ sub api_user_add_cert
     return $self->rpc_api('user_add_cert',    
         [$uid],
         [qw(uid)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members usercertificate)],
-        [qw(bool bool unicode bool str)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 str:1)],
     );
 }
 
@@ -22841,7 +22841,7 @@ Delete a user.
 
 =over
 
-=item uid: User login (type unicode class Str)
+=item uid: User login (arrayref of type unicode class Str)
 
 =back
 
@@ -22875,10 +22875,10 @@ sub api_user_del
     return $self->rpc_api('user_del',    
         [$uid],
         [qw(uid)],
-        [qw(unicode)],
+        [qw(unicode:1)],
         \%opts,
         [qw(continue preserve preserve no_preserve version)],
-        [qw(bool bool bool bool unicode)],
+        [qw(bool:0 bool:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -22922,10 +22922,10 @@ sub api_user_disable
     return $self->rpc_api('user_disable',    
         [$uid],
         [qw(uid)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(version)],
-        [qw(unicode)],
+        [qw(unicode:0)],
     );
 }
 
@@ -22969,10 +22969,10 @@ sub api_user_enable
     return $self->rpc_api('user_enable',    
         [$uid],
         [qw(uid)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(version)],
-        [qw(unicode)],
+        [qw(unicode:0)],
     );
 }
 
@@ -23021,7 +23021,7 @@ Search for users.
 
 =item krbprincipalexpiration: Kerberos principal expiration (type datetime class DateTime)
 
-=item mail: Email address (type unicode class Str)
+=item mail: Email address (arrayref of type unicode class Str)
 
 =item userpassword: Prompt to set the user password (type unicode class Password)
 
@@ -23037,13 +23037,13 @@ Search for users.
 
 =item postalcode: ZIP (type unicode class Str)
 
-=item telephonenumber: Telephone Number (type unicode class Str)
+=item telephonenumber: Telephone Number (arrayref of type unicode class Str)
 
-=item mobile: Mobile Telephone Number (type unicode class Str)
+=item mobile: Mobile Telephone Number (arrayref of type unicode class Str)
 
-=item pager: Pager Number (type unicode class Str)
+=item pager: Pager Number (arrayref of type unicode class Str)
 
-=item facsimiletelephonenumber: Fax Number (type unicode class Str)
+=item facsimiletelephonenumber: Fax Number (arrayref of type unicode class Str)
 
 =item ou: Org. Unit (type unicode class Str)
 
@@ -23051,17 +23051,17 @@ Search for users.
 
 =item manager: Manager (type unicode class Str)
 
-=item carlicense: Car License (type unicode class Str)
+=item carlicense: Car License (arrayref of type unicode class Str)
 
-=item ipauserauthtype: Types of supported user authentication (type unicode class StrEnum)
+=item ipauserauthtype: Types of supported user authentication (arrayref of type unicode class StrEnum)
 
-=item userclass: User category (semantics placed on this attribute are for local interpretation) (type unicode class Str)
+=item userclass: User category (semantics placed on this attribute are for local interpretation) (arrayref of type unicode class Str)
 
 =item ipatokenradiusconfiglink: RADIUS proxy configuration (type unicode class Str)
 
 =item ipatokenradiususername: RADIUS proxy username (type unicode class Str)
 
-=item departmentnumber: Department Number (type unicode class Str)
+=item departmentnumber: Department Number (arrayref of type unicode class Str)
 
 =item employeenumber: Employee Number (type unicode class Str)
 
@@ -23069,7 +23069,7 @@ Search for users.
 
 =item preferredlanguage: Preferred Language (type unicode class Str)
 
-=item usercertificate: Base-64 encoded server certificate (type str class Bytes)
+=item usercertificate: Base-64 encoded server certificate (arrayref of type str class Bytes)
 
 =item nsaccountlock: Account disabled (type bool class Bool)
 
@@ -23091,25 +23091,25 @@ Search for users.
 
 =item pkey_only: Results should contain primary key attribute only ("login") (type bool class Flag)
 
-=item in_group: Search for users with these member of groups. (type unicode class Str)
+=item in_group: Search for users with these member of groups. (arrayref of type unicode class Str)
 
-=item not_in_group: Search for users without these member of groups. (type unicode class Str)
+=item not_in_group: Search for users without these member of groups. (arrayref of type unicode class Str)
 
-=item in_netgroup: Search for users with these member of netgroups. (type unicode class Str)
+=item in_netgroup: Search for users with these member of netgroups. (arrayref of type unicode class Str)
 
-=item not_in_netgroup: Search for users without these member of netgroups. (type unicode class Str)
+=item not_in_netgroup: Search for users without these member of netgroups. (arrayref of type unicode class Str)
 
-=item in_role: Search for users with these member of roles. (type unicode class Str)
+=item in_role: Search for users with these member of roles. (arrayref of type unicode class Str)
 
-=item not_in_role: Search for users without these member of roles. (type unicode class Str)
+=item not_in_role: Search for users without these member of roles. (arrayref of type unicode class Str)
 
-=item in_hbacrule: Search for users with these member of HBAC rules. (type unicode class Str)
+=item in_hbacrule: Search for users with these member of HBAC rules. (arrayref of type unicode class Str)
 
-=item not_in_hbacrule: Search for users without these member of HBAC rules. (type unicode class Str)
+=item not_in_hbacrule: Search for users without these member of HBAC rules. (arrayref of type unicode class Str)
 
-=item in_sudorule: Search for users with these member of sudo rules. (type unicode class Str)
+=item in_sudorule: Search for users with these member of sudo rules. (arrayref of type unicode class Str)
 
-=item not_in_sudorule: Search for users without these member of sudo rules. (type unicode class Str)
+=item not_in_sudorule: Search for users without these member of sudo rules. (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -23126,10 +23126,10 @@ sub api_user_find
     return $self->rpc_api('user_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(uid givenname sn cn displayname initials homedirectory gecos loginshell krbprincipalname krbprincipalexpiration mail userpassword uidnumber gidnumber street l st postalcode telephonenumber mobile pager facsimiletelephonenumber ou title manager carlicense ipauserauthtype userclass ipatokenradiusconfiglink ipatokenradiususername departmentnumber employeenumber employeetype preferredlanguage usercertificate nsaccountlock preserved timelimit sizelimit whoami all raw version no_members pkey_only in_group not_in_group in_netgroup not_in_netgroup in_role not_in_role in_hbacrule not_in_hbacrule in_sudorule not_in_sudorule)],
-        [qw(unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode datetime unicode unicode int int unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode str bool bool int int bool bool bool unicode bool bool unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode)],
+        [qw(unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 datetime:0 unicode:1 unicode:0 int:0 int:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 unicode:0 unicode:0 unicode:1 unicode:0 unicode:0 unicode:0 str:1 bool:0 bool:0 int:0 int:0 bool:0 bool:0 bool:0 unicode:0 bool:0 bool:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1 unicode:1)],
     );
 }
 
@@ -23174,7 +23174,7 @@ Modify a user.
 
 =item krbprincipalexpiration: Kerberos principal expiration (type datetime class DateTime)
 
-=item mail: Email address (type unicode class Str)
+=item mail: Email address (arrayref of type unicode class Str)
 
 =item userpassword: Prompt to set the user password (type unicode class Password)
 
@@ -23192,13 +23192,13 @@ Modify a user.
 
 =item postalcode: ZIP (type unicode class Str)
 
-=item telephonenumber: Telephone Number (type unicode class Str)
+=item telephonenumber: Telephone Number (arrayref of type unicode class Str)
 
-=item mobile: Mobile Telephone Number (type unicode class Str)
+=item mobile: Mobile Telephone Number (arrayref of type unicode class Str)
 
-=item pager: Pager Number (type unicode class Str)
+=item pager: Pager Number (arrayref of type unicode class Str)
 
-=item facsimiletelephonenumber: Fax Number (type unicode class Str)
+=item facsimiletelephonenumber: Fax Number (arrayref of type unicode class Str)
 
 =item ou: Org. Unit (type unicode class Str)
 
@@ -23206,19 +23206,19 @@ Modify a user.
 
 =item manager: Manager (type unicode class Str)
 
-=item carlicense: Car License (type unicode class Str)
+=item carlicense: Car License (arrayref of type unicode class Str)
 
-=item ipasshpubkey: SSH public key (type unicode class Str)
+=item ipasshpubkey: SSH public key (arrayref of type unicode class Str)
 
-=item ipauserauthtype: Types of supported user authentication (type unicode class StrEnum)
+=item ipauserauthtype: Types of supported user authentication (arrayref of type unicode class StrEnum)
 
-=item userclass: User category (semantics placed on this attribute are for local interpretation) (type unicode class Str)
+=item userclass: User category (semantics placed on this attribute are for local interpretation) (arrayref of type unicode class Str)
 
 =item ipatokenradiusconfiglink: RADIUS proxy configuration (type unicode class Str)
 
 =item ipatokenradiususername: RADIUS proxy username (type unicode class Str)
 
-=item departmentnumber: Department Number (type unicode class Str)
+=item departmentnumber: Department Number (arrayref of type unicode class Str)
 
 =item employeenumber: Employee Number (type unicode class Str)
 
@@ -23226,18 +23226,18 @@ Modify a user.
 
 =item preferredlanguage: Preferred Language (type unicode class Str)
 
-=item usercertificate: Base-64 encoded server certificate (type str class Bytes)
+=item usercertificate: Base-64 encoded server certificate (arrayref of type str class Bytes)
 
 =item nsaccountlock: Account disabled (type bool class Bool)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item delattr: Delete an attribute/value pair. The option will be evaluated
-last, after all sets and adds. (type unicode class Str)
+last, after all sets and adds. (arrayref of type unicode class Str)
 
 =item rights: Display the access rights of this entry (requires --all). See ipa man page for details. (type bool class Flag)
 
@@ -23266,10 +23266,10 @@ sub api_user_mod
     return $self->rpc_api('user_mod',    
         [$uid],
         [qw(uid)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(givenname sn cn displayname initials homedirectory gecos loginshell krbprincipalexpiration mail userpassword random uidnumber gidnumber street l st postalcode telephonenumber mobile pager facsimiletelephonenumber ou title manager carlicense ipasshpubkey ipauserauthtype userclass ipatokenradiusconfiglink ipatokenradiususername departmentnumber employeenumber employeetype preferredlanguage usercertificate nsaccountlock setattr addattr delattr rights all raw version no_members rename)],
-        [qw(unicode unicode unicode unicode unicode unicode unicode unicode datetime unicode unicode bool int int unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode unicode str bool unicode unicode unicode bool bool bool unicode bool unicode)],
+        [qw(unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 datetime:0 unicode:1 unicode:0 bool:0 int:0 int:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:0 unicode:0 unicode:0 unicode:1 unicode:1 unicode:1 unicode:1 unicode:0 unicode:0 unicode:1 unicode:0 unicode:0 unicode:0 str:1 bool:0 unicode:1 unicode:1 unicode:1 bool:0 bool:0 bool:0 unicode:0 bool:0 unicode:0)],
     );
 }
 
@@ -23304,7 +23304,7 @@ Remove one or more certificates to the user entry
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item usercertificate: Base-64 encoded server certificate (type str class Bytes)
+=item usercertificate: Base-64 encoded server certificate (arrayref of type str class Bytes)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -23321,10 +23321,10 @@ sub api_user_remove_cert
     return $self->rpc_api('user_remove_cert',    
         [$uid],
         [qw(uid)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members usercertificate)],
-        [qw(bool bool unicode bool str)],
+        [qw(bool:0 bool:0 unicode:0 bool:0 str:1)],
     );
 }
 
@@ -23378,10 +23378,10 @@ sub api_user_show
     return $self->rpc_api('user_show',    
         [$uid],
         [qw(uid)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(rights out all raw version no_members)],
-        [qw(bool unicode bool bool unicode bool)],
+        [qw(bool:0 unicode:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -23399,7 +23399,7 @@ Move deleted user into staged area
 
 =over
 
-=item uid: User login (type unicode class Str)
+=item uid: User login (arrayref of type unicode class Str)
 
 =back
 
@@ -23427,10 +23427,10 @@ sub api_user_stage
     return $self->rpc_api('user_stage',    
         [$uid],
         [qw(uid)],
-        [qw(unicode)],
+        [qw(unicode:1)],
         \%opts,
         [qw(continue version)],
-        [qw(bool unicode)],
+        [qw(bool:0 unicode:0)],
     );
 }
 
@@ -23500,10 +23500,10 @@ sub api_user_status
     return $self->rpc_api('user_status',    
         [$uid],
         [qw(uid)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(all raw version no_members)],
-        [qw(bool bool unicode bool)],
+        [qw(bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -23547,10 +23547,10 @@ sub api_user_undel
     return $self->rpc_api('user_undel',    
         [$uid],
         [qw(uid)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(version)],
-        [qw(unicode)],
+        [qw(unicode:0)],
     );
 }
 
@@ -23600,10 +23600,10 @@ sub api_user_unlock
     return $self->rpc_api('user_unlock',    
         [$uid],
         [qw(uid)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(version)],
-        [qw(unicode)],
+        [qw(unicode:0)],
     );
 }
 
@@ -23631,10 +23631,10 @@ Create a new vault.
 =over
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item service: Service name of the service vault (type unicode class Str)
 
@@ -23675,10 +23675,10 @@ sub api_vault_add
     return $self->rpc_api('vault_add',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(setattr addattr service shared username description ipavaulttype password password_file ipavaultpublickey public_key_file all raw version)],
-        [qw(unicode unicode unicode bool unicode unicode unicode unicode unicode str unicode bool bool unicode)],
+        [qw(unicode:1 unicode:1 unicode:0 bool:0 unicode:0 unicode:0 unicode:0 unicode:0 unicode:0 str:0 unicode:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -23742,10 +23742,10 @@ sub api_vault_add_internal
     return $self->rpc_api('vault_add_internal',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(description ipavaulttype ipavaultsalt ipavaultpublickey service shared username all raw version no_members)],
-        [qw(unicode unicode str str unicode bool unicode bool bool unicode bool)],
+        [qw(unicode:0 unicode:0 str:0 str:0 unicode:0 bool:0 unicode:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -23786,11 +23786,11 @@ Add members to a vault.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item user: users to add (type unicode class Str)
+=item user: users to add (arrayref of type unicode class Str)
 
-=item group: groups to add (type unicode class Str)
+=item group: groups to add (arrayref of type unicode class Str)
 
-=item services: services to add (type unicode class Str)
+=item services: services to add (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -23807,10 +23807,10 @@ sub api_vault_add_member
     return $self->rpc_api('vault_add_member',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(service shared username all raw version no_members user group services)],
-        [qw(unicode bool unicode bool bool unicode bool unicode unicode unicode)],
+        [qw(unicode:0 bool:0 unicode:0 bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1 unicode:1)],
     );
 }
 
@@ -23851,11 +23851,11 @@ Add owners to a vault.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item user: users to add (type unicode class Str)
+=item user: users to add (arrayref of type unicode class Str)
 
-=item group: groups to add (type unicode class Str)
+=item group: groups to add (arrayref of type unicode class Str)
 
-=item services: services to add (type unicode class Str)
+=item services: services to add (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -23872,10 +23872,10 @@ sub api_vault_add_owner
     return $self->rpc_api('vault_add_owner',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(service shared username all raw version no_members user group services)],
-        [qw(unicode bool unicode bool bool unicode bool unicode unicode unicode)],
+        [qw(unicode:0 bool:0 unicode:0 bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1 unicode:1)],
     );
 }
 
@@ -23939,10 +23939,10 @@ sub api_vault_archive
     return $self->rpc_api('vault_archive',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(service shared username data in password password_file override_password all raw version)],
-        [qw(unicode bool unicode str unicode unicode unicode bool bool bool unicode)],
+        [qw(unicode:0 bool:0 unicode:0 str:0 unicode:0 unicode:0 unicode:0 bool:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -24002,10 +24002,10 @@ sub api_vault_archive_internal
     return $self->rpc_api('vault_archive_internal',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(service shared username session_key vault_data nonce all raw version)],
-        [qw(unicode bool unicode str str str bool bool unicode)],
+        [qw(unicode:0 bool:0 unicode:0 str:0 str:0 str:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -24023,7 +24023,7 @@ Delete a vault.
 
 =over
 
-=item cn: Vault name (type unicode class Str)
+=item cn: Vault name (arrayref of type unicode class Str)
 
 =back
 
@@ -24057,10 +24057,10 @@ sub api_vault_del
     return $self->rpc_api('vault_del',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:1)],
         \%opts,
         [qw(continue service shared username version)],
-        [qw(bool unicode bool unicode unicode)],
+        [qw(bool:0 unicode:0 bool:0 unicode:0 unicode:0)],
     );
 }
 
@@ -24132,10 +24132,10 @@ sub api_vault_find
     return $self->rpc_api('vault_find',    
         [$criteria],
         [qw(criteria)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(cn description ipavaulttype timelimit sizelimit service shared username services users all raw version no_members pkey_only)],
-        [qw(unicode unicode unicode int int unicode bool unicode bool bool bool bool unicode bool bool)],
+        [qw(unicode:0 unicode:0 unicode:0 int:0 int:0 unicode:0 bool:0 unicode:0 bool:0 bool:0 bool:0 bool:0 unicode:0 bool:0 bool:0)],
     );
 }
 
@@ -24213,10 +24213,10 @@ sub api_vault_mod
     return $self->rpc_api('vault_mod',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(service shared username description ipavaulttype ipavaultsalt change_password old_password old_password_file new_password new_password_file private_key private_key_file ipavaultpublickey public_key_file all raw version)],
-        [qw(unicode bool unicode unicode unicode str bool unicode unicode unicode unicode str unicode str unicode bool bool unicode)],
+        [qw(unicode:0 bool:0 unicode:0 unicode:0 unicode:0 str:0 bool:0 unicode:0 unicode:0 unicode:0 unicode:0 str:0 unicode:0 str:0 unicode:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -24252,13 +24252,13 @@ None
 =item ipavaultpublickey: Vault public key (type str class Bytes)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
-For multi-valued attributes, the command replaces the values already present. (type unicode class Str)
+For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
 
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
-must be part of the schema. (type unicode class Str)
+must be part of the schema. (arrayref of type unicode class Str)
 
 =item delattr: Delete an attribute/value pair. The option will be evaluated
-last, after all sets and adds. (type unicode class Str)
+last, after all sets and adds. (arrayref of type unicode class Str)
 
 =item rights: Display the access rights of this entry (requires --all). See ipa man page for details. (type bool class Flag)
 
@@ -24291,10 +24291,10 @@ sub api_vault_mod_internal
     return $self->rpc_api('vault_mod_internal',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(description ipavaulttype ipavaultsalt ipavaultpublickey setattr addattr delattr rights service shared username all raw version no_members)],
-        [qw(unicode unicode str str unicode unicode unicode bool unicode bool unicode bool bool unicode bool)],
+        [qw(unicode:0 unicode:0 str:0 str:0 unicode:1 unicode:1 unicode:1 bool:0 unicode:0 bool:0 unicode:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -24335,11 +24335,11 @@ Remove members from a vault.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item user: users to remove (type unicode class Str)
+=item user: users to remove (arrayref of type unicode class Str)
 
-=item group: groups to remove (type unicode class Str)
+=item group: groups to remove (arrayref of type unicode class Str)
 
-=item services: services to remove (type unicode class Str)
+=item services: services to remove (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -24356,10 +24356,10 @@ sub api_vault_remove_member
     return $self->rpc_api('vault_remove_member',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(service shared username all raw version no_members user group services)],
-        [qw(unicode bool unicode bool bool unicode bool unicode unicode unicode)],
+        [qw(unicode:0 bool:0 unicode:0 bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1 unicode:1)],
     );
 }
 
@@ -24400,11 +24400,11 @@ Remove owners from a vault.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item user: users to remove (type unicode class Str)
+=item user: users to remove (arrayref of type unicode class Str)
 
-=item group: groups to remove (type unicode class Str)
+=item group: groups to remove (arrayref of type unicode class Str)
 
-=item services: services to remove (type unicode class Str)
+=item services: services to remove (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -24421,10 +24421,10 @@ sub api_vault_remove_owner
     return $self->rpc_api('vault_remove_owner',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(service shared username all raw version no_members user group services)],
-        [qw(unicode bool unicode bool bool unicode bool unicode unicode unicode)],
+        [qw(unicode:0 bool:0 unicode:0 bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1 unicode:1)],
     );
 }
 
@@ -24488,10 +24488,10 @@ sub api_vault_retrieve
     return $self->rpc_api('vault_retrieve',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(service shared username out password password_file private_key private_key_file all raw version)],
-        [qw(unicode bool unicode unicode unicode unicode str unicode bool bool unicode)],
+        [qw(unicode:0 bool:0 unicode:0 unicode:0 unicode:0 unicode:0 str:0 unicode:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -24547,10 +24547,10 @@ sub api_vault_retrieve_internal
     return $self->rpc_api('vault_retrieve_internal',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(service shared username session_key all raw version)],
-        [qw(unicode bool unicode str bool bool unicode)],
+        [qw(unicode:0 bool:0 unicode:0 str:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -24608,10 +24608,10 @@ sub api_vault_show
     return $self->rpc_api('vault_show',    
         [$cn],
         [qw(cn)],
-        [qw(unicode)],
+        [qw(unicode:0)],
         \%opts,
         [qw(rights service shared username all raw version no_members)],
-        [qw(bool unicode bool unicode bool bool unicode bool)],
+        [qw(bool:0 unicode:0 bool:0 unicode:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
@@ -24657,7 +24657,7 @@ sub api_vaultconfig_show
         [qw()],
         \%opts,
         [qw(transport_out all raw version)],
-        [qw(unicode bool bool unicode)],
+        [qw(unicode:0 bool:0 bool:0 unicode:0)],
     );
 }
 
@@ -24691,11 +24691,11 @@ Add owners to a vault container.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item user: users to add (type unicode class Str)
+=item user: users to add (arrayref of type unicode class Str)
 
-=item group: groups to add (type unicode class Str)
+=item group: groups to add (arrayref of type unicode class Str)
 
-=item services: services to add (type unicode class Str)
+=item services: services to add (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -24715,7 +24715,7 @@ sub api_vaultcontainer_add_owner
         [qw()],
         \%opts,
         [qw(service shared username all raw version no_members user group services)],
-        [qw(unicode bool unicode bool bool unicode bool unicode unicode unicode)],
+        [qw(unicode:0 bool:0 unicode:0 bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1 unicode:1)],
     );
 }
 
@@ -24763,7 +24763,7 @@ sub api_vaultcontainer_del
         [qw()],
         \%opts,
         [qw(continue service shared username version)],
-        [qw(bool unicode bool unicode unicode)],
+        [qw(bool:0 unicode:0 bool:0 unicode:0 unicode:0)],
     );
 }
 
@@ -24797,11 +24797,11 @@ Remove owners from a vault container.
 
 =item no_members: Suppress processing of membership attributes. (type bool class Flag)
 
-=item user: users to remove (type unicode class Str)
+=item user: users to remove (arrayref of type unicode class Str)
 
-=item group: groups to remove (type unicode class Str)
+=item group: groups to remove (arrayref of type unicode class Str)
 
-=item services: services to remove (type unicode class Str)
+=item services: services to remove (arrayref of type unicode class Str)
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
 
@@ -24821,7 +24821,7 @@ sub api_vaultcontainer_remove_owner
         [qw()],
         \%opts,
         [qw(service shared username all raw version no_members user group services)],
-        [qw(unicode bool unicode bool bool unicode bool unicode unicode unicode)],
+        [qw(unicode:0 bool:0 unicode:0 bool:0 bool:0 unicode:0 bool:0 unicode:1 unicode:1 unicode:1)],
     );
 }
 
@@ -24875,7 +24875,7 @@ sub api_vaultcontainer_show
         [qw()],
         \%opts,
         [qw(rights service shared username all raw version no_members)],
-        [qw(bool unicode bool unicode bool bool unicode bool)],
+        [qw(bool:0 unicode:0 bool:0 unicode:0 bool:0 bool:0 unicode:0 bool:0)],
     );
 }
 
