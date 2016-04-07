@@ -24,7 +24,7 @@ No required arguments
 
 =over
 [%      FOREACH opt IN check_hash(details.takes_options) %]
-=item [% opt.name %]: [% opt.doc %] ([% opt.multivalue ? 'arrayref of ' : ''  %]type [% opt.type %] class [% opt.class %])
+=item [% opt.name %]: [% opt.doc %] ([% (opt.required && ! opt.autofill) ? 'mandatory ' : '' %][% opt.multivalue ? 'arrayref of ' : ''  %]type [% opt.type %] class [% opt.class %])
 [%      END -%]
 
 =item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
