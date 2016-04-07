@@ -48,7 +48,7 @@ Wrapper method for aci_add API
 
 =item group: User group ACI grants access to (type unicode class Str)
 
-=item permissions: Permissions to grant(read, write, add, delete, all) (arrayref of type unicode class Str)
+=item permissions: Permissions to grant(read, write, add, delete, all) (mandatory arrayref of type unicode class Str)
 
 =item attrs: Attributes (arrayref of type unicode class Str)
 
@@ -64,7 +64,7 @@ Wrapper method for aci_add API
 
 =item selfaci: Apply ACI to your own entry (self) (type bool class Flag)
 
-=item aciprefix: Prefix used to distinguish ACI types (permission, delegation, selfservice, none) (type unicode class StrEnum)
+=item aciprefix: Prefix used to distinguish ACI types (permission, delegation, selfservice, none) (mandatory type unicode class StrEnum)
 
 =item test: Test the ACI syntax but don't write anything (type bool class Flag)
 
@@ -121,7 +121,7 @@ Wrapper method for aci_del API
 
 =over
 
-=item aciprefix: Prefix used to distinguish ACI types (permission, delegation, selfservice, none) (type unicode class StrEnum)
+=item aciprefix: Prefix used to distinguish ACI types (permission, delegation, selfservice, none) (mandatory type unicode class StrEnum)
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
@@ -287,7 +287,7 @@ Wrapper method for aci_mod API
 
 =item selfaci: Apply ACI to your own entry (self) (type bool class Flag)
 
-=item aciprefix: Prefix used to distinguish ACI types (permission, delegation, selfservice, none) (type unicode class StrEnum)
+=item aciprefix: Prefix used to distinguish ACI types (permission, delegation, selfservice, none) (mandatory type unicode class StrEnum)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -362,9 +362,9 @@ Wrapper method for aci_rename API
 
 =item selfaci: Apply ACI to your own entry (self) (type bool class Flag)
 
-=item aciprefix: Prefix used to distinguish ACI types (permission, delegation, selfservice, none) (type unicode class StrEnum)
+=item aciprefix: Prefix used to distinguish ACI types (permission, delegation, selfservice, none) (mandatory type unicode class StrEnum)
 
-=item newname: New ACI name (type unicode class Str)
+=item newname: New ACI name (mandatory type unicode class Str)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -419,7 +419,7 @@ Wrapper method for aci_show API
 
 =over
 
-=item aciprefix: Prefix used to distinguish ACI types (permission, delegation, selfservice, none) (type unicode class StrEnum)
+=item aciprefix: Prefix used to distinguish ACI types (permission, delegation, selfservice, none) (mandatory type unicode class StrEnum)
 
 =item location: Location of the ACI (type DN class DNParam)
 
@@ -524,7 +524,7 @@ For multi-valued attributes, the command replaces the values already present. (a
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
 must be part of the schema. (arrayref of type unicode class Str)
 
-=item type: Grouping to which the rule applies (type unicode class StrEnum)
+=item type: Grouping to which the rule applies (mandatory type unicode class StrEnum)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -585,9 +585,9 @@ Wrapper method for automember_add_condition API
 
 =item automemberexclusiveregex: Exclusive Regex (arrayref of type unicode class Str)
 
-=item key: Attribute to filter via regex. For example fqdn for a host, or manager for a user (type unicode class Str)
+=item key: Attribute to filter via regex. For example fqdn for a host, or manager for a user (mandatory type unicode class Str)
 
-=item type: Grouping to which the rule applies (type unicode class StrEnum)
+=item type: Grouping to which the rule applies (mandatory type unicode class StrEnum)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -637,7 +637,7 @@ Wrapper method for automember_default_group_remove API
 
 =item description: A description of this auto member rule (type unicode class Str)
 
-=item type: Grouping to which the rule applies (type unicode class StrEnum)
+=item type: Grouping to which the rule applies (mandatory type unicode class StrEnum)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -687,9 +687,9 @@ Wrapper method for automember_default_group_set API
 
 =item description: A description of this auto member rule (type unicode class Str)
 
-=item automemberdefaultgroup: Default (fallback) group for entries to land (type unicode class Str)
+=item automemberdefaultgroup: Default (fallback) group for entries to land (mandatory type unicode class Str)
 
-=item type: Grouping to which the rule applies (type unicode class StrEnum)
+=item type: Grouping to which the rule applies (mandatory type unicode class StrEnum)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -737,7 +737,7 @@ Wrapper method for automember_default_group_show API
 
 =over
 
-=item type: Grouping to which the rule applies (type unicode class StrEnum)
+=item type: Grouping to which the rule applies (mandatory type unicode class StrEnum)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -792,7 +792,7 @@ Wrapper method for automember_del API
 
 =over
 
-=item type: Grouping to which the rule applies (type unicode class StrEnum)
+=item type: Grouping to which the rule applies (mandatory type unicode class StrEnum)
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
@@ -845,7 +845,7 @@ Wrapper method for automember_find API
 
 =item description: A description of this auto member rule (type unicode class Str)
 
-=item type: Grouping to which the rule applies (type unicode class StrEnum)
+=item type: Grouping to which the rule applies (mandatory type unicode class StrEnum)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -913,7 +913,7 @@ last, after all sets and adds. (arrayref of type unicode class Str)
 
 =item rights: Display the access rights of this entry (requires --all). See ipa man page for details. (type bool class Flag)
 
-=item type: Grouping to which the rule applies (type unicode class StrEnum)
+=item type: Grouping to which the rule applies (mandatory type unicode class StrEnum)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -1026,9 +1026,9 @@ Wrapper method for automember_remove_condition API
 
 =item automemberexclusiveregex: Exclusive Regex (arrayref of type unicode class Str)
 
-=item key: Attribute to filter via regex. For example fqdn for a host, or manager for a user (type unicode class Str)
+=item key: Attribute to filter via regex. For example fqdn for a host, or manager for a user (mandatory type unicode class Str)
 
-=item type: Grouping to which the rule applies (type unicode class StrEnum)
+=item type: Grouping to which the rule applies (mandatory type unicode class StrEnum)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -1083,7 +1083,7 @@ Wrapper method for automember_show API
 
 =over
 
-=item type: Grouping to which the rule applies (type unicode class StrEnum)
+=item type: Grouping to which the rule applies (mandatory type unicode class StrEnum)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -1138,9 +1138,9 @@ Create a new automount key.
 
 =over
 
-=item automountkey: Automount key name. (type unicode class IA5Str)
+=item automountkey: Automount key name. (mandatory type unicode class IA5Str)
 
-=item automountinformation: Mount information (type unicode class IA5Str)
+=item automountinformation: Mount information (mandatory type unicode class IA5Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
 For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
@@ -1203,7 +1203,7 @@ Delete an automount key.
 
 =item continue: Continuous mode: Don't stop on errors. (type bool class Flag)
 
-=item automountkey: Automount key name. (type unicode class IA5Str)
+=item automountkey: Automount key name. (mandatory type unicode class IA5Str)
 
 =item automountinformation: Mount information (type unicode class IA5Str)
 
@@ -1319,7 +1319,7 @@ Modify an automount key.
 
 =over
 
-=item automountkey: Automount key name. (type unicode class IA5Str)
+=item automountkey: Automount key name. (mandatory type unicode class IA5Str)
 
 =item automountinformation: Mount information (type unicode class IA5Str)
 
@@ -1393,7 +1393,7 @@ Display an automount key.
 
 =item rights: Display the access rights of this entry (requires --all). See ipa man page for details. (type bool class Flag)
 
-=item automountkey: Automount key name. (type unicode class IA5Str)
+=item automountkey: Automount key name. (mandatory type unicode class IA5Str)
 
 =item automountinformation: Mount information (type unicode class IA5Str)
 
@@ -1835,7 +1835,7 @@ For multi-valued attributes, the command replaces the values already present. (a
 =item addattr: Add an attribute/value pair. Format is attr=value. The attribute
 must be part of the schema. (arrayref of type unicode class Str)
 
-=item key: Mount point (type unicode class Str)
+=item key: Mount point (mandatory type unicode class Str)
 
 =item parentmap: Name of parent automount map (default: auto.master). (type unicode class Str)
 
@@ -3199,7 +3199,7 @@ Submit a certificate signing request.
 
 =over
 
-=item principal: Principal for this certificate (e.g. HTTP/test.example.com) (type unicode class Str)
+=item principal: Principal for this certificate (e.g. HTTP/test.example.com) (mandatory type unicode class Str)
 
 =item request_type: <request_type> (type unicode class Str)
 
@@ -3511,11 +3511,11 @@ Import a Certificate Profile.
 
 =over
 
-=item description: Brief description of this profile (type unicode class Str)
+=item description: Brief description of this profile (mandatory type unicode class Str)
 
-=item ipacertprofilestoreissued: Whether to store certs issued using this profile (type bool class Bool)
+=item ipacertprofilestoreissued: Whether to store certs issued using this profile (mandatory type bool class Bool)
 
-=item file: Filename of a raw profile. The XML format is not supported. (type unicode class File)
+=item file: Filename of a raw profile. The XML format is not supported. (mandatory type unicode class File)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -3868,9 +3868,9 @@ None
 
 =over
 
-=item krbpwdpolicyreference: <krbpwdpolicyreference> (type DN class DNParam)
+=item krbpwdpolicyreference: <krbpwdpolicyreference> (mandatory type DN class DNParam)
 
-=item cospriority: <cospriority> (type int class Int)
+=item cospriority: <cospriority> (mandatory type int class Int)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
 For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
@@ -4162,11 +4162,11 @@ Add a new delegation.
 
 =item permissions: Permissions to grant (read, write). Default is write. (arrayref of type unicode class Str)
 
-=item attrs: Attributes to which the delegation applies (arrayref of type unicode class Str)
+=item attrs: Attributes to which the delegation applies (mandatory arrayref of type unicode class Str)
 
-=item memberof: User group to apply delegation to (type unicode class Str)
+=item memberof: User group to apply delegation to (mandatory type unicode class Str)
 
-=item group: User group ACI grants access to (type unicode class Str)
+=item group: User group ACI grants access to (mandatory type unicode class Str)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -8784,13 +8784,13 @@ Simulate use of Host-based access controls
 
 =over
 
-=item user: User name (type unicode class Str)
+=item user: User name (mandatory type unicode class Str)
 
 =item sourcehost: <sourcehost> (type object class DeprecatedParam)
 
-=item targethost: Target host (type unicode class Str)
+=item targethost: Target host (mandatory type unicode class Str)
 
-=item service: Service (type unicode class Str)
+=item service: Service (mandatory type unicode class Str)
 
 =item rules: Rules to test. If not specified, --enabled is assumed (arrayref of type unicode class Str)
 
@@ -10949,9 +10949,9 @@ modified to match the new range.
 
 =over
 
-=item ipabaseid: First Posix ID of the range (type int class Int)
+=item ipabaseid: First Posix ID of the range (mandatory type int class Int)
 
-=item ipaidrangesize: Number of IDs in the range (type int class Int)
+=item ipaidrangesize: Number of IDs in the range (mandatory type int class Int)
 
 =item ipabaserid: First RID of the corresponding RID range (type int class Int)
 
@@ -13196,13 +13196,13 @@ Synchronize an OTP token.
 
 =over
 
-=item user: User ID (type unicode class Str)
+=item user: User ID (mandatory type unicode class Str)
 
-=item password: Password (type unicode class Password)
+=item password: Password (mandatory type unicode class Password)
 
-=item first_code: First Code (type unicode class Password)
+=item first_code: First Code (mandatory type unicode class Password)
 
-=item second_code: Second Code (type unicode class Password)
+=item second_code: Second Code (mandatory type unicode class Password)
 
 =item version: Client version. Used to determine if server will accept request. (type unicode class Str)
 
@@ -13448,7 +13448,7 @@ Add a system permission without an ACI (internal command)
 
 =over
 
-=item ipapermissiontype: Permission flags (arrayref of type unicode class Str)
+=item ipapermissiontype: Permission flags (mandatory arrayref of type unicode class Str)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -14473,7 +14473,7 @@ Add a new group password policy.
 
 =item krbpwdminlength: Minimum length of password (type int class Int)
 
-=item cospriority: Priority of the policy (higher number means lower priority (type int class Int)
+=item cospriority: Priority of the policy (higher number means lower priority (mandatory type int class Int)
 
 =item krbpwdmaxfailure: Consecutive failures before lockout (type int class Int)
 
@@ -14801,9 +14801,9 @@ Add a new RADIUS proxy server.
 
 =item description: A description of this RADIUS proxy server (type unicode class Str)
 
-=item ipatokenradiusserver: The hostname or IP (with or without port) (arrayref of type unicode class Str)
+=item ipatokenradiusserver: The hostname or IP (with or without port) (mandatory arrayref of type unicode class Str)
 
-=item ipatokenradiussecret: The secret used to encrypt data (type unicode class Password)
+=item ipatokenradiussecret: The secret used to encrypt data (mandatory type unicode class Password)
 
 =item ipatokenradiustimeout: The total timeout across all retries (in seconds) (type int class Int)
 
@@ -15760,7 +15760,7 @@ Add a new self-service permission.
 
 =item permissions: Permissions to grant (read, write). Default is write. (arrayref of type unicode class Str)
 
-=item attrs: Attributes to which the permission applies. (arrayref of type unicode class Str)
+=item attrs: Attributes to which the permission applies. (mandatory arrayref of type unicode class Str)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -16025,7 +16025,7 @@ Create a new SELinux User Map.
 
 =over
 
-=item ipaselinuxuser: SELinux User (type unicode class Str)
+=item ipaselinuxuser: SELinux User (mandatory type unicode class Str)
 
 =item seealso: HBAC Rule that defines the users, groups and hostgroups (type unicode class Str)
 
@@ -18566,9 +18566,9 @@ Add a new stage user.
 
 =over
 
-=item givenname: First name (type unicode class Str)
+=item givenname: First name (mandatory type unicode class Str)
 
-=item sn: Last name (type unicode class Str)
+=item sn: Last name (mandatory type unicode class Str)
 
 =item cn: Full name (type unicode class Str)
 
@@ -20048,7 +20048,7 @@ Add an option to the Sudo Rule.
 
 =over
 
-=item ipasudoopt: Sudo Option (type unicode class Str)
+=item ipasudoopt: Sudo Option (mandatory type unicode class Str)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -20761,7 +20761,7 @@ Remove an option from Sudo Rule.
 
 =over
 
-=item ipasudoopt: Sudo Option (type unicode class Str)
+=item ipasudoopt: Sudo Option (mandatory type unicode class Str)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -21042,11 +21042,11 @@ Add a new segment.
 
 =over
 
-=item iparepltoposegmentleftnode: Left replication node - an IPA server (type unicode class Str)
+=item iparepltoposegmentleftnode: Left replication node - an IPA server (mandatory type unicode class Str)
 
-=item iparepltoposegmentrightnode: Right replication node - an IPA server (type unicode class Str)
+=item iparepltoposegmentrightnode: Right replication node - an IPA server (mandatory type unicode class Str)
 
-=item iparepltoposegmentdirection: Direction of replication between left and right replication node (type unicode class StrEnum)
+=item iparepltoposegmentdirection: Direction of replication between left and right replication node (mandatory type unicode class StrEnum)
 
 =item nsds5replicastripattrs: A space separated list of attributes which are removed from replication updates. (type unicode class Str)
 
@@ -21427,7 +21427,7 @@ Add a new topology suffix to be managed.
 
 =over
 
-=item iparepltopoconfroot: LDAP suffix to be managed (type unicode class Str)
+=item iparepltopoconfroot: LDAP suffix to be managed (mandatory type unicode class Str)
 
 =item setattr: Set an attribute to a name/value pair. Format is attr=value.
 For multi-valued attributes, the command replaces the values already present. (arrayref of type unicode class Str)
@@ -22090,7 +22090,7 @@ Resolve security identifiers of users and groups in trusted domains
 
 =over
 
-=item sids: Security Identifiers (SIDs) (arrayref of type unicode class Str)
+=item sids: Security Identifiers (SIDs) (mandatory arrayref of type unicode class Str)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -22658,9 +22658,9 @@ Add a new user.
 
 =over
 
-=item givenname: First name (type unicode class Str)
+=item givenname: First name (mandatory type unicode class Str)
 
-=item sn: Last name (type unicode class Str)
+=item sn: Last name (mandatory type unicode class Str)
 
 =item cn: Full name (type unicode class Str)
 
@@ -23975,11 +23975,11 @@ None
 
 =item username: Username of the user vault (type unicode class Str)
 
-=item session_key: Session key wrapped with transport certificate (type str class Bytes)
+=item session_key: Session key wrapped with transport certificate (mandatory type str class Bytes)
 
-=item vault_data: Vault data encrypted with session key (type str class Bytes)
+=item vault_data: Vault data encrypted with session key (mandatory type str class Bytes)
 
-=item nonce: Nonce (type str class Bytes)
+=item nonce: Nonce (mandatory type str class Bytes)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
@@ -24524,7 +24524,7 @@ None
 
 =item username: Username of the user vault (type unicode class Str)
 
-=item session_key: Session key wrapped with transport certificate (type str class Bytes)
+=item session_key: Session key wrapped with transport certificate (mandatory type str class Bytes)
 
 =item all: Retrieve and print all attributes from the server. Affects command output. (type bool class Flag)
 
