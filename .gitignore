@@ -20,3 +20,6 @@ nytprof.out
 /_eumm/
 *~
 Net-FreeIPA*
+
+# Vim
+.*.sw*
