@@ -16,7 +16,12 @@ use Readonly;
 # Generated API data using Net::FreeIPA::API::cache
 # All commands are JSON encoded.
 
-[% FOREACH command IN commands.pairs %]
-Readonly my \$[% command.key %] => '[% encode_json(command.value) %]';
-[% END %]
+Readonly our %API_DATA => {
+[% FILTER indent -%]
+[%-      FOREACH command IN commands.pairs %]
+[% command.key %] => '[% encode_json(command.value) %]',
+[%      END -%]
+[%- END %]
+};
+
 1;

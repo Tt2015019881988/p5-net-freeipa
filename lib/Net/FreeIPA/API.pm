@@ -95,33 +95,38 @@ Retrieve the command data for command C<name>.
 (For now, the data is loaded from the C<Net::FreeIPA::API::Data> that is
 distributed with this package and is a fixed version only).
 
-Returns the cache command hashref on SUCCESS, undef otherwise.
-If the command is already in cache, return the cached version.
+Returns the cache command hashref and undef errormessage on SUCCESS,
+an emptyhashref and actual errormessage otherwise.
+If the command is already in cache, return the cached version
+(and undef errormessage).
 
 =cut
 
 sub retrieve
 {
-    my ($name);
+    my ($name) = @_;
 
     # Return already cached data
-    return $cmd_cache->{$name} if defined($cmd_cache->{$name});
+    return ($cmd_cache->{$name}, undef) if defined($cmd_cache->{$name});
 
     # Get the JSON data from Net::FreeIPA::API::Data
     # TODO: get the JSON data from the JSON api
 
-    my ($data);
-    my $varname = "Net::FreeIPA::API::Data::$name";
+    my $data;
+    my $json = $Net::FreeIPA::API::Data::API_DATA{$name};
+    if (! $json) {
+        return {}, "retrieve name $name failed: no JSON data";
+    }
+
     local $@;
     eval {
-        my $json = $varname;
         $data = decode_json($json);
     };
 
-    if($@) {
-        return {}, "retrieve failed with $@";
+    if ($@) {
+        return {}, "retrieve name $name failed decode_json with $@";
     } else {
-        return $data, undef;
+        return cache($data), undef;
     };
 }
 
