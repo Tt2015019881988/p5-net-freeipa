@@ -3,7 +3,7 @@
 # Do not modify.
 #
 
-package Net::FreeIPA::[% module_name %];
+package Net::FreeIPA::API::[% module_name %];
 
 use strict;
 use warnings;
@@ -11,22 +11,12 @@ use warnings;
 use version;
 our \$VERSION = version->new("v[% version %]");
 
-=pod
+use Readonly;
 
-=head2 Generated API wrapper methods
-
-=over
-
-=cut
+# Generated API data using Net::FreeIPA::API::cache
+# All commands are JSON encoded.
 
 [% FOREACH command IN commands.pairs %]
-[%      INCLUDE command.tt name=command.key details=command.value %]
+Readonly my \$[% command.key %] => '[% encode_json(command.value) %]';
 [% END %]
-
-=pod
-
-=back
-
-=cut
-
 1;

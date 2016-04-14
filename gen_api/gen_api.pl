@@ -6,12 +6,14 @@ use warnings;
 use Readonly;
 use Data::Dumper;
 use Log::Log4perl qw(get_logger :levels);
+use JSON::XS;
 
 BEGIN {
-    push(@INC, 'lib');
+    unshift(@INC, 'lib');
 };
 
 use Net::FreeIPA;
+use Net::FreeIPA::API;
 use Template;
 
 use Cwd qw(abs_path);
@@ -22,11 +24,11 @@ Readonly my $GEN_API_DIR => dirname(abs_path($0));
 
 Readonly my $SCRIPT_NAME => basename($0);
 
-Readonly my $MODULE_NAME => 'API';
+Readonly my $MODULE_NAME => 'Data';
 
 =head1 SYNOPSIS
 
-Generate the API.pm from JSON API
+Generate the API/Data.pm and Data.pod from JSON API
 
     GEN_API_DEBUG=1 GEN_API_HOSTNAME=host.example.com ./gen_api/gen_api.pl
 
@@ -94,15 +96,16 @@ my $f = Net::FreeIPA->new();
 
 sub make_module
 {
-    my ($text) = @_;
+    my ($text, $pod) = @_;
 
-    my $fn = "$GEN_API_DIR/../lib/Net/FreeIPA/$MODULE_NAME.pm";
+    my $fn = "$GEN_API_DIR/../lib/Net/FreeIPA/API/Data.";
+    $fn .= $pod ? 'pod' : 'pm';
 
-    open FH, "> $fn";
+    open FH, "> $fn" || die ("Failed to open $fn: $!");
     print FH $text;
     close FH;
 
-    print "Created module $fn\n"
+    print "Created $fn\n"
 }
 
 
@@ -116,49 +119,25 @@ sub main
     }) || die "$Template::ERROR\n";
 
     my $vars = {
-        prefix => $Net::FreeIPA::Convert::API_METHOD_PREFIX,
+        prefix => $Net::FreeIPA::API::API_METHOD_PREFIX,
         version => $version,
         commands => $commands,
         module_name => $MODULE_NAME,
         script_name => $SCRIPT_NAME,
-        join_name => sub {my $args = shift; return join(' ', map {$_->{name}} @$args); },
-        join_name_vars => sub {my $args = shift; return join(', ', map {'$'.$_->{name}} @$args)},
-        join_type => sub {
-            my $args = shift;
-            return join(' ',
-                        map {join(':',
-                                  $_->{type},
-                                  ($_->{multivalue} ? 1 : 0),
-                                  (($_->{required} && (! $_->{autofill})) ? 1 : 0), # only mandatory if required and no autofill/default
-                                 )} @$args);
-        },
-        ref => sub {return ref(shift) },
-        check_hash => sub {
-            my $array = shift;
-            my @newarray;
-            foreach my $el (@$array) {
-                if (ref($el) eq '') {
-                    my $oldel = $el;
-                    $oldel =~ s/[*+?]$//;
-                    $el = {
-                        name => $oldel,
-                        type => 'unknown',
-                        class => 'unknown',
-                        multivalue => 0,
-                        doc => 'unknown',
-                    };
-                }
-                push(@newarray, $el);
-            };
-            return \@newarray;
-        }
+        encode_json => sub { return encode_json(Net::FreeIPA::API::cache(shift));}
     };
 
-    my $text = '';
-    $tt->process('api.tt', $vars, \$text)
-        || die $tt->error(), "\n";
+    my $api = '';
+    $tt->process('data.tt', $vars, \$api)
+        || die "API error ", $tt->error(), "\n";
 
-    make_module($text);
+    make_module($api);
+
+    my $pod = '';
+    $tt->process('pod.tt', $vars, \$pod)
+        || die "POD error ", $tt->error(), "\n";
+
+    make_module($pod, 1);
 }
 
 

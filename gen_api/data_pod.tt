@@ -1,7 +1,7 @@
 
-=item [% prefix %][% name %]
+=item [% name FILTER upper %]
 
-Wrapper method for [% name %] API
+JSON data for API method [% name %]
 
 [% details.doc %]
 
@@ -34,24 +34,3 @@ No required arguments
 =back
 
 =cut
-
-sub [% prefix %][% name %]
-{
-[%- FILTER indent %]
-my (\$self
-[%- check_hash(details.takes_args).size ? ', ' _ join_name_vars(check_hash(details.takes_args)) : '' -%]
-, %opts[% -%]
-) = @_;
-
-return \$self->rpc_api('[% name %]',
-[%-     FILTER indent %]
-[[%- join_name_vars(check_hash(details.takes_args)) -%]],
-[qw([%- join_name(check_hash(details.takes_args)) %])],
-[qw([%- join_type(check_hash(details.takes_args)) -%])],
-\%opts,
-[qw([%- join_name(check_hash(details.takes_options)) -%])],
-[qw([%- join_type(check_hash(details.takes_options)) -%])],
-[%-      END %]
-);
-[%- END %]
-}

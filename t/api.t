@@ -4,121 +4,57 @@ use warnings;
 use Test::More;
 use Test::MockModule;
 
-use Net::FreeIPA;
+use JSON::XS;
 
-my $mockbase = Test::MockModule->new("Net::FreeIPA::Base");
-my $mockconvert = Test::MockModule->new("Net::FreeIPA::Convert");
-my $mockrpc = Test::MockModule->new("Net::FreeIPA::RPC");
+use Net::FreeIPA::API;
+use Types::Serialiser; # is used by JSON::XS
 
-my $all_args = {};
-my $rpc_args = {};
+use Readonly;
 
-my $error;
-$mockbase->mock('error', sub {shift; $error = \@_; diag "error: @_"});
+Readonly my $TRUE => Types::Serialiser::true;
+Readonly my $FALSE => Types::Serialiser::false;
 
+# JSON command data
 
-my $f = Net::FreeIPA->new();
-isa_ok($f, 'Net::FreeIPA::API', "Net::FreeIPA instance is a Net::FreeIPA::API too");
+Readonly my $JDOMAINLEVEL_GET => '{"takes_args":[],"takes_options":[{"alwaysask":false,"attribute":false,"required":false,"csv":false,"deprecated_cli_aliases":[],"doc":"Client version. Used to determine if server will accept request.","autofill":false,"cli_name":"version","multivalue":false,"primary_key":false,"flags":["no_option","no_output"],"query":false,"name":"version","sortorder":2,"type":"unicode","class":"Str","label":"<version>","noextrawhitespace":true,"exclude":["webui"]}],"name":"domainlevel_get","doc":"Query current Domain Level.","NO_CLI":true}';
 
-=head2 test errors from rpc_api
+Readonly my $JDOMAINLEVEL_SET => '{"takes_args":[{"alwaysask":false,"attribute":false,"minvalue":0,"required":true,"csv":false,"deprecated_cli_aliases":[],"doc":"Domain Level","autofill":false,"cli_name":"level","multivalue":false,"primary_key":false,"flags":[],"query":false,"name":"ipadomainlevel","maxvalue":2147483647,"sortorder":2,"type":"int","class":"Int","label":"Domain Level"}],"takes_options":[{"alwaysask":false,"attribute":false,"required":false,"csv":false,"deprecated_cli_aliases":[],"doc":"Client version. Used to determine if server will accept request.","autofill":false,"cli_name":"version","multivalue":false,"primary_key":false,"flags":["no_option","no_output"],"query":false,"name":"version","sortorder":2,"type":"unicode","class":"Str","label":"<version>","noextrawhitespace":true,"exclude":["webui"]}],"name":"domainlevel_set","doc":"Change current Domain Level.","NO_CLI":true}';
 
-=cut
-
-$mockrpc->mock('rpc', sub {
-
-    my ($self, $command, $args, $opts, %opts) = @_;
-
-    $rpc_args = {
-        command => $command,
-        args => $args,
-        opts => $opts,
-        rpc_opts => \%opts,
-    };
-
-    return 123; # something unique
-});
+Readonly my $JENV => '{"takes_args":["variables*"],"takes_options":[{"alwaysask":false,"attribute":false,"required":false,"csv":false,"deprecated_cli_aliases":[],"doc":"Forward to server instead of running locally","autofill":true,"cli_name":"server","truths":["1",1,"true","TRUE"],"multivalue":false,"primary_key":false,"flags":[],"query":false,"name":"server","default":false,"falsehoods":[0,"0","false","FALSE"],"sortorder":2,"type":"bool","class":"Flag","label":"<server>"},{"alwaysask":false,"attribute":false,"required":true,"csv":false,"deprecated_cli_aliases":[],"doc":"retrieve and print all attributes from the server. Affects command output.","autofill":true,"cli_name":"all","truths":["1",1,"true","TRUE"],"multivalue":false,"primary_key":false,"flags":["no_output"],"query":false,"name":"all","default":true,"falsehoods":[0,"0","false","FALSE"],"sortorder":2,"type":"bool","class":"Flag","label":"<all>","exclude":["webui"]},{"alwaysask":false,"attribute":false,"required":false,"csv":false,"deprecated_cli_aliases":[],"doc":"Client version. Used to determine if server will accept request.","autofill":false,"cli_name":"version","multivalue":false,"primary_key":false,"flags":["no_option","no_output"],"query":false,"name":"version","sortorder":2,"type":"unicode","class":"Str","label":"<version>","noextrawhitespace":true,"exclude":["webui"]}],"name":"env","doc":"Show environment variables.","NO_CLI":false}';
 
 
-$error = undef;
-$rpc_args = {};
-ok(! defined($f->api_user_add()),
-   'user_add api returns undef on missing mandatory');
-diag "rpc_api allargs ", explain $all_args;
-like($error->[0], qr{^api_user_add: mandatory 1-th argument uid undefined$},
-     "Error called on failure 1");
-ok(! $rpc_args->{command}, 'command empty, rpc not called 1');
-
-$error = undef;
-$rpc_args = {};
-ok(! defined($f->api_user_add("myuser", gecosss => 'mygecos')),
-   'user_add api returns undef on missing mandatory option');
-like($error->[0], qr{^api_user_add: missing mandatory option: givenname$},
-     "Error called on failure 2");
-ok(! $rpc_args->{command}, 'command empty, rpc not called 2');
-
-$error = undef;
-$rpc_args = {};
-ok(! defined($f->api_user_add("myuser", gecosss => 'mygecos', givenname => 'myname', sn => 'last')),
-   'user_add api returns undef on unknown option');
-like($error->[0], qr{^api_user_add: not a valid option key: gecosss \(allowed .*\)$},
-     "Error called on failure 3");
-ok(! $rpc_args->{command}, 'command empty, rpc not called 3');
+my $c;
+$c = Net::FreeIPA::API::cache(decode_json($JDOMAINLEVEL_GET));
+is_deeply($c, {
+    'name' => 'domainlevel_get',
+    'takes_args' => [],
+    'takes_options' => [
+        {
+            'autofill' => $FALSE,
+            'class' => 'Str',
+            'multivalue' => $FALSE,
+            'name' => 'version',
+            'required' => $FALSE,
+            'type' => 'unicode'
+        }
+    ],
+}, "cache returns filtered version of JSON metadata");
 
 
-$error = undef;
-$rpc_args = {};
-is($f->api_user_add("myuser", gecos => 'mygecos', givenname => 'myname', sn => 'last', __result_path => 'some/path'), 123,
-   'user_add api returns rpc result');
-ok(! defined($error), 'no error reported');
-is_deeply($rpc_args, {
-    command => 'user_add',
-    args => ['myuser'],
-    opts => {gecos => 'mygecos', givenname => 'myname', sn => 'last'},
-    rpc_opts => {result_path => 'some/path'}, # __ removed and passed to rpc as option
-}, "expected rpc arguments/options");
+$c = Net::FreeIPA::API::cache(decode_json($JDOMAINLEVEL_SET));
+is_deeply([sort keys %$c], [sort @Net::FreeIPA::API::CACHE_KEYS], "only CACHE_KEYS as keys");
+is_deeply([sort keys %{$c->{takes_args}->[0]}], [sort @Net::FreeIPA::API::CACHE_TAKES_KEYS], "only CACHE_TAKES_KEYS as keys for takes_args");
+is_deeply([sort keys %{$c->{takes_options}->[0]}], [sort @Net::FreeIPA::API::CACHE_TAKES_KEYS], "only CACHE_TAKES_KEYS as keys for takes_options");
 
-=head2 test passed args
 
-=cut
+$c = Net::FreeIPA::API::cache(decode_json($JENV));
+is_deeply($c->{takes_args},[{
+      'autofill' => $FALSE,
+      'class' => 'unknown_class',
+      'multivalue' => $FALSE,
+      'name' => 'variables',
+      'required' => $FALSE,
+      'type' => 'unknown_type'
+}], "Handle string value with defaults");
 
-$mockconvert->mock('rpc_api', sub {
-
-    my ($self, $command, $args, $args_names, $args_types, $opts, $opts_names, $opts_types) = @_;
-
-    $all_args = {
-        command => $command,
-        args => $args,
-        args_names => $args_names,
-        args_types => $args_types,
-        opts => $opts,
-        opts_names => $opts_names,
-        opts_types => $opts_types,
-    };
-
-    return 1;
-});
-
-$error = undef;
-$all_args = {};
-ok($f->api_user_add("myuser", gecos => 'mygecos', givenname => 'myname', sn => 'last'),
-   'user_add api call ok');
-
-#diag "rpc_api allargs ", explain $all_args;
-
-is($all_args->{command}, 'user_add', 'Expected command passed to rpc');
-is_deeply($all_args->{args}, [qw(myuser)], "Argument passed as expected");
-is_deeply($all_args->{args_names}, [qw(uid)], "Argument names passed as expected");
-is_deeply($all_args->{args_types}, [qw(unicode:0:1)], "Argument types passed as expected");
-
-is_deeply($all_args->{opts}, {gecos => 'mygecos', givenname => 'myname', sn => 'last'},
-          "Options passed as expected");
-is_deeply($all_args->{opts_names},
-          [qw(givenname sn cn displayname initials homedirectory gecos loginshell krbprincipalname krbprincipalexpiration mail userpassword random uidnumber gidnumber street l st postalcode telephonenumber mobile pager facsimiletelephonenumber ou title manager carlicense ipasshpubkey ipauserauthtype userclass ipatokenradiusconfiglink ipatokenradiususername departmentnumber employeenumber employeetype preferredlanguage usercertificate nsaccountlock setattr addattr noprivate all raw version no_members)],
-          "Options names passed as expected");
-is_deeply($all_args->{opts_types},
-    [qw(unicode:0:1 unicode:0:1 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 datetime:0:0 unicode:1:0 unicode:0:0 bool:0:0 int:0:0 int:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:0:0 unicode:0:0 unicode:0:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:1:0 unicode:0:0 unicode:0:0 unicode:1:0 unicode:0:0 unicode:0:0 unicode:0:0 str:1:0 bool:0:0 unicode:1:0 unicode:1:0 bool:0:0 bool:0:0 bool:0:0 unicode:0:0 bool:0:0)],
-    "Options types passed as expected");
-
-ok(! defined($error), "error not called");
-
-done_testing();
+done_testing;

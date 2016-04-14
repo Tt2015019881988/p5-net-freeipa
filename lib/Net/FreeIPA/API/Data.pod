@@ -1,0 +1,9639 @@
+=pod
+
+=head2 Generated API data version v2.156
+
+=over
+
+=cut
+
+
+
+=item ACI_ADD
+
+JSON data for API method aci_add
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item ACI_DEL
+
+JSON data for API method aci_del
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item ACI_FIND
+
+JSON data for API method aci_find
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item ACI_MOD
+
+JSON data for API method aci_mod
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item ACI_RENAME
+
+JSON data for API method aci_rename
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item ACI_SHOW
+
+JSON data for API method aci_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item ADTRUST_IS_ENABLED
+
+JSON data for API method adtrust_is_enabled
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item AUTOMEMBER_ADD
+
+JSON data for API method automember_add
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item AUTOMEMBER_ADD_CONDITION
+
+JSON data for API method automember_add_condition
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item AUTOMEMBER_DEFAULT_GROUP_REMOVE
+
+JSON data for API method automember_default_group_remove
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item AUTOMEMBER_DEFAULT_GROUP_SET
+
+JSON data for API method automember_default_group_set
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item AUTOMEMBER_DEFAULT_GROUP_SHOW
+
+JSON data for API method automember_default_group_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item AUTOMEMBER_DEL
+
+JSON data for API method automember_del
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item AUTOMEMBER_FIND
+
+JSON data for API method automember_find
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item AUTOMEMBER_MOD
+
+JSON data for API method automember_mod
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item AUTOMEMBER_REBUILD
+
+JSON data for API method automember_rebuild
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item AUTOMEMBER_REMOVE_CONDITION
+
+JSON data for API method automember_remove_condition
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item AUTOMEMBER_SHOW
+
+JSON data for API method automember_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item AUTOMOUNTKEY_ADD
+
+JSON data for API method automountkey_add
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item AUTOMOUNTKEY_DEL
+
+JSON data for API method automountkey_del
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item AUTOMOUNTKEY_FIND
+
+JSON data for API method automountkey_find
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item AUTOMOUNTKEY_MOD
+
+JSON data for API method automountkey_mod
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item AUTOMOUNTKEY_SHOW
+
+JSON data for API method automountkey_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item AUTOMOUNTLOCATION_ADD
+
+JSON data for API method automountlocation_add
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item AUTOMOUNTLOCATION_DEL
+
+JSON data for API method automountlocation_del
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item AUTOMOUNTLOCATION_FIND
+
+JSON data for API method automountlocation_find
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item AUTOMOUNTLOCATION_IMPORT
+
+JSON data for API method automountlocation_import
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item AUTOMOUNTLOCATION_SHOW
+
+JSON data for API method automountlocation_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item AUTOMOUNTLOCATION_TOFILES
+
+JSON data for API method automountlocation_tofiles
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item AUTOMOUNTMAP_ADD
+
+JSON data for API method automountmap_add
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item AUTOMOUNTMAP_ADD_INDIRECT
+
+JSON data for API method automountmap_add_indirect
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item AUTOMOUNTMAP_DEL
+
+JSON data for API method automountmap_del
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item AUTOMOUNTMAP_FIND
+
+JSON data for API method automountmap_find
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item AUTOMOUNTMAP_MOD
+
+JSON data for API method automountmap_mod
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item AUTOMOUNTMAP_SHOW
+
+JSON data for API method automountmap_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item BATCH
+
+JSON data for API method batch
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item CA_IS_ENABLED
+
+JSON data for API method ca_is_enabled
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item CAACL_ADD
+
+JSON data for API method caacl_add
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item CAACL_ADD_HOST
+
+JSON data for API method caacl_add_host
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item CAACL_ADD_PROFILE
+
+JSON data for API method caacl_add_profile
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item CAACL_ADD_SERVICE
+
+JSON data for API method caacl_add_service
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item CAACL_ADD_USER
+
+JSON data for API method caacl_add_user
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item CAACL_DEL
+
+JSON data for API method caacl_del
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item CAACL_DISABLE
+
+JSON data for API method caacl_disable
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item CAACL_ENABLE
+
+JSON data for API method caacl_enable
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item CAACL_FIND
+
+JSON data for API method caacl_find
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item CAACL_MOD
+
+JSON data for API method caacl_mod
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item CAACL_REMOVE_HOST
+
+JSON data for API method caacl_remove_host
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item CAACL_REMOVE_PROFILE
+
+JSON data for API method caacl_remove_profile
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item CAACL_REMOVE_SERVICE
+
+JSON data for API method caacl_remove_service
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item CAACL_REMOVE_USER
+
+JSON data for API method caacl_remove_user
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item CAACL_SHOW
+
+JSON data for API method caacl_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item CERT_FIND
+
+JSON data for API method cert_find
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item CERT_REMOVE_HOLD
+
+JSON data for API method cert_remove_hold
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item CERT_REQUEST
+
+JSON data for API method cert_request
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item CERT_REVOKE
+
+JSON data for API method cert_revoke
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item CERT_SHOW
+
+JSON data for API method cert_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item CERT_STATUS
+
+JSON data for API method cert_status
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item CERTPROFILE_DEL
+
+JSON data for API method certprofile_del
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item CERTPROFILE_FIND
+
+JSON data for API method certprofile_find
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item CERTPROFILE_IMPORT
+
+JSON data for API method certprofile_import
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item CERTPROFILE_MOD
+
+JSON data for API method certprofile_mod
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item CERTPROFILE_SHOW
+
+JSON data for API method certprofile_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item COMPAT_IS_ENABLED
+
+JSON data for API method compat_is_enabled
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item CONFIG_MOD
+
+JSON data for API method config_mod
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item CONFIG_SHOW
+
+JSON data for API method config_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item COSENTRY_ADD
+
+JSON data for API method cosentry_add
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item COSENTRY_DEL
+
+JSON data for API method cosentry_del
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item COSENTRY_FIND
+
+JSON data for API method cosentry_find
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item COSENTRY_MOD
+
+JSON data for API method cosentry_mod
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item COSENTRY_SHOW
+
+JSON data for API method cosentry_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item DELEGATION_ADD
+
+JSON data for API method delegation_add
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item DELEGATION_DEL
+
+JSON data for API method delegation_del
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item DELEGATION_FIND
+
+JSON data for API method delegation_find
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item DELEGATION_MOD
+
+JSON data for API method delegation_mod
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item DELEGATION_SHOW
+
+JSON data for API method delegation_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item DNS_IS_ENABLED
+
+JSON data for API method dns_is_enabled
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item DNS_RESOLVE
+
+JSON data for API method dns_resolve
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item DNSCONFIG_MOD
+
+JSON data for API method dnsconfig_mod
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item DNSCONFIG_SHOW
+
+JSON data for API method dnsconfig_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item DNSFORWARDZONE_ADD
+
+JSON data for API method dnsforwardzone_add
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item DNSFORWARDZONE_ADD_PERMISSION
+
+JSON data for API method dnsforwardzone_add_permission
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item DNSFORWARDZONE_DEL
+
+JSON data for API method dnsforwardzone_del
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item DNSFORWARDZONE_DISABLE
+
+JSON data for API method dnsforwardzone_disable
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item DNSFORWARDZONE_ENABLE
+
+JSON data for API method dnsforwardzone_enable
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item DNSFORWARDZONE_FIND
+
+JSON data for API method dnsforwardzone_find
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item DNSFORWARDZONE_MOD
+
+JSON data for API method dnsforwardzone_mod
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item DNSFORWARDZONE_REMOVE_PERMISSION
+
+JSON data for API method dnsforwardzone_remove_permission
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item DNSFORWARDZONE_SHOW
+
+JSON data for API method dnsforwardzone_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item DNSRECORD_ADD
+
+JSON data for API method dnsrecord_add
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item DNSRECORD_DEL
+
+JSON data for API method dnsrecord_del
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item DNSRECORD_DELENTRY
+
+JSON data for API method dnsrecord_delentry
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item DNSRECORD_FIND
+
+JSON data for API method dnsrecord_find
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item DNSRECORD_MOD
+
+JSON data for API method dnsrecord_mod
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item DNSRECORD_SHOW
+
+JSON data for API method dnsrecord_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item DNSZONE_ADD
+
+JSON data for API method dnszone_add
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item DNSZONE_ADD_PERMISSION
+
+JSON data for API method dnszone_add_permission
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item DNSZONE_DEL
+
+JSON data for API method dnszone_del
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item DNSZONE_DISABLE
+
+JSON data for API method dnszone_disable
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item DNSZONE_ENABLE
+
+JSON data for API method dnszone_enable
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item DNSZONE_FIND
+
+JSON data for API method dnszone_find
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item DNSZONE_MOD
+
+JSON data for API method dnszone_mod
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item DNSZONE_REMOVE_PERMISSION
+
+JSON data for API method dnszone_remove_permission
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item DNSZONE_SHOW
+
+JSON data for API method dnszone_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item DOMAINLEVEL_GET
+
+JSON data for API method domainlevel_get
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item DOMAINLEVEL_SET
+
+JSON data for API method domainlevel_set
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item ENV
+
+JSON data for API method env
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item GROUP_ADD
+
+JSON data for API method group_add
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item GROUP_ADD_MEMBER
+
+JSON data for API method group_add_member
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item GROUP_DEL
+
+JSON data for API method group_del
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item GROUP_DETACH
+
+JSON data for API method group_detach
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item GROUP_FIND
+
+JSON data for API method group_find
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item GROUP_MOD
+
+JSON data for API method group_mod
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item GROUP_REMOVE_MEMBER
+
+JSON data for API method group_remove_member
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item GROUP_SHOW
+
+JSON data for API method group_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HBACRULE_ADD
+
+JSON data for API method hbacrule_add
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HBACRULE_ADD_HOST
+
+JSON data for API method hbacrule_add_host
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HBACRULE_ADD_SERVICE
+
+JSON data for API method hbacrule_add_service
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HBACRULE_ADD_SOURCEHOST
+
+JSON data for API method hbacrule_add_sourcehost
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HBACRULE_ADD_USER
+
+JSON data for API method hbacrule_add_user
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HBACRULE_DEL
+
+JSON data for API method hbacrule_del
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HBACRULE_DISABLE
+
+JSON data for API method hbacrule_disable
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HBACRULE_ENABLE
+
+JSON data for API method hbacrule_enable
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HBACRULE_FIND
+
+JSON data for API method hbacrule_find
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HBACRULE_MOD
+
+JSON data for API method hbacrule_mod
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HBACRULE_REMOVE_HOST
+
+JSON data for API method hbacrule_remove_host
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HBACRULE_REMOVE_SERVICE
+
+JSON data for API method hbacrule_remove_service
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HBACRULE_REMOVE_SOURCEHOST
+
+JSON data for API method hbacrule_remove_sourcehost
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HBACRULE_REMOVE_USER
+
+JSON data for API method hbacrule_remove_user
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HBACRULE_SHOW
+
+JSON data for API method hbacrule_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HBACSVC_ADD
+
+JSON data for API method hbacsvc_add
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HBACSVC_DEL
+
+JSON data for API method hbacsvc_del
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HBACSVC_FIND
+
+JSON data for API method hbacsvc_find
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HBACSVC_MOD
+
+JSON data for API method hbacsvc_mod
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HBACSVC_SHOW
+
+JSON data for API method hbacsvc_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HBACSVCGROUP_ADD
+
+JSON data for API method hbacsvcgroup_add
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HBACSVCGROUP_ADD_MEMBER
+
+JSON data for API method hbacsvcgroup_add_member
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HBACSVCGROUP_DEL
+
+JSON data for API method hbacsvcgroup_del
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HBACSVCGROUP_FIND
+
+JSON data for API method hbacsvcgroup_find
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HBACSVCGROUP_MOD
+
+JSON data for API method hbacsvcgroup_mod
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HBACSVCGROUP_REMOVE_MEMBER
+
+JSON data for API method hbacsvcgroup_remove_member
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HBACSVCGROUP_SHOW
+
+JSON data for API method hbacsvcgroup_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HBACTEST
+
+JSON data for API method hbactest
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HOST_ADD
+
+JSON data for API method host_add
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HOST_ADD_CERT
+
+JSON data for API method host_add_cert
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HOST_ADD_MANAGEDBY
+
+JSON data for API method host_add_managedby
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HOST_ALLOW_CREATE_KEYTAB
+
+JSON data for API method host_allow_create_keytab
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HOST_ALLOW_RETRIEVE_KEYTAB
+
+JSON data for API method host_allow_retrieve_keytab
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HOST_DEL
+
+JSON data for API method host_del
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HOST_DISABLE
+
+JSON data for API method host_disable
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HOST_DISALLOW_CREATE_KEYTAB
+
+JSON data for API method host_disallow_create_keytab
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HOST_DISALLOW_RETRIEVE_KEYTAB
+
+JSON data for API method host_disallow_retrieve_keytab
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HOST_FIND
+
+JSON data for API method host_find
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HOST_MOD
+
+JSON data for API method host_mod
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HOST_REMOVE_CERT
+
+JSON data for API method host_remove_cert
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HOST_REMOVE_MANAGEDBY
+
+JSON data for API method host_remove_managedby
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HOST_SHOW
+
+JSON data for API method host_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HOSTGROUP_ADD
+
+JSON data for API method hostgroup_add
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HOSTGROUP_ADD_MEMBER
+
+JSON data for API method hostgroup_add_member
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HOSTGROUP_DEL
+
+JSON data for API method hostgroup_del
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HOSTGROUP_FIND
+
+JSON data for API method hostgroup_find
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HOSTGROUP_MOD
+
+JSON data for API method hostgroup_mod
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HOSTGROUP_REMOVE_MEMBER
+
+JSON data for API method hostgroup_remove_member
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item HOSTGROUP_SHOW
+
+JSON data for API method hostgroup_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item I18N_MESSAGES
+
+JSON data for API method i18n_messages
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item IDOVERRIDEGROUP_ADD
+
+JSON data for API method idoverridegroup_add
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item IDOVERRIDEGROUP_DEL
+
+JSON data for API method idoverridegroup_del
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item IDOVERRIDEGROUP_FIND
+
+JSON data for API method idoverridegroup_find
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item IDOVERRIDEGROUP_MOD
+
+JSON data for API method idoverridegroup_mod
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item IDOVERRIDEGROUP_SHOW
+
+JSON data for API method idoverridegroup_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item IDOVERRIDEUSER_ADD
+
+JSON data for API method idoverrideuser_add
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item IDOVERRIDEUSER_DEL
+
+JSON data for API method idoverrideuser_del
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item IDOVERRIDEUSER_FIND
+
+JSON data for API method idoverrideuser_find
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item IDOVERRIDEUSER_MOD
+
+JSON data for API method idoverrideuser_mod
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item IDOVERRIDEUSER_SHOW
+
+JSON data for API method idoverrideuser_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item IDRANGE_ADD
+
+JSON data for API method idrange_add
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item IDRANGE_DEL
+
+JSON data for API method idrange_del
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item IDRANGE_FIND
+
+JSON data for API method idrange_find
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item IDRANGE_MOD
+
+JSON data for API method idrange_mod
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item IDRANGE_SHOW
+
+JSON data for API method idrange_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item IDVIEW_ADD
+
+JSON data for API method idview_add
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item IDVIEW_APPLY
+
+JSON data for API method idview_apply
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item IDVIEW_DEL
+
+JSON data for API method idview_del
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item IDVIEW_FIND
+
+JSON data for API method idview_find
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item IDVIEW_MOD
+
+JSON data for API method idview_mod
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item IDVIEW_SHOW
+
+JSON data for API method idview_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item IDVIEW_UNAPPLY
+
+JSON data for API method idview_unapply
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item JOIN
+
+JSON data for API method join
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item JSON_METADATA
+
+JSON data for API method json_metadata
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item KRA_IS_ENABLED
+
+JSON data for API method kra_is_enabled
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item KRBTPOLICY_MOD
+
+JSON data for API method krbtpolicy_mod
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item KRBTPOLICY_RESET
+
+JSON data for API method krbtpolicy_reset
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item KRBTPOLICY_SHOW
+
+JSON data for API method krbtpolicy_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item MIGRATE_DS
+
+JSON data for API method migrate_ds
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item NETGROUP_ADD
+
+JSON data for API method netgroup_add
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item NETGROUP_ADD_MEMBER
+
+JSON data for API method netgroup_add_member
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item NETGROUP_DEL
+
+JSON data for API method netgroup_del
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item NETGROUP_FIND
+
+JSON data for API method netgroup_find
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item NETGROUP_MOD
+
+JSON data for API method netgroup_mod
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item NETGROUP_REMOVE_MEMBER
+
+JSON data for API method netgroup_remove_member
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item NETGROUP_SHOW
+
+JSON data for API method netgroup_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item OTPCONFIG_MOD
+
+JSON data for API method otpconfig_mod
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item OTPCONFIG_SHOW
+
+JSON data for API method otpconfig_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item OTPTOKEN_ADD
+
+JSON data for API method otptoken_add
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item OTPTOKEN_ADD_MANAGEDBY
+
+JSON data for API method otptoken_add_managedby
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item OTPTOKEN_ADD_YUBIKEY
+
+JSON data for API method otptoken_add_yubikey
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item OTPTOKEN_DEL
+
+JSON data for API method otptoken_del
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item OTPTOKEN_FIND
+
+JSON data for API method otptoken_find
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item OTPTOKEN_MOD
+
+JSON data for API method otptoken_mod
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item OTPTOKEN_REMOVE_MANAGEDBY
+
+JSON data for API method otptoken_remove_managedby
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item OTPTOKEN_SHOW
+
+JSON data for API method otptoken_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item OTPTOKEN_SYNC
+
+JSON data for API method otptoken_sync
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item PASSWD
+
+JSON data for API method passwd
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item PERMISSION_ADD
+
+JSON data for API method permission_add
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item PERMISSION_ADD_MEMBER
+
+JSON data for API method permission_add_member
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item PERMISSION_ADD_NOACI
+
+JSON data for API method permission_add_noaci
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item PERMISSION_DEL
+
+JSON data for API method permission_del
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item PERMISSION_FIND
+
+JSON data for API method permission_find
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item PERMISSION_MOD
+
+JSON data for API method permission_mod
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item PERMISSION_REMOVE_MEMBER
+
+JSON data for API method permission_remove_member
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item PERMISSION_SHOW
+
+JSON data for API method permission_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item PING
+
+JSON data for API method ping
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item PLUGINS
+
+JSON data for API method plugins
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item PRIVILEGE_ADD
+
+JSON data for API method privilege_add
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item PRIVILEGE_ADD_MEMBER
+
+JSON data for API method privilege_add_member
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item PRIVILEGE_ADD_PERMISSION
+
+JSON data for API method privilege_add_permission
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item PRIVILEGE_DEL
+
+JSON data for API method privilege_del
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item PRIVILEGE_FIND
+
+JSON data for API method privilege_find
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item PRIVILEGE_MOD
+
+JSON data for API method privilege_mod
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item PRIVILEGE_REMOVE_MEMBER
+
+JSON data for API method privilege_remove_member
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item PRIVILEGE_REMOVE_PERMISSION
+
+JSON data for API method privilege_remove_permission
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item PRIVILEGE_SHOW
+
+JSON data for API method privilege_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item PWPOLICY_ADD
+
+JSON data for API method pwpolicy_add
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item PWPOLICY_DEL
+
+JSON data for API method pwpolicy_del
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item PWPOLICY_FIND
+
+JSON data for API method pwpolicy_find
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item PWPOLICY_MOD
+
+JSON data for API method pwpolicy_mod
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item PWPOLICY_SHOW
+
+JSON data for API method pwpolicy_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item RADIUSPROXY_ADD
+
+JSON data for API method radiusproxy_add
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item RADIUSPROXY_DEL
+
+JSON data for API method radiusproxy_del
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item RADIUSPROXY_FIND
+
+JSON data for API method radiusproxy_find
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item RADIUSPROXY_MOD
+
+JSON data for API method radiusproxy_mod
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item RADIUSPROXY_SHOW
+
+JSON data for API method radiusproxy_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item REALMDOMAINS_MOD
+
+JSON data for API method realmdomains_mod
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item REALMDOMAINS_SHOW
+
+JSON data for API method realmdomains_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item ROLE_ADD
+
+JSON data for API method role_add
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item ROLE_ADD_MEMBER
+
+JSON data for API method role_add_member
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item ROLE_ADD_PRIVILEGE
+
+JSON data for API method role_add_privilege
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item ROLE_DEL
+
+JSON data for API method role_del
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item ROLE_FIND
+
+JSON data for API method role_find
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item ROLE_MOD
+
+JSON data for API method role_mod
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item ROLE_REMOVE_MEMBER
+
+JSON data for API method role_remove_member
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item ROLE_REMOVE_PRIVILEGE
+
+JSON data for API method role_remove_privilege
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item ROLE_SHOW
+
+JSON data for API method role_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SELFSERVICE_ADD
+
+JSON data for API method selfservice_add
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SELFSERVICE_DEL
+
+JSON data for API method selfservice_del
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SELFSERVICE_FIND
+
+JSON data for API method selfservice_find
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SELFSERVICE_MOD
+
+JSON data for API method selfservice_mod
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SELFSERVICE_SHOW
+
+JSON data for API method selfservice_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SELINUXUSERMAP_ADD
+
+JSON data for API method selinuxusermap_add
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SELINUXUSERMAP_ADD_HOST
+
+JSON data for API method selinuxusermap_add_host
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SELINUXUSERMAP_ADD_USER
+
+JSON data for API method selinuxusermap_add_user
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SELINUXUSERMAP_DEL
+
+JSON data for API method selinuxusermap_del
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SELINUXUSERMAP_DISABLE
+
+JSON data for API method selinuxusermap_disable
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SELINUXUSERMAP_ENABLE
+
+JSON data for API method selinuxusermap_enable
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SELINUXUSERMAP_FIND
+
+JSON data for API method selinuxusermap_find
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SELINUXUSERMAP_MOD
+
+JSON data for API method selinuxusermap_mod
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SELINUXUSERMAP_REMOVE_HOST
+
+JSON data for API method selinuxusermap_remove_host
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SELINUXUSERMAP_REMOVE_USER
+
+JSON data for API method selinuxusermap_remove_user
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SELINUXUSERMAP_SHOW
+
+JSON data for API method selinuxusermap_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SERVER_DEL
+
+JSON data for API method server_del
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SERVER_FIND
+
+JSON data for API method server_find
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SERVER_SHOW
+
+JSON data for API method server_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SERVICE_ADD
+
+JSON data for API method service_add
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SERVICE_ADD_CERT
+
+JSON data for API method service_add_cert
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SERVICE_ADD_HOST
+
+JSON data for API method service_add_host
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SERVICE_ALLOW_CREATE_KEYTAB
+
+JSON data for API method service_allow_create_keytab
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SERVICE_ALLOW_RETRIEVE_KEYTAB
+
+JSON data for API method service_allow_retrieve_keytab
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SERVICE_DEL
+
+JSON data for API method service_del
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SERVICE_DISABLE
+
+JSON data for API method service_disable
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SERVICE_DISALLOW_CREATE_KEYTAB
+
+JSON data for API method service_disallow_create_keytab
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SERVICE_DISALLOW_RETRIEVE_KEYTAB
+
+JSON data for API method service_disallow_retrieve_keytab
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SERVICE_FIND
+
+JSON data for API method service_find
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SERVICE_MOD
+
+JSON data for API method service_mod
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SERVICE_REMOVE_CERT
+
+JSON data for API method service_remove_cert
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SERVICE_REMOVE_HOST
+
+JSON data for API method service_remove_host
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SERVICE_SHOW
+
+JSON data for API method service_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SERVICEDELEGATIONRULE_ADD
+
+JSON data for API method servicedelegationrule_add
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SERVICEDELEGATIONRULE_ADD_MEMBER
+
+JSON data for API method servicedelegationrule_add_member
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SERVICEDELEGATIONRULE_ADD_TARGET
+
+JSON data for API method servicedelegationrule_add_target
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SERVICEDELEGATIONRULE_DEL
+
+JSON data for API method servicedelegationrule_del
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SERVICEDELEGATIONRULE_FIND
+
+JSON data for API method servicedelegationrule_find
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SERVICEDELEGATIONRULE_REMOVE_MEMBER
+
+JSON data for API method servicedelegationrule_remove_member
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SERVICEDELEGATIONRULE_REMOVE_TARGET
+
+JSON data for API method servicedelegationrule_remove_target
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SERVICEDELEGATIONRULE_SHOW
+
+JSON data for API method servicedelegationrule_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SERVICEDELEGATIONTARGET_ADD
+
+JSON data for API method servicedelegationtarget_add
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SERVICEDELEGATIONTARGET_ADD_MEMBER
+
+JSON data for API method servicedelegationtarget_add_member
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SERVICEDELEGATIONTARGET_DEL
+
+JSON data for API method servicedelegationtarget_del
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SERVICEDELEGATIONTARGET_FIND
+
+JSON data for API method servicedelegationtarget_find
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SERVICEDELEGATIONTARGET_REMOVE_MEMBER
+
+JSON data for API method servicedelegationtarget_remove_member
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SERVICEDELEGATIONTARGET_SHOW
+
+JSON data for API method servicedelegationtarget_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SESSION_LOGOUT
+
+JSON data for API method session_logout
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SIDGEN_WAS_RUN
+
+JSON data for API method sidgen_was_run
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item STAGEUSER_ACTIVATE
+
+JSON data for API method stageuser_activate
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item STAGEUSER_ADD
+
+JSON data for API method stageuser_add
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item STAGEUSER_DEL
+
+JSON data for API method stageuser_del
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item STAGEUSER_FIND
+
+JSON data for API method stageuser_find
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item STAGEUSER_MOD
+
+JSON data for API method stageuser_mod
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item STAGEUSER_SHOW
+
+JSON data for API method stageuser_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SUDOCMD_ADD
+
+JSON data for API method sudocmd_add
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SUDOCMD_DEL
+
+JSON data for API method sudocmd_del
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SUDOCMD_FIND
+
+JSON data for API method sudocmd_find
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SUDOCMD_MOD
+
+JSON data for API method sudocmd_mod
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SUDOCMD_SHOW
+
+JSON data for API method sudocmd_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SUDOCMDGROUP_ADD
+
+JSON data for API method sudocmdgroup_add
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SUDOCMDGROUP_ADD_MEMBER
+
+JSON data for API method sudocmdgroup_add_member
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SUDOCMDGROUP_DEL
+
+JSON data for API method sudocmdgroup_del
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SUDOCMDGROUP_FIND
+
+JSON data for API method sudocmdgroup_find
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SUDOCMDGROUP_MOD
+
+JSON data for API method sudocmdgroup_mod
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SUDOCMDGROUP_REMOVE_MEMBER
+
+JSON data for API method sudocmdgroup_remove_member
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SUDOCMDGROUP_SHOW
+
+JSON data for API method sudocmdgroup_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SUDORULE_ADD
+
+JSON data for API method sudorule_add
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SUDORULE_ADD_ALLOW_COMMAND
+
+JSON data for API method sudorule_add_allow_command
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SUDORULE_ADD_DENY_COMMAND
+
+JSON data for API method sudorule_add_deny_command
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SUDORULE_ADD_HOST
+
+JSON data for API method sudorule_add_host
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SUDORULE_ADD_OPTION
+
+JSON data for API method sudorule_add_option
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SUDORULE_ADD_RUNASGROUP
+
+JSON data for API method sudorule_add_runasgroup
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SUDORULE_ADD_RUNASUSER
+
+JSON data for API method sudorule_add_runasuser
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SUDORULE_ADD_USER
+
+JSON data for API method sudorule_add_user
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SUDORULE_DEL
+
+JSON data for API method sudorule_del
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SUDORULE_DISABLE
+
+JSON data for API method sudorule_disable
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SUDORULE_ENABLE
+
+JSON data for API method sudorule_enable
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SUDORULE_FIND
+
+JSON data for API method sudorule_find
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SUDORULE_MOD
+
+JSON data for API method sudorule_mod
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SUDORULE_REMOVE_ALLOW_COMMAND
+
+JSON data for API method sudorule_remove_allow_command
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SUDORULE_REMOVE_DENY_COMMAND
+
+JSON data for API method sudorule_remove_deny_command
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SUDORULE_REMOVE_HOST
+
+JSON data for API method sudorule_remove_host
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SUDORULE_REMOVE_OPTION
+
+JSON data for API method sudorule_remove_option
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SUDORULE_REMOVE_RUNASGROUP
+
+JSON data for API method sudorule_remove_runasgroup
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SUDORULE_REMOVE_RUNASUSER
+
+JSON data for API method sudorule_remove_runasuser
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SUDORULE_REMOVE_USER
+
+JSON data for API method sudorule_remove_user
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item SUDORULE_SHOW
+
+JSON data for API method sudorule_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item TOPOLOGYSEGMENT_ADD
+
+JSON data for API method topologysegment_add
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item TOPOLOGYSEGMENT_DEL
+
+JSON data for API method topologysegment_del
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item TOPOLOGYSEGMENT_FIND
+
+JSON data for API method topologysegment_find
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item TOPOLOGYSEGMENT_MOD
+
+JSON data for API method topologysegment_mod
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item TOPOLOGYSEGMENT_REINITIALIZE
+
+JSON data for API method topologysegment_reinitialize
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item TOPOLOGYSEGMENT_SHOW
+
+JSON data for API method topologysegment_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item TOPOLOGYSUFFIX_ADD
+
+JSON data for API method topologysuffix_add
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item TOPOLOGYSUFFIX_DEL
+
+JSON data for API method topologysuffix_del
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item TOPOLOGYSUFFIX_FIND
+
+JSON data for API method topologysuffix_find
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item TOPOLOGYSUFFIX_MOD
+
+JSON data for API method topologysuffix_mod
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item TOPOLOGYSUFFIX_SHOW
+
+JSON data for API method topologysuffix_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item TOPOLOGYSUFFIX_VERIFY
+
+JSON data for API method topologysuffix_verify
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item TRUST_ADD
+
+JSON data for API method trust_add
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item TRUST_DEL
+
+JSON data for API method trust_del
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item TRUST_FETCH_DOMAINS
+
+JSON data for API method trust_fetch_domains
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item TRUST_FIND
+
+JSON data for API method trust_find
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item TRUST_MOD
+
+JSON data for API method trust_mod
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item TRUST_RESOLVE
+
+JSON data for API method trust_resolve
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item TRUST_SHOW
+
+JSON data for API method trust_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item TRUSTCONFIG_MOD
+
+JSON data for API method trustconfig_mod
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item TRUSTCONFIG_SHOW
+
+JSON data for API method trustconfig_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item TRUSTDOMAIN_ADD
+
+JSON data for API method trustdomain_add
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item TRUSTDOMAIN_DEL
+
+JSON data for API method trustdomain_del
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item TRUSTDOMAIN_DISABLE
+
+JSON data for API method trustdomain_disable
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item TRUSTDOMAIN_ENABLE
+
+JSON data for API method trustdomain_enable
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item TRUSTDOMAIN_FIND
+
+JSON data for API method trustdomain_find
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item TRUSTDOMAIN_MOD
+
+JSON data for API method trustdomain_mod
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item USER_ADD
+
+JSON data for API method user_add
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item USER_ADD_CERT
+
+JSON data for API method user_add_cert
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item USER_DEL
+
+JSON data for API method user_del
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item USER_DISABLE
+
+JSON data for API method user_disable
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item USER_ENABLE
+
+JSON data for API method user_enable
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item USER_FIND
+
+JSON data for API method user_find
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item USER_MOD
+
+JSON data for API method user_mod
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item USER_REMOVE_CERT
+
+JSON data for API method user_remove_cert
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item USER_SHOW
+
+JSON data for API method user_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item USER_STAGE
+
+JSON data for API method user_stage
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item USER_STATUS
+
+JSON data for API method user_status
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item USER_UNDEL
+
+JSON data for API method user_undel
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item USER_UNLOCK
+
+JSON data for API method user_unlock
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item VAULT_ADD
+
+JSON data for API method vault_add
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item VAULT_ADD_INTERNAL
+
+JSON data for API method vault_add_internal
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item VAULT_ADD_MEMBER
+
+JSON data for API method vault_add_member
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item VAULT_ADD_OWNER
+
+JSON data for API method vault_add_owner
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item VAULT_ARCHIVE
+
+JSON data for API method vault_archive
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item VAULT_ARCHIVE_INTERNAL
+
+JSON data for API method vault_archive_internal
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item VAULT_DEL
+
+JSON data for API method vault_del
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item VAULT_FIND
+
+JSON data for API method vault_find
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item VAULT_MOD
+
+JSON data for API method vault_mod
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item VAULT_MOD_INTERNAL
+
+JSON data for API method vault_mod_internal
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item VAULT_REMOVE_MEMBER
+
+JSON data for API method vault_remove_member
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item VAULT_REMOVE_OWNER
+
+JSON data for API method vault_remove_owner
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item VAULT_RETRIEVE
+
+JSON data for API method vault_retrieve
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item VAULT_RETRIEVE_INTERNAL
+
+JSON data for API method vault_retrieve_internal
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item VAULT_SHOW
+
+JSON data for API method vault_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item VAULTCONFIG_SHOW
+
+JSON data for API method vaultconfig_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item VAULTCONTAINER_ADD_OWNER
+
+JSON data for API method vaultcontainer_add_owner
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item VAULTCONTAINER_DEL
+
+JSON data for API method vaultcontainer_del
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item VAULTCONTAINER_REMOVE_OWNER
+
+JSON data for API method vaultcontainer_remove_owner
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=item VAULTCONTAINER_SHOW
+
+JSON data for API method vaultcontainer_show
+
+
+
+=over
+
+=item No required arguments
+
+=item  Options
+
+=over
+
+=item All options starting with C<__> are passed as options to C<Net::FreeIPA::RPC::rpc>.
+
+=back
+
+=back
+
+=cut
+
+
+
+=pod
+
+=back
+
+=cut
