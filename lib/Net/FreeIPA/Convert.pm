@@ -30,7 +30,9 @@ Readonly my $API_RPC_OPTION_PATTERN => '^__';
 
 Net::FreeIPA::Convert provides type conversion for Net::FreeIPA
 
-=head2 Public methods
+=head2 Public functions
+
+=over
 
 =item convert
 
@@ -153,6 +155,8 @@ sub process_args
 {
     my ($cmds, @args) = @_;
 
+    my $cmdname = $cmds->{name};
+
     my $posargs = [];
     my $opts = {};
     my $rpc = {};
@@ -163,7 +167,7 @@ sub process_args
     foreach my $cmd (@{$cmds->{takes_args} || []}) {
         $aidx += 1;
         $errmsg = check_command($cmd, shift(@args), $posargs);
-        return "$aidx-th argument $errmsg" if $errmsg;
+        return "$cmdname: $aidx-th argument $errmsg" if $errmsg;
     }
 
     # Check options
@@ -174,7 +178,7 @@ sub process_args
     foreach my $cmd (@{$cmds->{takes_options} || []}) {
         my $name = $cmd->{name};
         $errmsg = check_command($cmd, delete $origopts{$name}, $opts);
-        return "option $errmsg" if $errmsg;
+        return "$cmdname: option $errmsg" if $errmsg;
     }
 
     # Filter out any RPC options
@@ -185,7 +189,7 @@ sub process_args
             $name =~ s/$API_RPC_OPTION_PATTERN//;
             $rpc->{$name} = $val;
         } else {
-            return "option invalid name $name";
+            return "$cmdname: option invalid name $name";
         };
     }
 

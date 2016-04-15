@@ -3,7 +3,7 @@ package Net::FreeIPA::Common;
 use strict;
 use warnings;
 
-use Net::FreeIPA::Convert;
+use Net::FreeIPA::API;
 use Net::FreeIPA::Error;
 
 use Readonly;
@@ -55,8 +55,16 @@ sub find_one
 
     my $res;
 
-    my $method = "api_".$api."_find";
-    if ($self->can($method)) {
+    # Do not use ->can with autoload'ed magic
+    # use API::retrieve (as function)
+    my $func = $api."_find";
+    my $method = "$Net::FreeIPA::API::API_METHOD_PREFIX$func";
+
+    my ($cmds, $fail) = Net::FreeIPA::API::retrieve($func);
+
+    if ($fail) {
+        $self->error("find_one: unknown API method $method");
+    } else {
         my $attr = $FIND_ONE{$api};
         if ($attr) {
             if ($self->$method("", $attr => $value, all => 1)) {
@@ -76,8 +84,6 @@ sub find_one
         } else {
             $self->error("find_one: no supported attribute for api $api");
         }
-    } else {
-        $self->error("find_one: unknown API method $method");
     };
 
     return $res;
@@ -111,7 +117,7 @@ sub do_one
 {
     my ($self, $api, $method, $name, %opts) = @_;
 
-    my $api_method = $Net::FreeIPA::Convert::API_METHOD_PREFIX.$api."_$method";
+    my $api_method = $Net::FreeIPA::API::API_METHOD_PREFIX.$api."_$method";
 
     # For add, do not report existing name as error
     # for other methods, do not report missing name as error

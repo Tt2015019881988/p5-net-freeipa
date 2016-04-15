@@ -145,7 +145,7 @@ is set to undef (effecitively removing it), and this is typically
 interpreted by the server as using the latest version.
 
 If the string C<API> is passed as version,
-it will use verison from C<Net::FreeIPA::API::VERSION>.
+it will use verison from C<Net::FreeIPA::API>.
 
 If the version is a C<version> instance, the used version is
 stringified and any leading 'v' is removed.
@@ -162,7 +162,7 @@ sub set_api_version
 
     if (defined($version)) {
         if ( (! ref($version)) && ($version eq 'API')) {
-            $version = $Net::FreeIPA::API::VERSION;
+            $version = Net::FreeIPA::API::version();
             $self->debug("set_api_version using API version $version");
         };
 

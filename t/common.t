@@ -13,14 +13,11 @@ use mock_rpc qw(common);
 use Test::MockModule;
 
 use Net::FreeIPA;
+use Net::FreeIPA::API;
 
 use version;
 
 use Net::FreeIPA::Common;
-
-my $mockapi = Test::MockModule->new("Net::FreeIPA::API");
-my $awesome = 1;
-$mockapi->mock('api_awesome_find', sub { $awesome = 0; return 10;});
 
 my $mockbase = Test::MockModule->new("Net::FreeIPA::Base");
 
@@ -63,12 +60,14 @@ is($error->[0], "find_one: unknown API method api_woohaha_find",
 
 =cut
 
-$error = undef;
-ok(! defined($f->find_one('awesome', 100)), "not-mapped attr method returns undef");
-is($error->[0], "find_one: no supported attribute for api awesome",
-   "not-mapped attr method reports error");
-is($awesome, 1, "not-mapped attr method is not called");
+# batch will never have a find, so will never end up in the map
+# inject it here in the cache
+Net::FreeIPA::API::cache({name => 'batch_find'});
 
+$error = undef;
+ok(! defined($f->find_one('batch', 100)), "not-mapped attr method returns undef");
+is($error->[0], "find_one: no supported attribute for api batch",
+   "not-mapped attr method reports error");
 
 =head2 find_one: method fails
 

@@ -89,6 +89,17 @@ sub cache
     return $data;
 }
 
+=item version
+
+Return the API version from C<Net::FreeIPA::API::Data>
+
+=cut
+
+sub version
+{
+    return $Net::FreeIPA::API::Data::VERSION;
+}
+
 =item retrieve
 
 Retrieve the command data for command C<name>.
@@ -132,7 +143,7 @@ sub retrieve
 }
 
 # Always return Request instance
-sub _api_function
+my $api_function = sub 
 {
     my ($cmd, @args) = @_;
 
@@ -145,24 +156,24 @@ sub _api_function
     # Otherwise, set data
 
     return $instance;
-}
+};
 
 # Return undef on failure
 # Convert rpc_api otherwise
-sub _api_method
+my $api_method = sub 
 {
     my ($cmd, $self, @args) = @_;
 
     my ($errormsg, $posargs, $options, $rpcoptions) = process_args($cmd, @args);
 
     if ($errormsg) {
-        $self->error($errormsg);
+        # All process_args errors are already prefixed with the $cmd->{name}
+        $self->error("$API_METHOD_PREFIX$errormsg");
         return;
     } else {
-        return $self->rpc($command, $posargs, $options, $rpcoptions);
+        return $self->rpc($cmd->{name}, $posargs, $options, %$rpcoptions);
     };
-}
-
+};
 
 #
 # 2 autoloaded types exists
@@ -180,11 +191,11 @@ sub AUTOLOAD
     my $called_orig = $called;
     $called =~ s{^.*::}{};
 
-    my $method = "_api_function";
+    my $method = $api_function;
     my $api_pattern = "^$API_METHOD_PREFIX";
     if ($called =~ m/$api_pattern/) {
         $called =~ s{$api_pattern}{};
-        $method = "_api_method";
+        $method = $api_method;
     }
 
     my ($cmd, $fail) = retrieve($called);
@@ -198,7 +209,7 @@ sub AUTOLOAD
         # but that breaks inheritance.
 
         # The method name is in the name attribute
-        return $method($cmd, @_);
+        return &$method($cmd, @_);
     }
 }
 

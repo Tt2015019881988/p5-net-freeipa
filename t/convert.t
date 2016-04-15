@@ -137,26 +137,26 @@ sub pat
 my $cmds = $j->decode($DOMAINLEVEL_SET);
 pat([process_args($cmds, undef)],
     'missing mandatory pos argument',
-    '1-th argument name ipadomainlevel mandatory with undefined value');
+    'domainlevel_set: 1-th argument name ipadomainlevel mandatory with undefined value');
 
 pat([process_args($cmds, [1])],
     'pos arg check_command error propagated (no mulitvalue)',
-    '1-th argument name ipadomainlevel wrong multivalue');
+    'domainlevel_set: 1-th argument name ipadomainlevel wrong multivalue');
 
 # make version mandatory
 $cmds->{takes_options}->[0]->{required} = 1;
 pat([process_args($cmds, 1)],
     'missing mandatory option',
-    'option name version mandatory with undefined value');
+    'domainlevel_set: option name version mandatory with undefined value');
 $cmds->{takes_options}->[0]->{required} = 0;
 
 pat([process_args($cmds, 1, version => [1])],
     'option check_command propagated (no multivalue)',
-    'option name version wrong multivalue');
+    'domainlevel_set: option name version wrong multivalue');
 
 pat([process_args($cmds, 1, abc => 10)],
     'invalid option',
-    'option invalid name abc');
+    'domainlevel_set: option invalid name abc');
 
 pat([process_args($cmds, 1, version => 2, __abc => 10)],
     'process_args returns 4 element tuple (incl __ stripped rpc opt)',
