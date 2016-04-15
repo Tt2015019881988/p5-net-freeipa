@@ -3,7 +3,7 @@ package Net::FreeIPA::Common;
 use strict;
 use warnings;
 
-use Net::FreeIPA::API;
+use Net::FreeIPA::API::Magic;
 use Net::FreeIPA::Error;
 
 use Readonly;
@@ -60,7 +60,7 @@ sub find_one
     my $func = $api."_find";
     my $method = "$Net::FreeIPA::API::API_METHOD_PREFIX$func";
 
-    my ($cmds, $fail) = Net::FreeIPA::API::retrieve($func);
+    my ($cmds, $fail) = Net::FreeIPA::API::Magic::retrieve($func);
 
     if ($fail) {
         $self->error("find_one: unknown API method $method");

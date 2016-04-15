@@ -13,7 +13,7 @@ use mock_rpc qw(common);
 use Test::MockModule;
 
 use Net::FreeIPA;
-use Net::FreeIPA::API;
+use Net::FreeIPA::API::Magic;
 
 use version;
 
@@ -62,7 +62,7 @@ is($error->[0], "find_one: unknown API method api_woohaha_find",
 
 # batch will never have a find, so will never end up in the map
 # inject it here in the cache
-Net::FreeIPA::API::cache({name => 'batch_find'});
+Net::FreeIPA::API::Magic::cache({name => 'batch_find'});
 
 $error = undef;
 ok(! defined($f->find_one('batch', 100)), "not-mapped attr method returns undef");

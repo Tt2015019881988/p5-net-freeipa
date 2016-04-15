@@ -3,160 +3,14 @@ package Net::FreeIPA::API;
 use strict;
 use warnings;
 
+use Net::FreeIPA::API::Convert qw(process_args);
+use Net::FreeIPA::API::Magic qw(retrieve);
+
 our $AUTOLOAD;
-
-use Types::Serialiser; # is used by JSON::XS
-use JSON::XS;
-
-use Net::FreeIPA::API::Data;
-use Net::FreeIPA::Convert qw(process_args);
 
 use Readonly;
 
 Readonly our $API_METHOD_PREFIX => 'api_';
-
-Readonly my $TRUE => Types::Serialiser::true;
-Readonly my $FALSE => Types::Serialiser::false;
-
-# Cache these command keys
-Readonly::Array our @CACHE_KEYS => qw(
-    name
-    takes_args takes_options
-);
-
-# Cache these keys from the takes_ CACHE_KEYS
-Readonly::Array our @CACHE_TAKES_KEYS => qw(
-    name type class
-    required autofill multivalue
-);
-
-Readonly::Hash my %CACHE_TAKES_DEFAULT => {
-    autofill => $FALSE,
-    class => 'unknown_class',
-    multivalue => $FALSE,
-    name => 'unknown_name',
-    required => $FALSE,
-    type => 'unknown_type',
-};
-
-# hashref to store cached command data
-my $cmd_cache = {};
-
-=head2 Public functions
-
-=over
-
-=item cache
-
-Given C<data> command hashref, cache (and return) the relevant
-(filtered) command data.
-
-C<data> is typically the decoded JSON command response.
-
-=cut
-
-sub cache
-{
-    my ($data) = @_;
-
-    my $name = $data->{name};
-
-    foreach my $key (sort keys %$data) {
-        if ($key =~ m/^takes_/) {
-            my $newdata = [];
-            foreach my $tdata (@{$data->{$key}}) {
-                if (ref($tdata) eq '') {
-                    my $value = $tdata;
-                    $value =~ s/[*+?]$//;
-                    $tdata = {%CACHE_TAKES_DEFAULT};
-                    $tdata->{name} = $value;
-                } else {
-                    # Arrayref of command hashrefs
-                    foreach my $tkey (sort keys %$tdata) {
-                        delete $tdata->{$tkey} if (! grep {$tkey eq $_} @CACHE_TAKES_KEYS);
-                    }
-                }
-                push(@$newdata, $tdata);
-            }
-            $data->{$key} = $newdata;
-        } else {
-            delete $data->{$key} if (! grep {$key eq $_} @CACHE_KEYS);
-        }
-    }
-
-    $cmd_cache->{$name} = $data;
-
-    return $data;
-}
-
-=item version
-
-Return the API version from C<Net::FreeIPA::API::Data>
-
-=cut
-
-sub version
-{
-    return $Net::FreeIPA::API::Data::VERSION;
-}
-
-=item retrieve
-
-Retrieve the command data for command C<name>.
-
-(For now, the data is loaded from the C<Net::FreeIPA::API::Data> that is
-distributed with this package and is a fixed version only).
-
-Returns the cache command hashref and undef errormessage on SUCCESS,
-an emptyhashref and actual errormessage otherwise.
-If the command is already in cache, return the cached version
-(and undef errormessage).
-
-=cut
-
-sub retrieve
-{
-    my ($name) = @_;
-
-    # Return already cached data
-    return ($cmd_cache->{$name}, undef) if defined($cmd_cache->{$name});
-
-    # Get the JSON data from Net::FreeIPA::API::Data
-    # TODO: get the JSON data from the JSON api
-
-    my $data;
-    my $json = $Net::FreeIPA::API::Data::API_DATA{$name};
-    if (! $json) {
-        return {}, "retrieve name $name failed: no JSON data";
-    }
-
-    local $@;
-    eval {
-        $data = decode_json($json);
-    };
-
-    if ($@) {
-        return {}, "retrieve name $name failed decode_json with $@";
-    } else {
-        return cache($data), undef;
-    };
-}
-
-# Always return Request instance
-my $api_function = sub 
-{
-    my ($cmd, @args) = @_;
-
-    my ($errormsg, $posargs, $options, $rpcoptions) = process_args($cmd, @args);
-
-    # Make Request instance
-    my $instance;
-
-    # If error, set error
-    # Otherwise, set data
-
-    return $instance;
-};
 
 # Return undef on failure
 # Convert rpc_api otherwise
@@ -175,11 +29,9 @@ my $api_method = sub
     };
 };
 
-#
-# 2 autoloaded types exists
-#   a function with the exact commandname, returns C<_api_function> call
-#   a method with command name prefixed with api_, returns a C<_api_method> call
-#
+# This will add all AUTOLOADable functions as methods calls
+# So only AUTOLOAD method with command name prefixed 
+# with api_, returns a C<$api_method> call
 
 sub AUTOLOAD
 {
@@ -191,17 +43,19 @@ sub AUTOLOAD
     my $called_orig = $called;
     $called =~ s{^.*::}{};
 
-    my $method = $api_function;
+    my ($method, $cmd, $fail);
     my $api_pattern = "^$API_METHOD_PREFIX";
     if ($called =~ m/$api_pattern/) {
         $called =~ s{$api_pattern}{};
         $method = $api_method;
+        
+        ($cmd, $fail) = retrieve($called);
+    } else {
+        $fail = "only $API_METHOD_PREFIX methods supported";
     }
 
-    my ($cmd, $fail) = retrieve($called);
-
     if ($fail) {
-        die "Unknown Net::FreeIPA::API method: $called failed $fail (from original $called_orig method $method)";
+        die "Unknown Net::FreeIPA::API method: $called failed $fail (from original $called_orig)";
     } else {
         # Run the expected method.
         # AUTOLOAD with glob assignment and goto defines the autoloaded method
@@ -212,12 +66,6 @@ sub AUTOLOAD
         return &$method($cmd, @_);
     }
 }
-
-=pod
-
-=back
-
-=cut
 
 
 1;

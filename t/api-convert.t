@@ -6,7 +6,7 @@ use JSON::XS;
 use Test::More;
 use Test::MockModule;
 
-use Net::FreeIPA::Convert qw(process_args); # Test import
+use Net::FreeIPA::API::Convert qw(process_args); # Test import
 
 use Readonly;
 
@@ -32,7 +32,7 @@ my $new_data = {};
 foreach my $key (keys %$data) {
     my $type = $key;
     $type =~ s/_\w+$//;
-    $new_data->{$key} = Net::FreeIPA::Convert::convert($data->{$key}, $type);
+    $new_data->{$key} = Net::FreeIPA::API::Convert::convert($data->{$key}, $type);
 };
 
 # Convert it in to non-pretty JSON string
@@ -45,14 +45,14 @@ is($j->encode($new_data),
 my $value;
 local $@;
 eval {
-    $value = Net::FreeIPA::Convert::convert('a', 'int');
+    $value = Net::FreeIPA::API::Convert::convert('a', 'int');
 };
 
 like("$@", qr{^Argument "a" isn't numeric in addition}, "convert dies string->int");
 ok(! defined($value), "value undefined on died convert string->int");
 
 eval {
-    $value = Net::FreeIPA::Convert::convert('a', 'float');
+    $value = Net::FreeIPA::API::Convert::convert('a', 'float');
 };
 
 like("$@", qr{^Argument "a" isn't numeric in multiplication}, "convert dies string->float");
@@ -67,7 +67,7 @@ sub ct
     my ($cmd, $value, $where, $iserr, $exp, $msg) = @_;
     my $orig;
     $orig = $j->encode($where) if ref($where);
-    my $err = Net::FreeIPA::Convert::check_command($cmd, $value, $where);
+    my $err = Net::FreeIPA::API::Convert::check_command($cmd, $value, $where);
     if ($iserr) {
         like($err, qr{$exp}, "error occurred $msg");
         is($j->encode($where), $orig, "where unmodified $msg") if ref($where);

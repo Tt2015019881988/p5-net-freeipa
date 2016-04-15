@@ -9,6 +9,7 @@ use REST::Client;
 use JSON::XS;
 
 use Net::FreeIPA::Error;
+use Net::FreeIPA::API::Magic;
 
 use LWP::UserAgent;
 # Add kerberos support
@@ -162,7 +163,7 @@ sub set_api_version
 
     if (defined($version)) {
         if ( (! ref($version)) && ($version eq 'API')) {
-            $version = Net::FreeIPA::API::version();
+            $version = Net::FreeIPA::API::Magic::version();
             $self->debug("set_api_version using API version $version");
         };
 

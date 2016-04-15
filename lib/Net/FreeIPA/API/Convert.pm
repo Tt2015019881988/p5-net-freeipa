@@ -1,4 +1,4 @@
-package Net::FreeIPA::Convert;
+package Net::FreeIPA::API::Convert;
 
 use strict;
 use warnings qw(FATAL numeric);

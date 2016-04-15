@@ -43,7 +43,7 @@ ok(! defined($f->{api_version}), "No api_version defined after set_api_version w
 is($f->set_api_version(version->new("v$version")), $version, "set_api_version handles version instances");
 is($f->{api_version}, $version, 'set_api_version set api_version attribute when version instance');
 
-my $APIversion = Net::FreeIPA::API::version()->stringify();
+my $APIversion = Net::FreeIPA::API::Magic::version()->stringify();
 $APIversion =~ s/^v//;
 
 is($f->set_api_version('API'), $APIversion, "set_api_version with API arg returns Net::FreeIPA::API::version set");
