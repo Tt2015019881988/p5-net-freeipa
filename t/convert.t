@@ -6,13 +6,11 @@ use JSON::XS;
 use Test::More;
 use Test::MockModule;
 
-use Net::FreeIPA;
+use Net::FreeIPA::Convert qw(process_args); # Test import
 
-my $mockbase = Test::MockModule->new("Net::FreeIPA::Base");
-my $error;
-$mockbase->mock('error', sub {shift; $error = \@_; diag "error: @_"});
+use Readonly;
 
-my $f = Net::FreeIPA->new();
+Readonly my $DOMAINLEVEL_SET => '{"takes_args":[{"required":true,"autofill":false,"multivalue":false,"name":"ipadomainlevel","type":"int","class":"Int"}],"takes_options":[{"required":false,"autofill":false,"multivalue":false,"name":"version","type":"unicode","class":"Str"}],"name":"domainlevel_set"}';
 
 =head2 convert
 
@@ -34,40 +32,8 @@ my $new_data = {};
 foreach my $key (keys %$data) {
     my $type = $key;
     $type =~ s/_\w+$//;
-    $new_data->{$key} = $f->convert($data->{$key}, $type);
+    $new_data->{$key} = Net::FreeIPA::Convert::convert($data->{$key}, $type);
 };
-
-
-=head2 check_type
-
-=cut
-
-$error = undef;
-is_deeply($f->check_type("a string", "str", 0, "errorprefix"), ["a string", "str"],
-          "check_type succesful with scalar");
-ok(! defined($error), "No error logged on success checktype scalar");
-
-$error = undef;
-is_deeply($f->check_type(["a string"], "str", 1, "errorprefix"), [["a string"], "str"],
-          "check_type succesful with multvalue/arrayref");
-ok(! defined($error), "No error logged on success checktype multivalue/arrayref");
-
-$error = undef;
-ok(! defined($f->check_type(["a string"], "str", 0, "errorprefix")),
-   "check_type returns undef on failure with scalar (got arrayref)");
-is($error->[0], "errorprefix has to be a scalar (is not multivalued)",
-   "error logged on failure checktype scalar with array value");
-
-$error = undef;
-ok(! defined($f->check_type("a string", "str", 1, "errorprefix")),
-   "check_type returns undef on failure with arrayref (got scalar)");
-is($error->[0], "errorprefix has to be an arrayref (is multivalued)",
-   "error logged on failure checktype arrayref with scalar value");
-
-
-=head2 integrated rpc_api
-
-=cut
 
 # Convert it in to non-pretty JSON string
 my $j = JSON::XS->new();
@@ -76,38 +42,125 @@ is($j->encode($new_data),
    '{"bool_false":false,"bool_hash":{"a":true,"b":false,"c":true},"bool_list":[true,false,true],"bool_true":true,"float":10.5,"int":5,"not_a_type":{"a":1},"str":"20","unicode":"21"}',
    "JSON string of converted data");
 
-my $mockrpc = Test::MockModule->new("Net::FreeIPA::RPC");
+my $value;
+local $@;
+eval {
+    $value = Net::FreeIPA::Convert::convert('a', 'int');
+};
 
-my $args = [];
-my $opts = {};
-my $command;
-my $expected_args = 0;
-$mockrpc->mock('rpc', sub {
-    my($self, $command, $args, $opts) = @_;
-    return $command.$j->encode($args).$j->encode($opts);
-});
+like("$@", qr{^Argument "a" isn't numeric in addition}, "convert dies string->int");
+ok(! defined($value), "value undefined on died convert string->int");
 
-$error = undef;
-is($f->rpc_api('do_something',
-               [1, [2.5, 3.5]], [qw(arg1 arg2)], [qw(bool:0 float:1)],
-               {false => 0, int => [1, 2], DNSName => 10}, # DNSName is an alias, will be stringified
-               [qw(false int DNSName)],
-               [qw(bool:0 int:1 DNSName:0)]),
-   'do_something[true,[2.5,3.5]]{"DNSName":"10","false":false,"int":[1,2]}',
-   "rpc_api converts and calls rpc method as expected");
-ok(! defined($error), "No error logged on success rpc_api");
+eval {
+    $value = Net::FreeIPA::Convert::convert('a', 'float');
+};
 
-$error = undef;
-# Only diff with previous is 2 arg is now not multivalued
-ok(! defined($f->rpc_api('do_something',
-               [1, [2.5, 3.5]], [qw(arg1 arg2)], [qw(bool:0 float:0)],
-               {false => 0, int => [1, 2], DNSName => 10}, # DNSName is an alias, will be stringified
-               [qw(false int DNSName)],
-               [qw(bool:0 int:1 DNSName:0)])),
-   "rpc_api fails with multivalue mismatch expected");
-is($error->[0], "api_do_something: mandatory 2-th argument arg2 has to be a scalar (is not multivalued)",
-   "rpc_api error logged on failure checktype arrayref with scalar value");
+like("$@", qr{^Argument "a" isn't numeric in multiplication}, "convert dies string->float");
+ok(! defined($value), "value undefined on died convert string->float");
 
+=head2 check_command
+
+=cut
+
+sub ct
+{
+    my ($cmd, $value, $where, $iserr, $exp, $msg) = @_;
+    my $orig;
+    $orig = $j->encode($where) if ref($where);
+    my $err = Net::FreeIPA::Convert::check_command($cmd, $value, $where);
+    if ($iserr) {
+        like($err, qr{$exp}, "error occurred $msg");
+        is($j->encode($where), $orig, "where unmodified $msg") if ref($where);
+    } else {
+        is($j->encode($where), $exp, "where as expected $msg");
+        ok(! defined($err), "no error $msg");
+    }
+}
+
+ct({required => 1, autofill => 0, name => 'abc'}, undef, {},
+   1, 'name abc mandatory with undefined value', 'missing mandatory value');
+ct({required => 0, autofill => 0, name => 'abc'}, undef, {},
+   0, '{}', 'missing non-required value');
+ct({required => 1, autofill => 1, name => 'abc'}, undef, {},
+   0, '{}', 'missing required autofilled value');
+
+ct({required => 1, autofill => 1, name => 'abc'}, 1, '',
+   1, 'name abc unknown where ref $', 'invalid where (only array and hash refs)');
+
+
+ct({required => 1, autofill => 1, name => 'abc', multivalue => 1}, {}, {},
+   1, 'name abc wrong multivalue \(multi 1, ref HASH\)', 'hashref value not valid multivalue=1');
+ct({required => 1, autofill => 1, name => 'abc', multivalue => 0}, {}, {},
+   1, 'name abc wrong multivalue \(multi 0, ref HASH\)', 'hashref value not valid multivalue=0');
+ct({required => 1, autofill => 1, name => 'abc', multivalue => 1}, 1, {},
+   1, 'name abc wrong multivalue \(multi 1, ref \)', 'scalar value not valid multivalue=1');
+ct({required => 1, autofill => 1, name => 'abc', multivalue => 0}, [1], {},
+   1, 'name abc wrong multivalue \(multi 0, ref ARRAY\)', 'list value not valid multivalue=0');
+
+ct({required => 1, autofill => 1, name => 'abc', type => 'int', multivalue => 0}, 'a', [],
+   1, 'name abc where ref ARRAY died Argument "a" isn\'t numeric in addition', 'conversion died string->int');
+
+
+ct({required => 1, autofill => 1, name => 'abc', type => 'bool', multivalue => 0}, 1, [1],
+   0, '[1,true]', 'added non-multi bool to where list multivalue=0');
+
+ct({required => 1, autofill => 1, name => 'abc', type => 'bool', multivalue => 0}, 1, {xyz => 2},
+   0, '{"abc":true,"xyz":2}', 'added non-multi bool to where hash multivalue=0');
+
+ct({required => 1, autofill => 1, name => 'abc', type => 'bool', multivalue => 1}, [1,0], [1],
+   0, '[1,[true,false]]', 'added non-multi bool to where list multivalue=1');
+
+ct({required => 1, autofill => 1, name => 'abc', type => 'bool', multivalue => 1}, [1,0], {xyz => 2},
+   0, '{"abc":[true,false],"xyz":2}', 'added non-multi bool to where hash multivalue=1');
+
+=head2 process_args
+
+=cut
+
+sub pat
+{
+    my ($res, $msg, $err, $pos, $opts, $rpc, $jres) = @_;
+    if($res->[0]) {
+        like($res->[0], qr{$err}, "error $msg");
+    } else {
+        ok(1, "no error $msg");
+        # Start with this before comparing individual values with is_deeply
+        is($jres, $j->encode([$res->[1], $res->[2]]), "json/converted values $msg");
+
+        is_deeply($res->[1], $pos, "positional args $msg");
+        is_deeply($res->[2], $opts, "options $msg");
+        is_deeply($res->[3], $rpc, "rpc options $msg");
+    }
+}
+
+# Has mandatory posarg, non-mandatory option
+my $cmds = $j->decode($DOMAINLEVEL_SET);
+pat([process_args($cmds, undef)],
+    'missing mandatory pos argument',
+    '1-th argument name ipadomainlevel mandatory with undefined value');
+
+pat([process_args($cmds, [1])],
+    'pos arg check_command error propagated (no mulitvalue)',
+    '1-th argument name ipadomainlevel wrong multivalue');
+
+# make version mandatory
+$cmds->{takes_options}->[0]->{required} = 1;
+pat([process_args($cmds, 1)],
+    'missing mandatory option',
+    'option name version mandatory with undefined value');
+$cmds->{takes_options}->[0]->{required} = 0;
+
+pat([process_args($cmds, 1, version => [1])],
+    'option check_command propagated (no multivalue)',
+    'option name version wrong multivalue');
+
+pat([process_args($cmds, 1, abc => 10)],
+    'invalid option',
+    'option invalid name abc');
+
+pat([process_args($cmds, 1, version => 2, __abc => 10)],
+    'process_args returns 4 element tuple (incl __ stripped rpc opt)',
+    undef, [1], {version => 2}, {abc => 10}, '[[1],{"version":"2"}]');
 
 
 done_testing();

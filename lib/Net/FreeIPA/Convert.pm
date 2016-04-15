@@ -1,16 +1,20 @@
 package Net::FreeIPA::Convert;
 
 use strict;
-use warnings;
+use warnings qw(FATAL numeric);
 
 use Types::Serialiser; # is used by JSON::XS
 use Readonly;
+
+use base qw(Exporter);
+
+our @EXPORT_OK = qw(process_args);
 
 # Convert dispatch table
 Readonly::Hash my %CONVERT_DISPATCH => {
     str => sub {my $val = shift; return "$val";}, # stringify
     int => sub {my $val = shift; return 0 + $val;}, # Force internal conversion to int
-    float => sub {my $val = shift; return 1.0 * $val;}, # Force internal convertion to float
+    float => sub {my $val = shift; return 1.0 * $val;}, # Force internal conversion to float
     bool => sub {my $val = shift; return $val ? Types::Serialiser::true : Types::Serialiser::false;},
 };
 
@@ -18,8 +22,6 @@ Readonly::Hash my %CONVERT_DISPATCH => {
 Readonly::Hash my %CONVERT_ALIAS => {
     str => [qw(unicode DNSName)],
 };
-
-Readonly our $API_METHOD_PREFIX => 'api_';
 
 Readonly my $API_RPC_OPTION_PATTERN => '^__';
 
@@ -30,158 +32,13 @@ Net::FreeIPA::Convert provides type conversion for Net::FreeIPA
 
 =head2 Public methods
 
-=over
-
-=item rpc_api
-
-Before calling the rpc, convert args and option to their respective JSON type
-
-Arguments are
-
-=over
-
-=item command: the RPC command (passed to rpc method)
-
-=item args: arrayref with arguments
-
-=item args_names: arrayref with argument names (same order as C<args>)
-
-=item args_types: arrayref with argument types (same order as C<args>)
-
-=item opts: hashref with the options
-
-=item opts_keys: arrayref with valid option keys.
-(All options starting with C<__> are passed as options to
-C<Net::FreeIPA::RPC::rpc>, with C<__> prefix removed).
-
-=item opts_types: arrayref with option types (same order as C<opts_keys>).
-
-=back
-
-Calls rpc with args refarray and opts hashref after conversion.
-
-=cut
-
-sub rpc_api
-{
-    my ($self, $command, $args, $args_names, $args_types, $opts, $opts_keys, $opts_types) = @_;
-
-    my $method = "$API_METHOD_PREFIX$command";
-
-    # Check arguments
-    my $aidx = 0;
-    my @new_args;
-    foreach my $arg (@$args) {
-        $aidx += 1;
-        my $args_name = shift(@$args_names);
-
-        my $emsg = "$method: mandatory $aidx-th argument $args_name";
-        my ($type, $multi, $mandatory) = split(':', shift(@$args_types));
-
-        if (defined($arg)) {
-            my $cargs = $self->check_type($arg, $type, $multi, $emsg);
-            if ($cargs) {
-                push(@new_args, $self->convert(@$cargs));
-            } else {
-                # error logged in check_type
-                return;
-            }
-        } elsif ($mandatory) {
-            # Lets hope there are no non-mandatory positional arguments
-            $self->error("$emsg undefined");
-            return;
-        };
-    };
-
-    my %opts_types_map;
-    # Hash slice to create the map
-    @opts_types_map{@$opts_keys} = @$opts_types;
-
-    my %new_opts;
-    my %rpc_opts;
-
-    # Check for mandatory options
-    foreach my $key (@$opts_keys) {
-        my ($type, $multi, $mandatory) = split(':', $opts_types_map{$key});
-        if ($mandatory && ! defined($opts->{$key})) {
-            $self->error("$method: missing mandatory option: $key");
-            return;
-        }
-    }
-
-    foreach my $key (sort keys %$opts) {
-        my $emsg = "$method: not a valid option key: $key";
-        if ($key =~ m/$API_RPC_OPTION_PATTERN/) {
-            my $val = $opts->{$key};
-            $key =~ s/$API_RPC_OPTION_PATTERN//;
-            $rpc_opts{$key} = $val;
-        } else {
-            my ($type, $multi, $mandatory) = split(':', $opts_types_map{$key});
-            if (grep {$key eq $_} @$opts_keys) {
-                my $cargs = $self->check_type($opts->{$key}, $type, $multi, $emsg);
-                if ($cargs) {
-                    $new_opts{$key} = $self->convert(@$cargs);
-                } else {
-                    # error logged in check_type
-                    return;
-                }
-            } else {
-                $self->error("$emsg (allowed ".join(",", @$opts_keys).")");
-                return;
-            }
-        };
-    }
-
-    return $self->rpc($command, \@new_args, \%new_opts, %rpc_opts);
-}
-
-
-=item check_type
-
-Given C<value>, use C<typedata> to do some preliminary type check, before converting.
-
-In case of failure, log an error message using C<emsg> prefix.
-
-=over
-
-=item type: the type
-
-=item multi: boolean, indicating multivalue (implying an arrayref)
-
-=back
-
-Returns undef on failure, arrayref with original value and type to convert to otherwise
-
-=cut
-
-# This odd construct is needed because the data returned from convert
-# cannot be stored in a variable
-
-sub check_type
-{
-    my ($self, $value, $type, $multi, $emsg) = @_;
-
-    my $ref = ref($value);
-
-    my $res = [$value, $type];
-
-    if ($multi && $ref ne 'ARRAY') {
-        $self->error("$emsg has to be an arrayref (is multivalued)");
-        return;
-    } elsif ((! $multi) && $ref ne '') {
-        $self->error("$emsg has to be a scalar (is not multivalued)");
-        return;
-    }
-
-
-    return $res
-}
-
 =item convert
 
-Convert/cast value to type
+Convert/cast value to type.
 
 If a type is not found in the dispatch tabel, log a warning and return the value as-is.
+
+Always returns value, dies when dealing with non-convertable type (using 'FATAL numeric').
 
 =cut
 
@@ -189,7 +46,7 @@ If a type is not found in the dispatch tabel, log a warning and return the value
 
 sub convert
 {
-    my ($self, $value, $type) = @_;
+    my ($value, $type) = @_;
 
     my $funcref = $CONVERT_DISPATCH{$type};
 
@@ -210,9 +67,129 @@ sub convert
             return $funcref->($value);
         };
     } else {
-        $self->warn("No conversion for type $type");
         return $value;
     }
+}
+
+=item check_command
+
+Given the (single) command hashref C<cmd> and C<value>,
+verify the value, convert it and add it to C<where>.
+
+(Adding to where is required to avoid using intermdiadate varaibles
+which can cause problems for the internal types).
+
+Returns errormessage (which is undef on success).
+
+=cut
+
+sub check_command
+{
+    my ($cmd, $value, $where) = @_;
+
+    my $errmsg;
+
+    my $ref = ref($value);
+    my $name = $cmd->{name};
+
+    # Check mandatory / undef
+    # only mandatory if required and no autofill/default
+    my $mandatory = ($cmd->{required} && (! $cmd->{autofill})) ? 1 : 0;
+
+    # Check multivalue
+    my $multi = $cmd->{multivalue} ? 1 : 0;
+
+    if (! defined($value)) {
+        if ($mandatory) {
+            $errmsg = "name $name mandatory with undefined value";
+        };
+    } elsif((! $ref && ! $multi) ||
+            (($ref eq 'ARRAY') && $multi) ) {
+        # Convert and add to where
+        my $wref = ref($where);
+        local $@;
+        eval {
+            if ($wref eq 'ARRAY') {
+                push(@$where, convert($value, $cmd->{type}));
+            } elsif ($wref eq 'HASH') {
+                $where->{$name} = convert($value, $cmd->{type});
+            } else {
+                $errmsg = "name $name unknown where ref $wref";
+            };
+        };
+        $errmsg = "name $name where ref $wref died $@" if ($@);
+    } else {
+        $errmsg = "name $name wrong multivalue (multi $multi, ref $ref)";
+    };
+
+    return $errmsg;
+}
+
+=item process_args
+
+Given the command hasref C<cmds> and the arguments passed, return
+
+=over
+
+=item errmsg: an error message in case of failure
+
+=item posarg: arrayref with positional arguments
+
+=item opts: hasref with options
+
+=item rpc: hashref with options for the RPC call
+
+(All options starting with C<__> are passed as options to
+C<Net::FreeIPA::RPC::rpc>, with C<__> prefix removed).
+
+=back
+
+Positional argument and option values are converted
+using C<convert> function.
+
+=cut
+
+sub process_args
+{
+    my ($cmds, @args) = @_;
+
+    my $posargs = [];
+    my $opts = {};
+    my $rpc = {};
+    my $errmsg;
+
+    # Check posargs
+    my $aidx = 0;
+    foreach my $cmd (@{$cmds->{takes_args} || []}) {
+        $aidx += 1;
+        $errmsg = check_command($cmd, shift(@args), $posargs);
+        return "$aidx-th argument $errmsg" if $errmsg;
+    }
+
+    # Check options
+    my %origopts = @args;
+
+    # Process all options
+    # The processed options are removed from %origopts
+    foreach my $cmd (@{$cmds->{takes_options} || []}) {
+        my $name = $cmd->{name};
+        $errmsg = check_command($cmd, delete $origopts{$name}, $opts);
+        return "option $errmsg" if $errmsg;
+    }
+
+    # Filter out any RPC options
+    # Any remaing key is invalid
+    foreach my $name (sort keys %origopts) {
+        if ($name =~ m/$API_RPC_OPTION_PATTERN/) {
+            my $val = $origopts{$name};
+            $name =~ s/$API_RPC_OPTION_PATTERN//;
+            $rpc->{$name} = $val;
+        } else {
+            return "option invalid name $name";
+        };
+    }
+
+    return $errmsg, $posargs, $opts, $rpc;
 }
 
 =pod

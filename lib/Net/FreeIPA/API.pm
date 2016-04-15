@@ -9,6 +9,7 @@ use Types::Serialiser; # is used by JSON::XS
 use JSON::XS;
 
 use Net::FreeIPA::API::Data;
+use Net::FreeIPA::Convert qw(process_args);
 
 use Readonly;
 
@@ -130,28 +131,12 @@ sub retrieve
     };
 }
 
-sub check_args
-{
-    my ($cmd, @args) = @_;
-
-    my $posargs = [];
-    my $options = {};
-    my $rpcoptions = {};
-    my $errormsg;
-
-    # Check posargs
-
-    # Check options
-
-    return $posargs, $options, $rpcoptions, $errormsg;
-}
-
 # Always return Request instance
 sub _api_function
 {
     my ($cmd, @args) = @_;
 
-    my ($posargs, $options, $rpcoptions, $errormsg) = check_args($cmd, @args);
+    my ($errormsg, $posargs, $options, $rpcoptions) = process_args($cmd, @args);
 
     # Make Request instance
     my $instance;
@@ -168,12 +153,14 @@ sub _api_method
 {
     my ($cmd, $self, @args) = @_;
 
-    my ($posargs, $options, $rpcoptions, $errormsg) = check_args($cmd, @args);
+    my ($errormsg, $posargs, $options, $rpcoptions) = process_args($cmd, @args);
 
     if ($errormsg) {
         $self->error($errormsg);
         return;
-    }
+    } else {
+        return $self->rpc($command, $posargs, $options, $rpcoptions);
+    };
 }
 
 
