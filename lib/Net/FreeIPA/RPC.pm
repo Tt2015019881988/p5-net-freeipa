@@ -10,6 +10,7 @@ use JSON::XS;
 
 use Net::FreeIPA::Error;
 use Net::FreeIPA::API::Magic;
+use Net::FreeIPA::Request;
 
 use LWP::UserAgent;
 # Add kerberos support
@@ -180,7 +181,9 @@ sub set_api_version
 
 =item post
 
-Make a JSON API post. Return 1 on success, undef on failure.
+Make a JSON API post using C<request>.
+
+Return 1 on success, undef on failure.
 Answer is stored in the answer attribute. (The answer is decoded
 in case of success).
 
@@ -188,19 +191,24 @@ in case of success).
 
 sub post
 {
-    my ($self, $command, $args, $opts) = @_;
+    my ($self, $request, %opts) = @_;
+
+    # set request post options, do not override
+    foreach my $postopt (sort keys %{$request->{post}}) {
+        $opts{$postopt} = $request->{post}->{$postopt} if ! defined($opts{$postopt});
+    }
 
     # Reset any previous answer
     $self->{answer} = undef;
 
     # For now, only support the API version from Net::FreeIPA::API
     if ($self->{api_version}) {
-        $opts->{version} = $self->{api_version};
+        $request->{opts}->{version} = $self->{api_version};
     }
 
     my $data = {
-        method => $command,
-        params => [$args, $opts],
+        method => $request->{command},
+        params => [$request->{args}, $request->{opts}],
         id => $self->{id},
     };
 
@@ -247,11 +255,7 @@ Arguments
 
 =over
 
-=item command: API command (passed to C<post> method)
-
-=item args: arrayref with API command arguments (passed to C<post> method)
-
-=item opts: hashref with API command options (passed to C<post> method)
+=item request: request instance (request rpc options are added to the options, without overriding)
 
 =back
 
@@ -277,18 +281,41 @@ Processed result is stored in the result attribute.
 
 sub rpc
 {
-    my ($self, $command, $args, $opts, %opts) = @_;
-
-    my $result_path = $opts{result_path} || 'result/result';
+    my ($self, $request, %opts) = @_;
 
     # Reset any previous result
     $self->{result} = undef;
+    my ($ret, $response, $command);
 
-    return if (! $self->post($command, $args, $opts));
+    my $ref = ref($request);
+    if ($ref eq 'Net::FreeIPA::Request') {
+        $command = $request->{command};
 
-    my $ret;
+        if (! $request) {
+            my $msg = "error in request $request->{error}";
+            $self->error($msg);
+            $self->{error} = mkerror(message => $msg);
+            return;
+        }
+
+        # set request rpc options, do not override
+        foreach my $rpcopt (sort keys %{$request->{rpc}}) {
+            $opts{$rpcopt} = $request->{rpc}->{$rpcopt} if ! defined($opts{$rpcopt});
+        }
+
+        $response = $self->post($request);
+
+        return if (! $response);
+    } else {
+        my $msg = "Not supported rpc argument type $ref";
+        $self->error($msg);
+        $self->{error} = mkerror(message => $msg);
+        return;
+    }
 
     my $error = mkerror(%{$self->{answer}->{error}});
+
+    my $result_path = $opts{result_path} || 'result/result';
 
     # Save error attribute
     $self->{error} = $error;
@@ -330,7 +357,8 @@ sub get_api_commands
 {
     my ($self) = @_;
 
-    return $self->rpc('json_metadata', [], {command => "all"}, result_path => 'result/commands') ? $self->{result} : undef;
+    my $req = mkrequest('json_metadata', args => [], opts => {command => "all"});
+    return $self->rpc($req, result_path => 'result/commands') ? $self->{result} : undef;
 }
 
 
@@ -353,7 +381,8 @@ sub get_api_version
 {
     my ($self) = @_;
 
-    return $self->rpc('env', ['api_version'], {}, result_path => 'result/result/api_version') ? $self->{result} : undef;
+    my $req = mkrequest('env', args => ['api_version'], opts => {});
+    return $self->rpc($req, result_path => 'result/result/api_version') ? $self->{result} : undef;
 }
 
 =pod

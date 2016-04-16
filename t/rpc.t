@@ -9,6 +9,7 @@ use Net::FreeIPA;
 use version;
 
 use Net::FreeIPA::API;
+use Net::FreeIPA::Request;
 
 my $mock_rest = Test::MockModule->new('REST::Client');
 my $mockbase = Test::MockModule->new("Net::FreeIPA::Base");
@@ -146,7 +147,7 @@ $args = undef;
 $code = 200;
 $content = '{"a":1}'; # JSON
 $f->{id} = 100;
-ok($f->post("mycommand", [qw(a b c)], {opt => 'ok', int => 1}),
+ok($f->post(mkrequest("mycommand", args => [qw(a b c)], opts => {opt => 'ok', int => 1})),
     "succesful rpc call return 1");
 ok(! defined($error), 'No error after successful post');
 isa_ok($f->{error}, 'Net::FreeIPA::Error', 'error attribute is a Net::FreeIPA::Error instance');
@@ -176,7 +177,7 @@ $args = undef;
 $code = 400;
 $content = '{"b":1}'; # JSON
 $f->{id} = 101;
-ok(! defined($f->post("mycommand", [qw(a b c)], {opt => 'ok', int => 1})),
+ok(! defined($f->post(mkrequest("mycommand", args => [qw(a b c)], opts => {opt => 'ok', int => 1}))),
     "failed rpc call return undef");
 is($error->[0], 'POST failed (url /ipa/session/json code 400): {"b":1}', 'Error after failed post');
 isa_ok($f->{error}, 'Net::FreeIPA::Error', 'error attribute is a Net::FreeIPA::Error instance');
@@ -192,7 +193,7 @@ is($f->{answer}, $content, 'answer attribute has undecoded response on failure')
 $error = undef;
 $content = '{"error":null,"id":0,"principal":"user@DOMAIN","result":{"count":1,"messages":[{"code":13001,"message":"API Version number was not sent, forward compatibility not guaranteed. Assuming servers API version, 2.156","name":"VersionMissing","type":"warning"}],"result":[{"dn":"uid=user,cn=users,cn=accounts,dc=domain","gidnumber":["1234567"],"has_keytab":true,"has_password":true,"homedirectory":["/home/user"],"loginshell":["/bin/bash"],"nsaccountlock":false,"sn":["Superman"],"uid":["user"],"uidnumber":["1234567"]}],"summary":"1 user matched","truncated":false},"version":"4.2.0"}';
 $code = 200;
-ok($f->rpc("mycommand", [qw(a b c)], {opt => 'ok', int => 1}),
+ok($f->rpc(mkrequest("mycommand", args => [qw(a b c)], opts => {opt => 'ok', int => 1})),
    "succesfull rpc");
 ok(! defined($error), 'No error after successful post');
 isa_ok($f->{error}, 'Net::FreeIPA::Error', 'error attribute is a Net::FreeIPA::Error instance');
@@ -200,11 +201,26 @@ ok(! $f->{error}, "error attribute is false on succes rpc");
 is(scalar @{$f->{result}}, 1, "1 result from rpc");
 ok($f->{result}->[0]->{has_keytab}, "first result has keytab attribute set");
 
+# unsupported type
+$error = undef;
+ok(! defined($f->rpc('abc')), "failed rpc with invalid arg type");
+like($error->[0], qr{^Not supported rpc argument type $}, 'Error after invalid arg type');
+isa_ok($f->{error}, 'Net::FreeIPA::Error', 'error attribute is a Net::FreeIPA::Error instance after invalid arg type');
+ok($f->{error}, "error attribute is true on invalid arg type");
+
+# invalid request
+$error = undef;
+ok(! defined($f->rpc(mkrequest("mycommand", args => [qw(a b c)], opts => {opt => 'ok', int => 1}, error => 'badrequest'))),
+   "failed rpc with error request");
+like($error->[0], qr{^error in request badrequest$}, 'Error after error request');
+isa_ok($f->{error}, 'Net::FreeIPA::Error', 'error attribute is a Net::FreeIPA::Error instance after error request');
+ok($f->{error}, "error attribute is true on error request");
+
 # post failed
 $error = undef;
 $content = '{"error":null,"id":0,"principal":"user@DOMAIN","result":{"count":1,"messages":[{"code":13001,"message":"API Version number was not sent, forward compatibility not guaranteed. Assuming servers API version, 2.156","name":"VersionMissing","type":"warning"}],"result":[{"dn":"uid=user,cn=users,cn=accounts,dc=domain","gidnumber":["1234567"],"has_keytab":true,"has_password":true,"homedirectory":["/home/user"],"loginshell":["/bin/bash"],"nsaccountlock":false,"sn":["Superman"],"uid":["user"],"uidnumber":["1234567"]}],"summary":"1 user matched","truncated":false},"version":"4.2.0"}';
 $code = 400;
-ok(! defined($f->rpc("mycommand", [qw(a b c)], {opt => 'ok', int => 1})),
+ok(! defined($f->rpc(mkrequest("mycommand", [qw(a b c)], {opt => 'ok', int => 1}))),
    "failed rpc with failed post");
 like($error->[0], qr{^POST failed \(url /ipa/session/json code 400\): }, 'Error after failed post');
 isa_ok($f->{error}, 'Net::FreeIPA::Error', 'error attribute is a Net::FreeIPA::Error instance');
@@ -218,7 +234,7 @@ ok(! defined($f->{result}), "Result attribute is reset");
 $error = undef;
 $code = 200;
 $content = '{"error":{"message":"some error"},"id":0,"principal":"user@DOMAIN","result":{"count":1,"messages":[{"code":13001,"message":"API Version number was not sent, forward compatibility not guaranteed. Assuming servers API version, 2.156","name":"VersionMissing","type":"warning"}],"result":[{"dn":"uid=user,cn=users,cn=accounts,dc=domain","gidnumber":["1234567"],"has_keytab":true,"has_password":true,"homedirectory":["/home/user"],"loginshell":["/bin/bash"],"nsaccountlock":false,"sn":["Superman"],"uid":["user"],"uidnumber":["1234567"]}],"summary":"1 user matched","truncated":false},"version":"4.2.0"}';
-ok(! defined($f->rpc("mycommand", [qw(a b c)], {opt => 'ok', int => 1})),
+ok(! defined($f->rpc(mkrequest("mycommand", args => [qw(a b c)], opts => {opt => 'ok', int => 1}))),
    "failed rpc with succesful post and error in answer");
 is($error->[0], 'mycommand got error (Error some error)', 'Error after failed post');
 isa_ok($f->{error}, 'Net::FreeIPA::Error', 'error attribute is a Net::FreeIPA::Error instance');

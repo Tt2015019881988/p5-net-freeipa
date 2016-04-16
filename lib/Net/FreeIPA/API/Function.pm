@@ -28,23 +28,6 @@ foreach my $cmd (@all) {
     push(@{$EXPORT_TAGS{$class}}, $cmd);
 };
 
-
-# Always return Request instance
-my $api_function = sub
-{
-    my ($cmd, @args) = @_;
-
-    my ($errormsg, $posargs, $options, $rpcoptions) = process_args($cmd, @args);
-
-    # Make Request instance
-    my $instance;
-
-    # If error, set error
-    # Otherwise, set data
-
-    return $instance;
-};
-
 #
 # AUTOLOAD a function with the exact commandname, returns C<_api_function> call
 #
@@ -58,7 +41,6 @@ sub AUTOLOAD
     my $called_orig = $called;
     $called =~ s{^.*::}{};
 
-    my $method = $api_function;
     my ($cmd, $fail) = retrieve($called);
 
     if ($fail) {
@@ -70,7 +52,7 @@ sub AUTOLOAD
         # but that breaks inheritance.
 
         # The method name is in the name attribute
-        return &$method($cmd, @_);
+        return process_args($cmd, @_);
     }
 }
 

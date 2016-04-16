@@ -12,25 +12,8 @@ use Readonly;
 
 Readonly our $API_METHOD_PREFIX => 'api_';
 
-# Return undef on failure
-# Convert rpc_api otherwise
-my $api_method = sub 
-{
-    my ($cmd, $self, @args) = @_;
-
-    my ($errormsg, $posargs, $options, $rpcoptions) = process_args($cmd, @args);
-
-    if ($errormsg) {
-        # All process_args errors are already prefixed with the $cmd->{name}
-        $self->error("$API_METHOD_PREFIX$errormsg");
-        return;
-    } else {
-        return $self->rpc($cmd->{name}, $posargs, $options, %$rpcoptions);
-    };
-};
-
 # This will add all AUTOLOADable functions as methods calls
-# So only AUTOLOAD method with command name prefixed 
+# So only AUTOLOAD method with command name prefixed
 # with api_, returns a C<$api_method> call
 
 sub AUTOLOAD
@@ -43,12 +26,11 @@ sub AUTOLOAD
     my $called_orig = $called;
     $called =~ s{^.*::}{};
 
-    my ($method, $cmd, $fail);
+    my ($cmd, $fail);
     my $api_pattern = "^$API_METHOD_PREFIX";
     if ($called =~ m/$api_pattern/) {
         $called =~ s{$api_pattern}{};
-        $method = $api_method;
-        
+
         ($cmd, $fail) = retrieve($called);
     } else {
         $fail = "only $API_METHOD_PREFIX methods supported";
@@ -63,7 +45,8 @@ sub AUTOLOAD
         # but that breaks inheritance.
 
         # The method name is in the name attribute
-        return &$method($cmd, @_);
+        my ($self, @args) = @_;
+        return $self->rpc(process_args($cmd, @args));
     }
 }
 

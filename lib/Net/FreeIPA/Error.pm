@@ -46,7 +46,7 @@ sub mkerror
 
 =item new
 
-Create new error instance from (decoded) JSON response (i.e. a hashref).
+Create new error instance from options, e.g. from a (decoded dereferenced) JSON response.
 
 =cut
 

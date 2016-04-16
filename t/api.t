@@ -25,13 +25,16 @@ isa_ok($f, 'Net::FreeIPA::API', "Net::FreeIPA instance is a Net::FreeIPA::API to
 
 $mockrpc->mock('rpc', sub {
 
-    my ($self, $command, $args, $opts, %opts) = @_;
+    my ($self, $request) = @_;
+
+    isa_ok($request, 'Net::FreeIPA::Request', 'isa Request instance');
+    return undef if (! $request);
 
     $rpc_args = {
-        command => $command,
-        args => $args,
-        opts => $opts,
-        rpc_opts => \%opts,
+        command => $request->{command},
+        args => $request->{args},
+        opts => $request->{opts},
+        rpc_opts => $request->{rpc},
     };
 
     return 123; # something unique
@@ -49,7 +52,8 @@ sub tapi
     } else {
         # an error
         ok(! defined($res), "undef returned on error $msg");
-        like($error->[0], qr{$exp}, "error message $msg");
+        # Do not test the error message anymore; it's handled by RPC now
+        #like($error->[0], qr{$exp}, "error message $msg");
         ok(! $rpc_args->{command}, "rpc command empty, rpc not called $msg");
     }
     # Reset, ok for next time
