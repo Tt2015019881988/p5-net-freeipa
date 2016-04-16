@@ -120,45 +120,48 @@ ct({required => 1, autofill => 1, name => 'abc', type => 'bool', multivalue => 1
 sub pat
 {
     my ($res, $msg, $err, $pos, $opts, $rpc, $jres) = @_;
-    if($res->[0]) {
-        like($res->[0], qr{$err}, "error $msg");
-    } else {
-        ok(1, "no error $msg");
-        # Start with this before comparing individual values with is_deeply
-        is($jres, $j->encode([$res->[1], $res->[2]]), "json/converted values $msg");
 
-        is_deeply($res->[1], $pos, "positional args $msg");
-        is_deeply($res->[2], $opts, "options $msg");
-        is_deeply($res->[3], $rpc, "rpc options $msg");
+    isa_ok($res, "Net::FreeIPA::Request", 'process_args returns Request instance');
+
+    if($res) {
+        ok(! $res->is_error(), "no error $msg");
+        # Start with this before comparing individual values with is_deeply
+        is($jres, $j->encode([$res->{args}, $res->{opts}]), "json/converted values $msg");
+
+        is_deeply($res->{args}, $pos, "positional args $msg");
+        is_deeply($res->{opts}, $opts, "options $msg");
+        is_deeply($res->{rpc}, $rpc, "rpc options $msg");
+    } else {
+        like($res->{error}, qr{$err}, "error $msg");
     }
 }
 
 # Has mandatory posarg, non-mandatory option
 my $cmds = $j->decode($DOMAINLEVEL_SET);
-pat([process_args($cmds, undef)],
+pat(process_args($cmds, undef),
     'missing mandatory pos argument',
     'domainlevel_set: 1-th argument name ipadomainlevel mandatory with undefined value');
 
-pat([process_args($cmds, [1])],
+pat(process_args($cmds, [1]),
     'pos arg check_command error propagated (no mulitvalue)',
     'domainlevel_set: 1-th argument name ipadomainlevel wrong multivalue');
 
 # make version mandatory
 $cmds->{takes_options}->[0]->{required} = 1;
-pat([process_args($cmds, 1)],
+pat(process_args($cmds, 1),
     'missing mandatory option',
     'domainlevel_set: option name version mandatory with undefined value');
 $cmds->{takes_options}->[0]->{required} = 0;
 
-pat([process_args($cmds, 1, version => [1])],
+pat(process_args($cmds, 1, version => [1]),
     'option check_command propagated (no multivalue)',
     'domainlevel_set: option name version wrong multivalue');
 
-pat([process_args($cmds, 1, abc => 10)],
+pat(process_args($cmds, 1, abc => 10),
     'invalid option',
     'domainlevel_set: option invalid name abc');
 
-pat([process_args($cmds, 1, version => 2, __abc => 10)],
+pat(process_args($cmds, 1, version => 2, __abc => 10),
     'process_args returns 4 element tuple (incl __ stripped rpc opt)',
     undef, [1], {version => 2}, {abc => 10}, '[[1],{"version":"2"}]');
 

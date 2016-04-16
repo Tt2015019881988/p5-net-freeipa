@@ -3,6 +3,8 @@ package Net::FreeIPA::API::Convert;
 use strict;
 use warnings qw(FATAL numeric);
 
+use Net::FreeIPA::Request;
+
 use Types::Serialiser; # is used by JSON::XS
 use Readonly;
 
@@ -162,12 +164,17 @@ sub process_args
     my $rpc = {};
     my $errmsg;
 
+    my $err_req = sub {
+        $errmsg = join(" ", "$cmdname:", shift, $errmsg);
+        return mkrequest($cmdname, error => $errmsg);
+    };
+
     # Check posargs
     my $aidx = 0;
     foreach my $cmd (@{$cmds->{takes_args} || []}) {
         $aidx += 1;
         $errmsg = check_command($cmd, shift(@args), $posargs);
-        return "$cmdname: $aidx-th argument $errmsg" if $errmsg;
+        return &$err_req("$aidx-th argument") if $errmsg;
     }
 
     # Check options
@@ -178,7 +185,7 @@ sub process_args
     foreach my $cmd (@{$cmds->{takes_options} || []}) {
         my $name = $cmd->{name};
         $errmsg = check_command($cmd, delete $origopts{$name}, $opts);
-        return "$cmdname: option $errmsg" if $errmsg;
+        return &$err_req("option") if $errmsg;
     }
 
     # Filter out any RPC options
@@ -189,11 +196,12 @@ sub process_args
             $name =~ s/$API_RPC_OPTION_PATTERN//;
             $rpc->{$name} = $val;
         } else {
-            return "$cmdname: option invalid name $name";
+            return &$err_req("option invalid name $name");
         };
     }
 
-    return $errmsg, $posargs, $opts, $rpc;
+    # No error
+    return mkrequest($cmdname, args => $posargs, opts => $opts, rpc => $rpc);
 }
 
 =pod
