@@ -132,7 +132,7 @@ sub new_client
         # Do no print possible password
         $self->error("Login failed (url $url$login_url code $code): $content");
         # Set error attribute
-        $self->{error} = mkerror({message => "Login failed (url $url$login_url code $code)"});
+        $self->{error} = mkerror(message => "Login failed (url $url$login_url code $code)");
         return;
     }
 }
@@ -180,7 +180,7 @@ sub set_api_version
 
 =item post
 
-Make a JSON API post. Return 1 on succes, undef on failure.
+Make a JSON API post. Return 1 on success, undef on failure.
 Answer is stored in the answer attribute. (The answer is decoded
 in case of success).
 
@@ -229,7 +229,7 @@ sub post
         $content = '<undef>' if ! defined($content);
         $self->error("POST failed (url $IPA_URL_JSON code $code): $content");
         # Set error (not processed anymore by rpc)
-        $self->{error} = mkerror({message => "POST failed (url $IPA_URL_JSON code $code)"});
+        $self->{error} = mkerror(message => "POST failed (url $IPA_URL_JSON code $code)");
     }
 
     # Store last (decoded) answer in answer attribute
@@ -288,7 +288,7 @@ sub rpc
 
     my $ret;
 
-    my $error = mkerror($self->{answer}->{error});
+    my $error = mkerror(%{$self->{answer}->{error}});
 
     # Save error attribute
     $self->{error} = $error;

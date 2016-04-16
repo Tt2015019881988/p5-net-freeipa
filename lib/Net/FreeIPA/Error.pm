@@ -52,9 +52,9 @@ Create new error instance from (decoded) JSON response (i.e. a hashref).
 
 sub new
 {
-    my $this = shift;
+    my ($this, %opts) = @_;
     my $class = ref($this) || $this;
-    my $self = shift || {}; # here, it gives a reference on a hash
+    my $self = \%opts;
     bless $self, $class;
 };
 
