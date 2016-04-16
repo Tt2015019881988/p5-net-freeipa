@@ -11,7 +11,7 @@ use overload bool => '_boolean';
 
 =head1 NAME
 
-Net::FreeIPA::Reuqest is an request class for Net::FreeIPA.
+Net::FreeIPA::Request is an request class for Net::FreeIPA.
 
 Boolean logic is overloaded using C<_boolean> method (as inverse of C<is_error>).
 
@@ -64,8 +64,10 @@ sub new
 
         error => $opts{error}, # no default
     };
+    
     bless $self, $class;
 
+    return $self;
 };
 
 =item is_error

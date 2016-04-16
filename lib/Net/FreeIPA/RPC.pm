@@ -133,7 +133,7 @@ sub new_client
         # Do no print possible password
         $self->error("Login failed (url $url$login_url code $code): $content");
         # Set error attribute
-        $self->{error} = mkerror(message => "Login failed (url $url$login_url code $code)");
+        $self->{error} = mkerror("Login failed (url $url$login_url code $code)");
         return;
     }
 }
@@ -237,7 +237,7 @@ sub post
         $content = '<undef>' if ! defined($content);
         $self->error("POST failed (url $IPA_URL_JSON code $code): $content");
         # Set error (not processed anymore by rpc)
-        $self->{error} = mkerror(message => "POST failed (url $IPA_URL_JSON code $code)");
+        $self->{error} = mkerror("POST failed (url $IPA_URL_JSON code $code)");
     }
 
     # Store last (decoded) answer in answer attribute
@@ -294,7 +294,7 @@ sub rpc
         if (! $request) {
             my $msg = "error in request $request->{error}";
             $self->error($msg);
-            $self->{error} = mkerror(message => $msg);
+            $self->{error} = mkerror($msg);
             return;
         }
 
@@ -309,7 +309,7 @@ sub rpc
     } else {
         my $msg = "Not supported rpc argument type $ref";
         $self->error($msg);
-        $self->{error} = mkerror(message => $msg);
+        $self->{error} = mkerror($msg);
         return;
     }
 

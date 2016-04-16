@@ -48,15 +48,85 @@ sub mkerror
 
 Create new error instance from options, e.g. from a (decoded dereferenced) JSON response.
 
+Arguments are handled by C<set_error>.
+
 =cut
 
 sub new
 {
-    my ($this, %opts) = @_;
+    my $this = shift;
     my $class = ref($this) || $this;
-    my $self = \%opts;
+    my $self = {
+        __errattr => [],
+    };
     bless $self, $class;
+
+    $self->set_error(@_);
+
+    return $self;
 };
+
+=item set_error
+
+Process arguments to error
+
+=over
+
+=item no args/undef: reset the error attribute
+
+=item single argument string: convert to an C<Error> instance with message
+
+=item single argument hasref/Error instance: make a copy
+
+=item single argument/other: set Error message and save original in _orig attribute
+
+=item options (more than one arg): set the options
+
+=back
+
+=cut
+
+sub set_error
+{
+    my $self = shift;
+
+    my $nrargs = scalar @_;
+
+    my %opts;
+    if ($nrargs == 1) {
+        my $err = shift;
+        my $ref = ref($err);
+
+        if($ref eq 'Net::FreeIPA::Error') {
+            %opts = map {$_ => $err->{$_}} @{$err->{__errattr}};
+        } elsif ($ref eq 'HASH') {
+            %opts = %$err;
+        } elsif (defined($err) && $ref eq '') {
+            $opts{message} = $err;
+        } elsif (defined($err)) {
+            $opts{message} = "unknown error type $ref, see _orig attribute";
+            $opts{_orig} = $err;
+        }
+    } elsif ($nrargs > 1) {
+       %opts = @_;
+    }
+
+
+    # Wipe current state
+    # Do this after the %opts are build, to allow copies of itself
+    foreach my $key (@{$self->{__errattr}}) {
+        delete $self->{$key};
+    }
+    $self->{__errattr} = [];
+
+    # sort produces sorted __errattr
+    foreach my $key (sort keys %opts) {
+        $self->{$key} = $opts{$key};
+        push(@{$self->{__errattr}}, $key);
+    }
+
+    return $self;
+}
 
 =item is_error
 

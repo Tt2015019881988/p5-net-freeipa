@@ -152,5 +152,39 @@ ok(! $e->is_duplicate(), "other error with name is not duplicate");
 $e = mkerror(code => 123);
 ok(! $e->is_duplicate(), "123 error with code is not duplicate");
 
+=item set_error
+
+=cut
+
+$e->set_error();
+is("$e", "No error", "empty error set");
+is_deeply($e->{__errattr}, [], "empty error set empty attrs");
+
+$e->set_error("abc");
+is("$e", "Error abc", "string as message");
+is_deeply($e->{__errattr}, [qw(message)], "string as message sets message attr");
+
+$e->set_error({code => 100});
+is("$e", "Error 100", "hashref as message");
+is_deeply($e->{__errattr}, [qw(code)], "hashref with code sets code attr");
+
+$e->set_error(code => 100);
+is("$e", "Error 100", "hash as message");
+is_deeply($e->{__errattr}, [qw(code)], "hash with code as sets code attr");
+
+my $er = $e;
+$e->set_error($er);
+is("$e", "$er", "Error instance is the same");
+is_deeply($e->{__errattr}, [qw(code)], "error instance keeps code attr");
+
+$e->set_error([qw(1 2)]);
+is("$e", "Error unknown error type ARRAY, see _orig attribute", "unsupported type as message");
+is_deeply($e->{_orig}, [qw(1 2)], "original stored in error _orig attribute");
+is_deeply($e->{__errattr}, [qw(_orig message)], "unknown instance keeps _orig and message attr");
+
+$e->set_error();
+is("$e", "No error", "error reset");
+is_deeply($e->{__errattr}, [], "empty error reset attrs");
+
 
 done_testing();
