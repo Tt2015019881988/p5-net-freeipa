@@ -3,10 +3,30 @@ package Net::FreeIPA::API::Function;
 use strict;
 use warnings;
 
+use base qw(Exporter);
+
 our $AUTOLOAD;
 
 use Net::FreeIPA::API::Convert qw(process_args);
 use Net::FreeIPA::API::Magic qw(retrieve);
+
+my @all = Net::FreeIPA::API::Magic::all_command_names();
+
+# Make all functions individually exportable
+our @EXPORT_OK = @all;
+
+# Support :all tag
+our %EXPORT_TAGS = (
+    all => \@all,
+);
+
+# Make an export tag for each method-class, e.g. :user
+foreach my $cmd (@all) {
+    my $class = $cmd;
+    $class =~ s/_.*$//;
+    $EXPORT_TAGS{$class} = [] if ! defined($EXPORT_TAGS{$class});
+    push(@{$EXPORT_TAGS{$class}}, $cmd);
+};
 
 
 # Always return Request instance

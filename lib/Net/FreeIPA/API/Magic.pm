@@ -141,6 +141,26 @@ sub retrieve
     };
 }
 
+=item all_command_names
+
+Return all possible commandsnames sorted.
+
+Does not update cache.
+
+=cut
+
+# Used mainly to generate the API::Function exports
+
+sub all_command_names
+{
+
+    # Get the JSON data from Net::FreeIPA::API::Data
+    # TODO: get the JSON data from the JSON api
+    # If the JSON API doesn't allow to just get the names, 
+
+    return sort keys %Net::FreeIPA::API::Data::API_DATA;
+}
+
 =pod
 
 =back

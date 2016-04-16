@@ -86,5 +86,12 @@ is_deeply($c, {}, 'unknown method retrieves undef');
 is($err, 'retrieve name no_real_method failed: no JSON data',
      "retrieve of unknown method returns error message");
 
+=head2 all_command_names
+
+=cut
+    
+is_deeply([Net::FreeIPA::API::Magic::all_command_names()],
+          [sort keys %Net::FreeIPA::API::Data::API_DATA],
+          "return sorted command_names");
 
 done_testing;
