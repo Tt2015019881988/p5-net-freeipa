@@ -3,7 +3,7 @@ package Net::FreeIPA::Common;
 use strict;
 use warnings;
 
-use Net::FreeIPA::Convert;
+use Net::FreeIPA::API::Magic;
 use Net::FreeIPA::Error;
 
 use Readonly;
@@ -55,19 +55,28 @@ sub find_one
 
     my $res;
 
-    my $method = "api_".$api."_find";
-    if ($self->can($method)) {
+    # Do not use ->can with autoload'ed magic
+    # use API::retrieve (as function)
+    my $func = $api."_find";
+    my $method = "$Net::FreeIPA::API::API_METHOD_PREFIX$func";
+
+    my ($cmds, $fail) = Net::FreeIPA::API::Magic::retrieve($func);
+
+    if ($fail) {
+        $self->error("find_one: unknown API method $method");
+    } else {
         my $attr = $FIND_ONE{$api};
         if ($attr) {
-            if ($self->$method("", $attr => $value, all => 1)) {
-                my $count = $self->{answer}->{result}->{count};
+            my $response = $self->$method("", $attr => $value, all => 1);
+            if ($response) {
+                my $count = $response->{answer}->{result}->{count};
                 if (! $count) {
                     $self->debug("one_find method $method and value $value returns 0 answers.");
                 } else {
                     if ($count > 1) {
                         $self->warn("one_find method $method and value $value returns $count answers");
                     };
-                    $res = $self->{result}->[0];
+                    $res = $response->{result}->[0];
                 }
             } else {
                 # error is already logged.
@@ -76,8 +85,6 @@ sub find_one
         } else {
             $self->error("find_one: no supported attribute for api $api");
         }
-    } else {
-        $self->error("find_one: unknown API method $method");
     };
 
     return $res;
@@ -111,7 +118,7 @@ sub do_one
 {
     my ($self, $api, $method, $name, %opts) = @_;
 
-    my $api_method = $Net::FreeIPA::Convert::API_METHOD_PREFIX.$api."_$method";
+    my $api_method = $Net::FreeIPA::API::API_METHOD_PREFIX.$api."_$method";
 
     # For add, do not report existing name as error
     # for other methods, do not report missing name as error
@@ -125,21 +132,21 @@ sub do_one
     }
     $opts{__noerror} = [$noerror];
 
-    my $res = $self->$api_method($name, %opts) ? $self->{result} : undef;
+    my $response = $self->$api_method($name, %opts);
 
     my $msg;
-    if ($res) {
+    if ($response) {
         $msg = "succesfully $method-ed $api $name";
     } else {
         $msg = "failed to $method $api $name";
-        if ($self->{error} == $noerror) {
+        if ($response->{error} == $noerror) {
             $msg .= " $api $noerrormsg";
         }
     }
 
     $self->debug("$api_method: $msg");
 
-    return $res;
+    return $response ? $response->{result} : undef;
 };
 
 

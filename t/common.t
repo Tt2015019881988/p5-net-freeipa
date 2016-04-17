@@ -13,14 +13,11 @@ use mock_rpc qw(common);
 use Test::MockModule;
 
 use Net::FreeIPA;
+use Net::FreeIPA::API::Magic;
 
 use version;
 
 use Net::FreeIPA::Common;
-
-my $mockapi = Test::MockModule->new("Net::FreeIPA::API");
-my $awesome = 1;
-$mockapi->mock('api_awesome_find', sub { $awesome = 0; return 10;});
 
 my $mockbase = Test::MockModule->new("Net::FreeIPA::Base");
 
@@ -63,12 +60,14 @@ is($error->[0], "find_one: unknown API method api_woohaha_find",
 
 =cut
 
-$error = undef;
-ok(! defined($f->find_one('awesome', 100)), "not-mapped attr method returns undef");
-is($error->[0], "find_one: no supported attribute for api awesome",
-   "not-mapped attr method reports error");
-is($awesome, 1, "not-mapped attr method is not called");
+# batch will never have a find, so will never end up in the map
+# inject it here in the cache
+Net::FreeIPA::API::Magic::cache({name => 'batch_find'});
 
+$error = undef;
+ok(! defined($f->find_one('batch', 100)), "not-mapped attr method returns undef");
+is($error->[0], "find_one: no supported attribute for api batch",
+   "not-mapped attr method reports error");
 
 =head2 find_one: method fails
 
@@ -78,7 +77,7 @@ $error = undef;
 reset_POST_history();
 ok(! defined($f->find_one('host', 'my.host')), "failed method returns undef");
 ok(POST_history_ok(["0 host_find  all=1,fqdn=my.host,"]), "api_host_find called with correct args/opts id=0");
-ok($f->{error} == 'unittest error', "answer with error result");
+ok($f->{response}->{error} == 'unittest error', "answer with error result");
 like($error->[0], qr{^host_find got error}, "failed method reports error");
 
 =head2 find_one: method finds no answers
@@ -91,7 +90,7 @@ reset_POST_history();
 $f->{id} = 1;
 ok(! defined($f->find_one('host', 'my.host')), "0 answers returns undef");
 ok(POST_history_ok(["1 host_find  all=1,fqdn=my.host,"]), "api_host_find called with correct args/opts id=1");
-is($f->{answer}->{result}->{count}, 0, "result with count=0");
+is($f->{response}->{answer}->{result}->{count}, 0, "result with count=0");
 ok(! defined($error), "no error reported");
 
 =head2 find_one: one answer
@@ -103,7 +102,7 @@ reset_POST_history();
 $f->{id} = 2;
 is_deeply($f->find_one('host', 'my.host'), {unittest => 1}, "return result");
 ok(POST_history_ok(["2 host_find  all=1,fqdn=my.host,"]), "api_host_find called with correct args/opts id=2");
-is($f->{answer}->{result}->{count}, 1, "result with count=1");
+is($f->{response}->{answer}->{result}->{count}, 1, "result with count=1");
 ok(! defined($error), "no error reported");
 
 =head2 find_one: 2 answers
@@ -117,7 +116,7 @@ reset_POST_history();
 $f->{id} = 3;
 is_deeply($f->find_one('host', 'my.host'), {unittest => 2}, "return first result");
 ok(POST_history_ok(["3 host_find  all=1,fqdn=my.host,"]), "api_host_find called with correct args/opts id=3");
-is($f->{answer}->{result}->{count}, 2, "result with count=2");
+is($f->{response}->{answer}->{result}->{count}, 2, "result with count=2");
 is($warn->[0], 'one_find method api_host_find and value my.host returns 2 answers',
    "warn reported on more than one answer");
 ok(! defined($error), "no error reported");
@@ -147,7 +146,7 @@ $f->{id} = 1;
 ok(! defined($f->do_one('host', 'add', 'my.host')),
    "do_one host add fails id=1");
 ok(POST_history_ok(["1 host_add my.host "]), "api_host_add called with correct args/opts id=1");
-ok($f->{error}->is_duplicate(), 'DuplicateEntry error');
+ok($f->{response}->{error}->is_duplicate(), 'DuplicateEntry error');
 ok(! defined($error), "no error reported with add and DuplicateEntry");
 
 # mod
@@ -157,7 +156,7 @@ $f->{id} = 1;
 ok(! defined($f->do_one('host', 'mod', 'my.host')),
    "do_one host mod fails id=1");
 ok(POST_history_ok(["1 host_mod my.host "]), "api_host_mod called with correct args/opts id=1");
-ok($f->{error}->is_not_found(), 'NotFound error');
+ok($f->{response}->{error}->is_not_found(), 'NotFound error');
 ok(! defined($error), "no error reported with mod and NotFound");
 
 =head2 do_one: success, no error

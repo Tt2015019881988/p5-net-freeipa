@@ -10,14 +10,14 @@ my $e;
 sub is_error
 {
     my ($arg, $test, $msg) = @_;
-    my $e = mkerror($arg);
+    my $e = mkerror(%$arg);
     ok($e->is_error($test), "$msg (error $e)");
 }
 
 sub isnt_error
 {
     my ($arg, $test, $msg) = @_;
-    my $e = mkerror($arg);
+    my $e = mkerror(%$arg);
     ok(! $e->is_error($test), "$msg (error $e)");
 }
 
@@ -32,14 +32,14 @@ is_deeply(\%Net::FreeIPA::Error::ERROR_CODES, {
 
 =cut
 
-$e = Net::FreeIPA::Error->new({});
+$e = Net::FreeIPA::Error->new();
 isa_ok($e, 'Net::FreeIPA::Error', 'Created a Net::FreeIPA::Error instance');
 
 =head2 error generator
 
 =cut
 
-$e = mkerror({});
+$e = mkerror();
 isa_ok($e, 'Net::FreeIPA::Error', 'Created a Net::FreeIPA::Error instance');
 
 
@@ -89,12 +89,12 @@ isnt_error({message => 'a message'}, 'other message', 'a message is not an other
 
 =cut
 
-$e = mkerror({});
+$e = mkerror();
 ok(! $e, "Not an error (but is an instance) (overload)");
 ok($e != 123, "empty error is not code 123 (overload)");
 is("$e", "No error", "error code stringifcation (overload)");
 
-$e = mkerror({code => 123, name => 'someerror'});
+$e = mkerror(code => 123, name => 'someerror');
 ok($e, "Is an error (but is an instance) (overload)");
 ok($e == 123, "error code=123 is code 123 (overload)");
 ok($e == 'someerror', "error code=123 is name someerror (overload)");
@@ -109,14 +109,14 @@ is_error({code => $nfc}, $nf, "code can be an name error if it is known");
 is_error({name => $nf}, $nfc, "name can be a code error if it is known");
 
 # overload
-$e = mkerror({name => $nf});
+$e = mkerror(name => $nf);
 ok($e == $nf, "notfound error with name is not found (==name)");
 ok($e->is_error($nf), "notfound error with name is not found (is_error(name))");
 ok($e == $nfc, "notfound error with name is not found (==code)");
 ok($e->is_error($nfc), "notfound error with name is not found (is_error(code))");
 
 
-$e = mkerror({code => $nfc});
+$e = mkerror(code => $nfc);
 ok($e == $nf, "notfound error with code is not found (==name)");
 ok($e->is_error($nf), "notfound error with code is not found (is_error(name))");
 ok($e == $nfc, "notfound error with code is not found (==code)");
@@ -126,14 +126,14 @@ ok($e->is_error($nfc), "notfound error with code is not found (is_error(code))")
 
 =cut
 
-$e = mkerror({name => $nf});
+$e = mkerror(name => $nf);
 ok($e->is_not_found(), "notfound error with name is not found");
-$e = mkerror({code => $nfc});
+$e = mkerror(code => $nfc);
 ok($e->is_not_found(), "notfound error with code is not found");
 
-$e = mkerror({name => 'other'});
+$e = mkerror(name => 'other');
 ok(! $e->is_not_found(), "other error with name is not not found");
-$e = mkerror({code => 123});
+$e = mkerror(code => 123);
 ok(! $e->is_not_found(), "123 error with code is not not found");
 
 =head2 is_duplicate
@@ -142,15 +142,49 @@ ok(! $e->is_not_found(), "123 error with code is not not found");
 
 my $dup = $Net::FreeIPA::Error::DUPLICATE_ENTRY;
 my $dupc = $Net::FreeIPA::Error::ERROR_CODES{$dup};
-$e = mkerror({name => $dup});
+$e = mkerror(name => $dup);
 ok($e->is_duplicate(), "Duplicate error with name is duplicate");
-$e = mkerror({code => $dupc});
+$e = mkerror(code => $dupc);
 ok($e->is_duplicate(), "Duplicate error with code is duplicate");
 
-$e = mkerror({name => 'other'});
+$e = mkerror(name => 'other');
 ok(! $e->is_duplicate(), "other error with name is not duplicate");
-$e = mkerror({code => 123});
+$e = mkerror(code => 123);
 ok(! $e->is_duplicate(), "123 error with code is not duplicate");
+
+=item set_error
+
+=cut
+
+$e->set_error();
+is("$e", "No error", "empty error set");
+is_deeply($e->{__errattr}, [], "empty error set empty attrs");
+
+$e->set_error("abc");
+is("$e", "Error abc", "string as message");
+is_deeply($e->{__errattr}, [qw(message)], "string as message sets message attr");
+
+$e->set_error({code => 100});
+is("$e", "Error 100", "hashref as message");
+is_deeply($e->{__errattr}, [qw(code)], "hashref with code sets code attr");
+
+$e->set_error(code => 100);
+is("$e", "Error 100", "hash as message");
+is_deeply($e->{__errattr}, [qw(code)], "hash with code as sets code attr");
+
+my $er = $e;
+$e->set_error($er);
+is("$e", "$er", "Error instance is the same");
+is_deeply($e->{__errattr}, [qw(code)], "error instance keeps code attr");
+
+$e->set_error([qw(1 2)]);
+is("$e", "Error unknown error type ARRAY, see _orig attribute", "unsupported type as message");
+is_deeply($e->{_orig}, [qw(1 2)], "original stored in error _orig attribute");
+is_deeply($e->{__errattr}, [qw(_orig message)], "unknown instance keeps _orig and message attr");
+
+$e->set_error();
+is("$e", "No error", "error reset");
+is_deeply($e->{__errattr}, [], "empty error reset attrs");
 
 
 done_testing();
