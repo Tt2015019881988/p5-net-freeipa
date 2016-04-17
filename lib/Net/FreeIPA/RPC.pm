@@ -325,6 +325,25 @@ sub rpc
 }
 
 
+# Possible code for batch
+#   requests can come from API::Function
+#     API::Function is not unittested
+sub batch
+{
+    my ($self, @requests) = @_;
+
+    # Make a large batch request
+    #   increase the id of each request, update the $self->id
+    #     use request->post_data, make arrayref?
+    # rpc the batchrequest
+    # split the rpc batchresponse answer
+    #   make a response instance for each request
+    #   pass each sub-response through rpc for postprocessing
+    #     extract the rpc options from each request
+    #     requires change to rpc to handle responses or factor out the response post processing code
+    # return list of responses
+}
+
 =item get_api_commands
 
 Retrieve the API commands metadata.
