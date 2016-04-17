@@ -43,7 +43,9 @@ Options
 
 =item opts: optional arguments
 
-=item error: an error
+=item error: an error (no default)
+
+=item id: id (no default)
 
 =back
 
@@ -63,12 +65,36 @@ sub new
         post => $opts{post} || {}, # options for post
 
         error => $opts{error}, # no default
+        id => $opts{id}, # no default
     };
-    
+
     bless $self, $class;
 
     return $self;
 };
+
+=item post_data
+
+Return the RPC::POST hashref (no JSON encoding).
+
+Returns undef if the id is not defined.
+
+=cut
+
+sub post_data
+{
+    my $self = shift;
+
+    return if (! defined($self->{id}));
+
+    my $data = {
+        method => $self->{command},
+        params => [$self->{args}, $self->{opts}],
+        id => $self->{id},
+    };
+
+    return $data;
+}
 
 =item is_error
 

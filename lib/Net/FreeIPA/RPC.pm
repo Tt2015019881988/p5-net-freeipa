@@ -202,17 +202,13 @@ sub post
         $request->{opts}->{version} = $self->{api_version};
     }
 
-    my $data = {
-        method => $request->{command},
-        params => [$request->{args}, $request->{opts}],
-        id => $self->{id},
-    };
+    $request->{id} = $self->{id} if ! defined($request->{id});
 
     # For convenience
     my $rc = $self->{rc};
     return if (! defined($rc));
 
-    my $json_req = $self->{json}->encode($data);
+    my $json_req = $self->{json}->encode($request->post_data());
     $self->debug("JSON POST $json_req") if $self->{debugapi};
     $rc->POST($IPA_URL_JSON, $json_req);
 
@@ -295,7 +291,7 @@ sub rpc
     }
 
     if ($response) {
-        # At this point, POST was succesful, and we interpret the results
+        # At this point, POST was succesful, and we interpret the response
         my $command = $request->{command};
 
         # Redefine the response error according to answer
