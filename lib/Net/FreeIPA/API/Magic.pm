@@ -29,7 +29,7 @@ Readonly::Array our @CACHE_TAKES_KEYS => qw(
     required autofill multivalue
 );
 
-Readonly::Hash my %CACHE_TAKES_DEFAULT => {
+Readonly::Hash our %CACHE_TAKES_DEFAULT => {
     autofill => $FALSE,
     class => 'unknown_class',
     multivalue => $FALSE,
@@ -44,6 +44,18 @@ my $cmd_cache = {};
 =head2 Public functions
 
 =over
+
+=item flush_cache
+
+Reset the cache
+
+=cut
+
+sub flush_cache
+{
+    $cmd_cache = {};
+    return $cmd_cache;
+}
 
 =item cache
 
@@ -156,7 +168,7 @@ sub all_command_names
 
     # Get the JSON data from Net::FreeIPA::API::Data
     # TODO: get the JSON data from the JSON api
-    # If the JSON API doesn't allow to just get the names, 
+    # If the JSON API doesn't allow to just get the names,
 
     return sort keys %Net::FreeIPA::API::Data::API_DATA;
 }
