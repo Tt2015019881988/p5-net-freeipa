@@ -11,6 +11,10 @@ our @EXPORT = qw(mkresponse);
 
 use overload bool => '_boolean';
 
+use Readonly;
+
+Readonly my $RESULT_PATH => 'result/result';
+
 =head1 NAME
 
 Net::FreeIPA::Response is an response class for Net::FreeIPA.
@@ -41,7 +45,11 @@ Options
 
 =over
 
+=item answer: complete answer hashref
+
 =item error: an error (passed to C<mkerror>).
+
+=item result_path: passed to C<set_result> to set the result attribute.
 
 =back
 
@@ -52,12 +60,59 @@ sub new
     my ($this, %opts) = @_;
     my $class = ref($this) || $this;
     my $self = {
-        error => mkerror($opts{error})
+        answer => $opts{answer} || {},
     };
     bless $self, $class;
 
-    return $self;
+    # First error
+    $self->set_error($opts{error});
+    # Then result
+    $self->set_result($opts{result_path});
 
+    return $self;
+};
+
+=item set_error
+
+Set and return the error attribute using C<mkerror>.
+
+=cut
+
+sub set_error
+{
+    my $self = shift;
+    $self->{error} = mkerror(@_);
+    return $self->{error};
+}
+
+=item set_result
+
+Set and return the result attribute based on the C<result_path>.
+
+The C<result_path> is path-like string, indicating which subtree of the answer
+should be set as result attribute (default C<result/result>).
+
+=cut
+
+sub set_result
+{
+    my ($self, $result_path) = @_;
+
+    my $res;
+
+    if (! $self->is_error()) {
+        $result_path = $RESULT_PATH if ! defined($result_path);
+
+        $res = $self->{answer};
+        # remove any "empty" paths
+        foreach my $subpath (grep {$_} split('/', $result_path)) {
+            $res = $res->{$subpath} if (defined($res));
+        };
+    };
+
+    $self->{result} = $res;
+
+    return $self->{result};
 };
 
 =item is_error

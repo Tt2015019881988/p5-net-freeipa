@@ -142,17 +142,20 @@ $f->set_api_version('2.156');
 
 =cut
 
+my $resp;
+
 $error = undef;
 $args = undef;
 $code = 200;
 $content = '{"a":1}'; # JSON
 $f->{id} = 100;
-ok($f->post(mkrequest("mycommand", args => [qw(a b c)], opts => {opt => 'ok', int => 1})),
-    "succesful rpc call return 1");
+$resp = $f->post(mkrequest("mycommand", args => [qw(a b c)], opts => {opt => 'ok', int => 1}));
+isa_ok($resp, 'Net::FreeIPA::Response', "post returns Response instance");
+ok($resp, "succesful rpc call return true response");
 ok(! defined($error), 'No error after successful post');
-isa_ok($f->{error}, 'Net::FreeIPA::Error', 'error attribute is a Net::FreeIPA::Error instance');
-ok(! $f->{error}, "error attribute is false on succes POST");
-is_deeply($f->{answer}, {a => 1}, "Decoded JSON response in answer attribute");
+isa_ok($resp->{error}, 'Net::FreeIPA::Error', 'response error attribute is a Net::FreeIPA::Error instance');
+ok(! $resp->{error}, "response error attribute is false on succes POST");
+is_deeply($resp->{answer}, {a => 1}, "Decoded JSON response in response answer attribute");
 
 isa_ok($args->[0], 'REST::Client', "REST::Client->POST called");
 
@@ -177,14 +180,15 @@ $args = undef;
 $code = 400;
 $content = '{"b":1}'; # JSON
 $f->{id} = 101;
-ok(! defined($f->post(mkrequest("mycommand", args => [qw(a b c)], opts => {opt => 'ok', int => 1}))),
-    "failed rpc call return undef");
+$resp = $f->post(mkrequest("mycommand", args => [qw(a b c)], opts => {opt => 'ok', int => 1}));
+isa_ok($resp, 'Net::FreeIPA::Response', "failed post returns Response instance");
+ok(! $resp, "failed rpc call return false response");
 is($error->[0], 'POST failed (url /ipa/session/json code 400): {"b":1}', 'Error after failed post');
-isa_ok($f->{error}, 'Net::FreeIPA::Error', 'error attribute is a Net::FreeIPA::Error instance');
-ok($f->{error}, "error attribute is true on failure POST");
-is("$f->{error}", "Error POST failed (url /ipa/session/json code 400)",
-   "error attribute text on failure POST");
-is($f->{answer}, $content, 'answer attribute has undecoded response on failure');
+isa_ok($resp->{error}, 'Net::FreeIPA::Error', 'response error attribute is a Net::FreeIPA::Error instance');
+ok($resp->{error}, "response error attribute is true on failure POST");
+is("$resp->{error}", "Error POST failed (url /ipa/session/json code 400)",
+   "response error attribute text on failure POST");
+is($resp->{answer}, $content, 'answer attribute has undecoded response on failure');
 
 =head2 Test rpc
 
@@ -193,55 +197,63 @@ is($f->{answer}, $content, 'answer attribute has undecoded response on failure')
 $error = undef;
 $content = '{"error":null,"id":0,"principal":"user@DOMAIN","result":{"count":1,"messages":[{"code":13001,"message":"API Version number was not sent, forward compatibility not guaranteed. Assuming servers API version, 2.156","name":"VersionMissing","type":"warning"}],"result":[{"dn":"uid=user,cn=users,cn=accounts,dc=domain","gidnumber":["1234567"],"has_keytab":true,"has_password":true,"homedirectory":["/home/user"],"loginshell":["/bin/bash"],"nsaccountlock":false,"sn":["Superman"],"uid":["user"],"uidnumber":["1234567"]}],"summary":"1 user matched","truncated":false},"version":"4.2.0"}';
 $code = 200;
-ok($f->rpc(mkrequest("mycommand", args => [qw(a b c)], opts => {opt => 'ok', int => 1})),
-   "succesfull rpc");
+$resp = $f->rpc(mkrequest("mycommand", args => [qw(a b c)], opts => {opt => 'ok', int => 1}));
+isa_ok($resp, 'Net::FreeIPA::Response', "success rpc returns Response instance");
+ok($resp, "succesfull rpc");
+is($f->{response}->{answer}, $resp->{answer}, "Response is stored in response attribute (identical answer)");
 ok(! defined($error), 'No error after successful post');
-isa_ok($f->{error}, 'Net::FreeIPA::Error', 'error attribute is a Net::FreeIPA::Error instance');
-ok(! $f->{error}, "error attribute is false on succes rpc");
-is(scalar @{$f->{result}}, 1, "1 result from rpc");
-ok($f->{result}->[0]->{has_keytab}, "first result has keytab attribute set");
+isa_ok($resp->{error}, 'Net::FreeIPA::Error', 'error attribute is a Net::FreeIPA::Error instance');
+ok(! $resp->{error}, "response error attribute is false on succes rpc");
+ok(! defined($f->{error}), "error attribute is reset");
+is(scalar @{$resp->{result}}, 1, "1 result from rpc");
+ok($resp->{result}->[0]->{has_keytab}, "first result has keytab attribute set");
 
 # unsupported type
 $error = undef;
-ok(! defined($f->rpc('abc')), "failed rpc with invalid arg type");
+$resp = $f->rpc('abc');
+ok(! defined($resp), "undefined return failed rpc with invalid arg type");
 like($error->[0], qr{^Not supported rpc argument type $}, 'Error after invalid arg type');
 isa_ok($f->{error}, 'Net::FreeIPA::Error', 'error attribute is a Net::FreeIPA::Error instance after invalid arg type');
 ok($f->{error}, "error attribute is true on invalid arg type");
+ok(! defined($f->{response}), "response attribute is reset on invalid arg type");
 
 # invalid request
 $error = undef;
-ok(! defined($f->rpc(mkrequest("mycommand", args => [qw(a b c)], opts => {opt => 'ok', int => 1}, error => 'badrequest'))),
-   "failed rpc with error request");
+$resp = $f->rpc(mkrequest("mycommand", args => [qw(a b c)], opts => {opt => 'ok', int => 1}, error => 'badrequest'));
+ok(! defined($resp), "undefined return failed rpc with error request");
 like($error->[0], qr{^error in request badrequest$}, 'Error after error request');
 isa_ok($f->{error}, 'Net::FreeIPA::Error', 'error attribute is a Net::FreeIPA::Error instance after error request');
 ok($f->{error}, "error attribute is true on error request");
+ok(! defined($f->{response}), "response attribute is reset on error request");
 
 # post failed
 $error = undef;
 $content = '{"error":null,"id":0,"principal":"user@DOMAIN","result":{"count":1,"messages":[{"code":13001,"message":"API Version number was not sent, forward compatibility not guaranteed. Assuming servers API version, 2.156","name":"VersionMissing","type":"warning"}],"result":[{"dn":"uid=user,cn=users,cn=accounts,dc=domain","gidnumber":["1234567"],"has_keytab":true,"has_password":true,"homedirectory":["/home/user"],"loginshell":["/bin/bash"],"nsaccountlock":false,"sn":["Superman"],"uid":["user"],"uidnumber":["1234567"]}],"summary":"1 user matched","truncated":false},"version":"4.2.0"}';
 $code = 400;
-ok(! defined($f->rpc(mkrequest("mycommand", [qw(a b c)], {opt => 'ok', int => 1}))),
-   "failed rpc with failed post");
-like($error->[0], qr{^POST failed \(url /ipa/session/json code 400\): }, 'Error after failed post');
-isa_ok($f->{error}, 'Net::FreeIPA::Error', 'error attribute is a Net::FreeIPA::Error instance');
-ok($f->{error}, "error attribute is true on failure rpc");
+$resp = $f->rpc(mkrequest("mycommand", [qw(a b c)], {opt => 'ok', int => 1}));
+ok(! defined($resp), "rpc with failed post is undef");
+like($error->[0], qr{^POST failed \(url /ipa/session/json code 400\): }, 'Error after rpc on failed post');
+isa_ok($f->{error}, 'Net::FreeIPA::Error', 'error attribute is a Net::FreeIPA::Error instance after rpc on failed post');
+ok($f->{error}, "error attribute is true with rpc on failed post");
 is("$f->{error}", "Error POST failed (url /ipa/session/json code 400)",
    "error attribute text on failure rpc (is POST error)");
-ok(! defined($f->{result}), "Result attribute is reset");
 
 
 # This is fake data with error
 $error = undef;
 $code = 200;
 $content = '{"error":{"message":"some error"},"id":0,"principal":"user@DOMAIN","result":{"count":1,"messages":[{"code":13001,"message":"API Version number was not sent, forward compatibility not guaranteed. Assuming servers API version, 2.156","name":"VersionMissing","type":"warning"}],"result":[{"dn":"uid=user,cn=users,cn=accounts,dc=domain","gidnumber":["1234567"],"has_keytab":true,"has_password":true,"homedirectory":["/home/user"],"loginshell":["/bin/bash"],"nsaccountlock":false,"sn":["Superman"],"uid":["user"],"uidnumber":["1234567"]}],"summary":"1 user matched","truncated":false},"version":"4.2.0"}';
-ok(! defined($f->rpc(mkrequest("mycommand", args => [qw(a b c)], opts => {opt => 'ok', int => 1}))),
-   "failed rpc with succesful post and error in answer");
-is($error->[0], 'mycommand got error (Error some error)', 'Error after failed post');
-isa_ok($f->{error}, 'Net::FreeIPA::Error', 'error attribute is a Net::FreeIPA::Error instance');
-ok($f->{error}, "error attribute is true on failure rpc");
-is("$f->{error}", "Error some error",
-   "error attribute text on failure rpc");
-ok(! defined($f->{result}), "Result attribute is reset");
+$resp = $f->rpc(mkrequest("mycommand", args => [qw(a b c)], opts => {opt => 'ok', int => 1}));
+isa_ok($resp, 'Net::FreeIPA::Response', "rpc with error in answer Response instance");
+ok(! $resp, "false response with failed rpc with succesful post and error in answer");
+is($error->[0], 'mycommand got error (Error some error)', 'Error after error in answer');
+isa_ok($resp->{error}, 'Net::FreeIPA::Error', 'error attribute is a Net::FreeIPA::Error instance after error in answer');
+ok($resp->{error}, "error attribute is true on failure rpc after error in answer");
+is("$resp->{error}", "Error some error",
+   "error attribute text on failure rpc after error in answer");
+ok(! defined($resp->{result}), "Result attribute is reset after error in answer");
+isa_ok($f->{response}, 'Net::FreeIPA::Response', "response attribute is set after error in answer");
+ok(! defined($f->{error}), "error attribute is not set on failure rpc after error in answer");
 
 
 =head2 test get_api_commands
@@ -256,7 +268,7 @@ $f->{id} = 101;
 is_deeply($f->get_api_commands(), {fake => 1},
     "succesful rpc call return commands for get_api_commands");
 ok(! defined($error), 'No error after successful post');
-is_deeply($f->{result}, {fake => 1}, "Commands in result attribute");
+is_deeply($f->{response}->{result}, {fake => 1}, "Commands in response result attribute");
 
 isa_ok($args->[0], 'REST::Client', "REST::Client->POST called");
 is($args->[1], '/ipa/session/json', 'json url');
@@ -277,7 +289,7 @@ $version = delete $f->{api_version};
 is($f->get_api_version(), '1.2.3',
    "succesful rpc call return version for get_api_version");
 ok(! defined($error), 'No error after successful post');
-is_deeply($f->{result}, '1.2.3', "version in result attribute");
+is_deeply($f->{response}->{result}, '1.2.3', "version in response result attribute");
 
 isa_ok($args->[0], 'REST::Client', "REST::Client->POST called");
 is($args->[1], '/ipa/session/json', 'json url');

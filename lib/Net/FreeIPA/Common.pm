@@ -67,15 +67,16 @@ sub find_one
     } else {
         my $attr = $FIND_ONE{$api};
         if ($attr) {
-            if ($self->$method("", $attr => $value, all => 1)) {
-                my $count = $self->{answer}->{result}->{count};
+            my $response = $self->$method("", $attr => $value, all => 1);
+            if ($response) {
+                my $count = $response->{answer}->{result}->{count};
                 if (! $count) {
                     $self->debug("one_find method $method and value $value returns 0 answers.");
                 } else {
                     if ($count > 1) {
                         $self->warn("one_find method $method and value $value returns $count answers");
                     };
-                    $res = $self->{result}->[0];
+                    $res = $response->{result}->[0];
                 }
             } else {
                 # error is already logged.
@@ -131,21 +132,21 @@ sub do_one
     }
     $opts{__noerror} = [$noerror];
 
-    my $res = $self->$api_method($name, %opts) ? $self->{result} : undef;
+    my $response = $self->$api_method($name, %opts);
 
     my $msg;
-    if ($res) {
+    if ($response) {
         $msg = "succesfully $method-ed $api $name";
     } else {
         $msg = "failed to $method $api $name";
-        if ($self->{error} == $noerror) {
+        if ($response->{error} == $noerror) {
             $msg .= " $api $noerrormsg";
         }
     }
 
     $self->debug("$api_method: $msg");
 
-    return $res;
+    return $response ? $response->{result} : undef;
 };
 
 

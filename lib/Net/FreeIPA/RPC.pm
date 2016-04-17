@@ -11,6 +11,7 @@ use JSON::XS;
 use Net::FreeIPA::Error;
 use Net::FreeIPA::API::Magic;
 use Net::FreeIPA::Request;
+use Net::FreeIPA::Response;
 
 use LWP::UserAgent;
 # Add kerberos support
@@ -183,9 +184,7 @@ sub set_api_version
 
 Make a JSON API post using C<request>.
 
-Return 1 on success, undef on failure.
-Answer is stored in the answer attribute. (The answer is decoded
-in case of success).
+Return Response instance, undef on failure to get the REST client via the C<rc> attribute.
 
 =cut
 
@@ -197,9 +196,6 @@ sub post
     foreach my $postopt (sort keys %{$request->{post}}) {
         $opts{$postopt} = $request->{post}->{$postopt} if ! defined($opts{$postopt});
     }
-
-    # Reset any previous answer
-    $self->{answer} = undef;
 
     # For now, only support the API version from Net::FreeIPA::API
     if ($self->{api_version}) {
@@ -222,34 +218,30 @@ sub post
 
     my $code = $rc->responseCode();
     my $content = $rc->responseContent();
-    my $ans;
+    my ($ans, $err);
 
-    my $ret;
     if ($code == 200) {
         $ans = $self->{json}->decode($content);
         $self->debug("Successful JSON POST".($self->{debugapi} ? " JSON $content" : ""));
-        $ret = 1;
-        # Reset error atrribute (will be adapted by rpc method)
-        $self->{error} = mkerror();
     } else {
         $ans = $content;
 
         $content = '<undef>' if ! defined($content);
         $self->error("POST failed (url $IPA_URL_JSON code $code): $content");
         # Set error (not processed anymore by rpc)
-        $self->{error} = mkerror("POST failed (url $IPA_URL_JSON code $code)");
+        $err = "POST failed (url $IPA_URL_JSON code $code)";
     }
 
-    # Store last (decoded) answer in answer attribute
-    $self->{answer} = $ans;
-
-    return $ret;
+    return mkresponse(answer => $ans, error => $err);
 }
 
 
 =item rpc
 
-Make a JSON API rpc. Return 1 on succes, undef on failure.
+Make a JSON API rpc call.
+Returns response on successful POST (and no error attribute is set,
+even if the answer contains an error), undef otherwise
+(and the error attribute is set).
 
 Arguments
 
@@ -263,10 +255,7 @@ Options
 
 =over
 
-=item result_path
-
-A path-like string, indicating which subtree of the decoided JSON response
-should be set as result attribute (default C<result/result>).
+=item result_path: passed to the response
 
 =item noerror
 
@@ -275,7 +264,7 @@ An array ref with errorcodes or errornames that are not reported as an error.
 
 =back
 
-Processed result is stored in the result attribute.
+Response is stored in the response attribute (and is reset).
 
 =cut
 
@@ -283,63 +272,60 @@ sub rpc
 {
     my ($self, $request, %opts) = @_;
 
-    # Reset any previous result
-    $self->{result} = undef;
-    my ($ret, $response, $command);
+    # Reset any previous result and error
+    $self->{response} = undef;
+    $self->{error} = undef;
+
+    my ($ret, $response, $errmsg);
 
     my $ref = ref($request);
     if ($ref eq 'Net::FreeIPA::Request') {
-        $command = $request->{command};
+        if ($request) {
+            # set request rpc options, do not override
+            foreach my $rpcopt (sort keys %{$request->{rpc}}) {
+                $opts{$rpcopt} = $request->{rpc}->{$rpcopt} if ! defined($opts{$rpcopt});
+            }
 
-        if (! $request) {
-            my $msg = "error in request $request->{error}";
-            $self->error($msg);
-            $self->{error} = mkerror($msg);
-            return;
+            $response = $self->post($request);
+        } else {
+            $errmsg = "error in request $request->{error}";
         }
-
-        # set request rpc options, do not override
-        foreach my $rpcopt (sort keys %{$request->{rpc}}) {
-            $opts{$rpcopt} = $request->{rpc}->{$rpcopt} if ! defined($opts{$rpcopt});
-        }
-
-        $response = $self->post($request);
-
-        return if (! $response);
     } else {
-        my $msg = "Not supported rpc argument type $ref";
-        $self->error($msg);
-        $self->{error} = mkerror($msg);
-        return;
+        $errmsg = "Not supported rpc argument type $ref";
     }
 
-    my $error = mkerror(%{$self->{answer}->{error}});
+    if ($response) {
+        # At this point, POST was succesful, and we interpret the results
+        my $command = $request->{command};
 
-    my $result_path = $opts{result_path} || 'result/result';
+        # Redefine the response error according to answer
+        my $error = $response->set_error($response->{answer}->{error});
+        # (re)set the result, also in case of error-in-answer,
+        # it will reset the result attribute
+        $response->set_result($opts{result_path});
 
-    # Save error attribute
-    $self->{error} = $error;
+        if ($error) {
+            my @noerrors = grep {$error == $_} @{$opts{noerror} || []};
 
-    if ($error) {
-        my @noerrors = grep {$error == $_} @{$opts{noerror} || []};
+            my $error_method = @noerrors ? 'debug' : 'error';
 
-        my $error_method = @noerrors ? 'debug' : 'error';
-
-        $self->$error_method("$command got error ($error)");
-    } else {
-        $ret = 1;
-
-        $self->warn("$command got truncated result") if $self->{answer}->{result}->{truncated};
-
-        my $res = $self->{answer};
-        # remove any "empty" paths
-        foreach my $subpath (grep {$_} split('/', $result_path)) {
-            $res = $res->{$subpath} if (defined($res));
+            $self->$error_method("$command got error ($error)");
+        } else {
+            $self->warn("$command got truncated result") if $self->{response}->{answer}->{result}->{truncated};
         };
-        $self->{result} = $res;
-    };
 
-    return $ret;
+        # Set and return response attribute
+        $self->{response} = $response;
+        return $response;
+    } else {
+        if ($errmsg) {
+            $self->error($errmsg);
+            $self->{error} = mkerror($errmsg);
+        } else {
+            $self->{error} = $response->{error};
+        };
+        return;
+    };
 }
 
 
@@ -357,8 +343,10 @@ sub get_api_commands
 {
     my ($self) = @_;
 
+    # Cannot use the API::Function here, this is to be used to generate them
     my $req = mkrequest('json_metadata', args => [], opts => {command => "all"});
-    return $self->rpc($req, result_path => 'result/commands') ? $self->{result} : undef;
+    my $resp = $self->rpc($req, result_path => 'result/commands');
+    return $resp ? $resp->{result} : undef;
 }
 
 
@@ -381,8 +369,10 @@ sub get_api_version
 {
     my ($self) = @_;
 
+    # Cannot use the API::Function here, this is to be used to generate them
     my $req = mkrequest('env', args => ['api_version'], opts => {});
-    return $self->rpc($req, result_path => 'result/result/api_version') ? $self->{result} : undef;
+    my $resp = $self->rpc($req, result_path => 'result/result/api_version');
+    return  $resp ? $resp->{result} : undef;
 }
 
 =pod
