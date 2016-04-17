@@ -1,5 +1,5 @@
 
-=item [% name FILTER upper %]
+=item [% name %]
 
 JSON data for API method [% name %]
 
@@ -20,7 +20,7 @@ Required arguments
 No required arguments
 [%- END %]
 
-=item  Options
+=item Options
 
 =over
 [%      FOREACH opt IN check_hash(details.takes_options) %]

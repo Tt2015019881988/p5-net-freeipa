@@ -58,13 +58,12 @@ sub get_api
     # most recent
     delete $f->{api_version};
 
-    $f->get_api_version() || die("Failed to get api_version ".Dumper($f));
-    my $version = $f->{result};
+    my $version = $f->get_api_version() || die("Failed to get api_version ".Dumper($f));
     $f->set_api_version($version);
 
-    $f->get_api_commands() || die("Failed to get commands metdata ".Dumper($f));
+    my $commands = $f->get_api_commands() || die("Failed to get commands metdata ".Dumper($f));
 
-    return $version, $f->{result};
+    return $version, $commands;
 }
 
 
@@ -124,8 +123,34 @@ sub main
         commands => $commands,
         module_name => $MODULE_NAME,
         script_name => $SCRIPT_NAME,
-        encode_json => sub { return encode_json(Net::FreeIPA::API::cache(shift));}
+        encode_json => sub { return encode_json(Net::FreeIPA::API::Magic::cache(shift));},
+        check_hash => sub {
+            my $array = shift;
+            my @newarray;
+            foreach my $el (@$array) {
+                if (ref($el) eq '') {
+                    my $oldel = $el;
+                    $oldel =~ s/[*+?]$//;
+                    $el = { %Net::FreeIPA::API::Magic::CACHE_TAKES_DEFAULT };
+                    $el->{name} = $oldel;
+                    $el->{doc} = 'unknown';
+                };
+                push(@newarray, $el);
+            };
+            return \@newarray;
+        }
     };
+
+    # flush the cache, otherwise the encode_json TT command uses the cache data (leading to
+    # missing commands and interpreted data (so no identical JSON re-encoding))
+    Net::FreeIPA::API::Magic::flush_cache();
+
+    # pod first, the data.tt uses encode_json which modifies the commands hashref
+    my $pod = '';
+    $tt->process('pod.tt', $vars, \$pod)
+        || die "POD error ", $tt->error(), "\n";
+
+    make_module($pod, 1);
 
     my $api = '';
     $tt->process('data.tt', $vars, \$api)
@@ -133,11 +158,6 @@ sub main
 
     make_module($api);
 
-    my $pod = '';
-    $tt->process('pod.tt', $vars, \$pod)
-        || die "POD error ", $tt->error(), "\n";
-
-    make_module($pod, 1);
 }
 
 
