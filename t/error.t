@@ -25,6 +25,7 @@ sub isnt_error
 is_deeply(\%Net::FreeIPA::Error::ERROR_CODES, {
     DuplicateEntry => 4002,
     NotFound => 4001,
+    AlreadyInactive => 4010,
 }, "ERROR_CODES as expected");
 
 
@@ -151,6 +152,22 @@ $e = mkerror(name => 'other');
 ok(! $e->is_duplicate(), "other error with name is not duplicate");
 $e = mkerror(code => 123);
 ok(! $e->is_duplicate(), "123 error with code is not duplicate");
+
+=head2 is_already_inactive
+
+=cut
+
+my $ai = $Net::FreeIPA::Error::ALREADY_INACTIVE;
+my $aic = $Net::FreeIPA::Error::ERROR_CODES{$ai};
+$e = mkerror(name => $ai);
+ok($e->is_already_inactive(), "Already_Inactive error with name is already_inactive");
+$e = mkerror(code => $aic);
+ok($e->is_already_inactive(), "Already_Inactive error with code is already_inactive");
+
+$e = mkerror(name => 'other');
+ok(! $e->is_already_inactive(), "other error with name is not already_inactive");
+$e = mkerror(code => 123);
+ok(! $e->is_already_inactive(), "123 error with code is not already_inactive");
 
 =item set_error
 
