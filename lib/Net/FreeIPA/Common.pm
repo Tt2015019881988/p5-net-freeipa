@@ -134,11 +134,12 @@ sub do_one
 
     my $response = $self->$api_method($name, %opts);
 
+    my $name_msg = ref($name) eq 'ARRAY' ? join(', ', @$name) : $name;
     my $msg;
     if ($response) {
-        $msg = "succesfully $method-ed $api $name";
+        $msg = "successfully $method-ed $api $name_msg";
     } else {
-        $msg = "failed to $method $api $name";
+        $msg = "failed to $method $api $name_msg";
         if ($response->{error} == $noerror) {
             $msg .= " $api $noerrormsg";
         }
