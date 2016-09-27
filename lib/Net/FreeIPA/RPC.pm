@@ -301,7 +301,7 @@ sub rpc
         $response->set_result($opts{result_path});
 
         if ($error) {
-            my @noerrors = grep {$error == $_} @{$opts{noerror} || []};
+            my @noerrors = grep {defined($_) && $error == $_} @{$opts{noerror} || []};
 
             my $error_method = @noerrors ? 'debug' : 'error';
 

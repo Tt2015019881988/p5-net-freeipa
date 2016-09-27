@@ -95,9 +95,10 @@ sub find_one
 Wrapper for simple call using C<api> and C<method> via
 C<<api_<api>_<method>(C<name>)>>.
 
-Any options are passed.
+Any options are passed as is except C<__noerror>.
 
-An error-type is not reported as error
+Following error-type are not reported as error
+(set/added as defaults for C<__noerror>)
 (still returns C<undef>):
 
 =over
@@ -105,7 +106,10 @@ An error-type is not reported as error
 =item DuplicateEntry: when C<method> is C<add>,
 an existing entry is not reported as an error
 
-=item NotFound: when C<method> is not C<add>,
+=item AlreadyInactive: when C<method> is C<disable>,
+an already inactive/disabled entry is not reported as an error
+
+=item NotFound: when C<method> is not C<mod> or any of the previous,
 an missing entry is not reported as an error
 
 =back
@@ -120,27 +124,36 @@ sub do_one
 
     my $api_method = $Net::FreeIPA::API::API_METHOD_PREFIX.$api."_$method";
 
-    # For add, do not report existing name as error
-    # for other methods, do not report missing name as error
-    my ($noerror, $errormethod, $noerrormsg);
+    my $msg_map = {
+        $Net::FreeIPA::Error::DUPLICATE_ENTRY => "already exists",
+        $Net::FreeIPA::Error::ALREADY_INACTIVE => "already inactive/disabled",
+        $Net::FreeIPA::Error::NOT_FOUND => "does not exist",
+    };
+
     if ($method eq 'add') {
-        $noerror = $Net::FreeIPA::Error::DUPLICATE_ENTRY;
-        $noerrormsg = "already exists";
-    } else {
-        $noerror = $Net::FreeIPA::Error::NOT_FOUND;
-        $noerrormsg = "does not exist";
+        # For add, do not report existing name as error
+        push(@{$opts{__noerror}}, $Net::FreeIPA::Error::DUPLICATE_ENTRY);
+    } elsif ($method eq 'disable') {
+        # For disable, do not report already disabled name as error
+        push(@{$opts{__noerror}}, $Net::FreeIPA::Error::ALREADY_INACTIVE);
     }
-    $opts{__noerror} = [$noerror];
+
+    if (! grep {$method eq $_ } qw(add mod)) {
+        # For methods except add/mod, do not report missing name as error
+        push(@{$opts{__noerror}}, $Net::FreeIPA::Error::NOT_FOUND);
+    }
 
     my $response = $self->$api_method($name, %opts);
 
+    my $name_msg = ref($name) eq 'ARRAY' ? join(', ', @$name) : $name;
     my $msg;
     if ($response) {
-        $msg = "succesfully $method-ed $api $name";
+        $msg = "successfully $method-ed $api $name_msg";
     } else {
-        $msg = "failed to $method $api $name";
-        if ($response->{error} == $noerror) {
-            $msg .= " $api $noerrormsg";
+        $msg = "failed to $method $api $name_msg";
+
+        foreach my $noerror (sort keys %$msg_map) {
+            $msg .= " $api ".$msg_map->{$noerror} if ($response->{error} == $noerror);
         }
     }
 

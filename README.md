@@ -20,7 +20,12 @@ if ($fi->api_user_find("")) {
 ```
 
 # IPA API
+
 All API commands are retrieve using `gen_api.pl` script from the JSON API.
+
+# Tests
+
+Run tests with `prove -Ilib -r t` (or `prove -Ilib -t/name_of_test.t` for single unittest)
 
 # References
 

@@ -21,6 +21,8 @@ use Net::FreeIPA::Common;
 
 my $mockbase = Test::MockModule->new("Net::FreeIPA::Base");
 
+$mockbase->mock('debug', sub {shift; diag "debug: @_"});
+
 my $error;
 $mockbase->mock('error', sub {shift; $error = \@_; diag "error: @_"});
 
@@ -132,8 +134,31 @@ reset_POST_history();
 $f->{id} = 0;
 ok(! defined($f->do_one('host', 'add', 'my.host')),
    "do_one host add fails id=0");
-ok(POST_history_ok(["0 host_add my.host "]), "api_host_add called with correct args/opts id=1");
+ok(POST_history_ok(["0 host_add my.host "]), "api_host_add called with correct args/opts id=0");
 like($error->[0], qr{^host_add got error}, "error reported");
+
+# mod with NotFound gives error
+$error = undef;
+reset_POST_history();
+$f->{id} = 1;
+ok(! defined($f->do_one('host', 'mod', 'my.host')),
+   "do_one host mod fails id=1");
+ok(POST_history_ok(["1 host_mod my.host "]), "api_host_mod called with correct args/opts id=1");
+ok($f->{response}->{error}->is_not_found(), 'NotFound error');
+like($error->[0], qr{^host_mod got error}, "failed method reports error");
+
+=head2: do_one: fail, pass __noerror and no error
+
+=cut
+
+$error = undef;
+reset_POST_history();
+$f->{id} = 0;
+ok(! defined($f->do_one('host', 'add', 'my.host', __noerror => ['unittest'])),
+   "do_one host add fails id=0 and __noerror passed");
+ok(POST_history_ok(["0 host_add my.host "]), "api_host_add called with correct args/opts id=0");
+ok(! defined($error), "no error reported with add and unittest and __noerror passed");
+
 
 =head2 do_one: fail and no error
 
@@ -143,21 +168,31 @@ like($error->[0], qr{^host_add got error}, "error reported");
 $error = undef;
 reset_POST_history();
 $f->{id} = 1;
-ok(! defined($f->do_one('host', 'add', 'my.host')),
+# also tests if already existing noerror do not interfere
+ok(! defined($f->do_one('host', 'add', 'my.host', __noerror => ['unittest'])),
    "do_one host add fails id=1");
 ok(POST_history_ok(["1 host_add my.host "]), "api_host_add called with correct args/opts id=1");
 ok($f->{response}->{error}->is_duplicate(), 'DuplicateEntry error');
 ok(! defined($error), "no error reported with add and DuplicateEntry");
 
-# mod
+$error = undef;
+reset_POST_history();
+$f->{id} = 4;
+ok(! defined($f->do_one('host', 'find', 'my.host')),
+   "do_one host mod fails id=4");
+ok(POST_history_ok(["4 host_find my.host "]), "api_host_find called with correct args/opts id=4");
+ok($f->{response}->{error}->is_not_found(), 'NotFound error');
+ok(! defined($error), "no error reported with find and NotFound");
+
 $error = undef;
 reset_POST_history();
 $f->{id} = 1;
-ok(! defined($f->do_one('host', 'mod', 'my.host')),
-   "do_one host mod fails id=1");
-ok(POST_history_ok(["1 host_mod my.host "]), "api_host_mod called with correct args/opts id=1");
-ok($f->{response}->{error}->is_not_found(), 'NotFound error');
-ok(! defined($error), "no error reported with mod and NotFound");
+ok(! defined($f->do_one('host', 'disable', 'my.host')),
+   "do_one host disable fails id=1");
+ok(POST_history_ok(["1 host_disable my.host "]), "api_host_disable called with correct args/opts id=1");
+ok($f->{response}->{error}->is_already_inactive(), 'AlreadyInactive error');
+ok(! defined($error), "no error reported with disable and AlreadyInactive");
+
 
 =head2 do_one: success, no error
 

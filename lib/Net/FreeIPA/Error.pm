@@ -13,10 +13,12 @@ use overload bool => 'is_error', '==' => '_is_equal', '!=' => '_is_not_equal', '
 
 Readonly our $DUPLICATE_ENTRY => 'DuplicateEntry';
 Readonly our $NOT_FOUND => 'NotFound';
+Readonly our $ALREADY_INACTIVE => 'AlreadyInactive';
 
 Readonly::Hash our %ERROR_CODES => {
     $DUPLICATE_ENTRY => 4002,
     $NOT_FOUND => 4001,
+    $ALREADY_INACTIVE => 4010,
 };
 
 Readonly::Hash our %REVERSE_ERROR_CODES => map {$ERROR_CODES{$_} => $_} keys %ERROR_CODES;
@@ -184,6 +186,20 @@ sub is_duplicate
     return $self->is_error($DUPLICATE_ENTRY);
 }
 
+=item is_already_inactive
+
+Test if this is a AlreadyInactive error
+
+=cut
+
+sub is_already_inactive
+{
+    my ($self) = @_;
+
+    return $self->is_error($ALREADY_INACTIVE);
+}
+
+
 =item is_not_found
 
 Test if this is a NotFound error
@@ -198,11 +214,13 @@ sub is_not_found
 }
 
 # is_equal for overloading ==
+# handle == undef (otherwise this would be $self->is_error)
 sub _is_equal
 {
     # Use shift, looks like a 3rd argument (an empty string) is passed
     my $self = shift;
-    return $self->is_error(shift);
+    my $othererror = shift;
+    return defined($othererror) && $self->is_error($othererror);
 }
 
 # inverse is_equal for overloading !=
