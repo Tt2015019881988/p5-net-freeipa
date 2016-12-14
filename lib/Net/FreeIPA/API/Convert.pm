@@ -5,7 +5,8 @@ use warnings qw(FATAL numeric);
 
 use Net::FreeIPA::Request;
 
-use Types::Serialiser; # is used by JSON::XS
+# cannout use 'use Types::Serialiser'; it is incompatible with JSON::XS 2.X (eg on EL6)
+use JSON::XS;
 use Readonly;
 
 use base qw(Exporter);
@@ -17,7 +18,7 @@ Readonly::Hash my %CONVERT_DISPATCH => {
     str => sub {my $val = shift; return "$val";}, # stringify
     int => sub {my $val = shift; return 0 + $val;}, # Force internal conversion to int
     float => sub {my $val = shift; return 1.0 * $val;}, # Force internal conversion to float
-    bool => sub {my $val = shift; return $val ? Types::Serialiser::true : Types::Serialiser::false;},
+    bool => sub {my $val = shift; return $val ? JSON::XS::true : JSON::XS::false;},
 };
 
 # Aliases for each dispatch
